@@ -3,9 +3,9 @@ class Database {
   
     //The database credentials
     private $host = 'localhost';
-    private $db_name = 'bart_fakebook';
-    private $user = 'bart_fakebook';
-    private $password='19WkXktaRVoRULYF';
+    private $db_name = 'database-name';
+    private $user = 'username';
+    private $password='*******';
     private $connection;
     
     //get the database conncetion

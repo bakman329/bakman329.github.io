@@ -262,7 +262,7 @@ export function resetBlockedEventInvites(){
 }
 
 export function resetPhotos(){
-  localStorage.setItem('photos',JSON.stringify({}))
+    localStorage.setItem('photos', JSON.stringify({}))
 }
 
 export function resetAll() {

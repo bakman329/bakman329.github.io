@@ -1,6 +1,7 @@
 import React from 'react'
-import UploadPopup from "../../uploadPopup.jsx";
+import UploadPopup from "../../UploadPopup.jsx";
 import {Link} from "react-router-dom";
+import {linkToName} from "../../../utilities.js";
 
 class AlbumList extends React.Component {
   constructor(props) {
@@ -47,9 +48,13 @@ class AlbumList extends React.Component {
       <div className="photos-view">
         {create_album}
         {this.state.albums.map((title, index) => {
+          var length = JSON.parse(localStorage.getItem("photos"))[linkToName(this.props.match.params.user)][title].length;
           return (
-            <Link to={'/profile/' + this.props.match.params.user + '/photos/albums' + title}>
-              <p>{title}</p>
+            <Link className="album" key={index} to={'/profile/' + this.props.match.params.user + '/photos/albums/' + title}>
+              <div className="album-text">
+                <p>{title}</p>
+                <p>{length} Item{(length != 1) ? "s" : ""}</p>
+              </div>
               <img src="/assets/profile_img.jpg" key={index} />
             </Link>
           );

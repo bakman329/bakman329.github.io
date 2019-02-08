@@ -1,6 +1,6 @@
 import React from 'react'
 import PhotosView from "./PhotosView.jsx";
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 import AlbumList from "./AlbumList.jsx";
 
 class Photos extends React.Component {
@@ -22,9 +22,6 @@ class Photos extends React.Component {
   render() {
     let photos = JSON.parse(localStorage.getItem('photos'))['Alex Doe'] || {};
     let album = (this.props.match.params.section === 'albums') ? this.props.match.params.subsection : null;
-
-    let photos_view = <PhotosView photos={photos[this.getSection()] || []} album={album} />;
-    let album_list = <AlbumList />;
 
     return (
       <div id="info_wrapper">
@@ -51,7 +48,15 @@ class Photos extends React.Component {
             </tbody>
           </table>
         </div>
-      {(this.getSection() === 'albums') ? album_list : photos_view}
+        <Route
+            exact path={'/profile/:user/photos/albums'}
+            component={AlbumList} />
+        <Route path={'/profile/' + this.props.match.params.user + '/photos/albums/:subsection'}
+            render={(props) => <PhotosView {...props}
+            photos={photos[this.getSection()] || []} album={album} />} />
+        <Route path={'/profile/' + this.props.match.params.user + '/photos/photos_all'}
+            render={(props) => <PhotosView {...props}
+            photos={photos[this.getSection()] || []} album={album} />} />
       </div>
     );
   }

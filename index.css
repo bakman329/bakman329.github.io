@@ -917,7 +917,7 @@ Edit_Icon_pos{
   margin-left: 18.75%;
 }
 
-#profile-content > h2 {
+.top_container > h2 {
   color: #fff;
   top: 150px;
   margin-left: 210px;
@@ -1873,4 +1873,24 @@ text-align: center;
 
 .create-album-text p {
     display: inline;
+}
+
+.album {
+    display: inline;
+    position: relative;
+}
+
+.album-text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 9px;
+    margin-bottom: 11px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.album-text p {
+    font-size: 16px;
+    margin: 0;
 }

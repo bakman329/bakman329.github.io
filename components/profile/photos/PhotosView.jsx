@@ -1,5 +1,5 @@
 import React from 'react'
-import UploadPopup from "../../uploadPopup.jsx";
+import UploadPopup from "../../UploadPopup.jsx";
 
 class PhotosView extends React.Component {
   constructor(props) {

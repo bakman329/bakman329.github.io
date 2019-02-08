@@ -1,5 +1,6 @@
 import React from 'react'
 import UploadPopup from "../../UploadPopup.jsx";
+import CreateAlbumPopup from "./CreateAlbumPopup.jsx"
 import {Link} from "react-router-dom";
 import {linkToName} from "../../../utilities.js";
 
@@ -10,7 +11,7 @@ class AlbumList extends React.Component {
     let albums = JSON.parse(localStorage.getItem('photos'));
     let your_albums = albums['Alex Doe'] || {};
     delete your_albums['all_photos'];
-    this.state = {renderUploadPopup: false, albums: Object.keys(your_albums) || []};
+    this.state = {renderUploadPopup: false, renderUploadPopup: false, albums: Object.keys(your_albums) || []};
 
     this.onClickPhoto = this.onClickPhoto.bind(this);
   }
@@ -34,8 +35,11 @@ class AlbumList extends React.Component {
       onClickPhoto={this.onClickPhoto}
       destroy={() => {this.setState({renderUploadPopup: false})}} />;
 
+    let create_album_popup = <CreateAlbumPopup
+      destroy={() => {this.setState({renderUploadPopup: false})}} />;
+
     let create_album = (
-      <div className="create-album" onClick={() => {this.setState({renderUploadPopup: true})}}>
+      <div className="create-album" onClick={() => {this.setState({renderCreateAlbumPopup: true})}}>
         <img src="/assets/profile_img.jpg" />
         <div className="create-album-text">
           <h2>+</h2>
@@ -60,6 +64,7 @@ class AlbumList extends React.Component {
           );
         })}
         {this.state.renderUploadPopup ? upload_popup : null}
+        {this.state.renderCreateAlbumPopup ? create_album_popup : null}
       </div>
     );
   }

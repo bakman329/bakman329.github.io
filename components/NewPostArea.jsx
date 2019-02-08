@@ -63,11 +63,8 @@ class NewPostArea extends React.Component {
      var your_photos = photos['Alex Doe'] || {};
      var all_your_photos = your_photos['all_photos'] || [];
      all_your_photos = all_your_photos.concat(this.state.photos);
-     console.log(all_your_photos);
      your_photos['all_photos'] = all_your_photos;
-     console.log(your_photos);
      photos['Alex Doe'] = your_photos;
-     console.log(photos);
      localStorage.setItem('photos', JSON.stringify(photos));
 
     this.setState({value: '', photos: [], renderUploadPopup: false});

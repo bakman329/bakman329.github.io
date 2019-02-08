@@ -21,42 +21,33 @@ class Photos extends React.Component {
 
   render() {
     let photos = JSON.parse(localStorage.getItem('photos'))['Alex Doe'] || {};
-    let album = (this.props.match.params.section === 'albums') ? this.props.match.params.subsection : null;
 
     return (
       <div id="info_wrapper">
         <div className="title title-photos">
           <img src='https://static.xx.fbcdn.net/rsrc.php/v3/yl/r/DjG18OrMbQh.png'/>
           <a href ="#">Photos</a>
-          <table id="tabs-top">
-            <tbody>
-            <tr>
-              <Link className={"title-photos-tab" + (this.getSection() === 'all_photos' ? " title-photos-tab-active" : "")}
-                    to={'/profile/' + this.props.match.params.user + '/photos/photos_all'}>
-                All Photos
-              </Link>
-              <Link className={"title-photos-tab" + (this.getSection() === 'hawaii' ? " title-photos-tab-active" : "")}
-                    to={'/profile/' + this.props.match.params.user + '/photos/albums/hawaii'}>
-                Hawaii
-              </Link>
-
-              <Link className={"title-photos-tab" + (this.getSection() === 'albums' ? " title-photos-tab-active" : "")}
-                    to={'/profile/' + this.props.match.params.user + '/photos/albums'}>
-                Albums
-              </Link>
-            </tr>
-            </tbody>
-          </table>
+          <div id="tabs-top">
+            <Link className={"title-photos-tab" + (this.getSection() === 'all_photos' ? " title-photos-tab-active" : "")}
+                  to={'/profile/' + this.props.match.params.user + '/photos/photos_all'}>
+              All Photos
+            </Link>
+            <Link className={"title-photos-tab" + (this.getSection() === 'albums' ? " title-photos-tab-active" : "")}
+                  to={'/profile/' + this.props.match.params.user + '/photos/albums'}>
+              Albums
+            </Link>
+          </div>
         </div>
         <Route
             exact path={'/profile/:user/photos/albums'}
             component={AlbumList} />
-        <Route path={'/profile/' + this.props.match.params.user + '/photos/albums/:subsection'}
+        {/* <Route path={'/profile/' + this.props.match.params.user + '/photos/albums/:subsection'} */}
+        <Route path={'/profile/:user/photos/albums/:subsection'}
             render={(props) => <PhotosView {...props}
-            photos={photos[this.getSection()] || []} album={album} />} />
-        <Route path={'/profile/' + this.props.match.params.user + '/photos/photos_all'}
+            photos={photos[this.getSection()] || []} album={this.props.match.params.subsection} />} />
+        <Route path={'/profile/:user/photos/photos_all'}
             render={(props) => <PhotosView {...props}
-            photos={photos[this.getSection()] || []} album={album} />} />
+            photos={photos[this.getSection()] || []} />} />
       </div>
     );
   }

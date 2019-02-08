@@ -1838,7 +1838,7 @@ text-align: center;
 .title-photos-tab-active::after {
     content: url(./assets/tab_arrow.png);
     position: absolute;
-    bottom: -20px;
+    bottom: -18px;
     left: 25%;
 }
 
@@ -1893,4 +1893,19 @@ text-align: center;
 .album-text p {
     font-size: 16px;
     margin: 0;
+}
+
+.album-title {
+    color: #1d2129;
+    font-size: 24px;
+    margin-bottom: 8px;
+    margin-top: 14px;
+    text-align: center;
+}
+
+.album-size {
+    color: #90949c;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
 }

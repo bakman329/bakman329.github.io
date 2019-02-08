@@ -29,16 +29,14 @@ class Popup extends React.Component {
       let left = (this.props.left) ? this.props.left : '50%';
       let Okay = (this.props.okButtonName)? this.props.okButtonName: "Okay";
       let close_button = null;
-      
-      console.log(this.props.okButtonName);
-      
+
       let style = {
         top: top,
         left: left,
         marginLeft: -width / 2,
         marginTop: -height / 2,
         width: width,
-        minHeight: height 
+        minHeight: height
       };
 
       let header_style = {
@@ -52,13 +50,13 @@ class Popup extends React.Component {
           color: "#1d2129"
         }
       }
-      
+
       let footer = null;
       var contentStyle = classNames({
          'popup-content': !this.props.content_style,
          'popup-content_altHeight':this.props.content_style
       });
-   
+
        var headerColor = classNames({
            'popup-header': !this.props.header_style,
            'popup-header_altColor': this.props.header_style
@@ -98,7 +96,7 @@ class Popup extends React.Component {
               {this.props.title}
               {close_button}
             </div>
-            <div className="popup-content" className={contentStyle}><div id={(this.props.noPadding) ? "popup-no-padding" : ""}>{this.props.children}</div></div>
+            <div className={contentStyle} style={{height: height - 76}}><div id={(this.props.noPadding) ? "popup-no-padding" : ""}>{this.props.children}</div></div>
             {!this.props.noFooter?footer:""}
          </div>
       )

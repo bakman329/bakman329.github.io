@@ -1,28 +1,37 @@
 import React from 'react'
 import UploadPopup from "../../UploadPopup.jsx";
+import {linkToName} from "../../../utilities.js";
 
 class PhotosView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {renderUploadPopup: false};
+    let photos = JSON.parse(localStorage.getItem('photos'));
+    let user_photos = photos[linkToName(this.props.match.params.user)] || {};
+    let album_photos = user_photos[this.props.album] || user_photos['all_photos'] || [];
+    this.state = {renderUploadPopup: false, photos: album_photos};
 
     this.onClickPhoto = this.onClickPhoto.bind(this);
   }
 
   onClickPhoto(photo) {
-    // TODO: replace with state
     let photos = JSON.parse(localStorage.getItem('photos'));
-    let your_photos = photos['Alex Doe'] || {};
-    let album_photos = your_photos[this.props.album] || [];
-    let all_photos = your_photos['all_photos'] || [];
+    let user_photos = photos[linkToName(this.props.match.params.user)] || {};
+    let all_photos = user_photos['all_photos'] || [];
 
-    album_photos.push(photo);
     all_photos.push(photo);
-    your_photos[this.props.album] = album_photos;
-    your_photos['all_photos'] = all_photos;
-    photos['Alex Doe'] = your_photos;
+
+    let album_photos = user_photos[this.props.album] || [];
+    if (this.props.album) {
+        album_photos.push(photo);
+        user_photos[this.props.album] = album_photos;
+    }
+
+    user_photos['all_photos'] = all_photos;
+    photos[linkToName(this.props.match.params.user)] = user_photos;
     localStorage.setItem('photos', JSON.stringify(photos));
+
+    this.setState({renderUploadPopup: false, photos: album_photos});
   }
 
   render() {
@@ -39,9 +48,11 @@ class PhotosView extends React.Component {
 
     return (
       <div className="photos-view">
+        {this.props.album ? <h1 className="album-title">{this.props.album}</h1> : null}
+        {this.props.album ? <p className="album-size">{this.state.photos.length} posts</p> : null}
         {(this.props.album)
           ? add_photo : null}
-        {this.props.photos.map((photo, index) => {
+        {this.state.photos.slice(0).reverse().map((photo, index) => {
           return <img src={photo} key={index} />;
         })}
 

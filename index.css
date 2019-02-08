@@ -917,7 +917,7 @@ Edit_Icon_pos{
   margin-left: 18.75%;
 }
 
-#profile-content h2 {
+#profile-content > h2 {
   color: #fff;
   top: 150px;
   margin-left: 210px;
@@ -1739,3 +1739,138 @@ text-align: center;
 #custom-popup-dont-container {
  height: 50%;
 } */
+
+.uploaded-photo {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin-right: 8px;
+}
+
+.uploaded-photo-overlay {
+  position: absolute;
+  display: none;
+  width: 60px;
+  height: 60px;
+  background-color: #000;
+  opacity: 0.3;
+  z-index: 100;
+}
+
+.uploaded-photo:hover > .uploaded-photo-overlay {
+  display: inline-block;
+}
+
+.uploaded-photo-overlay > a {
+  float: right;
+  color: #fff;
+  margin: 3px 3px 0 0;
+}
+
+.post-uploaded-photo {
+  margin-right: 8px;
+}
+
+.photos-view img {
+    display: inline-block;
+    width: 206px;
+    height: 206px;
+    margin: 6px;
+}
+
+.add-photo {
+    display: inline-block;
+}
+
+.add-photo-overlay {
+    position: absolute;
+    display: none;
+    width: 206px;
+    height: 206px;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: 100;
+    border-radius: 8px;
+    margin: 6px;
+}
+
+.add-photo:hover > .add-photo-overlay {
+    display: inline-block;
+}
+
+#tabs-top td {
+    padding-right: 10px;
+}
+
+#tabs-top td a {
+    color: #365899;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 50px;
+    text-decoration-line: none;
+}
+
+.title-photos {
+    padding-top: 10px;
+    padding-left:15px;
+    padding-bottom: 0;
+    background: #f6f7f9;
+    border-bottom: 1px solid #d3d6db;
+}
+
+.title-photos-tab {
+    font-size: 15px !important;
+    padding-right: 30px !important;
+    color: #365899 !important;
+    line-height: 30px;
+    display:inline;
+    position:relative;
+}
+
+.title-photos-tab:hover {
+    color: #4b4f56 !important;
+}
+
+.title-photos-tab-active {
+    color: #4b4f56 !important;
+}
+
+.title-photos-tab-active::after {
+    content: url(./assets/tab_arrow.png);
+    position: absolute;
+    bottom: -20px;
+    left: 25%;
+}
+
+.create-album {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #d3d6db;
+    margin: 6px;
+    overflow: hidden;
+}
+
+.create-album img {
+    filter: blur(5px) brightness(50%);
+    -webkit-filter: blur(5px) brightness(50%);
+    margin: 0;
+}
+
+.create-album-text {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    width: 100%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.create-album-text h2 {
+    display: inline;
+    margin: 0 8px 0 0;
+}
+
+.create-album-text p {
+    display: inline;
+}

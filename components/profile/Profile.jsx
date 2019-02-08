@@ -5,6 +5,7 @@ import {highLight,noHighLight} from '../../adaptations/Highlight.js';
 
 import Timeline from "./Timeline.jsx"
 import About from "./settings/About.jsx"
+import Photos from "./photos/Photos.jsx"
 
 class Profile extends React.Component {
   constructor(props) {
@@ -49,10 +50,7 @@ class Profile extends React.Component {
     }
 
   render() {
-      
-     
     return (
-        
       <div id="page-container">
         <div id="profile-content">
           <div className="top_container">
@@ -62,7 +60,7 @@ class Profile extends React.Component {
                 <li><Link to={"/profile/" + this.props.match.params.user}>Timeline</Link></li>
                 <li style={this.state.highlight}><Link to={"/profile/" + this.props.match.params.user + "/about/overview"} onClick={this.changeStyle}>About</Link></li>
                 <li><a href="#">Friends</a></li>
-                <li><a href="#">Photos</a></li>
+                <li><Link to={"/profile/" + this.props.match.params.user + "/photos/photos_all"}>Photos</Link></li>
                 <li><a href="#">More</a></li>
               </ul>
             </div>
@@ -77,6 +75,7 @@ class Profile extends React.Component {
           </div>
           <Switch>
             <Route path='/profile/:user/about/:section' component={About} />
+            <Route path='/profile/:user/photos/:section/:subsection?' component={Photos} />
             <Route path='/profile/:user' render={(props) => <Timeline {...props}  displayContactInfoSuggestion ={this.state.displayContactInfoSuggestion} />}/>
           </Switch>
         </div>

@@ -53,6 +53,7 @@ class Post extends React.Component {
     this.onClickHide = this.onClickHide.bind(this);
     this.onClickUndo = this.onClickUndo.bind(this);
     this.onClickAutoOk = this.onClickAutoOk.bind(this);
+    this.onDismissHide = this.onDismissHide.bind(this);
     this.onDisplayContactInfoSuggestion = this.onDisplayContactInfoSuggestion.bind(this);
     this.show = this.show.bind(this);
   }
@@ -256,6 +257,10 @@ class Post extends React.Component {
     return event; 
     }
 
+  onDismissHide() {
+    this.setState({render: false});
+  }
+
   renderPost(comments,post_title) {
     let adaptations = getParsed('adaptations');
     let adaptationVisited = getParsed("visited");
@@ -312,6 +317,12 @@ class Post extends React.Component {
           </SuggestionPopup>);
       }
 
+      let photos = (this.props.photos) ? 
+      this.props.photos.map((photo, index) => {
+        return <img src={photo} className="post-uploaded-photo" key={index} width="40px" height="40px"></img>;
+      })
+      : null;
+
       // TODO: Fix audience text for specific friends etc.
       return(
         <div>
@@ -329,7 +340,7 @@ class Post extends React.Component {
             </Menu>
           </div>
           <p>{this.props.children}</p>
-          {this.props.photo ? <img src={this.props.photo} width="40px" height="40px"></img> : null}
+          {photos}
           <hr />
         
           {this.actions()}
@@ -347,6 +358,7 @@ class Post extends React.Component {
       return null;
     }
 
+    // TODO: Move undo setState out of render
     if (this.state.hidden) {
       // TODO: Make this say newsfeed when it is newsfeed
       return (
@@ -366,7 +378,7 @@ class Post extends React.Component {
               });
             }}>Undo</Button>
             <span id='hide-post-dismiss'>
-              <Button onClick={() => this.setState({render: false})}>X</Button>
+              <Button onClick={this.onDismissHide}>X</Button>
             </span>
           </div>
         </div>

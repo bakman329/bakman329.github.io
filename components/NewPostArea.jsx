@@ -5,33 +5,43 @@ import Button from './Button.jsx'
 import AudienceMenu from './AudienceMenu.jsx'
 import PostArea from './PostArea.jsx'
 import UploadPopup from './UploadPopup.jsx'
+import UploadedPhoto from './UploadedPhoto.jsx'
 
 class NewPostArea extends React.Component {
    constructor(props) {
       super(props);
       
       this.state = {value: '',
-                    photo: '',
+                    photos: [],
                     audience: 'public',
                     renderUploadPopup: false};
       this.onChange = this.onChange.bind(this);
       this.onClick = this.onClick.bind(this);
       this.onClickPhoto = this.onClickPhoto.bind(this);
+      this.onClickRemove = this.onClickRemove.bind(this);
       this.onChangeAudience = this.onChangeAudience.bind(this);
    }
 
   onClickPhoto(photo) {
-    this.setState({photo: photo, renderUploadPopup: false});
+    let photos = this.state.photos;
+    photos.push(photo);
+    this.setState({photos: photos, renderUploadPopup: false});
   }
 
-   onClick() {
+  onClickRemove(index) {
+    let photos = this.state.photos;
+    photos.splice(index, 1);
+    this.setState({photos: photos});
+  }
+
+  onClick() {
       var event = {
          action: 'Post Created',
          context: 'From NewsFeed',
          name: 'Alex Doe'
      };
 
-     if (this.state.value === '' && this.state.photo === '') {
+     if (this.state.value === '' && this.state.photos.length === 0) {
          return null;
      }
 
@@ -40,7 +50,7 @@ class NewPostArea extends React.Component {
      var post = {name: 'Alex Doe',
                  img: './assets/users/alex_profile_img.jpg',
                  content: this.state.value,
-                 photo: this.state.photo,
+                 photos: this.state.photos,
                  key: posts.length,
                  comments: [],
                  audience: this.state.audience};
@@ -48,9 +58,21 @@ class NewPostArea extends React.Component {
      localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
      indexPosts();
      this.props.postarea.update();
-     this.setState({value: '', photo: '', renderUploadPopup: false});
 
-     return event;
+     var photos = JSON.parse(localStorage.getItem('photos'));
+     var your_photos = photos['Alex Doe'] || {};
+     var all_your_photos = your_photos['all_photos'] || [];
+     all_your_photos = all_your_photos.concat(this.state.photos);
+     console.log(all_your_photos);
+     your_photos['all_photos'] = all_your_photos;
+     console.log(your_photos);
+     photos['Alex Doe'] = your_photos;
+     console.log(photos);
+     localStorage.setItem('photos', JSON.stringify(photos));
+
+    this.setState({value: '', photos: [], renderUploadPopup: false});
+
+    return event;
    }
 
    onChange(e) {
@@ -62,20 +84,19 @@ class NewPostArea extends React.Component {
    }
 
    render() {
-     var uploadPopup = <UploadPopup
+     let upload_popup = <UploadPopup
        onClickPhoto={this.onClickPhoto}
        destroy={() => {this.setState({renderUploadPopup: false})}} />;
 
-      var photo = (this.state.photo) ?
-        <img src={this.state.photo}
-          style={{width: 60, height: 60}} />
-        : null;
+      let photos = this.state.photos.map((photo, index) => {
+        return <UploadedPhoto key={index} photo={photo} onClickRemove={() => {this.onClickRemove(index)}} />
+      });
 
       return (
          <div id='new-post-area'>
             <div id='new-post-area-content'>
               <textarea rows='6' placeholder="What's on your mind, Alex?" value={this.state.value} onChange={this.onChange} />
-              {photo}
+              {photos}
               <hr />
                <div id='actions'>
                   <Button type="confirm" onClick={this.onClick}>Post</Button>
@@ -86,7 +107,7 @@ class NewPostArea extends React.Component {
                     see_all={["custom"]}
                     title="Who should see this?" />
                </div>
-               {this.state.renderUploadPopup ? uploadPopup : null}
+               {this.state.renderUploadPopup ? upload_popup : null}
             </div>
          </div>);
    }

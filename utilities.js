@@ -261,19 +261,24 @@ export function resetBlockedEventInvites(){
     localStorage.setItem('blockedEventInvites',JSON.stringify([]))
 }
 
+export function resetPhotos(){
+  localStorage.setItem('photos',JSON.stringify({}))
+}
+
 export function resetAll() {
   resetPosts();
   resetChat();
   resetSettings();
   resetUsers();
   resetAdaptations();
-  resetAdaptationDisplay()
+  resetAdaptationDisplay();
   resetSession();
   resetContactInfo();
   resetBlockedUsers();
   resetBlockedApps();
   resetBlockedAppInvites();
   resetBlockedEventInvites();
+  resetPhotos();
   location.reload();
 }
 

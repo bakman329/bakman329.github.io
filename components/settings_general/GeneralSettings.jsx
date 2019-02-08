@@ -9,7 +9,7 @@ import General from './general.jsx'
 
 class GeneralSettings extends React.Component{
     constructor(props) {
-        super(props)
+        super(props);
         
         this.sidemenu = this.sidemenu.bind(this);
         this.getSelection = this.getSelection.bind(this);
@@ -65,7 +65,7 @@ class GeneralSettings extends React.Component{
     getSelection() {
         switch(this.props.match.params.section){
             case "general":
-                return <General />
+                return <General />;
             case "privacy":
                 return < Privacy />;
             case "timeline_and_tagging":
@@ -73,7 +73,7 @@ class GeneralSettings extends React.Component{
             case "blocking":
                return <Blocking />;
             case "apps":
-                return <Apps/>
+                return <Apps/>;
             default:
                 return <General />; 
         }

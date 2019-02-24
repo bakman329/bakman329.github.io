@@ -127,25 +127,13 @@ class AutocompleteInput extends React.Component {
       e.preventDefault();
       new_focus = this.verifyFocus(this.state.current_focus - 1);
     } else if (e.keyCode == 13) { // Enter key
-
       if (this.state.current_focus > -1 && this.items[this.state.current_focus]) {
-       
           this.items[this.state.current_focus]();
-          
-       
-          
-          
       }
-    
-        
-       
     }
        
-
     this.setState({current_focus: new_focus},
       () => {this.createList(e)});
-      
-      
   }
 
 	render() {

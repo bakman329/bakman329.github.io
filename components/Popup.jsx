@@ -96,7 +96,7 @@ class Popup extends React.Component {
               {this.props.title}
               {close_button}
             </div>
-            <div className={contentStyle} style={{height: height - 76}}><div id={(this.props.noPadding) ? "popup-no-padding" : ""}>{this.props.children}</div></div>
+            <div className={contentStyle} style={(this.props.height) ? {height: height - 76} : null}><div id={(this.props.noPadding) ? "popup-no-padding" : ""}>{this.props.children}</div></div>
             {!this.props.noFooter?footer:""}
          </div>
       )

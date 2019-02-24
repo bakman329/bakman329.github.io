@@ -10,6 +10,7 @@ class CreateAlbumPopup extends React.Component {
         return (
             <Popup title="Create Album" grayHeader
                 destroy={this.props.destroy}
+                okay={this.props.okay}
                 width={1000} height={500}>
 
             </Popup>

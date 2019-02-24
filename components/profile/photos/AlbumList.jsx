@@ -11,9 +11,10 @@ class AlbumList extends React.Component {
     let albums = JSON.parse(localStorage.getItem('photos'));
     let your_albums = albums['Alex Doe'] || {};
     delete your_albums['all_photos'];
-    this.state = {renderUploadPopup: false, renderUploadPopup: false, albums: Object.keys(your_albums) || []};
+    this.state = {renderUploadPopup: false, renderCreateAlbumPopup: false, albums: Object.keys(your_albums) || []};
 
     this.onClickPhoto = this.onClickPhoto.bind(this);
+    this.createNewAlbum = this.createNewAlbum.bind(this);
   }
 
   onClickPhoto(photo) {
@@ -30,13 +31,24 @@ class AlbumList extends React.Component {
     localStorage.setItem('photos', JSON.stringify(photos));
   }
 
+  createNewAlbum(album) {
+    let photos = JSON.parse(localStorage.getItem('photos'));
+    let your_photos = photos['Alex Doe'] || {};
+    your_photos[album] = ["/assets/Dinosaur.png"];
+    your_photos["all_photos"] = ["/assets/Dinosaur.png"];
+    photos['Alex Doe'] = your_photos;
+
+    localStorage.setItem('photos', JSON.stringify(photos));
+  }
+
   render() {
     let upload_popup = <UploadPopup
       onClickPhoto={this.onClickPhoto}
       destroy={() => {this.setState({renderUploadPopup: false})}} />;
 
     let create_album_popup = <CreateAlbumPopup
-      destroy={() => {this.setState({renderUploadPopup: false})}} />;
+      destroy={() => {this.setState({renderCreateAlbumPopup: false})}}
+      okay={() => {this.createNewAlbum("Test")}} />;
 
     let create_album = (
       <div className="create-album" onClick={() => {this.setState({renderCreateAlbumPopup: true})}}>

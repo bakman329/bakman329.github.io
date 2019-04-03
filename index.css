@@ -36,17 +36,6 @@ hr {
     border-width: 1px;
 }
 
-ha {
-    display: block;
-    unicode-bidi: isolate;
-    -webkit-margin-before: 0.5em;
-    -webkit-margin-after: 0.5em;
-    -webkit-margin-start: auto;
-    -webkit-margin-end: auto;
-    border-style: inset;
-    border-width: 0.5px;
-}
-
 a {
     color: rgb(54, 88, 153);
     text-decoration-line: none;
@@ -70,12 +59,6 @@ textarea {
   font-weight: bold;
   font-size: 12px;
   border-radius: 2px;
-}
-
-.button.confirm.disabled {
-  background-color: #9cb4d8;
-  border-color: #9cb4d8;
-  cursor: default;
 }
 
 .button.cancel {
@@ -134,7 +117,7 @@ textarea {
 
 #profile-pic {
     width: 24px; height: 24px;
-    position: relative;
+    position: relative
     top: 50%;
     transform: translateY(25%);
     border-radius: 50%;
@@ -288,16 +271,6 @@ background-position: -250px -330px;
   display: inline-block;
 }
 
-#new-post-area .button.cancel {
-  margin-left: 5px;
-  padding: 0 5px 0 5px;
-  display: inline-block;
-}
-
-#new-post-area .popup img {
-  margin-right: 8px;
-}
-
 #post #actions a {
     padding-right: 30px;
 }
@@ -365,132 +338,6 @@ background-position: -250px -330px;
     border-radius: 50%;
 }
 
-
-/* CSS FOR PROFILE_TIMELINE OPTIONS*/
-
-.dropbtn {
-  color: #4b4f56;
-  background-color: #f5f6f7;
-  line-height: 26px;
-  cursor: pointer;
-  font-weight: bold;
-  border:1px solid #ced0d4;
-  border-radius: 2px;
-  text-align: center;
-  font-size: 12px;
-  padding-left:15px;
-  padding-right: 15px;
-}
-
-.dropbtn_1 {
-  color: #4b4f56;
-  background-color: #f5f6f7;
-  line-height: 26px;
-  cursor: pointer;
-  font-weight: bold;
-  border:1px solid #ced0d4;
-  border-radius: 2px;
-  text-align: center;
-  font-size: 12px;
-  padding-left:15px;
-  padding-right: 15px;
-}
-
-.btn{
-  color: #4b4f56;
-  background-color: #f5f6f7;
-  line-height: 26px;
-  cursor: pointer;
-  font-weight: bold;
-  border:1px solid #ced0d4;
-  border-radius: 2px;
-  text-align: center;
-  font-size: 12px;
-  padding-left:15px;
-  padding-right: 15px;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  margin-right: 270px;
-  margin-top:160px;
-
-}
-
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #ffffff;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 12px;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #365899;
-color: #ffffff;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #f5f6f7;}
-
-/** ------ **/
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown_1 {
-  position: absolute;
-  display: inline-block;
-  margin-left: 600px;
-  margin-top: 160px;
-}
-
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown_content_1 {
-  display: none;
-  position: absolute;
-  background-color: #ffffff;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-
-/* Links inside the dropdown */
-.dropdown_content_1 a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 12px;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown_content_1 a:hover {background-color: #365899;
-color: #ffffff;}
-
-/* Show the dropdown menu on hover */
-.dropdown_1:hover .dropdown_content_1 {display: block;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown_1:hover .dropbtn_1 {background-color: #f5f6f7;}
-
-/** ------ **/
-
 /* TODO: Fix overlap on low-width screens */
 #chat-area {
     position: fixed;
@@ -554,11 +401,6 @@ color: #ffffff;}
 #chat-header a {
     line-height: 26px;
     margin: 0;
-    padding-left: 8px;
-}
-
-#chat-header #left-navagation-profile_name {
-    color: #365899;
 }
 
 #chat-name {
@@ -713,11 +555,12 @@ color: #ffffff;}
 }
 
 .popup-header {
-  height: 18px;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 5px 10px;
-  border-bottom: 1px solid #e5e5e5;
+	background-color: #6d84b4;
+	color: #ffffff;
+    height: 18px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 5px 10px;
 }
 
 .popup-header_altColor {
@@ -733,11 +576,12 @@ color: #ffffff;}
 	background-color: #ffffff;
 	min-height: 216px;
 	padding: 10px;
+    overflow: scroll;
 }
-
 .popup-content_altHeight{
     background-color: #ffffff;
     padding: 10px 20px 10px 20px;
+    overflow: scroll;
 }
 
 .close-thin {
@@ -1020,10 +864,10 @@ basicInfo-hr {
     color:#4080ff;
 }
 
-.display_inputform {
+.display_inputform{
     border-bottom: 1px solid #e9ebee;
     border-top:1px solid #e9ebee;
-    margin: -13px -24px;
+    margin -13px -24px;
     padding: 12px 24px;
     position: relative;
 }
@@ -1043,11 +887,11 @@ Edit_Icon_pos{
   font-family:"Helvetica", Futura, sans-serif;
   padding: inherit;
   background-color: #e9ebee;
+  float: center;
   position: absolute;
   top:42px;
   width: 100%;
-  min-height: calc(100% - 42px);
-  height: fit-content;
+  /*height: 100%;*/
 }
 
 #profile-content {
@@ -1312,6 +1156,7 @@ header #logo {
   color: #4080ff;
   margin-right: 18px;
   text-decoration-line: none;
+
 }
 
 .details_2 li{
@@ -1354,6 +1199,7 @@ header #logo {
     padding: 10px;
     background-color: #fff9d7;
     border: 1px solid #e2c822;
+    margin-bottom: 20px;
 }
 
 .popup-note {
@@ -1427,12 +1273,12 @@ header #logo {
 
 .options_left{
   margin-left: 20px;
-  margin-top:50px;
+  margin-top:70px;
 }
 
 .imgwrap_1 {
-    background-position: -16px -18px;
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/5mN3n2EorbT.png);
+    background-position: -16px -20px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/xqwP2-Ez8O0.png);
     background-size: 34px 308px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -1443,8 +1289,8 @@ header #logo {
  }
 
 .imgwrap_2 {
-    background-position: 0 -236px;
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/5mN3n2EorbT.png);
+    background-position: 0 -234px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/xqwP2-Ez8O0.png);
     background-size: 34px 308px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -1457,7 +1303,7 @@ header #logo {
 
 .imgwrap_3 {
     background-position: 0 -290px;
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/5mN3n2EorbT.png);
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/xqwP2-Ez8O0.png);
     background-size: 34px 308px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -1470,8 +1316,8 @@ header #logo {
 
 .imgwrap_4 {
     height: 16px;
-    background-position: -18px -56px;
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/5mN3n2EorbT.png);
+    background-position: -18px -60px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/xqwP2-Ez8O0.png);
     background-size: 34px 308px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -1481,8 +1327,8 @@ header #logo {
 }
 
 .imgwrap_5 {
-    background-position: 0 -182px;
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/5mN3n2EorbT.png);
+    background-position: 0 -176px;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/xqwP2-Ez8O0.png);
     background-size: 34px 308px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -1496,7 +1342,8 @@ header #logo {
 
 #wrapper_right {
   height: 100%;
-  width: calc(100% - 180px);
+  max-width: 70%;
+  float: left ;
 }
 
 .link li{
@@ -1508,12 +1355,13 @@ header #logo {
   text-decoration-line: none;
 }
 
+
 .right_content {
-  margin-top: 30px;
-  float: right;
-  max-width: 740px;
+  margin-top: 50px;
+  //float: right;
   text-align: justify;
-  margin-right: 490px;
+  margin-left:50px;
+  display: block;
 }
 
 .right_header {
@@ -1523,10 +1371,11 @@ header #logo {
 }
 
 .settings_right {
-  margin-top:30px;
-  float:right;
+  margin-top:50px;
+  //float:right;
   text-align:justify;
-  margin-right: 290px;
+  margin-left: 50px;
+  display:block;
 }
 
 .privacy_public_search_input {
@@ -1560,10 +1409,17 @@ header #logo {
 color: #90949c;
 font-size: 13px;
 padding-bottom: 10px;
-padding-right: 30px;
+padding-right: 80px;
+margin-right: 50px;
 line-height: 18px;
-margin-left: 155px;
+margin-left: 175px;
+}
 
+.righttop_text_onAutomation{
+color: black;
+background-color:rgb(220,220,220);
+opacity: 0.6;
+text-decoration: underline;
 }
 
 .rightbottom_text{
@@ -1602,12 +1458,11 @@ font-size: 13px;
 color: #365899;
 float: right;
 padding-left: 30px;
-padding-right: 5px;
-text-align: right;
+text-align: center;
 }
 
 .edit_audience_selected{
-    margin-right: 100px;
+    /*margin-right: 100px;*/
     font-weight: 400;
     font-family: inherit;
     color:#90949c;
@@ -1845,34 +1700,3 @@ text-align: center;
 .friend-selector-enabled.friend-selector-except::before {
   background-image: url("/assets/solid_red_minus.png") !important;
 }
-
-#custom-popup-container {
-  padding: 32px;
-  height: 100px;
-}
-
-#custom-popup-container label span {
-  color: #999;
-  font-size: 12px;
-  font-weight: normal;
-  padding-left: 35px;
-  text-align: left;
-  width: 125px;
-}
-
-#custom-popup-container p {
-  color: #999;
-  font-size: 12px;
-  font-weight: normal;
-  padding-left: 35px;
-  text-align: left;
-  width: 125px;
-}
-
-/* #custom-popup-share-container {
-  height: 50%;
-}
-
-#custom-popup-dont-container {
- height: 50%;
-} */

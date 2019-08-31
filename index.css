@@ -868,6 +868,7 @@ color: #ffffff;}
 	min-height: 216px;
 	padding: 10px;
     overflow: scroll;
+  max-height: 400px;
 }
 .popup-content_altHeight{
     background-color: #ffffff;
@@ -2018,7 +2019,7 @@ text-align: center;
 #friend-selector-profile-pic {
   width: 56px;
   height: 56px;
-  position: absolute;
+  /* position: absolute; */
   left: 8px;
 }
 
@@ -2028,7 +2029,8 @@ text-align: center;
   line-height: normal;
   font-size: 14px;
   font-weight: bold;
-  margin-left: 72px;
+  margin-left: 20px;
+  margin-bottom: 45px;
 }
 
 #friend-selector-setting {
@@ -2047,7 +2049,7 @@ text-align: center;
   background-image: url("/assets/empty_gray_circle.png");
   background-size: 26px 26px;
   display: inline-block;
-  position: fixed;
+  /* position: fixed; */
   width: 26px;
   height: 26px;
   content: "";

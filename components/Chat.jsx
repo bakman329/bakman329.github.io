@@ -373,7 +373,7 @@ class Chat extends React.Component {
             You'll also see when your friends and contacts are active or recently active.
             </p>
 
-            {except_warning}   turnOffChat:"allContacts", displayStatusLabel:true,
+            {except_warning}
         </Popup>);
           
         // TODO: Consider if there's a better solution than this warning

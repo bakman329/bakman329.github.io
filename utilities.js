@@ -29,6 +29,16 @@ export function indexPosts() {
 export function resetPosts() {
  localStorage.setItem('posts', JSON.stringify(
     [
+        
+     {"name":"Esther Rorgash",
+        "content":"I am good friends with Alex Doe",
+         "comments":[],
+         "hidden":false,
+         "key":43,
+         "audience":"public",
+         "time": "Just now",
+     },
+        
     {"name":"Trevin Noushy",
         "content":"Haha I didn’t know your birthday was 4/20 🤪. Hope you get to smoke some good weed today, bro! 😏 ",
          "comments":[],

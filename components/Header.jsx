@@ -70,17 +70,17 @@ class Header extends React.Component {
                     
            
           <div id='header-text'>
-           
             <p><Link to={{
                 pathname:'/',
                     state:{fromNewsFeed:true}}} onClick={() => this.registerClick('Clicked on the Home Button', 'to go to the NewsFeed','Header')}><span>Home</span></Link>
             </p> 
                  
             <p data-tip="Not Implemented">Create</p>
-            
+           
+         
              <p data-tip="Not Implemented">
                <img id='profile-pic' src='/assets/findfriends.png' /> 
-            </p>
+             </p>
             
              <p data-tip="Not Implemented">
                <img id='profile-pic' src='/assets/messages.png'/> 

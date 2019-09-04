@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from './Button.jsx';
 import classNames from 'classnames'
+import Draggable from 'react-draggable';
 
 class Popup extends React.Component {
    constructor(props) {
@@ -95,6 +96,7 @@ class Popup extends React.Component {
        }
        
       return (
+        <Draggable>
          <div className="popup" style={style}>
             <div className="popup-header" style={header_style}>
               {this.props.title}
@@ -105,6 +107,7 @@ class Popup extends React.Component {
             </div>
             {!this.props.noFooter?footer:""}
          </div>
+         </Draggable>
       )
    }
 }

@@ -457,6 +457,7 @@ background-position: -250px -330px;
 
 .high1 {
     background-color:rgb(255,255,153) ;
+    /*background-color: lightblue;*/
 }
 
 .block_high1 {
@@ -648,6 +649,10 @@ color: #ffffff;}
 @media (max-height: 800px) {
     #scenario-area {
      overflow-y: scroll; 
+    }
+    
+    .tooltiptext{
+        z-index:100;
     }
 }
 

@@ -129,7 +129,6 @@ class App extends React.Component {
     // Assign url parameters to local variables
     const current_session = {session_id,delete_Post,chat_Offline,contact_Info,basic_Info,privacy_futureRequests,timeline_seePost,block_User,block_Event,block_App,block_AppInvite,status_Audience,unsubscribe_Friend,hide_Post,untag_Post,categorize_Friend};
       
-
     // Assigns the local variables to the global variables 
     return {
       session_id: current_session.session_id,
@@ -137,7 +136,7 @@ class App extends React.Component {
       chat_Offline: current_session.chat_Offline,
       contact_Info: current_session.contact_Info,
       basic_Info:current_session.basic_Info,    
-      privacy_futureRequests:current_session.privacy_futureRequests,
+    privacy_futureRequests:current_session.privacy_futureRequests,
       timeline_seePost:current_session.timeline_seePost, 
       block_User:current_session.block_User,  
       block_Event:current_session.block_Event,

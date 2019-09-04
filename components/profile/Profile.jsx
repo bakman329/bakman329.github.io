@@ -9,7 +9,9 @@ import About from "./settings/About.jsx"
 import FriendSubscription from "./FriendSubscription.jsx"
 import BlockFriend from "./BlockFriend.jsx"
 import Friends from "./Friends.jsx"
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
+
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -163,7 +165,6 @@ render() {
               <div>
              <div className="dropdown">
              <button className="dropbtn" data-tip="Not Implemented">Update info </button>
-              
            </div>
 
            <div className="dropdown_1">

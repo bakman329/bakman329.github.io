@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 179);
+/******/ 	return __webpack_require__(__webpack_require__.s = 184);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -263,7 +263,7 @@ process.umask = function() { return 0; };
 "use strict";
 
 
-module.exports = __webpack_require__(31);
+module.exports = __webpack_require__(32);
 
 
 /***/ }),
@@ -272,7 +272,7 @@ module.exports = __webpack_require__(31);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -334,7 +334,7 @@ module.exports = invariant;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-2015, FriendBook, Inc.
+ * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -409,29 +409,37 @@ module.exports = warning;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.indexPosts = indexPosts;
 exports.resetPosts = resetPosts;
 exports.resetChat = resetChat;
 exports.resetSettings = resetSettings;
 exports.friendsList = friendsList;
+exports.friendNames = friendNames;
 exports.resetUsers = resetUsers;
 exports.friendList = friendList;
+exports.AddfriendList = AddfriendList;
 exports.getCurrentFriendLists = getCurrentFriendLists;
 exports.resetAdaptations = resetAdaptations;
 exports.resetSession = resetSession;
 exports.resetContactInfo = resetContactInfo;
 exports.resetAdaptationDisplay = resetAdaptationDisplay;
+exports.blockFriend = blockFriend;
 exports.resetBlockedUsers = resetBlockedUsers;
 exports.resetBlockedApps = resetBlockedApps;
 exports.resetBlockedAppInvites = resetBlockedAppInvites;
 exports.resetBlockedEventInvites = resetBlockedEventInvites;
 exports.resetFeaturesVisited = resetFeaturesVisited;
 exports.resetFeaturesUsed = resetFeaturesUsed;
+exports.longFeatureTitle = longFeatureTitle;
 exports.resetAll = resetAll;
 exports.verifyLocalStorage = verifyLocalStorage;
 exports.getParsed = getParsed;
+exports.getFollowStatus = getFollowStatus;
+exports.unFollowUser = unFollowUser;
+exports.followUser = followUser;
+exports.namesAndLists = namesAndLists;
 exports.addToLocalStorageObject = addToLocalStorageObject;
 exports.saveVisitedAdaptation = saveVisitedAdaptation;
 exports.containsIgnoreCase = containsIgnoreCase;
@@ -445,215 +453,278 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ProfileLink = __webpack_require__(28);
+var _ProfileLink = __webpack_require__(27);
 
 var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function indexPosts() {
-  var posts = JSON.parse(localStorage.getItem('posts'));
-  JSON.parse(localStorage.getItem('posts')).forEach(function (post, index, array) {
-    posts[index].key = posts.length - (index + 1);
-  });
-  localStorage.setItem('posts', JSON.stringify(posts));
+    var posts = JSON.parse(localStorage.getItem('posts'));
+    JSON.parse(localStorage.getItem('posts')).forEach(function (post, index, array) {
+        posts[index].key = posts.length - (index + 1);
+    });
+    localStorage.setItem('posts', JSON.stringify(posts));
 }
 
-// TODO: Maybe consolidate these defaults to a .JSON file
 function resetPosts() {
-  localStorage.setItem('posts', JSON.stringify([{ "name": "Loren Payton",
-    "img": "./assets/loren_profile_img.jpg",
-    "photo": "./assets/brand/beer1.jpg",
-    "content": "It's going to be a great night with Alex Doe!!",
-    "key": 29,
-    "audience": "public",
-    "time": "Just now"
+    localStorage.setItem('posts', JSON.stringify([{ "name": "Ira Slipan",
+        "content": "Beginning of the week and we all dread Mondays. Fight all temptations, be smart and mind yor business.",
+        "comments": [],
+        "hidden": false,
+        "key": 37,
+        "audience": "public",
+        "time": "14 hrs" }, { "name": "Jack Scout",
+        "content": "I remembered to wake up this morning.",
+        "comments": [],
+        "hidden": false,
+        "key": 36,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "There's a house for sale near me if anyone is interested. Looks like it comes with a driveway and grass. Seller also willing to include For Sale sign in purchase.",
+        "comments": [],
+        "photo": "/assets/brand/sale.png",
+        "hidden": false,
+        "key": 35,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "Sitting in a meeting... Don't think I will contribute anything.",
+        "comments": [],
+        "hidden": false,
+        "key": 34,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "I just found my rock collection from when I was a kid, they are all accounted for.",
+        "comments": [],
+        "hidden": false,
+        "key": 33,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "Here is a shovel.",
+        "photo": "/assets/brand/shovel.png",
+        "comments": [],
+        "hidden": false,
+        "key": 32,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "I switched deaodrant today. I can't quite tell if its working",
+        "comments": [],
+        "hidden": false,
+        "key": 31,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "I don't like losing the hour, but resetting the clocks is always much easier in the spring than in the fall.",
+        "comments": [],
+        "hidden": false,
+        "key": 30,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Jack Scout",
+        "content": "Almost out I toothpaste. Think I can make it a few more days...",
+        "comments": [],
+        "hidden": false,
+        "key": 29,
+        "audience": "public",
+        "time": "13 hrs" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "photo": "/assets/users/alex_profile_img.jpg",
+        "content": "#New Pic who dis 👍",
+        "key": 28,
+        "comments": [],
+        "audience": "public",
+        "time": "5 mins",
+        "hidden": false }, { "name": "Loren Payton",
+        "img": "/assets/loren_profile_img.jpg",
+        "photo": "/assets/brand/beer1.jpg",
+        "content": "It's going to be a great night with Alex Doe!!",
+        "key": 27,
+        "audience": "public",
+        "time": "Just now"
 
-  }, { "name": "Bill Gates",
-    "img": "./assets/bill_profile_img.jpg",
-    "photo": "./assets/brand/bill1.png",
-    "content": "I first met Paul Allen when I was in 8th grade and he was a sophomore (although he looks like he’s my teacher in this photo). This teletype is the thing that brought us together. I’m so glad that it did:",
-    "key": 28,
-    "audience": "public",
-    "time": "3 hrs"
+    }, { "name": "Bill Gates",
+        "img": "/assets/bill_profile_img.jpg",
+        "photo": "/assets/brand/bill1.png",
+        "content": "I first met Paul Allen when I was in 8th grade and he was a sophomore (although he looks like he’s my teacher in this photo). This teletype is the thing that brought us together. I’m so glad that it did:",
+        "key": 26,
+        "audience": "public",
+        "time": "3 hrs"
 
-  }, { "name": "Jim Mend",
-    "img": "./assets/jim_profile_img.png",
-    "photo": "./assets/brand/jim1.png",
-    "content": "",
-    "key": 27,
-    "audience": "public",
-    "time": "5 hrs"
-  }, { "name": "VICE News",
-    "img": "./assets/vice_profile_img.png",
-    "photo": "./assets/brand/vice1.png",
-    "content": "\"You said the UK/US alliance was the greatest in history and I agree but allies need to treat each other with respect\"",
-    "key": 23,
-    "audience": "public",
-    "time": "10 July  ." }, { "name": "Starbucks",
-    "img": "./assets/starbucks_profile_img.png",
-    "photo": "./assets/brand/star1.png",
-    "content": 'Refreshment comes in every color (especially pink.) \n' + '💖 Pink Drink\n' + '💞 Dragon Drink\n' + ' ❤️ Strawberry Acai Starbucks Refreshers\n' + ' 💕 Mango Dragonfruit Starbucks Refreshers',
-    "key": 26,
-    "audience": "public",
-    "time": "8 hrs"
+    }, { "name": "Jim Mend",
+        "img": "/assets/jim_profile_img.png",
+        "photo": "/assets/brand/jim1.png",
+        "content": "",
+        "key": 25,
+        "audience": "public",
+        "time": "5 hrs"
+    }, { "name": "VICE News",
+        "img": "/assets/vice_profile_img.png",
+        "photo": "/assets/brand/vice1.png",
+        "content": "\"You said the UK/US alliance was the greatest in history and I agree but allies need to treat each other with respect\"",
+        "key": 24,
+        "audience": "public",
+        "time": "10 July  ." }, { "name": "Starbucks",
+        "img": "/assets/starbucks_profile_img.png",
+        "photo": "/assets/brand/star1.png",
+        "content": 'Refreshment comes in every color (especially pink.) \n' + '💖 Pink Drink\n' + '💞 Dragon Drink\n' + ' ❤️ Strawberry Acai Starbucks Refreshers\n' + ' 💕 Mango Dragonfruit Starbucks Refreshers',
+        "key": 23,
+        "audience": "public",
+        "time": "8 hrs"
 
-  }, { "name": "The Coca-Cola Company",
-    "img": "./assets/coke_profile_img.jpg",
-    "photo": "./assets/brand/coke1.png",
-    "content": "From grade school through the pros, female athletes lack the same opportunities to play sports as their male counterparts. That's why POWERADE, the official sports drink of the U.S. Women’s National Team, is partnering with the U.S. Soccer Foundation to build “Power Pitches” in underserved communities in Atlanta, Los Angeles and New York City.",
-    "key": 25,
-    "audience": "public",
-    "time": "4 hrs"
+    }, { "name": "The Coca-Cola Company",
+        "img": "/assets/coke_profile_img.jpg",
+        "photo": "/assets/brand/coke1.png",
+        "content": "From grade school through the pros, female athletes lack the same opportunities to play sports as their male counterparts. That's why POWERADE, the official sports drink of the U.S. Women’s National Team, is partnering with the U.S. Soccer Foundation to build “Power Pitches” in underserved communities in Atlanta, Los Angeles and New York City.",
+        "key": 22,
+        "audience": "public",
+        "time": "4 hrs"
 
-  }, { "name": "Sasha Riley",
-    "img": "./assets/sasha_profile_img.jpg",
-    "content": "You cannot treat people like 🗑️garbage and worship God at the same time!!😇🤔",
-    "key": 24,
-    "comments": [],
-    "audience": "public",
-    "time": "Yesterday" }, {
-    "name": "Kyle Parker",
-    "img": "./assets/kyle_profile_img.jpg",
-    "content": "Personality: Alex Doe",
-    "photo": "./assets/brand/personality.jpg",
-    "key": 22,
-    "comments": [],
-    "audience": "public",
-    "time": "5 hrs" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "\nMy job interview last week sucked, the interviewer was a jackass who seemed not to know what it is exactly they were looking for. Complete waste of my time! 😡",
-    "key": 21,
-    "comments": [],
-    "audience": "public",
-    "time": "10 July" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "To all those who treat women like trash you ought to stop!! #thefuckwrongwithyou!",
-    "key": 20,
-    "comments": [],
-    "audience": "public",
-    "time": "9 July" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "I think I'm gonna buy an iPhone this Christmas.",
-    "key": 19,
-    "comments": [],
-    "audience": "public",
-    "time": "29 June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "When you order a headphone dongle and Apple sends you a set of AirPods instead... I guess that works too?\nTook me some moral fortitude to let them know about their mistake 😂",
-    "key": 18,
-    "comments": [],
-    "audience": "public",
-    "time": "20 June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "It's that time of the year again when people are trying to sell their old iPhone 😊\nI have an unblemished 64GB silver iPhone 6 Plus with a new battery. Let me know if you're interested!",
-    "key": 17,
-    "comments": [],
-    "audience": "public",
-    "time": "14 June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "Digging the low-light capabilities of the new iPhone 📱",
-    "key": 16,
-    "comments": [],
-    "audience": "public",
-    "time": "12 June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "\nImagine that Graham had won the nomination and election instead of Trump. Would it really have made a difference? He’d still be the same hate-filled ball of shit, only he’d have kept it covered in that thin veneer of fake decency that his buddy McCain used to fool moderates and liberals into thinking he was a good man. If Trump did one great service to this nation, it’s making these assholes show their true colors. Sure, there are many Republicans who don’t care, but the world will not forget! History is never kind on these kinds of scumbags.",
-    "key": 15,
-    "comments": [],
-    "audience": "public",
-    "time": "4  June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "Can I have a profile badge of Mitch McConnell's dick in my face? Because that's how I ( and I suspect many others) feel right now.",
-    "key": 14,
-    "comments": [],
-    "audience": "friends",
-    "time": "4 June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "So many things, so little time #keepPushing",
-    "key": 13,
-    "comments": [],
-    "audience": "public",
-    "time": "3 June" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "If you want it, you must work for it! You can rest when you arrive, but until then, not time can be wasted. You may have to wake up early or go to bed late. You many miss some events or tv shows. You might even lose some fake friends. But if you want it, you must work for it!!!",
-    "key": 12,
-    "comments": [],
-    "audience": "public",
-    "time": "26 May" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "Destroy the idea that you have to have to be constantly working or grinding in order to be successful. Embrace the concept that rest, recovery and reflection are essential parts of the progress.",
-    "key": 9,
-    "comments": [],
-    "audience": "public",
-    "time": "24 May" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "Living one day at a time; \nenjoying one moment at a time; \naccepting hardships as the pathway to peace. \n#idowhatican #letgoofwhaticannot #maintainingpeace",
-    "key": 8,
-    "comments": [],
-    "audience": "public",
-    "time": "14 May" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": " Your journey is not the same as others. Focus on your journey and never look down on anyone else’s journey.👌🏾👌🏾👌🏾",
-    "key": 7,
-    "comments": [],
-    "audience": "public",
-    "time": "12 May" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "Good morning 🌼❤️🌝 ‭ beautiful people, me and my love, we wish you a lovely happy day!",
-    "key": 6,
-    "comments": [],
-    "audience": "public",
-    "time": "3 May" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "It’s been a great weekend #Clemsonhomecomingweekend 💙",
-    "key": 5,
-    "comments": [],
-    "audience": "public",
-    "time": "1  May" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "There is beauty in being you✨🖤\n",
-    "key": 4,
-    "comments": [],
-    "audience": "public",
-    "time": "28 April" }, { "name": "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "...another beautiful day 🌸😍\nThe rain gives me December vibes...Thank you My God #itsrainingoutside☔️ #nothingbutgratitude #beautifulday #weareblessed",
-    "key": 3,
-    "comments": [],
-    "audience": "public",
-    "time": "20 April" }, { name: "Alex Doe",
-    "img": "./assets/alex_profile_img.jpg",
-    "content": "Mexicans should get the f--k out of here and go back to their f--king country !!!",
-    "key": 2,
-    "comments": [],
-    "audience": "public" }, { "name": "Jack Scout",
-    "content": "There is a party at my house tommorow",
-    "comments": [],
-    "hidden": false,
-    "key": 1,
-    "audience": "public",
-    "time": "13 hrs" }, { name: 'Alex Doe',
-    content: 'Hi, I\'m Alex',
-    comments: [{ name: 'Jack Scout',
-      img: './assets/users/jack_profile_img.jpg',
-      content: 'Hi, Alex. I\'m Jack',
-      liked: false }],
-    hidden: false,
-    audience: "public",
-    "time": "7 April",
-    key: 0 }]));
+    }, { "name": "Sasha Riley",
+        "img": "/assets/sasha_profile_img.jpg",
+        "content": "You cannot treat people like 🗑️garbage and worship God at the same time!!😇🤔",
+        "key": 21,
+        "comments": [],
+        "audience": "public",
+        "time": "Yesterday" }, {
+        "name": "Kyle Parker",
+        "img": "/assets/kyle_profile_img.jpg",
+        "content": "Personality: Alex Doe",
+        "photo": "/assets/brand/personality.jpg",
+        "key": 20,
+        "comments": [],
+        "audience": "public",
+        "time": "5 hrs" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "\nMy job interview last week sucked, the interviewer was a jackass who seemed not to know what it is exactly they were looking for. Complete waste of my time! 😡",
+        "key": 19,
+        "comments": [],
+        "audience": "public",
+        "time": "10 July" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "To all those who treat women like trash you ought to stop!! #thefuckwrongwithyou!",
+        "key": 18,
+        "comments": [],
+        "audience": "public",
+        "time": "9 July" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "I think I'm gonna buy an iPhone this Christmas.",
+        "key": 17,
+        "comments": [],
+        "audience": "public",
+        "time": "29 June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "When you order a headphone dongle and Apple sends you a set of AirPods instead... I guess that works too?\nTook me some moral fortitude to let them know about their mistake 😂",
+        "key": 16,
+        "comments": [],
+        "audience": "public",
+        "time": "20 June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "It's that time of the year again when people are trying to sell their old iPhone 😊\nI have an unblemished 64GB silver iPhone 6 Plus with a new battery. Let me know if you're interested!",
+        "key": 15,
+        "comments": [],
+        "audience": "public",
+        "time": "14 June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "Digging the low-light capabilities of the new iPhone 📱",
+        "key": 14,
+        "comments": [],
+        "audience": "public",
+        "time": "12 June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "\nImagine that Graham had won the nomination and election instead of Trump. Would it really have made a difference? He’d still be the same hate-filled ball of shit, only he’d have kept it covered in that thin veneer of fake decency that his buddy McCain used to fool moderates and liberals into thinking he was a good man. If Trump did one great service to this nation, it’s making these assholes show their true colors. Sure, there are many Republicans who don’t care, but the world will not forget! History is never kind on these kinds of scumbags.",
+        "key": 13,
+        "comments": [],
+        "audience": "public",
+        "time": "4  June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "Can I have a profile badge of Mitch McConnell's dick in my face? Because that's how I ( and I suspect many others) feel right now.",
+        "key": 12,
+        "comments": [],
+        "audience": "friends",
+        "time": "4 June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "So many things, so little time #keepPushing",
+        "key": 11,
+        "comments": [],
+        "audience": "public",
+        "time": "3 June" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "If you want it, you must work for it! You can rest when you arrive, but until then, not time can be wasted. You may have to wake up early or go to bed late. You many miss some events or tv shows. You might even lose some fake friends. But if you want it, you must work for it!!!",
+        "key": 10,
+        "comments": [],
+        "audience": "public",
+        "time": "26 May" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "Destroy the idea that you have to have to be constantly working or grinding in order to be successful. Embrace the concept that rest, recovery and reflection are essential parts of the progress.",
+        "key": 9,
+        "comments": [],
+        "audience": "public",
+        "time": "24 May" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "Living one day at a time; \nenjoying one moment at a time; \naccepting hardships as the pathway to peace. \n#idowhatican #letgoofwhaticannot #maintainingpeace",
+        "key": 8,
+        "comments": [],
+        "audience": "public",
+        "time": "14 May" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": " Your journey is not the same as others. Focus on your journey and never look down on anyone else’s journey.👌🏾👌🏾👌🏾",
+        "key": 7,
+        "comments": [],
+        "audience": "public",
+        "time": "12 May" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "Good morning 🌼❤️🌝 ‭ beautiful people, me and my love, we wish you a lovely happy day!",
+        "key": 6,
+        "comments": [],
+        "audience": "public",
+        "time": "3 May" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "It’s been a great weekend #Clemsonhomecomingweekend 💙",
+        "key": 5,
+        "comments": [],
+        "audience": "public",
+        "time": "1  May" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "There is beauty in being you✨🖤\n",
+        "key": 4,
+        "comments": [],
+        "audience": "public",
+        "time": "28 April" }, { "name": "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "...another beautiful day 🌸😍\nThe rain gives me December vibes...Thank you My God #itsrainingoutside☔️ #nothingbutgratitude #beautifulday #weareblessed",
+        "key": 3,
+        "comments": [],
+        "audience": "public",
+        "time": "20 April" }, { name: "Alex Doe",
+        "img": "/assets/alex_profile_img.jpg",
+        "content": "Mexicans should get the f--k out of here and go back to their f--king country !!!",
+        "key": 2,
+        "comments": [],
+        "audience": "public" }, { "name": "Jack Scout",
+        "content": "There is a party at my house tommorow",
+        "comments": [],
+        "hidden": false,
+        "key": 1,
+        "audience": "public",
+        "time": "13 hrs" }, { name: 'Alex Doe',
+        content: 'Hi, I\'m Alex',
+        comments: [{ name: 'Jack Scout',
+            img: '/assets/users/jack_profile_img.jpg',
+            content: 'Hi, Alex. I\'m Jack',
+            liked: false }],
+        hidden: false,
+        audience: "public",
+        "time": "7 April",
+        key: 0 }]));
 }
 
 function resetChat() {
-  localStorage.setItem('incoming_messages', JSON.stringify({ 'Jack Roe': ['Hello, Alex', 'How\'re you doing?'] }));
-  localStorage.setItem('outgoing_messages', '{}');
+    localStorage.setItem('incoming_messages', JSON.stringify({ 'Jack Roe': ['Hello, Alex', 'How\'re you doing?'] }));
+    localStorage.setItem('outgoing_messages', '{}');
 }
 
 function resetSettings() {
-  // turn_off_chat: [setting, [list of "except" contacts], [list of "some" contacts]]
-  // post_audience_settings: [setting, [list of "except" friends], [list of specific friends], [[List of custom groups/people to share with], [List not to share with]]]
-  localStorage.setItem('settings', JSON.stringify({ "turn_off_chat": ["someContacts", [], []], "post_audience_settings": ["public", [], [], [[], []]] }));
+    // turn_off_chat: [setting, [list of "except" contacts], [list of "some" contacts]]
+    // post_audience_settings: [setting, [list of "except" friends], [list of specific friends], [[List of custom groups/people to share with], [List not to share with]]]
+    localStorage.setItem('settings', JSON.stringify({ "turn_off_chat": ["someContacts", [], []], "post_audience_settings": ["public", [], [], [[], []]] }));
 }
 
 /*export function resetFriends() {
@@ -662,482 +733,601 @@ function resetSettings() {
 
 function friendsList() {
 
-  var friends = [];
+    var friends = [];
 
-  JSON.parse(localStorage.getItem('users')).forEach(function (user, index, array) {
-    if (user.friend) {
-      friends.push(user);
-    }
-    // var name = user.name;
-    /// console.log (name);
-  });
+    JSON.parse(localStorage.getItem('users')).forEach(function (user, index, array) {
+        if (user.friend) {
+            friends.push(user);
+        }
+    });
 
-  //console.log(friends);
-  return friends;
+    return friends;
 }
 
+function friendNames() {
+
+    var names = [];
+
+    JSON.parse(localStorage.getItem('users')).forEach(function (user, index, array) {
+        if (user.friend) {
+            names.push(user.name);
+        }
+    });
+
+    return names;
+}
+
+//Images were genereted from google Image search of "people who like both boys + girls for the main profile pic of Alex Doe."
+
+//Names generated from https://www.lingerandlook.com/Names/FictionNames.htm
 function resetUsers() {
-  localStorage.setItem('users', JSON.stringify([{ name: "Alex Doe",
-    profile_pic: 'alex_profile_img.jpg',
-    friend: false }, { name: "Jack Scout",
-    profile_pic: 'jack_profile_img.jpg',
-    friend: true }, { name: "Jim Mend",
-    profile_pic: 'jim_profile_img.jpg',
-    friend: true }, { name: "Sasha Riley",
-    profile_pic: 'sasha_profile_img.jpg',
-    friend: true }, { name: "Kyle Parker",
-    profile_pic: 'kyle_profile_img.jpg',
-    friend: true }, { name: "Loren Payton",
-    profile_pic: 'loren_profile_img.jpg',
-    friend: true }, { name: "VICE News",
-    profile_pic: 'vice_profile_img.png',
-    friend: false }, { name: "The Coca-Cola Company",
-    profile_pic: 'coke_profile_img.jpg',
-    friend: false }, { name: "Starbucks",
-    profile_pic: 'starbucks_profile_img.png',
-    friend: false }, { name: "Bill Gates",
-    profile_pic: 'bill_profile_img.jpg',
-    friend: false }, { name: "Mike Booth",
-    profile_pic: 'mike_profile_img.jpg',
-    friend: false }]));
+    localStorage.setItem('users', JSON.stringify([{ name: "Alex Doe",
+        profile_pic: 'alex_profile_img.jpg',
+        friend: false }, { name: "Jack Scout",
+        profile_pic: 'jack_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Jim Mend",
+        profile_pic: 'jim_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Sasha Riley",
+        profile_pic: 'sasha_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Kyle Parker",
+        profile_pic: 'kyle_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Loren Payton",
+        profile_pic: 'loren_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "VICE News",
+        profile_pic: 'vice_profile_img.png',
+        friend: false,
+        follow: true }, { name: "The Coca-Cola Company",
+        profile_pic: 'coke_profile_img.jpg',
+        friend: false,
+        follow: true }, { name: "Starbucks",
+        profile_pic: 'starbucks_profile_img.png',
+        friend: false,
+        follow: true }, { name: "Bill Gates",
+        profile_pic: 'bill_profile_img.jpg',
+        friend: false,
+        follow: true }, { name: "Mike Booth",
+        profile_pic: 'mike_profile_img.jpg',
+        friend: false,
+        follow: true }, { name: "Ira Slipan",
+        profile_pic: 'ira_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Tanya Strotman",
+        profile_pic: 'tanya_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: " Lydia Chopover",
+        profile_pic: 'lydia_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Esther Rorgash",
+        profile_pic: 'esther_profile_img.jpg',
+        friend: true,
+        follow: true }, { name: "Trevin Noushy",
+        profile_pic: 'trevin_profile_img.jpg',
+        friend: true,
+        follow: true }]));
 }
 
 function friendList() {
-  localStorage.setItem('list', JSON.stringify([{ id: 1, name: "Family", addtick: true, members: [] }, { id: 2, name: "Work", addtick: false, members: [] }]));
+    localStorage.setItem('list', JSON.stringify([{ id: 1, name: "Family", members: [] }, { id: 2, name: "Colleagues", members: [] }, { id: 3, name: "Recruiters", members: [] }], { id: 4, name: "Work", members: [] }));
+}
+
+function AddfriendList() {
+    var friendlists = getParsed('list');
+
+    friendlists.map(function (list, index) {
+        if (index === 1) {
+            list.members.push("sasha_riley");
+        }
+    });
+
+    localStorage.setItem('list', JSON.stringify(friendlists));
+
+    //console.log(getParsed('list'));
 }
 
 function getCurrentFriendLists() {
-  var arr = ["custom"];
+    var arr = ["custom"];
 
-  var friendlists = getParsed('list');
+    var friendlists = getParsed('list');
 
-  friendlists.map(function (list, index) {
-    // console.log(list.name)
-    arr.push(list.name);
+    friendlists.map(function (list, index) {
+        arr.push(list.name);
+    });
 
-    //console.log(arr);
-  });
-
-  return arr;
+    return arr;
 }
 
 function resetAdaptations() {
-  localStorage.setItem('adaptations', JSON.stringify({}));
+    localStorage.setItem('adaptations', JSON.stringify({}));
 }
 
 function resetSession() {
-  localStorage.setItem('session_id', "");
+    localStorage.setItem('session_id', "");
 }
 
 function resetContactInfo() {
-  localStorage.setItem('contactInfo', JSON.stringify({
-    mobile: '801234567',
-    email: 'alexdoe@gmail.com',
-    dob: '01 January',
-    year: '1996',
-    gender: 'Gender-Neutral'
-    /**email:{
-        email:'alexdoe@gmail.com',
-        AddEmailInfo:false,
-        BasicEmailAdded:true
-    },
-    dob:{
-        dob:'01 January',
-        AddDobInfo:false,
-        BasicDobAdded:true
-    },
-    year:{
-        year:'1990',
-        AddYearInfo:false,
-        BasicYearAdded:true
-    },
-    gender:{
-        gender:'Custom',
-        AddGenderInfo:false,
-        BasicGenderAdded:true
-    }*/
-  }));
+    localStorage.setItem('contactInfo', JSON.stringify({
+        mobile: '801234567',
+        email: 'ladiesman69@yahoo.com',
+        dob: '01 January',
+        year: '1979',
+        gender: 'Gender-Neutral'
+        /**email:{
+            email:'alexdoe@gmail.com',
+            AddEmailInfo:false,
+            BasicEmailAdded:true
+        },
+        dob:{
+            dob:'01 January',
+            AddDobInfo:false,
+            BasicDobAdded:true
+        },
+        year:{
+            year:'1990',
+            AddYearInfo:false,
+            BasicYearAdded:true
+        },
+        gender:{
+            gender:'Custom',
+            AddGenderInfo:false,
+            BasicGenderAdded:true
+        }*/
+    }));
 }
 
 function resetAdaptationDisplay() {
-  localStorage.setItem('visited', JSON.stringify({
-    DeletePost: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
+    localStorage.setItem('visited', JSON.stringify({
+        Delete_Post: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
 
-    LikePost: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
+        Chat_Offline: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
 
-    ContactInfo: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Privacy_futureRequests: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Timeline_seePost: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Block_User: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Block_Event: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Block_App: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Block_AppInvite: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Status_Audience: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Unsubscribe_Friend: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Hide_Post: {
-      sugggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Untag_Post: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    },
-    Categorize_Friend: {
-      suggestion: false,
-      highlight: false,
-      automation: false
-    }
+        Contact_Info: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Basic_Info: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Privacy_futureRequests: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Timeline_seePost: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Block_User: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Block_Event: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Block_App: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Block_AppInvite: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Status_Audience: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Unsubscribe_Friend: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Hide_Post: {
+            sugggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Untag_Post: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        },
+        Categorize_Friend: {
+            suggestion: false,
+            highlight: false,
+            automation: false
+        }
 
-  }));
+    }));
+}
+
+function blockFriend(name) {
+
+    //Add to Blocked Users list
+    var BlockedUsers = getParsed('blockedUsers');
+    BlockedUsers.push(linkToName(name));
+    addToLocalStorageObject('blockedUsers', BlockedUsers);
+
+    //Unfriend them
+    var users = getParsed('users');
+    users.some(function (user, index, array) {
+        if (user.name == linkToName(name)) {
+            users[index].friend = false, localStorage.setItem('users', JSON.stringify(users));
+            return true;
+        }
+    });
+
+    //Hide their posts from the NewsFeed
+    var posts = getParsed('posts');
+    posts.forEach(function (post, index, array) {
+
+        if (post.name == linkToName(name)) {
+            posts[index].hidden = true, localStorage.setItem('posts', JSON.stringify(posts));
+            return true;
+        }
+    });
 }
 
 function resetBlockedUsers() {
 
-  localStorage.setItem('blockedUsers', JSON.stringify(["Richard Roe", "Jane Appleeseed"]));
+    localStorage.setItem('blockedUsers', JSON.stringify(Array.from(new Set(["Richard Roe", "Jane Appleeseed"]))));
 }
 
 function resetBlockedApps() {
-  localStorage.setItem('blockedApps', JSON.stringify(["Yahoo"]));
+    localStorage.setItem('blockedApps', JSON.stringify(["Yahoo"]));
 }
 
 function resetBlockedAppInvites() {
-  localStorage.setItem('blockedAppInvites', JSON.stringify(["Mike Rogers"]));
+    localStorage.setItem('blockedAppInvites', JSON.stringify(["Mike Rogers"]));
 }
 
 function resetBlockedEventInvites() {
-  localStorage.setItem('blockedEventInvites', JSON.stringify(["Richard Midor"]));
+    localStorage.setItem('blockedEventInvites', JSON.stringify(["Richard Midor"]));
 }
 
 function resetFeaturesVisited() {
-  // As per https://docs.google.com/spreadsheets/d/19BlSfiV7xRTI9TtcAvVFC9B9TlZB1l9CUGx7-jcg_Dk/edit#gid=157833438
-  localStorage.setItem('featuresVisited', JSON.stringify({
-    chat: { settings: false },
-    untag: { self: false }, // TODO: What does visited mean for this
-    friends: { follow: false }, // TODO
-    notifications: { app: false, event: false }, // TODO: What does visited mean for this?
-    posts: { delete: false, hide: false }, // TODO: What does visited mean for this? 
-    withhold_info: { address: false, political: false }, // TODO
-    custom_lists: { create_custom: false, post_custom: false, photo_custom: false }, // TODO
-    block: { app: false, user: false }, // TODO: User
-    audience: { restrict_timeline: false, restrict_albums: false // TODO
-    } }));
+    // As per https://docs.google.com/spreadsheets/d/19BlSfiV7xRTI9TtcAvVFC9B9TlZB1l9CUGx7-jcg_Dk/edit#gid=157833438
+    localStorage.setItem('featuresVisited', JSON.stringify({
+        chat: { settings: false },
+        untag: { self: false },
+        friends: { unfollow: false },
+        notifications: { app: false, event: false },
+        posts: { delete: false, hide: false },
+        withhold_info: { address: false, political: false }, // TODO
+        custom_lists: { create_custom: false, post_custom: false, photo_custom: false }, // TODO
+        block: { app: false, user: false }, // TODO: User
+        audience: { restrict_timeline: false, restrict_albums: false // TODO
+        } }));
 }
 
 function resetFeaturesUsed() {
-  // As per https://docs.google.com/spreadsheets/d/19BlSfiV7xRTI9TtcAvVFC9B9TlZB1l9CUGx7-jcg_Dk/edit#gid=157833438
-  localStorage.setItem('featuresUsed', JSON.stringify({
-    chat: { settings: false },
-    untag: { self: false },
-    friends: { follow: false }, // TODO
-    notifications: { app: false, event: false },
-    posts: { delete: false, hide: false },
-    withhold_info: { address: false, political: false }, // TODO
-    custom_lists: { create_custom: false, post_custom: false, photo_custom: false }, // TODO
-    block: { app: false, user: false }, // TODO: User
-    audience: { restrict_timeline: false, restrict_albums: false // TODO
-    } }));
+    // As per https://docs.google.com/spreadsheets/d/19BlSfiV7xRTI9TtcAvVFC9B9TlZB1l9CUGx7-jcg_Dk/edit#gid=157833438
+    localStorage.setItem('featuresUsed', JSON.stringify({
+        chat: { settings: false },
+        untag: { self: false },
+        friends: { unfollow: false },
+        notifications: { app: false, event: false },
+        posts: { delete: false, hide: false },
+        withhold_info: { address: false, political: false }, // TODO
+        custom_lists: { create_custom: false, post_custom: false, photo_custom: false }, // TODO
+        block: { app: false, user: false }, // TODO: User
+        audience: { restrict_timeline: false, restrict_albums: false // TODO
+        } }));
+}
+
+function longFeatureTitle(title) {
+    return { chat: "Change your chat settings",
+        untag: "Untag yourself from a post",
+        friends: "Unfollow a friend",
+        notifications: "Change your notification settings",
+        posts: "Delete or hide a post",
+        withhold_info: "Remove personal information from your account",
+        custom_lists: "Organize your friends into lists",
+        block: "Block people or apps",
+        audience: "Restrict the visibility of your posts or albums" }[title];
 }
 
 function resetAll() {
-  resetPosts();
-  resetChat();
-  resetSettings();
-  resetUsers();
-  resetAdaptations();
-  resetAdaptationDisplay();
-  resetSession();
-  resetContactInfo();
-  resetBlockedUsers();
-  resetBlockedApps();
-  resetBlockedAppInvites();
-  resetBlockedEventInvites();
-  resetFeaturesVisited();
-  resetFeaturesUsed();
-  resetfriendList();
-  location.reload();
+    resetPosts();
+    resetChat();
+    resetSettings();
+    resetUsers();
+    resetAdaptations();
+    resetAdaptationDisplay();
+    resetSession();
+    resetContactInfo();
+    resetBlockedUsers();
+    resetBlockedApps();
+    resetBlockedAppInvites();
+    resetBlockedEventInvites();
+    resetFeaturesVisited();
+    resetFeaturesUsed();
+    resetfriendList();
+    location.reload();
 }
 
 function verifyLocalStorage() {
-  if (!localStorage.posts) {
-    resetPosts();
-    location.reload();
-  }
+    if (!localStorage.posts) {
+        resetPosts();
+        location.reload();
+    }
 
-  if (!localStorage.settings) {
-    resetSettings();
-    location.reload();
-  }
+    if (!localStorage.settings) {
+        resetSettings();
+        location.reload();
+    }
 
-  if (!localStorage.users) {
-    resetUsers();
-    location.reload();
-  }
+    if (!localStorage.users) {
+        resetUsers();
+        location.reload();
+    }
 
-  if (!localStorage.adaptations) {
-    resetAdaptations();
-    location.reload();
-  }
+    if (!localStorage.adaptations) {
+        resetAdaptations();
+        location.reload();
+    }
 
-  if (!localStorage.visited) {
-    resetAdaptationDisplay();
-    location.reload();
-  }
+    if (!localStorage.visited) {
+        resetAdaptationDisplay();
+        location.reload();
+    }
 
-  if (!localStorage.contactInfo) {
-    resetContactInfo();
-    location.reload();
-  }
+    if (!localStorage.contactInfo) {
+        resetContactInfo();
+        location.reload();
+    }
 
-  if (!localStorage.blockedUsers) {
-    resetBlockedUsers();
-    location.reload();
-  }
+    if (!localStorage.blockedUsers) {
+        resetBlockedUsers();
+        location.reload();
+    }
 
-  if (!localStorage.blockedApps) {
-    resetBlockedApps();
-    location.reload();
-  }
+    if (!localStorage.blockedApps) {
+        resetBlockedApps();
+        location.reload();
+    }
 
-  if (!localStorage.blockedAppInvites) {
-    resetBlockedAppInvites();
-    location.reload();
-  }
+    if (!localStorage.blockedAppInvites) {
+        resetBlockedAppInvites();
+        location.reload();
+    }
 
-  if (!localStorage.blockedEventInvites) {
-    resetBlockedEventInvites();
-    location.reload();
-  }
+    if (!localStorage.blockedEventInvites) {
+        resetBlockedEventInvites();
+        location.reload();
+    }
 
-  if (!localStorage.list) {
-    friendList();
-    location.reload();
-  }
+    if (!localStorage.list) {
+        friendList();
+        location.reload();
+    }
 
-  if (!localStorage.featuresVisited) {
-    resetFeaturesVisited();
-    location.reload();
-  }
+    if (!localStorage.featuresVisited) {
+        resetFeaturesVisited();
+        location.reload();
+    }
 
-  if (!localStorage.featuresUsed) {
-    resetFeaturesUsed();
-    location.reload();
-  }
+    if (!localStorage.featuresUsed) {
+        resetFeaturesUsed();
+        location.reload();
+    }
 }
 
 function getParsed(name) {
-  return JSON.parse(localStorage.getItem(name));
+    return JSON.parse(localStorage.getItem(name));
+}
+
+function getFollowStatus(name) {
+
+    var users = getParsed('users');
+
+    var status = users.some(function (user, index, array) {
+        if (user.name == linkToName(name)) {
+            return user.follow;
+        }
+    });
+
+    return status;
+}
+
+function unFollowUser(name) {
+
+    var posts = getParsed('posts');
+    posts.forEach(function (post, index, array) {
+
+        if (post.name == linkToName(name)) {
+            posts[index].hidden = true, localStorage.setItem('posts', JSON.stringify(posts));
+            return true;
+        }
+    });
+
+    var users = getParsed('users');
+    users.some(function (user, index, array) {
+        if (user.name == linkToName(name)) {
+            users[index].follow = false, localStorage.setItem('users', JSON.stringify(users));
+            return true;
+        }
+    });
+}
+
+function followUser(name) {
+
+    var posts = getParsed('posts');
+    posts.forEach(function (post, index, array) {
+
+        if (post.name == linkToName(name)) {
+            posts[index].hidden = false, localStorage.setItem('posts', JSON.stringify(posts));
+            return true;
+        }
+    });
+
+    var users = getParsed('users');
+    users.some(function (user, index, array) {
+        if (user.name == linkToName(name)) {
+            users[index].follow = true, localStorage.setItem('users', JSON.stringify(users));
+            return true;
+        }
+    });
+}
+
+function namesAndLists() {
+    //TODO: Combine friends names and list names into array to be accessed by Custom Selector.jsx
+    var friends = friendNames();
+    var friendlists = getCurrentFriendLists();
+    var people_n_lists = friends.concat(friendlists);
+
+    return people_n_lists;
 }
 
 function addToLocalStorageObject(name, value) {
 
-  return localStorage.setItem(name, JSON.stringify(value));
+    return localStorage.setItem(name, JSON.stringify(value));
 }
 
 function saveVisitedAdaptation(feature, adaptationName) {
-  var adaptationVisited = getParsed("visited");
-  adaptationVisited[feature][adaptationName] = true;
-  addToLocalStorageObject("visited", adaptationVisited);
+    var adaptationVisited = getParsed("visited");
+    adaptationVisited[feature][adaptationName] = true;
+    addToLocalStorageObject("visited", adaptationVisited);
 }
 
 function containsIgnoreCase(arr, str) {
-  return arr.findIndex(function (item) {
-    return str.toLocaleLowerCase() == item.toLocaleLowerCase();
-  }) != -1;
+    return arr.findIndex(function (item) {
+        return str.toLocaleLowerCase() == item.toLocaleLowerCase();
+    }) != -1;
 }
 
 function getProfilePic(name) {
 
-  var users = JSON.parse(localStorage.users);
-  //TODO: Fix the default image when their is an update to the 'users' localStorage
-  var pic = "/assets/users/profile_img.jpg";
-  users.some(function (element) {
-    if (element.name.toLocaleLowerCase() == name.toLocaleLowerCase()) {
-      pic = "/assets/users/" + element.profile_pic;
-    }
-  });
+    var users = JSON.parse(localStorage.users);
+    //TODO: Fix the default image when their is an update to the 'users' localStorage
+    var pic = "/assets/users/profile_img.jpg";
+    users.some(function (element) {
+        if (element.name.toLocaleLowerCase() == name.toLocaleLowerCase()) {
+            pic = "/assets/users/" + element.profile_pic;
+        }
+    });
 
-  return pic;
+    return pic;
 }
 
 function nameToLink(name) {
-  return name.toLowerCase().split(' ').join('_');
+    return name.toLowerCase().split(' ').join('_');
 }
 
 function linkToName(link) {
-  var parts = link.split('_');
-  parts.forEach(function (part, index) {
-    parts[index] = part.charAt(0).toUpperCase() + part.substr(1);
-  });
+    var parts = link.split('_');
+    parts.forEach(function (part, index) {
+        parts[index] = part.charAt(0).toUpperCase() + part.substr(1);
+    });
 
-  return parts.join(' ');
+    return parts.join(' ');
 }
 
 function audienceText(audience) {
-  var text = "";
-  switch (audience) {
-    case "public":
-      text = "Public";
-      break;
+    var text = "";
+    switch (audience) {
+        case "public":
+            text = "Public";
+            break;
 
-    case "friends":
-      text = "Friends";
-      break;
+        case "friends":
+            text = "Friends";
+            break;
 
-    case "friends_except":
-      text = "Friends except...";
-      break;
+        case "friends_except":
+            text = "Friends except...";
+            break;
 
-    case "only_me":
-      text = "Only Me";
-      break;
+        case "only_me":
+            text = "Only Me";
+            break;
 
-    case "specific_friends":
-      text = "Specific Friends";
-      break;
+        case "specific_friends":
+            text = "Specific Friends";
+            break;
 
-    case "custom":
-      text = "Custom";
-      break;
+        case "custom":
+            text = "Custom";
+            break;
 
-    case "family":
-      text = "Family";
-      break;
+        case "family":
+            text = "Family";
+            break;
 
-    default:
-      text = "";
-  }
+        default:
+            text = "";
+    }
 
-  return text;
+    return text;
 }
 
 function namesToLinks(str) {
-  var omitUser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var omitUser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-  // Builds a regular expression matching the name of any user case insensitively
-  var regex_str = '(';
-  var users = JSON.parse(localStorage.users);
-  users.forEach(function (user, index) {
-    regex_str += user.name;
-    if (index != users.length - 1) regex_str += '|';
-  });
-  regex_str += ')';
+    // Builds a regular expression matching the name of any user case insensitively
+    var regex_str = '(';
+    var users = JSON.parse(localStorage.users);
+    users.forEach(function (user, index) {
+        regex_str += user.name;
+        if (index != users.length - 1) regex_str += '|';
+    });
+    regex_str += ')';
 
-  // Find indices and lengths of matches, and produce a JSX object replacing names with links
-  var match = void 0;
-  var matches = [];
-  var regex = new RegExp(regex_str, 'gi');
-  while ((match = regex.exec(str)) != null) {
-    if (omitUser && match[0] == "Alex Doe") continue;
-    matches.push(match);
-  }
-  var end_index = 0;
-  // Null-terminate to fill in end of string
-  matches.push(null);
+    // Find indices and lengths of matches, and produce a JSX object replacing names with links
+    var match = void 0;
+    var matches = [];
+    var regex = new RegExp(regex_str, 'gi');
+    while ((match = regex.exec(str)) != null) {
+        if (omitUser && match[0] == "Alex Doe") continue;
+        matches.push(match);
+    }
+    var end_index = 0;
+    // Null-terminate to fill in end of string
+    matches.push(null);
 
-  return _react2.default.createElement(
-    'span',
-    null,
-    matches.map(function (match, index) {
-      if (match == null) {
-        return _react2.default.createElement(
-          'span',
-          { key: index },
-          str.substr(end_index)
-        );
-      }
-      var out = _react2.default.createElement(
+    return _react2.default.createElement(
         'span',
-        { key: index },
-        str.substr(end_index, match.index - end_index),
-        _react2.default.createElement(_ProfileLink2.default, { name: match[0] })
-      );
-      end_index = match.index + match[0].length;
-      return out;
-    })
-  );
+        null,
+        matches.map(function (match, index) {
+            if (match == null) {
+                return _react2.default.createElement(
+                    'span',
+                    { key: index },
+                    str.substr(end_index)
+                );
+            }
+            var out = _react2.default.createElement(
+                'span',
+                { key: index },
+                str.substr(end_index, match.index - end_index),
+                _react2.default.createElement(_ProfileLink2.default, { name: match[0] })
+            );
+            end_index = match.index + match[0].length;
+            return out;
+        })
+    );
 }
-
-/**export function namesTagged(str){
-    
- // Builds a regular expression matching the name of any user case insensitively
-  let regex_str = '(';
-  let users = JSON.parse(localStorage.users);
-  users.forEach((user, index) => {
-    regex_str += user.name;
-    if (index != users.length - 1) regex_str += '|';
-  });
-  regex_str += ')';
-
-  // Find indices and lengths of matches, and produce a JSX object replacing names with links
-  let match;
-  let matches = [];
-  let regex = new RegExp(regex_str, 'gi');
-  while ((match = regex.exec(str)) != null) {
-    if (match[0] == "Alex Doe") continue;
-    matches.push(match);
-  }
-  let end_index = 0;
-  // Null-terminate to fill in end of string
-  matches.push(null);
-
-  return (
-    <span>
-    {matches.map((match, index) => {
-      if (match == null) {
-        return <span key={index}></span>;
-      }
-      let out = <span key={index}><ProfileLink name={match[0]}/></span>;
-      end_index = match.index + match[0].length;
-      return out;
-    })}
-    </span>);
-}*/
 
 /***/ }),
 /* 5 */
@@ -1156,19 +1346,19 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _databaseFunctions = __webpack_require__(34);
+var _databaseFunctions = __webpack_require__(36);
 
-var _propTypes = __webpack_require__(101);
+var _propTypes = __webpack_require__(103);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1280,7 +1470,7 @@ exports.default = Button;
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -1299,7 +1489,7 @@ exports.default = Button;
 function reactProdInvariant(code) {
   var argCount = arguments.length - 1;
 
-  var message = 'Minified React error #' + code + '; visit ' + 'http://FriendBook.github.io/react/docs/error-decoder.html?invariant=' + code;
+  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
 
   for (var argIdx = 0; argIdx < argCount; argIdx++) {
     message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
@@ -1318,6 +1508,16 @@ module.exports = reactProdInvariant;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(217);
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1414,22 +1614,12 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(212);
-
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -1440,8 +1630,8 @@ module.exports = __webpack_require__(212);
 
 var _prodInvariant = __webpack_require__(6);
 
-var DOMProperty = __webpack_require__(21);
-var ReactDOMComponentFlags = __webpack_require__(105);
+var DOMProperty = __webpack_require__(23);
+var ReactDOMComponentFlags = __webpack_require__(107);
 
 var invariant = __webpack_require__(2);
 
@@ -1628,7 +1818,7 @@ module.exports = ReactDOMComponentTree;
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -1669,7 +1859,7 @@ module.exports = ExecutionEnvironment;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2016-present, FriendBook, Inc.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -1679,9 +1869,9 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(32);
+var _prodInvariant = __webpack_require__(33);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(19);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -1756,7 +1946,7 @@ if (canUseCollections) {
   var rootByKey = {};
 
   // Use non-numeric keys to prevent V8 performance issues:
-  // https://github.com/FriendBook/react/pull/7232
+  // https://github.com/facebook/react/pull/7232
   var getKeyFromID = function (id) {
     return '.' + id;
   };
@@ -2054,7 +2244,7 @@ module.exports = ReactComponentTreeHook;
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -2096,7 +2286,7 @@ module.exports = emptyFunction;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2016-present, FriendBook, Inc.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -2111,7 +2301,7 @@ module.exports = emptyFunction;
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(227);
+  var ReactDebugTool = __webpack_require__(232);
   debugTool = ReactDebugTool;
 }
 
@@ -2120,6 +2310,69 @@ module.exports = { debugTool: debugTool };
 
 /***/ }),
 /* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(276);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(277);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(126);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(278);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(279);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(280);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(281);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(127);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(81);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(282);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(283);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(284);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "generatePath", function() { return __WEBPACK_IMPORTED_MODULE_11__generatePath__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(285);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_12__matchPath__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(286);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_13__withRouter__["a"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2175,12 +2428,316 @@ var No_highLight = exports.No_highLight = {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Automation = __webpack_require__(43);
+
+var _Automation2 = _interopRequireDefault(_Automation);
+
+var _utilities = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AutomationBoilerplate = function (_Component) {
+    _inherits(AutomationBoilerplate, _Component);
+
+    function AutomationBoilerplate(props) {
+        _classCallCheck(this, AutomationBoilerplate);
+
+        var _this = _possibleConstructorReturn(this, (AutomationBoilerplate.__proto__ || Object.getPrototypeOf(AutomationBoilerplate)).call(this, props));
+
+        _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
+        _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
+        _this.visited = _this.visited.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(AutomationBoilerplate, [{
+        key: 'visited',
+        value: function visited(feature, name) {
+            (0, _utilities.saveVisitedAdaptation)(feature, name);
+            //this.props.destroy();
+        }
+    }, {
+        key: 'onClickOk_Auto',
+        value: function onClickOk_Auto() {
+            var event = {
+                action: 'User concurs with the Automation for ' + this.props.action,
+                context: this.props.context,
+                name: 'Alex Doe'
+            };
+
+            this.props.onClickOK_Auto();
+            this.visited(this.props.context, "automation");
+            return event;
+        }
+    }, {
+        key: 'onClickUndo_Auto',
+        value: function onClickUndo_Auto() {
+            var event = {
+                action: 'User Undid the Automation for ' + this.props.action,
+                context: this.props.context,
+                name: 'Alex Doe'
+            };
+
+            this.props.onClickUnDo_Auto();
+            this.visited(this.props.context, "automation");
+            return event;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { id: 'except-warning' },
+                _react2.default.createElement(_Automation2.default, { undoButton: 'Undo', okButton: 'Ok', onOkClick: this.onClickOk_Auto, label: this.props.label, onUndoClick: this.onClickUndo_Auto })
+            );
+        }
+    }]);
+
+    return AutomationBoilerplate;
+}(_react.Component);
+
+exports.default = AutomationBoilerplate;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(7);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _Button = __webpack_require__(5);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Popup = function (_React$Component) {
+  _inherits(Popup, _React$Component);
+
+  function Popup(props) {
+    _classCallCheck(this, Popup);
+
+    var _this = _possibleConstructorReturn(this, (Popup.__proto__ || Object.getPrototypeOf(Popup)).call(this, props));
+
+    _this.destroy = _this.destroy.bind(_this);
+    return _this;
+  }
+
+  _createClass(Popup, [{
+    key: 'destroy',
+    value: function destroy() {
+      var mount_node = _reactDom2.default.findDOMNode(this.refs.mount);
+
+      try {
+        _reactDom2.default.unmountComponentAtNode(mount_node);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      // Configure size and centering
+      // Unit is px
+      var width = this.props.width ? this.props.width : 445;
+      var height = this.props.height ? this.props.height : 304;
+      var top = this.props.top ? this.props.top : '50%';
+      var left = this.props.left ? this.props.left : '50%';
+      var Okay = this.props.okButtonName ? this.props.okButtonName : "Okay";
+      var close_button = null;
+
+      // console.log(this.props.okButtonName)
+
+      var style = {
+        top: top,
+        left: left,
+        marginLeft: -width / 2,
+        marginTop: -height / 2,
+        width: width,
+        minHeight: height
+      };
+
+      var header_style = {
+        backgroundColor: "#6d84b4",
+        color: "#ffffff"
+      };
+
+      if (this.props.grayHeader) {
+        header_style = {
+          backgroundColor: "#f5f6f7",
+          color: "#1d2129"
+        };
+      }
+
+      var footer = null;
+      var contentStyle = (0, _classnames2.default)({
+        'popup-content': !this.props.content_style,
+        'popup-content_altHeight': this.props.content_style
+      });
+
+      var headerColor = (0, _classnames2.default)({
+        'popup-header': !this.props.header_style,
+        'popup-header_altColor': this.props.header_style
+      });
+
+      // If closeButton == true, show only one button that says "close" and destroys the window
+      if (this.props.closeButton) {
+        footer = _react2.default.createElement(
+          'div',
+          { className: 'popup-footer' },
+          _react2.default.createElement(
+            _Button2.default,
+            { type: 'confirm', onClick: function onClick() {
+                _this2.props.cancel();
+              }, routeTo: this.props.routeTo != undefined ? this.props.routeTo : null },
+            this.props.closeButtonName
+          )
+        );
+      } else if (this.props.saveChanges) {
+        footer = _react2.default.createElement(
+          'div',
+          { className: 'popup-footer' },
+          _react2.default.createElement(
+            _Button2.default,
+            { type: 'confirm',
+              onClick: function onClick() {
+                _this2.props.okay();
+                _this2.props.destroy();
+              },
+              isDisabled: this.props.confirmDisabled },
+            'Save Changes'
+          ),
+          _react2.default.createElement(
+            _Button2.default,
+            { type: 'cancel', onClick: function onClick() {
+                _this2.props.cancel();_this2.props.destroy(true);
+              } },
+            'Cancel'
+          )
+        );
+      } else {
+        footer = _react2.default.createElement(
+          'div',
+          { className: 'popup-footer' },
+          _react2.default.createElement(
+            _Button2.default,
+            { type: 'cancel', onClick: function onClick() {
+                _this2.props.cancel();_this2.props.destroy(true);
+              } },
+            'Cancel'
+          ),
+          _react2.default.createElement(
+            _Button2.default,
+            { type: 'confirm',
+              onClick: function onClick() {
+                _this2.props.okay();_this2.props.destroy();
+              },
+              isDisabled: this.props.confirmDisabled },
+            this.props.okButtonName != undefined ? this.props.okButtonName : Okay
+          )
+        );
+      }
+
+      if (this.props.closeButton) {
+        close_button = _react2.default.createElement(
+          _Button2.default,
+          { onClick: function onClick() {
+              _this2.props.cancel();
+            } },
+          _react2.default.createElement(
+            'span',
+            { className: 'close-thin' },
+            'X'
+          )
+        );
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'popup', style: style },
+        _react2.default.createElement(
+          'div',
+          { className: 'popup-header', style: header_style },
+          this.props.title,
+          close_button
+        ),
+        _react2.default.createElement(
+          'div',
+          _defineProperty({ className: 'popup-content' }, 'className', contentStyle),
+          _react2.default.createElement(
+            'div',
+            { id: this.props.noPadding ? "popup-no-padding" : "" },
+            this.props.children
+          )
+        ),
+        !this.props.noFooter ? footer : ""
+      );
+    }
+  }]);
+
+  return Popup;
+}(_react2.default.Component);
+
+exports.default = Popup;
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -2190,13 +2747,13 @@ var No_highLight = exports.No_highLight = {
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var CallbackQueue = __webpack_require__(103);
-var PooledClass = __webpack_require__(26);
-var ReactFeatureFlags = __webpack_require__(108);
-var ReactReconciler = __webpack_require__(30);
-var Transaction = __webpack_require__(48);
+var CallbackQueue = __webpack_require__(105);
+var PooledClass = __webpack_require__(28);
+var ReactFeatureFlags = __webpack_require__(110);
+var ReactReconciler = __webpack_require__(31);
+var Transaction = __webpack_require__(49);
 
 var invariant = __webpack_require__(2);
 
@@ -2430,75 +2987,12 @@ module.exports = ReactUpdates;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(271);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(272);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(124);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(273);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(274);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(275);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(276);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(125);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(80);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(277);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(278);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(279);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "generatePath", function() { return __WEBPACK_IMPORTED_MODULE_11__generatePath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(280);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_12__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(281);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_13__withRouter__["a"]; });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -2525,7 +3019,7 @@ var ReactCurrentOwner = {
 module.exports = ReactCurrentOwner;
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2541,9 +3035,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Automation = __webpack_require__(42);
+var _reactDom = __webpack_require__(7);
 
-var _Automation2 = _interopRequireDefault(_Automation);
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _SuggestionPopupBox = __webpack_require__(92);
+
+var _SuggestionPopupBox2 = _interopRequireDefault(_SuggestionPopupBox);
 
 var _utilities = __webpack_require__(4);
 
@@ -2553,78 +3051,141 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //destroy 
 
-var AutomationBoilerplate = function (_Component) {
-    _inherits(AutomationBoilerplate, _Component);
+var SuggestionBoilerplate = function (_Component) {
+    _inherits(SuggestionBoilerplate, _Component);
 
-    function AutomationBoilerplate(props) {
-        _classCallCheck(this, AutomationBoilerplate);
+    function SuggestionBoilerplate(props) {
+        _classCallCheck(this, SuggestionBoilerplate);
 
-        var _this = _possibleConstructorReturn(this, (AutomationBoilerplate.__proto__ || Object.getPrototypeOf(AutomationBoilerplate)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (SuggestionBoilerplate.__proto__ || Object.getPrototypeOf(SuggestionBoilerplate)).call(this, props));
 
-        _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
-        _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
+        _this.okay = _this.okay.bind(_this);
+        _this.destroy = _this.destroy.bind(_this);
+        _this.label = _this.label.bind(_this);
         _this.visited = _this.visited.bind(_this);
-
         return _this;
     }
 
-    _createClass(AutomationBoilerplate, [{
+    _createClass(SuggestionBoilerplate, [{
         key: 'visited',
         value: function visited(feature, name) {
             (0, _utilities.saveVisitedAdaptation)(feature, name);
-            //this.props.destroy();
+            this.props.destroy();
         }
     }, {
-        key: 'onClickOk_Auto',
-        value: function onClickOk_Auto() {
+        key: 'okay',
+        value: function okay() {
             var event = {
-                action: 'User concurs with the Automation for ' + this.props.action,
+                action: 'Followed and agreed with the Suggestion for ' + this.props.action,
                 context: this.props.context,
-                name: 'Alex Doe'
+                name: 'Alex_Doe'
             };
 
-            this.props.onClickOK_Auto();
-            this.visited(this.props.context, "automation");
+            this.props.agree();
+            this.visited(this.props.context, "suggestion");
             return event;
         }
     }, {
-        key: 'onClickUndo_Auto',
-        value: function onClickUndo_Auto() {
+        key: 'destroy',
+        value: function destroy() {
             var event = {
-                action: 'User Undid the Automation for ' + this.props.action,
+                action: 'Rather Not\\Declined to follow the Suggestion for ' + this.props.context,
                 context: this.props.context,
-                name: 'Alex Doe'
+                name: 'Alex_doe'
             };
 
-            this.props.onClickUnDo_Auto();
-            this.visited(this.props.context, "automation");
+            this.visited(this.props.context, "suggestion");
             return event;
+        }
+    }, {
+        key: 'label',
+        value: function label() {
+            return _react2.default.createElement(
+                'label',
+                null,
+                this.props.label
+            );
         }
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { id: 'except-warning' },
-                _react2.default.createElement(_Automation2.default, { undoButton: 'Undo', okButton: 'Ok', onOkClick: this.onClickOk_Auto, label: this.props.label, onUndoClick: this.onClickUndo_Auto })
-            );
+            return _react2.default.createElement(_SuggestionPopupBox2.default, { okay: this.okay, destroy: this.destroy, routeTo: this.props.routeTo != undefined ? this.props.routeTo : null, label: this.label() });
         }
     }]);
 
-    return AutomationBoilerplate;
+    return SuggestionBoilerplate;
 }(_react.Component);
 
-exports.default = AutomationBoilerplate;
+exports.default = SuggestionBoilerplate;
 
 /***/ }),
-/* 19 */
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			return classNames;
+		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -2633,9 +3194,9 @@ exports.default = AutomationBoilerplate;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var PooledClass = __webpack_require__(26);
+var PooledClass = __webpack_require__(28);
 
 var emptyFunction = __webpack_require__(12);
 var warning = __webpack_require__(3);
@@ -2894,221 +3455,12 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(8);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _Button = __webpack_require__(5);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _classnames = __webpack_require__(35);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Popup = function (_React$Component) {
-  _inherits(Popup, _React$Component);
-
-  function Popup(props) {
-    _classCallCheck(this, Popup);
-
-    var _this = _possibleConstructorReturn(this, (Popup.__proto__ || Object.getPrototypeOf(Popup)).call(this, props));
-
-    _this.destroy = _this.destroy.bind(_this);
-    return _this;
-  }
-
-  _createClass(Popup, [{
-    key: 'destroy',
-    value: function destroy() {
-      var mount_node = _reactDom2.default.findDOMNode(this.refs.mount);
-
-      try {
-        _reactDom2.default.unmountComponentAtNode(mount_node);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      // Configure size and centering
-      // Unit is px
-      var width = this.props.width ? this.props.width : 445;
-      var height = this.props.height ? this.props.height : 304;
-      var top = this.props.top ? this.props.top : '50%';
-      var left = this.props.left ? this.props.left : '50%';
-      var Okay = this.props.okButtonName ? this.props.okButtonName : "Okay";
-      var close_button = null;
-
-      // console.log(this.props.okButtonName)
-
-      var style = {
-        top: top,
-        left: left,
-        marginLeft: -width / 2,
-        marginTop: -height / 2,
-        width: width,
-        minHeight: height
-      };
-
-      var header_style = {
-        backgroundColor: "#6d84b4",
-        color: "#ffffff"
-      };
-
-      if (this.props.grayHeader) {
-        header_style = {
-          backgroundColor: "#f5f6f7",
-          color: "#1d2129"
-        };
-      }
-
-      var footer = null;
-      var contentStyle = (0, _classnames2.default)({
-        'popup-content': !this.props.content_style,
-        'popup-content_altHeight': this.props.content_style
-      });
-
-      var headerColor = (0, _classnames2.default)({
-        'popup-header': !this.props.header_style,
-        'popup-header_altColor': this.props.header_style
-      });
-
-      // If closeButton == true, show only one button that says "close" and destroys the window
-      if (this.props.closeButton) {
-        footer = _react2.default.createElement(
-          'div',
-          { className: 'popup-footer' },
-          _react2.default.createElement(
-            _Button2.default,
-            { type: 'confirm', onClick: function onClick() {
-                _this2.props.cancel();
-              } },
-            this.props.closeButtonName
-          )
-        );
-      } else if (this.props.saveChanges) {
-        footer = _react2.default.createElement(
-          'div',
-          { className: 'popup-footer' },
-          _react2.default.createElement(
-            _Button2.default,
-            { type: 'confirm',
-              onClick: function onClick() {
-                _this2.props.okay();_this2.props.destroy();
-              },
-              isDisabled: this.props.confirmDisabled },
-            'Save Changes'
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { type: 'cancel', onClick: function onClick() {
-                _this2.props.cancel();_this2.props.destroy(true);
-              } },
-            'Cancel'
-          )
-        );
-      } else {
-        footer = _react2.default.createElement(
-          'div',
-          { className: 'popup-footer' },
-          _react2.default.createElement(
-            _Button2.default,
-            { type: 'cancel', onClick: function onClick() {
-                _this2.props.cancel();_this2.props.destroy(true);
-              } },
-            'Cancel'
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { type: 'confirm',
-              onClick: function onClick() {
-                _this2.props.okay();_this2.props.destroy();
-              },
-              isDisabled: this.props.confirmDisabled },
-            'Okay'
-          )
-        );
-      }
-
-      if (this.props.closeButton) {
-        close_button = _react2.default.createElement(
-          _Button2.default,
-          { onClick: function onClick() {
-              _this2.props.cancel();
-            } },
-          _react2.default.createElement(
-            'span',
-            { className: 'close-thin' },
-            'X'
-          )
-        );
-      }
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'popup', style: style },
-        _react2.default.createElement(
-          'div',
-          { className: 'popup-header', style: header_style },
-          this.props.title,
-          close_button
-        ),
-        _react2.default.createElement(
-          'div',
-          _defineProperty({ className: 'popup-content' }, 'className', contentStyle),
-          _react2.default.createElement(
-            'div',
-            { id: this.props.noPadding ? "popup-no-padding" : "" },
-            this.props.children
-          )
-        ),
-        !this.props.noFooter ? footer : ""
-      );
-    }
-  }]);
-
-  return Popup;
-}(_react2.default.Component);
-
-exports.default = Popup;
-
-/***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -3316,12 +3668,12 @@ module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -3373,11 +3725,11 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -3398,22 +3750,22 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(295)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(300)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(294)();
+  module.exports = __webpack_require__(299)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -3478,14 +3830,14 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -3494,13 +3846,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _SuggestionPopupBox = __webpack_require__(92);
-
-var _SuggestionPopupBox2 = _interopRequireDefault(_SuggestionPopupBox);
+var _reactRouterDom = __webpack_require__(14);
 
 var _utilities = __webpack_require__(4);
 
@@ -3510,82 +3856,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //destroy 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SuggestionBoilerplate = function (_Component) {
-    _inherits(SuggestionBoilerplate, _Component);
+var ProfileLink = function (_React$Component) {
+  _inherits(ProfileLink, _React$Component);
 
-    function SuggestionBoilerplate(props) {
-        _classCallCheck(this, SuggestionBoilerplate);
+  function ProfileLink(props) {
+    _classCallCheck(this, ProfileLink);
 
-        var _this = _possibleConstructorReturn(this, (SuggestionBoilerplate.__proto__ || Object.getPrototypeOf(SuggestionBoilerplate)).call(this, props));
+    return _possibleConstructorReturn(this, (ProfileLink.__proto__ || Object.getPrototypeOf(ProfileLink)).call(this, props));
+  }
 
-        _this.okay = _this.okay.bind(_this);
-        _this.destroy = _this.destroy.bind(_this);
-        _this.label = _this.label.bind(_this);
-        _this.visited = _this.visited.bind(_this);
-        return _this;
+  _createClass(ProfileLink, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: {
+            pathname: '/profile/' + (0, _utilities.nameToLink)(this.props.name),
+            state: { fromNewsFeed: this.props.fromNewsFeed ? this.props.fromNewsFeed : false } } },
+        _react2.default.createElement(
+          'span',
+          { id: 'left-navagation-profile_name' },
+          this.props.name
+        )
+      );
     }
+  }]);
 
-    _createClass(SuggestionBoilerplate, [{
-        key: 'visited',
-        value: function visited(feature, name) {
-            (0, _utilities.saveVisitedAdaptation)(feature, name);
-            this.props.destroy();
-        }
-    }, {
-        key: 'okay',
-        value: function okay() {
-            var event = {
-                action: 'Followed and agreed with the Suggestion for ' + this.props.action,
-                context: this.props.context,
-                name: 'Alex_Doe'
-            };
+  return ProfileLink;
+}(_react2.default.Component);
 
-            this.props.agree();
-            this.visited(this.props.context, "suggestion");
-            return event;
-        }
-    }, {
-        key: 'destroy',
-        value: function destroy() {
-            var event = {
-                action: 'Rather Not\\Declined to follow the Suggestion for ' + this.props.context,
-                context: this.props.context,
-                name: 'Alex_doe'
-            };
-
-            this.visited(this.props.context, "suggestion");
-            return event;
-        }
-    }, {
-        key: 'label',
-        value: function label() {
-            return _react2.default.createElement(
-                'label',
-                null,
-                this.props.label
-            );
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(_SuggestionPopupBox2.default, { okay: this.okay, destroy: this.destroy, routeTo: this.props.routeTo != undefined ? this.props.routeTo : null, label: this.label() });
-        }
-    }]);
-
-    return SuggestionBoilerplate;
-}(_react.Component);
-
-exports.default = SuggestionBoilerplate;
+exports.default = ProfileLink;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -3696,12 +4006,12 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -3710,15 +4020,15 @@ module.exports = PooledClass;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(19);
 
 var warning = __webpack_require__(3);
-var canDefineProperty = __webpack_require__(58);
+var canDefineProperty = __webpack_require__(59);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(136);
+var REACT_ELEMENT_TYPE = __webpack_require__(138);
 
 var RESERVED_PROPS = {
   key: true,
@@ -3865,7 +4175,7 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
 
 /**
  * Create and return a new ReactElement of the given type.
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.createelement
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.createelement
  */
 ReactElement.createElement = function (type, config, children) {
   var propName;
@@ -3941,7 +4251,7 @@ ReactElement.createElement = function (type, config, children) {
 
 /**
  * Return a function that produces ReactElements of a given type.
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.createfactory
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.createfactory
  */
 ReactElement.createFactory = function (type) {
   var factory = ReactElement.createElement.bind(null, type);
@@ -3962,7 +4272,7 @@ ReactElement.cloneAndReplaceKey = function (oldElement, newKey) {
 
 /**
  * Clone and return a new ReactElement using element as the starting point.
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.cloneelement
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.cloneelement
  */
 ReactElement.cloneElement = function (element, config, children) {
   var propName;
@@ -4028,7 +4338,7 @@ ReactElement.cloneElement = function (element, config, children) {
 
 /**
  * Verifies the object is a ReactElement.
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.isvalidelement
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.isvalidelement
  * @param {?object} object
  * @return {boolean} True if `object` is a valid component.
  * @final
@@ -4041,72 +4351,12 @@ module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(16);
-
-var _utilities = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ProfileLink = function (_React$Component) {
-  _inherits(ProfileLink, _React$Component);
-
-  function ProfileLink(props) {
-    _classCallCheck(this, ProfileLink);
-
-    return _possibleConstructorReturn(this, (ProfileLink.__proto__ || Object.getPrototypeOf(ProfileLink)).call(this, props));
-  }
-
-  _createClass(ProfileLink, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: {
-            pathname: '/profile/' + (0, _utilities.nameToLink)(this.props.name),
-            state: { fromNewsFeed: this.props.fromNewsFeed ? this.props.fromNewsFeed : false } } },
-        _react2.default.createElement(
-          'span',
-          { id: 'left-navagation-profile_name' },
-          this.props.name
-        )
-      );
-    }
-  }]);
-
-  return ProfileLink;
-}(_react2.default.Component);
-
-exports.default = ProfileLink;
-
-/***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -4115,11 +4365,11 @@ exports.default = ProfileLink;
 
 
 
-var DOMNamespaces = __webpack_require__(66);
-var setInnerHTML = __webpack_require__(50);
+var DOMNamespaces = __webpack_require__(67);
+var setInnerHTML = __webpack_require__(51);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
-var setTextContent = __webpack_require__(122);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(74);
+var setTextContent = __webpack_require__(124);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -4222,12 +4472,12 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -4236,7 +4486,7 @@ module.exports = DOMLazyTree;
 
 
 
-var ReactRef = __webpack_require__(241);
+var ReactRef = __webpack_require__(246);
 var ReactInstrumentation = __webpack_require__(13);
 
 var warning = __webpack_require__(3);
@@ -4392,12 +4642,12 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -4406,26 +4656,26 @@ module.exports = ReactReconciler;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var ReactBaseClasses = __webpack_require__(135);
-var ReactChildren = __webpack_require__(298);
-var ReactDOMFactories = __webpack_require__(299);
-var ReactElement = __webpack_require__(27);
-var ReactPropTypes = __webpack_require__(301);
-var ReactVersion = __webpack_require__(303);
+var ReactBaseClasses = __webpack_require__(137);
+var ReactChildren = __webpack_require__(304);
+var ReactDOMFactories = __webpack_require__(305);
+var ReactElement = __webpack_require__(29);
+var ReactPropTypes = __webpack_require__(307);
+var ReactVersion = __webpack_require__(309);
 
-var createReactClass = __webpack_require__(305);
-var onlyChild = __webpack_require__(307);
+var createReactClass = __webpack_require__(311);
+var onlyChild = __webpack_require__(313);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var lowPriorityWarning = __webpack_require__(90);
-  var canDefineProperty = __webpack_require__(58);
-  var ReactElementValidator = __webpack_require__(137);
+  var lowPriorityWarning = __webpack_require__(91);
+  var canDefineProperty = __webpack_require__(59);
+  var ReactElementValidator = __webpack_require__(139);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
@@ -4528,12 +4778,12 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -4552,7 +4802,7 @@ module.exports = React;
 function reactProdInvariant(code) {
   var argCount = arguments.length - 1;
 
-  var message = 'Minified React error #' + code + '; visit ' + 'http://FriendBook.github.io/react/docs/error-decoder.html?invariant=' + code;
+  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
 
   for (var argIdx = 0; argIdx < argCount; argIdx++) {
     message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
@@ -4570,7 +4820,47 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 33 */
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HighlightBoilerplate = HighlightBoilerplate;
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _databaseFunctions = __webpack_require__(36);
+
+var _utilities = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function HighlightBoilerplate(props) {
+
+  // alert("I am here in HighlighBoilerplate")
+
+  var event = {
+    action: 'User concurs with the Highlight for ' + props,
+    details: props,
+    object: 'Alex Doe',
+    session: localStorage.session_id
+  };
+
+  (0, _utilities.saveVisitedAdaptation)(props, "highlight");
+
+  (0, _databaseFunctions.CreateEvent)(event);
+
+  /// return event;
+}
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4586,7 +4876,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -4811,7 +5101,7 @@ var AutocompleteInput = function (_React$Component) {
 exports.default = AutocompleteInput;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4822,7 +5112,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.RegisterSession = exports.CreateEvent = undefined;
 
-var _jquery = __webpack_require__(196);
+var _jquery = __webpack_require__(201);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -4891,71 +5181,12 @@ var RegisterSession = exports.RegisterSession = function RegisterSession(session
 };
 
 /***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg) && arg.length) {
-				var inner = classNames.apply(null, arg);
-				if (inner) {
-					classes.push(inner);
-				}
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-
-/***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -4966,12 +5197,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 var _prodInvariant = __webpack_require__(6);
 
-var EventPluginRegistry = __webpack_require__(45);
-var EventPluginUtils = __webpack_require__(67);
-var ReactErrorUtils = __webpack_require__(71);
+var EventPluginRegistry = __webpack_require__(46);
+var EventPluginUtils = __webpack_require__(68);
+var ReactErrorUtils = __webpack_require__(72);
 
-var accumulateInto = __webpack_require__(115);
-var forEachAccumulated = __webpack_require__(116);
+var accumulateInto = __webpack_require__(117);
+var forEachAccumulated = __webpack_require__(118);
 var invariant = __webpack_require__(2);
 
 /**
@@ -5010,7 +5241,7 @@ var executeDispatchesAndReleaseTopLevel = function (e) {
 
 var getDictionaryKey = function (inst) {
   // Prevents V8 performance issue:
-  // https://github.com/FriendBook/react/pull/7232
+  // https://github.com/facebook/react/pull/7232
   return '.' + inst._rootNodeID;
 };
 
@@ -5228,12 +5459,12 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -5242,11 +5473,11 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(36);
-var EventPluginUtils = __webpack_require__(67);
+var EventPluginHub = __webpack_require__(37);
+var EventPluginUtils = __webpack_require__(68);
 
-var accumulateInto = __webpack_require__(115);
-var forEachAccumulated = __webpack_require__(116);
+var accumulateInto = __webpack_require__(117);
+var forEachAccumulated = __webpack_require__(118);
 var warning = __webpack_require__(3);
 
 var getListener = EventPluginHub.getListener;
@@ -5366,12 +5597,12 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -5415,12 +5646,12 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -5429,9 +5660,9 @@ module.exports = ReactInstanceMap;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(22);
 
-var getEventTarget = __webpack_require__(76);
+var getEventTarget = __webpack_require__(77);
 
 /**
  * @interface UIEvent
@@ -5477,7 +5708,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5548,7 +5779,7 @@ var createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5619,7 +5850,7 @@ var createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5669,13 +5900,16 @@ var Automation = function (_React$Component) {
         );
       }
 
-      var divStyle = { paddingLeft: '40px' };
+      var divStyle = { marginLeft: '15px', fontSize: '11px' };
 
       return _react2.default.createElement(
         'div',
         { id: 'automation-block' },
-        ' ',
-        _react2.default.createElement('img', { src: '/assets/flag.png' }),
+        _react2.default.createElement(
+          'div',
+          { id: 'automation-flag' },
+          _react2.default.createElement('img', { src: '/assets/flag.png' })
+        ),
         _react2.default.createElement(
           'label',
           { style: divStyle },
@@ -5684,6 +5918,7 @@ var Automation = function (_React$Component) {
         _react2.default.createElement(
           _Button2.default,
           { id: 'undo', href: 'javascript:void(0)', onClick: this.props.onUndoClick },
+          '  ',
           this.props.undoButton
         ),
         okButton_option
@@ -5697,7 +5932,7 @@ var Automation = function (_React$Component) {
 exports.default = Automation;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5713,15 +5948,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Post = __webpack_require__(153);
+var _Post = __webpack_require__(155);
 
 var _Post2 = _interopRequireDefault(_Post);
 
-var _NewPostArea = __webpack_require__(151);
+var _NewPostArea = __webpack_require__(153);
 
 var _NewPostArea2 = _interopRequireDefault(_NewPostArea);
 
@@ -5741,14 +5976,18 @@ var PostArea = function (_React$Component) {
    function PostArea(props) {
       _classCallCheck(this, PostArea);
 
-      // If null, init to 1's
       var _this = _possibleConstructorReturn(this, (PostArea.__proto__ || Object.getPrototypeOf(PostArea)).call(this, props));
 
-      if (localStorage.getItem('posts') == 'null') {
+      var friends = (0, _utilities.friendsList)();
+      _this.state = {
+         friendsList: friends
+         // If null, init to 1's
+      };if (localStorage.getItem('posts') == 'null') {
          (0, _utilities.resetPosts)();
       }
 
       _this.update = _this.update.bind(_this);
+      _this.hideAllPostsfromNewsFeed = _this.hideAllPostsfromNewsFeed.bind(_this);
       return _this;
    }
 
@@ -5765,27 +6004,42 @@ var PostArea = function (_React$Component) {
             // Key and count are in reverse order, hence subtracting from count
             //
             var render = true;
+
             if (_this2.props.name) {
-               render = post.name === _this2.props.name;
-               // console.log(render)
+
+               render = post.name === _this2.props.name || post.target_friend === _this2.props.name;
             } else {
                render = post.new || post.name != "Alex Doe";
             }
+
             out[index] = _react2.default.createElement(_Post2.default, { name: post.name,
                key: count - index - 1,
                index: count - index - 1,
                original_poster: post.original_poster,
+               target_friend: post.target_friend,
                adapt: _this2.props.toAdapt,
                photo: post.photo,
                displayContactInfoSuggestion: _this2.props.displayContactInfoSuggestion,
+               displayBasicInfoSuggestion: _this2.props.displayBasicInfoSuggestion,
+               displayUnsubscribeSuggestion: _this2.props.displayUnsubscribeSuggestion,
+               updateSubscribe: _this2.props.updateSubscribe,
+               displayCategorizeSuggestion: _this2.props.displayCategorizeSuggestion,
                render: render,
                audience: post.audience,
                time: post.time,
-               tagRemoved: post.tagRemoved || false, update: _this2.update }, post.content);
+               tagRemoved: post.tagRemoved || false,
+               update: _this2.update,
+               hidden: post.hidden || false,
+               forTimeline: _this2.props.forTimeline,
+               hideAllPosts: _this2.hideAllPostsfromNewsFeed }, post.content);
          });
-
-         //console.log("Post Area "+this.props.toAdapt)
          return out;
+      }
+   }, {
+      key: 'hideAllPostsfromNewsFeed',
+      value: function hideAllPostsfromNewsFeed(name) {
+         (0, _utilities.unFollowUser)(name);
+         this.update();
       }
    }, {
       key: 'update',
@@ -5796,11 +6050,12 @@ var PostArea = function (_React$Component) {
    }, {
       key: 'render',
       value: function render() {
+         //console.log("Render Post Area")
          //console.log("PostArea: The suggestion is"+ this.props.displayContactInfoSuggestion);
          return _react2.default.createElement(
             'div',
             { id: 'post-area' },
-            _react2.default.createElement(_NewPostArea2.default, { postarea: this }),
+            _react2.default.createElement(_NewPostArea2.default, { postarea: this, forTimeline: this.props.forTimeline, name: this.props.name }),
             this.getPosts()
          );
       }
@@ -5812,12 +6067,12 @@ var PostArea = function (_React$Component) {
 exports.default = PostArea;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -5838,12 +6093,12 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -6095,12 +6350,12 @@ module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -6109,14 +6364,14 @@ module.exports = EventPluginRegistry;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var EventPluginRegistry = __webpack_require__(45);
-var ReactEventEmitterMixin = __webpack_require__(231);
-var ViewportMetrics = __webpack_require__(114);
+var EventPluginRegistry = __webpack_require__(46);
+var ReactEventEmitterMixin = __webpack_require__(236);
+var ViewportMetrics = __webpack_require__(116);
 
-var getVendorPrefixedEventName = __webpack_require__(266);
-var isEventSupported = __webpack_require__(77);
+var getVendorPrefixedEventName = __webpack_require__(271);
+var isEventSupported = __webpack_require__(78);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -6386,7 +6641,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
   /**
    * Protect against document.createEvent() returning null
    * Some popup blocker extensions appear to do this:
-   * https://github.com/FriendBook/react/issues/6887
+   * https://github.com/facebook/react/issues/6887
    */
   supportsEventPageXY: function () {
     if (!document.createEvent) {
@@ -6422,12 +6677,12 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -6436,10 +6691,10 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(39);
-var ViewportMetrics = __webpack_require__(114);
+var SyntheticUIEvent = __webpack_require__(40);
+var ViewportMetrics = __webpack_require__(116);
 
-var getEventModifierState = __webpack_require__(75);
+var getEventModifierState = __webpack_require__(76);
 
 /**
  * @interface MouseEvent
@@ -6497,12 +6752,12 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -6729,12 +6984,12 @@ module.exports = TransactionImpl;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2016-present, FriendBook, Inc.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -6854,12 +7109,12 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -6869,12 +7124,12 @@ module.exports = escapeTextContentForBrowser;
 
 
 var ExecutionEnvironment = __webpack_require__(10);
-var DOMNamespaces = __webpack_require__(66);
+var DOMNamespaces = __webpack_require__(67);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(74);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -6955,15 +7210,15 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(41);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -7031,12 +7286,12 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-2015, FriendBook, Inc.
+ * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -7099,11 +7354,11 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -7124,27 +7379,27 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(287)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(292)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(286)();
+  module.exports = __webpack_require__(291)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -7253,11 +7508,11 @@ Router.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path_to_regexp__);
 
 
@@ -7333,15 +7588,15 @@ var matchPath = function matchPath(pathname) {
 /* harmony default export */ __webpack_exports__["a"] = (matchPath);
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(42);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -7409,12 +7664,12 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 };
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-2015, FriendBook, Inc.
+ * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -7477,12 +7732,12 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -7495,7 +7750,7 @@ module.exports = warning;
 var canDefineProperty = false;
 if (process.env.NODE_ENV !== 'production') {
   try {
-    // $FlowFixMe https://github.com/FriendBook/flow/issues/285
+    // $FlowFixMe https://github.com/facebook/flow/issues/285
     Object.defineProperty({}, 'x', { get: function () {} });
     canDefineProperty = true;
   } catch (x) {
@@ -7507,7 +7762,7 @@ module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7522,7 +7777,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _databaseFunctions = __webpack_require__(34);
+var _databaseFunctions = __webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7542,7 +7797,7 @@ function createEvent(props) {
 exports.default = createEvent;
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7558,7 +7813,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -7619,7 +7874,7 @@ var SuggestionPopup = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { id: 'pop', className: 'suggestPopup' },
+        { id: 'suggestPopup' },
         _react2.default.createElement(
           'div',
           { className: 'popup-header' },
@@ -7672,7 +7927,7 @@ var SuggestionPopup = function (_React$Component) {
 exports.default = SuggestionPopup;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7688,27 +7943,27 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _utilities = __webpack_require__(4);
 
-var _databaseFunctions = __webpack_require__(34);
+var _databaseFunctions = __webpack_require__(36);
 
 var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Menu = __webpack_require__(62);
+var _Menu = __webpack_require__(63);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _FriendSelector = __webpack_require__(148);
+var _FriendSelector = __webpack_require__(150);
 
 var _FriendSelector2 = _interopRequireDefault(_FriendSelector);
 
-var _CustomSelector = __webpack_require__(147);
+var _CustomSelector = __webpack_require__(149);
 
 var _CustomSelector2 = _interopRequireDefault(_CustomSelector);
 
@@ -7986,7 +8241,7 @@ var AudienceMenu = function (_React$Component) {
 exports.default = AudienceMenu;
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8002,7 +8257,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -8010,7 +8265,7 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8042,6 +8297,7 @@ var Menu = function (_React$Component) {
     value: function showMenu(event) {
       var _this2 = this;
 
+      //if(this.myRef) {
       this.setState({ showMenu: true }, function () {
         document.addEventListener('click', _this2.onClick);
       });
@@ -8050,6 +8306,8 @@ var Menu = function (_React$Component) {
       if (this.props.style != undefined) {
         this.props.changeStyle();
       }
+      if (this.props.onOpen) this.props.onOpen();
+      //}
     }
   }, {
     key: 'onClick',
@@ -8127,12 +8385,12 @@ var Menu = function (_React$Component) {
 exports.default = Menu;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -8200,12 +8458,12 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, FriendBook, Inc.
+ * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -8221,12 +8479,12 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8235,14 +8493,14 @@ module.exports = ReactPropTypesSecret;
 
 
 
-var DOMLazyTree = __webpack_require__(29);
-var Danger = __webpack_require__(204);
+var DOMLazyTree = __webpack_require__(30);
+var Danger = __webpack_require__(209);
 var ReactDOMComponentTree = __webpack_require__(9);
 var ReactInstrumentation = __webpack_require__(13);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
-var setInnerHTML = __webpack_require__(50);
-var setTextContent = __webpack_require__(122);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(74);
+var setInnerHTML = __webpack_require__(51);
+var setTextContent = __webpack_require__(124);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -8451,12 +8709,12 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8474,12 +8732,12 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8490,7 +8748,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactErrorUtils = __webpack_require__(71);
+var ReactErrorUtils = __webpack_require__(72);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -8704,12 +8962,12 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8766,12 +9024,12 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8782,10 +9040,10 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactPropTypesSecret = __webpack_require__(113);
-var propTypesFactory = __webpack_require__(99);
+var ReactPropTypesSecret = __webpack_require__(115);
+var propTypesFactory = __webpack_require__(101);
 
-var React = __webpack_require__(31);
+var React = __webpack_require__(32);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(2);
@@ -8908,12 +9166,12 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -8956,12 +9214,12 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9038,12 +9296,12 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9054,10 +9312,10 @@ module.exports = ReactErrorUtils;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactCurrentOwner = __webpack_require__(17);
-var ReactInstanceMap = __webpack_require__(38);
+var ReactCurrentOwner = __webpack_require__(19);
+var ReactInstanceMap = __webpack_require__(39);
 var ReactInstrumentation = __webpack_require__(13);
-var ReactUpdates = __webpack_require__(15);
+var ReactUpdates = __webpack_require__(18);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -9276,12 +9534,12 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9311,12 +9569,12 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9364,12 +9622,12 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9410,12 +9668,12 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9448,12 +9706,12 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9511,12 +9769,12 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9556,12 +9814,12 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9570,7 +9828,7 @@ module.exports = shouldUpdateReactComponent;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
 var emptyFunction = __webpack_require__(12);
 var warning = __webpack_require__(3);
@@ -9931,22 +10189,22 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__ = __webpack_require__(55);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Router__["a" /* default */]);
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 
 
@@ -10027,20 +10285,20 @@ var createTransitionManager = function createTransitionManager() {
 /* harmony default export */ __webpack_exports__["a"] = (createTransitionManager);
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(287);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(288);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__createHashHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(289);
 /* unused harmony reexport createMemoryHistory */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(52);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
 /* unused harmony reexport locationsAreEqual */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(41);
 /* unused harmony reexport parsePath */
 /* unused harmony reexport createPath */
 
@@ -10054,12 +10312,12 @@ var createTransitionManager = function createTransitionManager() {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10111,12 +10369,12 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10130,19 +10388,19 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(56);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10284,11 +10542,11 @@ Route.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Route);
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path_to_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path_to_regexp__);
 
 
@@ -10329,11 +10587,11 @@ var generatePath = function generatePath() {
 /* harmony default export */ __webpack_exports__["a"] = (generatePath);
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 
 
@@ -10414,20 +10672,20 @@ var createTransitionManager = function createTransitionManager() {
 /* harmony default export */ __webpack_exports__["a"] = (createTransitionManager);
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(294);
 /* unused harmony reexport createBrowserHistory */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(295);
 /* unused harmony reexport createHashHistory */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(296);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(57);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(42);
 /* unused harmony reexport parsePath */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_4__PathUtils__["a"]; });
 
@@ -10441,12 +10699,12 @@ var createTransitionManager = function createTransitionManager() {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10460,12 +10718,12 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10476,7 +10734,7 @@ module.exports = ReactPropTypesSecret;
 
 /**
  * Forked from fbjs/warning:
- * https://github.com/FriendBook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
+ * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
  *
  * Only change is we use console.warn instead of console.error,
  * and do nothing when 'console' is not supported.
@@ -10529,46 +10787,6 @@ module.exports = lowPriorityWarning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.HighlightBoilerplate = HighlightBoilerplate;
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _databaseFunctions = __webpack_require__(34);
-
-var _utilities = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function HighlightBoilerplate(props) {
-
-  // alert("I am here in HighlighBoilerplate")
-
-  var event = {
-    action: 'User concurs with the Highlight for ' + props,
-    details: props,
-    object: 'Alex Doe',
-    session: localStorage.session_id
-  };
-
-  (0, _utilities.saveVisitedAdaptation)(props, "highlight");
-
-  (0, _databaseFunctions.CreateEvent)(event);
-
-  /// return event;
-}
-
-/***/ }),
 /* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10585,11 +10803,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Suggestion = __webpack_require__(60);
+var _Suggestion = __webpack_require__(61);
 
 var _Suggestion2 = _interopRequireDefault(_Suggestion);
 
@@ -10646,11 +10864,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _AutocompleteInput = __webpack_require__(33);
+var _AutocompleteInput = __webpack_require__(35);
 
 var _AutocompleteInput2 = _interopRequireDefault(_AutocompleteInput);
 
@@ -10658,29 +10876,39 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Menu = __webpack_require__(62);
+var _Menu = __webpack_require__(63);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _ChatUser = __webpack_require__(144);
+var _ChatUser = __webpack_require__(146);
 
 var _ChatUser2 = _interopRequireDefault(_ChatUser);
 
-var _ChatWindow = __webpack_require__(145);
+var _ChatWindow = __webpack_require__(147);
 
 var _ChatWindow2 = _interopRequireDefault(_ChatWindow);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
-var _Suggestion = __webpack_require__(60);
+var _Suggestion = __webpack_require__(61);
 
 var _Suggestion2 = _interopRequireDefault(_Suggestion);
 
 var _utilities = __webpack_require__(4);
+
+var _HighlightBoilerplate = __webpack_require__(34);
+
+var _AutomationBoilerplate = __webpack_require__(16);
+
+var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
+
+var _SuggestionBoilerplate = __webpack_require__(20);
+
+var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10698,22 +10926,50 @@ var Chat = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 
-        _this.state = { chats: [], renderChatPopup: false, turnOffChat: "someContacts", adapt: '', undo: false, context: 'From Chat', renderSuggestion: false };
-        _this.state = { chats: [], renderChatPopup: false,
+        var adaptations = (0, _utilities.getParsed)('adaptations');
+        var adaptationVisited = (0, _utilities.getParsed)('visited');
+
+        _this.state = {
+
+            chats: [],
+            renderChatPopup: false,
             turnOffChat: JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][0],
             except_contacts: JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][1].join(", "),
             some_contacts: JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][2].join(", "),
             showExceptWarning: false,
-            undo: false, renderSuggestion: false,
-            context: 'From Chat' };
+            renderSuggestion: false,
+            reduceOpacity: false,
+
+            //Chat Highlight Adaptation
+            chatHighlight: !adaptationVisited["Chat_Offline"]["highlight"] && adaptations["chat_Offline"] == "high" ? true : false,
+            context: "Chat_Offline",
+
+            //Chat Auto Adaptation
+            //Hide Automation Adaptation
+            chatAutomation: !adaptationVisited["Chat_Offline"]["automation"] && adaptations["chat_Offline"] === "auto",
+            displayChatAutomationPopup: true,
+            displayStatusLabel: false,
+            label_Auto: "Your Active Status on Chat was automatically turned off. Your friends and contacts will no longer see when you’re online on FriendBook.",
+            action: "Chat_Offline, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+
+            //Chat Suggest Adaptation
+            chatSuggestion: !adaptationVisited["Chat_Offline"]["suggestion"] && adaptations["chat_Offline"] === "sugst",
+            label_Sugst: "Hi Alex- Would you like to turn off Active Status on Chat. Your friends and contacts will no longer see when you're online on FriendBook."
+
+        };
+
         _this.turnOffChatPopup = null;
 
         _this.addChat = _this.addChat.bind(_this);
         _this.removeChat = _this.removeChat.bind(_this);
+        _this.cancelAllContacts = _this.cancelAllContacts.bind(_this);
         _this.toggleMenu = _this.toggleMenu.bind(_this);
         _this.handleTurnOffChatOptionChange = _this.handleTurnOffChatOptionChange.bind(_this);
         _this.createTurnOffChatPopup = _this.createTurnOffChatPopup.bind(_this);
-        _this.onClickUndo = _this.onClickUndo.bind(_this);
+        _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
+        _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
+        _this.onClickOK_Suggestion = _this.onClickOK_Suggestion.bind(_this);
+        _this.onClickDestroySuggestion = _this.onClickDestroySuggestion.bind(_this);
         _this.show = _this.show.bind(_this);
         return _this;
     }
@@ -10729,7 +10985,7 @@ var Chat = function (_React$Component) {
             }, 5000);
         }
 
-        //Show the Suggestion
+        //Show the Suggestion Adaptation Methods
 
     }, {
         key: 'show',
@@ -10737,6 +10993,23 @@ var Chat = function (_React$Component) {
             this.setState({
                 renderSuggestion: true
             });
+        }
+
+        //Suggestion Adaptation
+
+    }, {
+        key: 'onClickOK_Suggestion',
+        value: function onClickOK_Suggestion() {
+            this.setState({
+                renderSuggestion: false,
+                displayStatusLabel: true,
+                turnOffChat: "allContacts"
+            });
+        }
+    }, {
+        key: 'onClickDestroySuggestion',
+        value: function onClickDestroySuggestion() {
+            this.setState({ renderSuggestion: false });
         }
     }, {
         key: 'addChat',
@@ -10751,13 +11024,24 @@ var Chat = function (_React$Component) {
             return true;
         }
 
-        /*TODO, create event and send to DB*/
+        /*Automation Adaptation */
 
     }, {
-        key: 'onClickUndo',
-        value: function onClickUndo() {
+        key: 'onClickUndo_Auto',
+        value: function onClickUndo_Auto() {
             this.setState({
-                undo: true
+                displayChatAutomationPopup: false,
+                turnOffChat: "turnOnActiveStatus",
+                chatAutomation: false
+            });
+        }
+    }, {
+        key: 'onClickOk_Auto',
+        value: function onClickOk_Auto() {
+            this.setState({
+                displayChatAutomationPopup: false,
+                turnOffChat: "allContacts",
+                displayStatusLabel: true
             });
         }
     }, {
@@ -10779,6 +11063,7 @@ var Chat = function (_React$Component) {
     }, {
         key: 'handleTurnOffChatOptionChange',
         value: function handleTurnOffChatOptionChange(e) {
+
             this.setState({ turnOffChat: e.target.value });
 
             if (e.target.value != "allContactsExcept") {
@@ -10825,66 +11110,69 @@ var Chat = function (_React$Component) {
         value: function renderChat() {
             var _this3 = this;
 
-            if (this.state.adapt === 'auto' & !this.state.undo) {
+            if (this.state.chatAutomation && this.state.displayChatAutomationPopup) {
                 return _react2.default.createElement(
-                    _Button2.default,
-                    { href: 'javascript:void(0)', onClick: this.onClickUndo },
-                    _react2.default.createElement(
-                        'span',
-                        { id: 'chat-auto', style: _Highlight.No_highLight },
-                        'Chat was automatically turned off for all contacts except Jack Roe'
-                    ),
-                    ' Undo'
-                );
-            } else if (this.state.adapt === 'sugst') {
-                var Suggestion_Popup = _react2.default.createElement(
-                    _Suggestion2.default,
-                    { title: 'Suggestion', okay: function okay() {
-                            var event = {
-                                action: 'Accept to turn off chat',
-                                context: _this3.state.context,
-                                name: 'This is the Chat suggestion to turn off chat for all except Jack Crow',
-                                renderSuggestion: false
-                            };
-                            _this3.setState(event);
-                            return event;
-                        },
-
-                        cancel: function cancel() {
-                            var event = {
-                                action: 'Would rather not turn off chat',
-                                context: _this3.state.context,
-                                name: 'This is the Chat suggestion to turn off chat for all except Jack Crow',
-                                renderSuggestion: false
-                            };
-                            _this3.setState(event);
-                            return event;
-                        } },
-                    _react2.default.createElement(
-                        'label',
-                        null,
-                        'I think you should turn off chat for all contacts except Jack Crow.'
-                    )
+                    'div',
+                    null,
+                    _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto })
                 );
             }
+            /**else if (this.state.chatSuggestion){
+                
+                
+                var Suggestion_Popup=(
+                  <SuggestionPopup title="Suggestion" okay={()=>{
+                          var event={
+                              action:'Accept to turn off chat',
+                              context:this.state.context,
+                              name:'This is the Chat suggestion to turn off chat for all contacts',
+                              renderSuggestion:false
+                          };
+                          this.setState(event);
+                          return event;
+                      }} 
+                       cancel={()=>{
+                          var event={
+                              action:'Would rather not turn off chat',
+                              context:this.state.context,
+                              name:'This is the Chat suggestion to turn off chat for all contacts',
+                              renderSuggestion:false
+                          };
+                          this.setState(event);
+                          return event;
+                      }}>
+                       <label>
+                         Hi Alex- Would you like to turn off Active Status on Chat. Your friends and contacts will no longer see when you're online on FriendBook.  
+                      </label>
+                  </SuggestionPopup>)
+            }*/
 
-            var adaptation = JSON.parse(localStorage.adaptations)["chatoffline"];
+            //let adaptation = JSON.parse(localStorage.adaptations)["chatoffline"];adapt={adaptation}
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
-                    _Menu2.default,
-                    { ref: function ref(_menu) {
-                            _this3.menu = _menu;
-                        }, upwards: true, icon: 'gear', adapt: adaptation },
+                    'span',
+                    { className: this.state.chatHighlight ? "high" : null },
                     _react2.default.createElement(
-                        _Button2.default,
-                        { onClick: this.createTurnOffChatPopup, adapt: adaptation },
-                        'Turn Off Active Status'
+                        _Menu2.default,
+                        { ref: function ref(_menu) {
+                                _this3.menu = _menu;
+                            }, upwards: true, icon: 'gear' },
+                        _react2.default.createElement(
+                            _Button2.default,
+                            { onClick: this.createTurnOffChatPopup, adapt: this.state.chatHighlight ? "high" : null },
+                            'Turn Off Active Status'
+                        )
                     )
                 ),
-                this.state.renderSuggestion ? Suggestion_Popup : null
+                this.state.chatSuggestion && this.state.renderSuggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion })
             );
+        }
+    }, {
+        key: 'cancelAllContacts',
+        value: function cancelAllContacts() {
+            this.setState({ turnOffChat: "turnOnActiveStatus" });
         }
     }, {
         key: 'render',
@@ -10904,16 +11192,19 @@ var Chat = function (_React$Component) {
                 }
 
                 var name = user.name;
-                var setting = JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][0];
+                var setting = _this4.state.turnOffChat;
                 var except_contacts_includes = (0, _utilities.containsIgnoreCase)(JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][1], name);
                 var some_contacts_includes = (0, _utilities.containsIgnoreCase)(JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][2], name);
 
-                if (setting == "allContacts" || setting == "allContactsExcept" && !except_contacts_includes || setting == "someContacts" && some_contacts_includes) {
+                ////setting == "allContacts"
+                //#chat-user a .allContacts
+                // console.log('settings: '+setting )
+                if (setting == "allContactsExcept" && !except_contacts_includes || setting == "someContacts" && some_contacts_includes) {
                     return;
                 }
 
                 friend_names.push(name);
-                friends.push(_react2.default.createElement(_ChatUser2.default, { key: index, chat: _this4, name: name }));
+                friends.push(_react2.default.createElement(_ChatUser2.default, { key: index, chat: _this4, name: name, allContacts: setting === "allContacts" && setting != "turnOnActiveStatus" || _this4.state.chatAutomation ? true : false }));
             });
 
             var except_text;
@@ -10963,6 +11254,8 @@ var Chat = function (_React$Component) {
                         if (_this4.state.turnOffChat == "allContactsExcept" && _this4.state.except_contacts == "") {
                             _this4.setState({ showExceptWarning: true });
                             return;
+                        } else if (_this4.state.turnOffChat == "allContacts") {
+                            _this4.setState({ displayStatusLabel: true });
                         } else {
                             _this4.setState({ showExceptWarning: false });
                         }
@@ -10974,11 +11267,16 @@ var Chat = function (_React$Component) {
                         localStorage.setItem('settings', JSON.stringify(settings));
                         _this4.updateSettings();
 
-                        console.log(settings, old_settings);
+                        //console.log(settings, old_settings)
                         if (JSON.stringify(settings) != JSON.stringify(old_settings)) {
                             var used = JSON.parse(localStorage.featuresUsed);
                             used.chat.settings = true;
                             localStorage.setItem("featuresUsed", JSON.stringify(used));
+                        }
+
+                        if (_this4.state.chatHighlight) {
+                            _this4.setState({ chatHighlight: false });
+                            (0, _HighlightBoilerplate.HighlightBoilerplate)(_this4.state.context);
                         }
                     },
                     cancel: function cancel() {
@@ -10986,7 +11284,7 @@ var Chat = function (_React$Component) {
                     } },
                 _react2.default.createElement(
                     'label',
-                    null,
+                    { className: this.state.chatHighlight ? "high1" : null },
                     _react2.default.createElement('input', { type: 'radio', id: 'turn-off-chat-all-contacts',
                         name: 'turn-off-chat', value: 'allContacts',
                         onChange: this.handleTurnOffChatOptionChange,
@@ -11023,11 +11321,17 @@ var Chat = function (_React$Component) {
 
             // TODO: Consider if there's a better solution than this warning
             var turned_off_warning;
-            if (JSON.parse(localStorage.getItem('settings'))["turn_off_chat"][0] == "allContacts") {
+            if (this.state.turnOffChat == "allContacts" && this.state.displayStatusLabel) {
+
                 turned_off_warning = _react2.default.createElement(
                     'p',
                     null,
-                    'Note: Chat is turned off for all contacts'
+                    _react2.default.createElement(
+                        'a',
+                        { href: 'javaScript:void(0)', onClick: this.cancelAllContacts },
+                        'Turn on Active Status'
+                    ),
+                    ' to see who\'s available'
                 );
             }
 
@@ -11043,7 +11347,6 @@ var Chat = function (_React$Component) {
                     'div',
                     { id: 'chat' },
                     this.state.renderChatPopup ? turnOffChatPopup : null,
-                    turned_off_warning,
                     friends,
                     _react2.default.createElement(
                         'div',
@@ -11051,6 +11354,7 @@ var Chat = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { id: 'settings' },
+                            turned_off_warning,
                             this.renderChat()
                         )
                     )
@@ -11081,7 +11385,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -11194,13 +11498,232 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(7);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _Button = __webpack_require__(5);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _Highlight = __webpack_require__(15);
+
+var _HighlightBoilerplate = __webpack_require__(34);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _utilities = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FriendSubscription = function (_React$Component) {
+    _inherits(FriendSubscription, _React$Component);
+
+    function FriendSubscription(props) {
+        _classCallCheck(this, FriendSubscription);
+
+        var _this = _possibleConstructorReturn(this, (FriendSubscription.__proto__ || Object.getPrototypeOf(FriendSubscription)).call(this, props));
+
+        var adaptation = (0, _utilities.getParsed)('adaptations');
+        var adaptationVisited = (0, _utilities.getParsed)("visited");
+        var getSubscribeStatus = (0, _utilities.getFollowStatus)(_this.props.friendName);
+
+        _this.state = {
+            subscribe: _this.props.auto ? !_this.props.auto : getSubscribeStatus,
+            adaptationVisited: adaptationVisited,
+            highlight1: !adaptationVisited["Unsubscribe_Friend"]["highlight"] && adaptation["unsubscribe_Friend"] == "high" ? true : false,
+            //highlight: !adaptationVisited["Unsubscribe_Friend"]["highlight"] && (adaptation["unsubscribe_Friend"] == "high")? "high":null,
+            context: "Unsubscribe_Friend"
+
+        };
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.onFollowHover = _this.onFollowHover.bind(_this);
+
+        /*Highlight Adaptation */
+        // this.changeStyle = this.changeStyle.bind(this);
+        return _this;
+    }
+
+    _createClass(FriendSubscription, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.set;
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+
+            if (nextProps.auto !== this.props.auto) {
+                this.setState({ subscribe: nextProps.auto });
+            } else if (nextProps.sugst !== this.props.sugst) {
+                this.setState({ subscribe: nextProps.sugst });
+            } else {
+
+                this.setState({ subscribe: true });
+            }
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick() {
+            if (this.state.subscribe) {
+                /* let visited = JSON.parse(localStorage.featuresVisited);
+                visited.friends.unfollow = true;
+                localStorage.setItem("featuresVisited", JSON.stringify(visited)); */
+                var used = JSON.parse(localStorage.featuresUsed);
+                used.friends.unfollow = true;
+                localStorage.setItem("featuresUsed", JSON.stringify(used));
+            }
+
+            if (element == "Unfollow") {
+                (0, _utilities.unFollowUser)(this.props.friendName);
+            }
+
+            if (element == "Follow") {
+                (0, _utilities.followUser)(this.props.friendName);
+            }
+
+            this.setState(function (state) {
+                return {
+                    subscribe: !state.subscribe
+
+                };
+            });
+
+            if (!this.state.adaptationVisited["Unsubscribe_Friend"]['highlight'] && this.props.friendName === "jack_scout") {
+
+                this.setState({
+                    highlight1: false
+                });
+
+                (0, _HighlightBoilerplate.HighlightBoilerplate)(this.state.context);
+            }
+        }
+    }, {
+        key: 'onFollowHover',
+        value: function onFollowHover() {
+            if (this.state.subscribe) {
+                var visited = JSON.parse(localStorage.featuresVisited);
+                visited.friends.unfollow = true;
+                localStorage.setItem("featuresVisited", JSON.stringify(visited));
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var dropbtn_style = (0, _classnames2.default)({
+                'dropbtn_1': !this.state.highlight1 || this.props.friendName !== "jack_scout" && this.state.highlight1,
+                'dropbtn_1_highlight': this.props.friendName === "jack_scout" && this.state.highlight1
+            });
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'dropdown_1' },
+                this.state.subscribe ? _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'button',
+                        { className: dropbtn_style, onMouseOver: this.onFollowHover },
+                        ' \u2713 Following \u25BC'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'dropdown_content_1' },
+                        _react2.default.createElement(
+                            'a',
+                            { href: '#' },
+                            'See First '
+                        ),
+                        _react2.default.createElement(
+                            'a',
+                            { href: '#' },
+                            'Default'
+                        ),
+                        _react2.default.createElement('hr', null),
+                        _react2.default.createElement(
+                            'span',
+                            { className: this.props.friendName === "jack_scout" && this.state.highlight1 ? "high1" : null },
+                            _react2.default.createElement(
+                                _Button2.default,
+                                { onClick: function onClick() {
+                                        return _this2.handleClick("Unfollow");
+                                    } },
+                                'Unfollow'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'btn' },
+                        ' Message '
+                    )
+                ) : _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'dropbtn_1', onClick: function onClick() {
+                                return _this2.handleClick("Follow");
+                            } },
+                        'Follow'
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'btn' },
+                        ' Message '
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'btn' },
+                        '...'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return FriendSubscription;
+}(_react2.default.Component);
+
+exports.default = FriendSubscription;
+
+//<span style={highLight}><Button onClick={this.handleClick}>Unfollow</Button></span>
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
 var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
 var _utilities = __webpack_require__(4);
 
-var _classnames = __webpack_require__(35);
+var _classnames = __webpack_require__(21);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -11334,14 +11857,709 @@ var Edit = function (_React$Component) {
 exports.default = Edit;
 
 /***/ }),
-/* 96 */
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Button = __webpack_require__(5);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _Popup = __webpack_require__(17);
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _algorithms = __webpack_require__(145);
+
+var _utilities = __webpack_require__(4);
+
+var _AutomationBoilerplate = __webpack_require__(16);
+
+var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
+
+var _SuggestionBoilerplate = __webpack_require__(20);
+
+var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+So, the users_friendship is being updated based on the current changes being made to it,  however it is gotten from the friendsList function that keeps getting updated based on the users being blocked. I therefore need to find a way to keep the original list in sysnc with the updated list without shortening the users list.
+**/
+
+var BlockUsers = function (_React$Component) {
+    _inherits(BlockUsers, _React$Component);
+
+    function BlockUsers(props) {
+        _classCallCheck(this, BlockUsers);
+
+        var _this = _possibleConstructorReturn(this, (BlockUsers.__proto__ || Object.getPrototypeOf(BlockUsers)).call(this, props));
+
+        var adaptation = (0, _utilities.getParsed)('adaptations');
+        var adaptationVisited = (0, _utilities.getParsed)("visited");
+
+        _this.state = { username: '',
+            high_username: 'Ira Slipan',
+            renderPopup: false,
+            friendsList: (0, _utilities.friendsList)(),
+            renderUltimateBlock: false,
+            blockedUserslist: JSON.parse(localStorage.getItem('blockedUsers')),
+            showUnblockPopup: false,
+            highlight: !adaptationVisited["Block_User"]["highlight"] && adaptation["block_User"] == "high" ? true : false,
+            suggestion: !adaptationVisited["Block_User"]["suggestion"] && adaptation["block_User"] === "sugst",
+            automation: !adaptationVisited["Block_User"]["automation"] && adaptation["block_User"] === "auto",
+            displayAutomationPopup: true,
+            displaySuggestionPopup: true,
+
+            action: "Block_User, Check to see if the suggested users were blocked/unblocked (for undo_automation)",
+            context: "Block_User",
+            label_Sugst: " I think that you should block \"Jack Scout\"",
+            label_Auto: "The grayed out and underlined entries were automatically blocked"
+        };
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleChange_high = _this.handleChange_high.bind(_this);
+        _this.onClickBlock = _this.onClickBlock.bind(_this);
+        _this.onClickUltimateBlock = _this.onClickUltimateBlock.bind(_this);
+        _this.onClickUnblock = _this.onClickUnblock.bind(_this);
+        _this.showBlockedUsers = _this.showBlockedUsers.bind(_this);
+
+        _this.onClickDestroySuggestion = _this.onClickDestroySuggestion.bind(_this);
+        _this.onClickOK_Suggestion = _this.onClickOK_Suggestion.bind(_this);
+
+        _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
+        _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(BlockUsers, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            //var blockedUsers = JSON.parse(localStorage.getItem('blockedUsers'));
+
+            //var friends = JSON.parse(localStorage.getItem('friends'))
+            // var friends_profile = JSON.parse(localStorage.getItem('friend_profile'))
+
+            //console.log('The blocked'+  blockedUsers)
+
+            this.setState({
+                // blockedUserslist: blockedUsers,
+                // friendsList: friends,
+                //friend_profile:friends_profile
+            });
+
+            //console.log('The state blocked' +this.state.blockedUserslist.length)
+        }
+
+        /*Methods for the Suggestion Adaptation*/
+
+    }, {
+        key: 'onClickDestroySuggestion',
+        value: function onClickDestroySuggestion() {
+            this.setState({
+                displaySuggestionPopup: false
+            });
+        }
+    }, {
+        key: 'onClickOK_Suggestion',
+        value: function onClickOK_Suggestion() {
+            //this.changeAudience("future_requests","friends")
+
+            this.setState({
+                username: 'Jack Scout'
+            });
+
+            this.onClickBlock();
+        }
+
+        //Methods for the Automation Adaptation
+
+    }, {
+        key: 'onClickOk_Auto',
+        value: function onClickOk_Auto() {
+            this.setState({
+                displayAutomationPopup: false
+            });
+        }
+    }, {
+        key: 'onClickUndo_Auto',
+        value: function onClickUndo_Auto() {
+
+            var list_Length = this.state.blockedUserslist.length;
+            this.onClickUnblock(this.state.blockedUserslist[list_Length - 1]);
+
+            if (this.state.blockedUserslist.length === 0) {
+                this.setState({
+                    //blockedUserslist: unblockUsers,
+                    displayAutomationPopup: false
+                });
+            }
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(email) {
+
+            this.setState({ username: email.target.value });
+
+            // console.log("In the handleChange" +username)
+        }
+    }, {
+        key: 'handleChange_high',
+        value: function handleChange_high(name) {
+            this.setState({ high_username: name.target.value });
+        }
+    }, {
+        key: 'onClickBlock',
+        value: function onClickBlock() {
+            this.setState({ renderPopup: true });
+        }
+    }, {
+        key: 'cancel',
+        value: function cancel(what) {
+
+            if (what === 'first') {
+                this.setState({ renderPopup: false });
+            }
+
+            if (what === 'second') {
+                this.setState({ renderUltimateBlock: false,
+                    friendsList: (0, _utilities.friendsList)() });
+            }
+
+            if (what == 'third') {
+                this.setState({ showUnblockPopup: false });
+            }
+        }
+
+        /*setLocalStorage(){
+         //localStorage.setItem('blockedUsers',JSON.stringify(this.state.blockedUserslist))  
+            addToLocalStorageObject('blockedUsers',this.state.blockedUserslist);
+        }*/
+
+    }, {
+        key: 'allowed',
+        value: function allowed(event) {
+
+            var blockedFriend = this.state.username;
+            this.state.blockedUserslist.push(blockedFriend);
+
+            //Change friendship status in users localStorage
+            this.state.friendsList.forEach(function (element, index) {
+
+                if (element.name === blockedFriend) {
+                    element['friend'] = false;
+                }
+            });
+            (0, _utilities.addToLocalStorageObject)('users', this.state.friendsList);
+            (0, _utilities.addToLocalStorageObject)('blockedUsers', this.state.blockedUserslist);
+
+            //this.setLocalStorage(); 
+
+            this.cancel('second');
+            this.cancel('first');
+
+            //if highlight Adaptation, clear the input value
+            if (this.state.highlight) {
+
+                this.setState({
+                    highlight: false,
+                    high_username: " "
+                });
+
+                //console.log("I cleared the input")
+
+                (0, _utilities.saveVisitedAdaptation)("Block_User", "highlight");
+            }
+
+            //saveVisitedAdaptation("Privacy_futureRequests","highlight");
+        }
+    }, {
+        key: 'onClickUltimateBlock',
+        value: function onClickUltimateBlock(user) {
+            this.setState({
+                renderUltimateBlock: true,
+                username: user });
+        }
+    }, {
+        key: 'UltimateBlock',
+        value: function UltimateBlock() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                _Popup2.default,
+                { title: 'Are you sure you want to block ' + this.state.username + '?', cancel: function cancel() {
+                        _this2.cancel('second');
+                    },
+                    okay: function okay() {
+                        _this2.allowed();
+                    },
+                    okButtonName: 'Block ' + this.state.username.split(" ")[0], destroy: function destroy() {
+                        null;
+                    } },
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'popup_imgwrap' },
+                        _react2.default.createElement('img', { src: '../../assets/warning.png', width: '53', height: '48' })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'popup_content' },
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            _react2.default.createElement(
+                                'h4',
+                                null,
+                                this.state.username,
+                                ' will no longer be able to:'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                'See things you post on your timeline'
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                'Tag you'
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                'Invite you to events or groups'
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                'Start a conversation with you'
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                'Add you as a friend'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'popup_content_2' },
+                            'If you\'re friends, blocking ',
+                            this.state.username,
+                            ' will also unfriend him.'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'popup_content_2' },
+                            'If you just want to limit what you share with ',
+                            this.state.username,
+                            ' or see less of him on Fakebook, you cacn ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: 'javascript:void(0)' },
+                                'take a break'
+                            ),
+                            ' from him instead '
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'popup_content_border' },
+                            ' '
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'popup_content_2' },
+                            'Instead, you may want to send ',
+                            this.state.username,
+                            ' a message because he might not know he is bothering you.  ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: '' },
+                                'Let him know.'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }, {
+        key: 'BlockPopup',
+        value: function BlockPopup() {
+            var _this3 = this;
+
+            var pop;
+
+            if (this.state.username !== '' || this.state.highlight) {
+                var user;
+                //this is hard coded for the highlight adaptation
+                if (this.state.highlight) {
+                    user = this.state.high_username;
+                } else {
+                    user = this.state.username;
+                }
+
+                var foundelements = [];
+                var found = false;
+
+                //console.log("The friendlist is as follows:");
+                //console.log(this.state.friendsList);
+                this.state.friendsList.forEach(function (element, index) {
+
+                    var editdistance = (0, _algorithms.levenshteinDistance)(user, element.name);
+                    //I choose 7 for username input where it takes atleast 7 edits to arrive to exising usernames 
+
+                    if (editdistance <= 7) {
+                        found = true;
+                        foundelements.push(element.name);
+                    }
+                });
+
+                pop =
+                //Popup has no okay button, just the x button to cancel
+
+                _react2.default.createElement(
+                    _Popup2.default,
+                    { title: 'Block People', cancel: function cancel() {
+                            _this3.cancel('first');
+                        }, noFooter: true, header_style: true, content_style: true, closeButton: true },
+                    !found ? _react2.default.createElement(
+                        'div',
+                        null,
+                        'No results found'
+                    ) : _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            'The list below shows results for people whose profile includes words similar to "',
+                            this.state.username,
+                            '". These people may not be your friends or followers'
+                        ),
+                        _react2.default.createElement(
+                            'ul',
+                            { className: 'BlockPopup' },
+                            foundelements.map(function (element, index) {
+
+                                var profile_image = (0, _utilities.getProfilePic)(element);
+                                //var profile_image = this.state.friend_profile[element].profile_pic;
+                                //src={`../../../assets/users/${profile_image}`
+
+
+                                return _react2.default.createElement(
+                                    'li',
+                                    { key: index },
+                                    ' ',
+                                    element,
+                                    _react2.default.createElement('img', { className: 'blockImage', src: profile_image }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { style: { marginLeft: '20px' } },
+                                        _react2.default.createElement(
+                                            _Button2.default,
+                                            { type: 'cancel', href: 'javascript:void(0)', onClick: function onClick() {
+                                                    _this3.onClickUltimateBlock(element);
+                                                } },
+                                            ' Block '
+                                        )
+                                    ),
+                                    ' '
+                                );
+                            })
+                        )
+                    )
+                );
+            } else {
+                pop = _react2.default.createElement(
+                    _Popup2.default,
+                    { title: 'Invalid Search Query', cancel: function cancel() {
+                            _this3.cancel('first');
+                        }, width: 900, height: 10, closeButton: true, closeButtonName: 'Close', content_style: true, header_style: true },
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Please type a valid query in the search box and try again'
+                    )
+                );
+            }
+
+            return pop;
+        }
+    }, {
+        key: 'allowUnblock',
+        value: function allowUnblock(user) {
+            var Index = this.state.blockedUserslist.indexOf(user);
+            this.state.blockedUserslist.splice(Index, 1);
+
+            //console.log('The user is'+user);
+            //Change friendship status in users localStorage
+            this.state.friendsList.forEach(function (element, index) {
+
+                if (element.name === user) {
+                    element['friend'] = true;
+                    //console.log("The element name is"+element.name+"User is "+user);
+                }
+            });
+
+            (0, _utilities.addToLocalStorageObject)('users', this.state.friendsList);
+            (0, _utilities.addToLocalStorageObject)('blockedUsers', this.state.blockedUserslist);
+
+            //this.setLocalStorage(); 
+            this.cancel('third');
+        }
+    }, {
+        key: 'onClickUnblock',
+        value: function onClickUnblock(user) {
+            this.setState({
+                showUnblockPopup: true,
+                username: user
+            });
+        }
+    }, {
+        key: 'unblockUser',
+        value: function unblockUser() {
+            var _this4 = this;
+
+            //Find the index of the user from the array and then delete it from the array. 
+            var user = this.state.username;
+
+            return _react2.default.createElement(
+                _Popup2.default,
+                { title: 'Unblock ' + user, cancel: function cancel() {
+                        _this4.cancel('third');
+                    }, okay: function okay() {
+                        return _this4.allowUnblock(user);
+                    }, okButtonName: 'Confirm', destroy: void 0 },
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    'Are you sure you want to unblock ',
+                    user
+                ),
+                _react2.default.createElement(
+                    'ul',
+                    null,
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        user,
+                        ' may be able to see your timeline or contact you, depending on your privacy settings'
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Tags you and ',
+                        user,
+                        ' previously added of each other may be restored'
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'You can remove tags of yourself on your activity log'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    'Please remember you\'ll have to wait 48 hour before you can re-block ',
+                    user,
+                    '.'
+                )
+            );
+        }
+    }, {
+        key: 'showBlockedUsers',
+        value: function showBlockedUsers() {
+            var _this5 = this;
+
+            if (this.state.blockedUserslist.length > 0) {
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        this.state.blockedUserslist.map(function (user, index) {
+                            if (_this5.state.displayAutomationPopup && _this5.state.automation) {
+                                return _react2.default.createElement(
+                                    'li',
+                                    { key: index },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'righttop_text_onAutomation' },
+                                        user
+                                    ),
+                                    _react2.default.createElement(
+                                        _Button2.default,
+                                        { href: 'javascript:void(0)', onClick: function onClick() {
+                                                _this5.onClickUnblock(user);
+                                            } },
+                                        'Unblock'
+                                    )
+                                );
+                            } else {
+                                return _react2.default.createElement(
+                                    'li',
+                                    { key: index, style: { marginBottom: '3px' } },
+                                    user,
+                                    _react2.default.createElement(
+                                        'span',
+                                        { style: { marginLeft: '10px' } },
+                                        _react2.default.createElement(
+                                            _Button2.default,
+                                            { href: 'javascript:void(0)', onClick: function onClick() {
+                                                    _this5.onClickUnblock(user);
+                                                } },
+                                            'Unblock'
+                                        )
+                                    )
+                                );
+                            }
+                        })
+                    ),
+                    /*The Automation Adaptation Popup*/
+                    this.state.displayAutomationPopup && this.state.automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto })
+                );
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            var block_value_high_style = (0, _classnames2.default)({
+                'block_value': !this.state.highlight,
+                'block_value_high': this.state.highlight
+            });
+
+            //console.log("The highlight state is "+ this.state.highlight)
+            // console.log("The highlight name is "+ this.state.high_username)
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'h2',
+                        { className: 'right_header' },
+                        ' Manage blocking '
+                    )
+                ),
+                _react2.default.createElement('hr', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'right_top' },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'righttop_label' },
+                        ' Restricted List '
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'right_link', href: '#' },
+                        ' Edit List '
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'righttop_text' },
+                        'When you add a friend to your Restricted list, they won\'t see posts on Fakebook that you share to Friends only. They may still see things that you share to Public or on a mutual friend\'s timeline, and posts that they\'re tagged in. Fakebook doesn\'t notify your friends when you add them to your Restricted list. ',
+                        _react2.default.createElement(
+                            'a',
+                            { href: '#' },
+                            'Learn more'
+                        )
+                    )
+                ),
+                _react2.default.createElement('hr', null),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'right_bottom' },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'rightbottom_label' },
+                        ' Block users '
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'rightbottom_text' },
+                        'Once you block someone, that person can no longer see things you post on your timeline, tag you, invite you to events or groups,start a conversation with you, or add you as a friend. Note: Does not include apps, games or groups you both participate in.'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { id: 'right_bottom_form' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            ' Block users',
+                            this.state.highlight ? _react2.default.createElement('input', { id: 'text', className: 'high1', type: 'text', defaultValue: this.state.high_username, onChange: this.handleChange_high }) : _react2.default.createElement('input', { id: 'text', type: 'text', placeholder: 'Add name or email', onChange: this.handleChange })
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { style: { marginLeft: "2px" } },
+                            ' ',
+                            _react2.default.createElement(
+                                _Button2.default,
+                                { href: 'javascript:void(0)', type: 'confirm', onClick: this.onClickBlock },
+                                'Block '
+                            ),
+                            ' '
+                        ),
+                        _react2.default.createElement('br', null),
+                        this.state.renderPopup ? this.BlockPopup() : null,
+                        this.state.renderUltimateBlock ? this.UltimateBlock() : null,
+                        this.state.showUnblockPopup ? this.unblockUser() : null,
+                        this.showBlockedUsers(),
+                        /*The Suggestion Adaptation*/
+                        this.state.displaySuggestionPopup && this.state.suggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return BlockUsers;
+}(_react2.default.Component);
+
+exports.default = BlockUsers;
+
+/***/ }),
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -11424,12 +12642,12 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -11456,14 +12674,14 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -11500,12 +12718,12 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, FriendBook, Inc.
+ * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -11519,7 +12737,7 @@ module.exports = getActiveElement;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(100);
+var factory = __webpack_require__(102);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -11528,12 +12746,12 @@ module.exports = function(isValidElement) {
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, FriendBook, Inc.
+ * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -11547,8 +12765,8 @@ var emptyFunction = __webpack_require__(12);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
-var ReactPropTypesSecret = __webpack_require__(64);
-var checkPropTypes = __webpack_require__(197);
+var ReactPropTypesSecret = __webpack_require__(65);
+var checkPropTypes = __webpack_require__(202);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -12048,11 +13266,11 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, FriendBook, Inc.
+ * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -12075,22 +13293,22 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(100)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(102)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(198)();
+  module.exports = __webpack_require__(203)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12243,12 +13461,12 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12262,7 +13480,7 @@ var _prodInvariant = __webpack_require__(6);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(26);
+var PooledClass = __webpack_require__(28);
 
 var invariant = __webpack_require__(2);
 
@@ -12366,12 +13584,12 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12380,11 +13598,11 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 
 
-var DOMProperty = __webpack_require__(21);
+var DOMProperty = __webpack_require__(23);
 var ReactDOMComponentTree = __webpack_require__(9);
 var ReactInstrumentation = __webpack_require__(13);
 
-var quoteAttributeValueForBrowser = __webpack_require__(267);
+var quoteAttributeValueForBrowser = __webpack_require__(272);
 var warning = __webpack_require__(3);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -12605,12 +13823,12 @@ module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12626,12 +13844,12 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12640,11 +13858,11 @@ module.exports = ReactDOMComponentFlags;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var LinkedValueUtils = __webpack_require__(69);
+var LinkedValueUtils = __webpack_require__(70);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactUpdates = __webpack_require__(15);
+var ReactUpdates = __webpack_require__(18);
 
 var warning = __webpack_require__(3);
 
@@ -12830,12 +14048,12 @@ module.exports = ReactDOMSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12863,12 +14081,12 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12888,12 +14106,12 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12960,12 +14178,12 @@ module.exports = ReactHostComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12974,11 +14192,11 @@ module.exports = ReactHostComponent;
 
 
 
-var ReactDOMSelection = __webpack_require__(222);
+var ReactDOMSelection = __webpack_require__(227);
 
-var containsNode = __webpack_require__(183);
-var focusNode = __webpack_require__(97);
-var getActiveElement = __webpack_require__(98);
+var containsNode = __webpack_require__(188);
+var focusNode = __webpack_require__(99);
+var getActiveElement = __webpack_require__(100);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -13086,12 +14304,12 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13102,27 +14320,27 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(6);
 
-var DOMLazyTree = __webpack_require__(29);
-var DOMProperty = __webpack_require__(21);
-var React = __webpack_require__(31);
-var ReactBrowserEventEmitter = __webpack_require__(46);
-var ReactCurrentOwner = __webpack_require__(17);
+var DOMLazyTree = __webpack_require__(30);
+var DOMProperty = __webpack_require__(23);
+var React = __webpack_require__(32);
+var ReactBrowserEventEmitter = __webpack_require__(47);
+var ReactCurrentOwner = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactDOMContainerInfo = __webpack_require__(214);
-var ReactDOMFeatureFlags = __webpack_require__(216);
-var ReactFeatureFlags = __webpack_require__(108);
-var ReactInstanceMap = __webpack_require__(38);
+var ReactDOMContainerInfo = __webpack_require__(219);
+var ReactDOMFeatureFlags = __webpack_require__(221);
+var ReactFeatureFlags = __webpack_require__(110);
+var ReactInstanceMap = __webpack_require__(39);
 var ReactInstrumentation = __webpack_require__(13);
-var ReactMarkupChecksum = __webpack_require__(236);
-var ReactReconciler = __webpack_require__(30);
-var ReactUpdateQueue = __webpack_require__(72);
-var ReactUpdates = __webpack_require__(15);
+var ReactMarkupChecksum = __webpack_require__(241);
+var ReactReconciler = __webpack_require__(31);
+var ReactUpdateQueue = __webpack_require__(73);
+var ReactUpdates = __webpack_require__(18);
 
-var emptyObject = __webpack_require__(44);
-var instantiateReactComponent = __webpack_require__(120);
+var emptyObject = __webpack_require__(45);
+var instantiateReactComponent = __webpack_require__(122);
 var invariant = __webpack_require__(2);
-var setInnerHTML = __webpack_require__(50);
-var shouldUpdateReactComponent = __webpack_require__(78);
+var setInnerHTML = __webpack_require__(51);
+var shouldUpdateReactComponent = __webpack_require__(79);
 var warning = __webpack_require__(3);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -13497,7 +14715,7 @@ var ReactMount = {
 
   /**
    * Renders a React component into the DOM in the supplied `container`.
-   * See https://FriendBook.github.io/react/docs/top-level-api.html#reactdom.render
+   * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.render
    *
    * If the React component was previously rendered into `container`, this will
    * perform an update on it and only mutate the DOM as necessary to reflect the
@@ -13514,7 +14732,7 @@ var ReactMount = {
 
   /**
    * Unmounts and destroys the React component rendered in the `container`.
-   * See https://FriendBook.github.io/react/docs/top-level-api.html#reactdom.unmountcomponentatnode
+   * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.unmountcomponentatnode
    *
    * @param {DOMElement} container DOM element containing a React component.
    * @return {boolean} True if a component was found in and unmounted from
@@ -13628,12 +14846,12 @@ module.exports = ReactMount;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13645,7 +14863,7 @@ module.exports = ReactMount;
 
 var _prodInvariant = __webpack_require__(6);
 
-var React = __webpack_require__(31);
+var React = __webpack_require__(32);
 
 var invariant = __webpack_require__(2);
 
@@ -13672,12 +14890,12 @@ module.exports = ReactNodeTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13692,12 +14910,12 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13720,12 +14938,12 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13782,12 +15000,12 @@ module.exports = accumulateInto;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13816,12 +15034,12 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13830,7 +15048,7 @@ module.exports = forEachAccumulated;
 
 
 
-var ReactNodeTypes = __webpack_require__(112);
+var ReactNodeTypes = __webpack_require__(114);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -13849,12 +15067,12 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -13885,12 +15103,12 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -14011,12 +15229,12 @@ var inputValueTracking = {
 module.exports = inputValueTracking;
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -14026,13 +15244,13 @@ module.exports = inputValueTracking;
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var ReactCompositeComponent = __webpack_require__(211);
-var ReactEmptyComponent = __webpack_require__(107);
-var ReactHostComponent = __webpack_require__(109);
+var ReactCompositeComponent = __webpack_require__(216);
+var ReactEmptyComponent = __webpack_require__(109);
+var ReactHostComponent = __webpack_require__(111);
 
-var getNextDebugID = __webpack_require__(306);
+var getNextDebugID = __webpack_require__(312);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -14144,12 +15362,12 @@ module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -14198,12 +15416,12 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -14213,8 +15431,8 @@ module.exports = isTextInputElement;
 
 
 var ExecutionEnvironment = __webpack_require__(10);
-var escapeTextContentForBrowser = __webpack_require__(49);
-var setInnerHTML = __webpack_require__(50);
+var escapeTextContentForBrowser = __webpack_require__(50);
+var setInnerHTML = __webpack_require__(51);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -14253,12 +15471,12 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -14269,12 +15487,12 @@ module.exports = setTextContent;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactCurrentOwner = __webpack_require__(17);
-var REACT_ELEMENT_TYPE = __webpack_require__(230);
+var ReactCurrentOwner = __webpack_require__(19);
+var REACT_ELEMENT_TYPE = __webpack_require__(235);
 
-var getIteratorFn = __webpack_require__(264);
+var getIteratorFn = __webpack_require__(269);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(68);
+var KeyEscapeUtils = __webpack_require__(69);
 var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
@@ -14433,17 +15651,17 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(83);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -14550,18 +15768,18 @@ Link.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Link);
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__ = __webpack_require__(86);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Route__["a" /* default */]);
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14627,18 +15845,18 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
 };
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(55);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -14693,15 +15911,15 @@ MemoryRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (MemoryRouter);
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -14784,20 +16002,20 @@ Prompt.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Prompt);
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__generatePath__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__generatePath__ = __webpack_require__(87);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14913,20 +16131,20 @@ Redirect.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Redirect);
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(55);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -15079,19 +16297,19 @@ StaticRouter.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (StaticRouter);
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchPath__ = __webpack_require__(56);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -15171,17 +16389,17 @@ Switch.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Switch);
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(86);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -15220,7 +16438,7 @@ var withRouter = function withRouter(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRouter);
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15286,10 +16504,10 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
 };
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(292)
+var isarray = __webpack_require__(297)
 
 /**
  * Expose `pathToRegexp`.
@@ -15718,12 +16936,12 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -15732,15 +16950,15 @@ function pathToRegexp (path, keys, options) {
 
 
 
-var _prodInvariant = __webpack_require__(32),
-    _assign = __webpack_require__(7);
+var _prodInvariant = __webpack_require__(33),
+    _assign = __webpack_require__(8);
 
-var ReactNoopUpdateQueue = __webpack_require__(138);
+var ReactNoopUpdateQueue = __webpack_require__(140);
 
-var canDefineProperty = __webpack_require__(58);
-var emptyObject = __webpack_require__(44);
+var canDefineProperty = __webpack_require__(59);
+var emptyObject = __webpack_require__(45);
 var invariant = __webpack_require__(2);
-var lowPriorityWarning = __webpack_require__(90);
+var lowPriorityWarning = __webpack_require__(91);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -15818,7 +17036,7 @@ ReactComponent.prototype.forceUpdate = function (callback) {
 if (process.env.NODE_ENV !== 'production') {
   var deprecatedAPIs = {
     isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
-    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/FriendBook/react/issues/3236).']
+    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
   };
   var defineDeprecationWarning = function (methodName, info) {
     if (canDefineProperty) {
@@ -15865,12 +17083,12 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -15888,12 +17106,12 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -15909,16 +17127,16 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(19);
 var ReactComponentTreeHook = __webpack_require__(11);
-var ReactElement = __webpack_require__(27);
+var ReactElement = __webpack_require__(29);
 
-var checkReactTypeSpec = __webpack_require__(304);
+var checkReactTypeSpec = __webpack_require__(310);
 
-var canDefineProperty = __webpack_require__(58);
-var getIteratorFn = __webpack_require__(139);
+var canDefineProperty = __webpack_require__(59);
+var getIteratorFn = __webpack_require__(141);
 var warning = __webpack_require__(3);
-var lowPriorityWarning = __webpack_require__(90);
+var lowPriorityWarning = __webpack_require__(91);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -16147,12 +17365,12 @@ module.exports = ReactElementValidator;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -16246,12 +17464,12 @@ module.exports = ReactNoopUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -16290,7 +17508,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16366,7 +17584,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["a"] = (resolvePathname);
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16410,7 +17628,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["a"] = (valueEqual);
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16426,25 +17644,25 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(288);
+var _reactRouter = __webpack_require__(293);
 
-var _reactHotjar = __webpack_require__(269);
+var _reactHotjar = __webpack_require__(274);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
 
-var _propTypes = __webpack_require__(101);
+var _propTypes = __webpack_require__(103);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _NewsFeed = __webpack_require__(152);
+var _NewsFeed = __webpack_require__(154);
 
 var _NewsFeed2 = _interopRequireDefault(_NewsFeed);
 
-var _Header = __webpack_require__(150);
+var _Header = __webpack_require__(152);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Profile = __webpack_require__(158);
+var _Profile = __webpack_require__(164);
 
 var _Profile2 = _interopRequireDefault(_Profile);
 
@@ -16452,11 +17670,19 @@ var _Chat = __webpack_require__(93);
 
 var _Chat2 = _interopRequireDefault(_Chat);
 
-var _GeneralSettings = __webpack_require__(168);
+var _Scenario = __webpack_require__(157);
+
+var _Scenario2 = _interopRequireDefault(_Scenario);
+
+var _ExitExperiment = __webpack_require__(156);
+
+var _ExitExperiment2 = _interopRequireDefault(_ExitExperiment);
+
+var _GeneralSettings = __webpack_require__(174);
 
 var _GeneralSettings2 = _interopRequireDefault(_GeneralSettings);
 
-var _databaseFunctions = __webpack_require__(34);
+var _databaseFunctions = __webpack_require__(36);
 
 var _utilities = __webpack_require__(4);
 
@@ -16474,11 +17700,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 */
 
 /**
-http://fakebook.usabart.nl/?session=6c2cc0c1aefce7c1f00eb70cd2df88d8&hidestory=high&changesub=high&unsubfriend=high&unsubstatus=high&deletetimeline=high&reportspam=high&hidetimeline=high&untagphoto=high&requestphoto=high&tagvisiblity=high&timelinevisibility=high&blockuser=high&restrictuser=high&blockevent=high&blockapp=high&chatoffline=high&chatvisibility=high&customstatus=high&customphoto=high&catnewfriend=high&catoldfriend=high&withholdcellphone=high&withholdotherphone=high&withholdim=high&withholdstreet=high&withholdinterest=high&withholdreligion=high&withholdpolitical=high
+http://fakebook.usabart.nl/?session=6c2cc0c1aefce7c1f00eb70cd2df88d8&hidestory=high&changesub=high&unsubfriend=high&unsubstatus=high&delete_Post=high&reportspam=high&hidetimeline=high&untagphoto=high&requestphoto=high&tagvisiblity=high&timelinevisibility=high&blockuser=high&restrictuser=high&blockevent=high&blockapp=high&chatoffline=high&chatvisibility=high&customstatus=high&customphoto=high&catnewfriend=high&catoldfriend=high&withholdcellphone=high&withholdotherphone=high&withholdim=high&withholdstreet=high&withholdinterest=high&withholdreligion=high&withholdpolitical=high
 */
 
 /**
-http://localhost:8080/?session=6c2cc0c1aefce7c1f00eb70cd2df88d8&deletetimeline=high&liketimeline=high&chatoffline=high&withholdcellphone=high
+http://localhost:8080/?session=6c2cc0c1aefce7c1f00eb70cd2df88d8&delete_Post=high&liketimeline=high&chatoffline=high&withholdcellphone=high
 */
 
 var App = function (_React$Component) {
@@ -16506,10 +17732,10 @@ var App = function (_React$Component) {
       };
 
       var adaptations_dict = {
-        "deletetimeline": userparams.deletetimeline,
-        "liketimeline": userparams.liketimeline,
-        "chatoffline": userparams.chatoffline,
-        "contactInfo": userparams.contactInfo,
+        "delete_Post": userparams.delete_Post,
+        "chat_Offline": userparams.chat_Offline,
+        "contact_Info": userparams.contact_Info,
+        "basic_Info": userparams.basic_Info,
         "privacy_futureRequests": userparams.privacy_futureRequests,
         "timeline_seePost": userparams.timeline_seePost,
         "block_User": userparams.block_User,
@@ -16545,6 +17771,15 @@ var App = function (_React$Component) {
       if (update) {
         window.location.href = "/";
       }
+
+      console.log("TODO: Begin time counter to understand how long user stays within the platform");
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+
+      console.log("TODO: Stop timer and send time taken to DB");
+      //  window.addEventListener("beforeunload",alert("TODO: Stop timer and send time taken to DB"));
     }
 
     // Turn the querystring into a JSON object
@@ -16584,10 +17819,10 @@ var App = function (_React$Component) {
       // Get the url parameters from JSON String
       var _urlqueryStringToJSON = this.urlqueryStringToJSON(),
           session_id = _urlqueryStringToJSON.session_id,
-          deletetimeline = _urlqueryStringToJSON.deletetimeline,
-          liketimeline = _urlqueryStringToJSON.liketimeline,
-          chatoffline = _urlqueryStringToJSON.chatoffline,
-          contactInfo = _urlqueryStringToJSON.contactInfo,
+          delete_Post = _urlqueryStringToJSON.delete_Post,
+          chat_Offline = _urlqueryStringToJSON.chat_Offline,
+          contact_Info = _urlqueryStringToJSON.contact_Info,
+          basic_Info = _urlqueryStringToJSON.basic_Info,
           privacy_futureRequests = _urlqueryStringToJSON.privacy_futureRequests,
           timeline_seePost = _urlqueryStringToJSON.timeline_seePost,
           block_User = _urlqueryStringToJSON.block_User,
@@ -16604,15 +17839,15 @@ var App = function (_React$Component) {
       // Assign url parameters to local variables
 
 
-      var current_session = { session_id: session_id, deletetimeline: deletetimeline, liketimeline: liketimeline, chatoffline: chatoffline, contactInfo: contactInfo, privacy_futureRequests: privacy_futureRequests, timeline_seePost: timeline_seePost, block_User: block_User, block_Event: block_Event, block_App: block_App, block_AppInvite: block_AppInvite, status_Audience: status_Audience, unsubscribe_Friend: unsubscribe_Friend, hide_Post: hide_Post, untag_Post: untag_Post, categorize_Friend: categorize_Friend };
+      var current_session = { session_id: session_id, delete_Post: delete_Post, chat_Offline: chat_Offline, contact_Info: contact_Info, basic_Info: basic_Info, privacy_futureRequests: privacy_futureRequests, timeline_seePost: timeline_seePost, block_User: block_User, block_Event: block_Event, block_App: block_App, block_AppInvite: block_AppInvite, status_Audience: status_Audience, unsubscribe_Friend: unsubscribe_Friend, hide_Post: hide_Post, untag_Post: untag_Post, categorize_Friend: categorize_Friend };
 
       // Assigns the local variables to the global variables 
       return {
         session_id: current_session.session_id,
-        deletetimeline: current_session.deletetimeline,
-        liketimeline: current_session.liketimeline,
-        chatoffline: current_session.chatoffline,
-        contactInfo: current_session.contactInfo,
+        delete_Post: current_session.delete_Post,
+        chat_Offline: current_session.chat_Offline,
+        contact_Info: current_session.contact_Info,
+        basic_Info: current_session.basic_Info,
         privacy_futureRequests: current_session.privacy_futureRequests,
         timeline_seePost: current_session.timeline_seePost,
         block_User: current_session.block_User,
@@ -16640,6 +17875,12 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
+            _react2.default.createElement(_Scenario2.default, null),
+            _react2.default.createElement(
+              'div',
+              { id: 'experiment-done' },
+              _react2.default.createElement(_ExitExperiment2.default, null)
+            ),
             _react2.default.createElement(_Header2.default, null),
             _react2.default.createElement(
               _reactRouterDom.Switch,
@@ -16670,11 +17911,11 @@ App.childContextTypes = {
   session_id: _propTypes2.default.string,
   NewsFeed: _propTypes2.default.bool,
   Timeline: _propTypes2.default.bool,
-  deletetimeline: _propTypes2.default.string,
-  chatoffline: _propTypes2.default.string,
-  liketimeline: _propTypes2.default.string,
-  contactInfo: _propTypes2.default.string,
-  BasicInfo: _propTypes2.default.string,
+  delete_Post: _propTypes2.default.string,
+  chat_Offline: _propTypes2.default.string,
+  /*liketimeline:PropTypes.string,*/
+  contact_Info: _propTypes2.default.string,
+  basic_Info: _propTypes2.default.string,
   privacy_futureRequests: _propTypes2.default.string,
   timeline_seePost: _propTypes2.default.string,
   block_User: _propTypes2.default.string,
@@ -16692,7 +17933,7 @@ App.childContextTypes = {
 exports.default = App;
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16738,14 +17979,14 @@ function levenshteinDistance(str1, str2) {
 }
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-   value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -16754,11 +17995,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _utilities = __webpack_require__(4);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 var _Button = __webpack_require__(5);
 
@@ -16773,49 +18018,55 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var ChatUser = function (_React$Component) {
-   _inherits(ChatUser, _React$Component);
+    _inherits(ChatUser, _React$Component);
 
-   function ChatUser(props) {
-      _classCallCheck(this, ChatUser);
+    function ChatUser(props) {
+        _classCallCheck(this, ChatUser);
 
-      var _this = _possibleConstructorReturn(this, (ChatUser.__proto__ || Object.getPrototypeOf(ChatUser)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ChatUser.__proto__ || Object.getPrototypeOf(ChatUser)).call(this, props));
 
-      _this.onClickName = _this.onClickName.bind(_this);
-      return _this;
-   }
+        _this.onClickName = _this.onClickName.bind(_this);
+        return _this;
+    }
 
-   _createClass(ChatUser, [{
-      key: 'onClickName',
-      value: function onClickName() {
-         var event = { action: 'Clicked Chat User', // state.action,
-            context: 'From NewsFeed', // state.context,
-            name: this.props.name };
-         var added = this.props.chat.addChat(this.props.name);
-         return added ? event : null;
-      }
-   }, {
-      key: 'render',
-      value: function render() {
-         return _react2.default.createElement(
-            'div',
-            { id: 'chat-user' },
-            _react2.default.createElement('img', { id: 'profile-pic', src: (0, _utilities.getProfilePic)(this.props.name) }),
-            _react2.default.createElement(
-               _Button2.default,
-               { onClick: this.onClickName },
-               this.props.name
-            )
-         );
-      }
-   }]);
+    _createClass(ChatUser, [{
+        key: 'onClickName',
+        value: function onClickName() {
+            var event = { action: 'Clicked Chat User', // state.action,
+                context: 'From NewsFeed', // state.context,
+                name: this.props.name };
+            var added = this.props.chat.addChat(this.props.name);
+            return added ? event : null;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
 
-   return ChatUser;
+            var chatUser = (0, _classnames2.default)({
+                'chat-user': !this.props.allContacts,
+                'off-active-status': this.props.allContacts
+            });
+
+            return _react2.default.createElement(
+                'div',
+                { id: chatUser },
+                _react2.default.createElement('img', { id: 'profile-pic', src: (0, _utilities.getProfilePic)(this.props.name) }),
+                _react2.default.createElement(
+                    _Button2.default,
+                    { onClick: this.onClickName },
+                    this.props.name
+                )
+            );
+        }
+    }]);
+
+    return ChatUser;
 }(_react2.default.Component);
 
 exports.default = ChatUser;
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16837,7 +18088,7 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _ProfileLink = __webpack_require__(28);
+var _ProfileLink = __webpack_require__(27);
 
 var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
 
@@ -16965,7 +18216,7 @@ var ChatWindow = function (_React$Component) {
 exports.default = ChatWindow;
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16981,7 +18232,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -16995,7 +18246,7 @@ var _NewCommentArea = __webpack_require__(94);
 
 var _NewCommentArea2 = _interopRequireDefault(_NewCommentArea);
 
-var _ProfileLink = __webpack_require__(28);
+var _ProfileLink = __webpack_require__(27);
 
 var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
 
@@ -17190,7 +18441,7 @@ var Comment = function (_React$Component) {
 exports.default = Comment;
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17208,11 +18459,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utilities = __webpack_require__(4);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
-var _AutocompleteInput = __webpack_require__(33);
+var _AutocompleteInput = __webpack_require__(35);
 
 var _AutocompleteInput2 = _interopRequireDefault(_AutocompleteInput);
 
@@ -17257,19 +18508,23 @@ var CustomSelector = function (_React$Component) {
         return item.trim();
       });
 
-      var friends = JSON.parse(localStorage.getItem('users')).filter(function (user) {
+      /**var friends = JSON.parse(localStorage.getItem('users')).filter((user) => {
         return user.friend;
-      }).map(function (item) {
+      }).map((item) => {
         return item.name;
-      });
+      });*/
+
+      var friends_or_lists = (0, _utilities.namesAndLists)();
 
       return raw_list.filter(function (item) {
-        return (0, _utilities.containsIgnoreCase)(friends, item) || (0, _utilities.containsIgnoreCase)(["Friends", "Friends of friends"], item);
+        return (0, _utilities.containsIgnoreCase)(friends_or_lists, item) || (0, _utilities.containsIgnoreCase)(["Friends", "Friends of friends"], item);
       });
     }
   }, {
     key: 'newAudience',
     value: function newAudience() {
+
+      console.log("I am in here");
       var share = this.parseText(this.state.share_value) || [];
       var dont = this.parseText(this.state.dont_share_value) || [];
 
@@ -17287,6 +18542,7 @@ var CustomSelector = function (_React$Component) {
         localStorage.setItem("settings", JSON.stringify(settings));
         return "specific_friends";
       } else {
+
         return "custom";
       }
     }
@@ -17295,6 +18551,7 @@ var CustomSelector = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log("I am in Custom Selector");
       return _react2.default.createElement(
         _Popup2.default,
         { saveChanges: true, title: 'Custom Privacy',
@@ -17345,7 +18602,7 @@ var CustomSelector = function (_React$Component) {
                 },
                 defaultValue: this.state.share_value,
                 placeholder: 'Required: Enter names or lists',
-                list: ["Jack Roe", "Jim Mend", "Friends", "Friends of friends", "Family", "Work"] })
+                list: (0, _utilities.namesAndLists)() })
             ),
             _react2.default.createElement(
               'label',
@@ -17386,7 +18643,7 @@ var CustomSelector = function (_React$Component) {
                 },
                 defaultValue: this.state.dont_share_value,
                 placeholder: 'Required: Enter names or lists',
-                list: ["Jack Roe", "Jim Mend", "Friends", "Friends of friends", "Family", "Work"] })
+                list: (0, _utilities.namesAndLists)() })
             )
           )
         )
@@ -17400,7 +18657,7 @@ var CustomSelector = function (_React$Component) {
 exports.default = CustomSelector;
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17418,11 +18675,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utilities = __webpack_require__(4);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
-var _FriendSelectorUser = __webpack_require__(149);
+var _FriendSelectorUser = __webpack_require__(151);
 
 var _FriendSelectorUser2 = _interopRequireDefault(_FriendSelectorUser);
 
@@ -17538,7 +18795,7 @@ var FriendSelector = function (_React$Component) {
 exports.default = FriendSelector;
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17554,7 +18811,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -17593,7 +18850,7 @@ var FriendSelectorUser = function (_React$Component) {
     key: 'onClick',
     value: function onClick(e) {
       if (this.container.contains(e.target)) {
-        console.log("Clicked on " + this.props.name);
+        //console.log("Clicked on " + this.props.name);
         this.props.onClick(this.props.name);
       }
     }
@@ -17629,186 +18886,7 @@ var FriendSelectorUser = function (_React$Component) {
 exports.default = FriendSelectorUser;
 
 /***/ }),
-/* 150 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(8);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(16);
-
-var _utilities = __webpack_require__(4);
-
-var _Button = __webpack_require__(5);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _Settingsdropdown = __webpack_require__(169);
-
-var _Settingsdropdown2 = _interopRequireDefault(_Settingsdropdown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Header = function (_React$Component) {
-  _inherits(Header, _React$Component);
-
-  function Header(props) {
-    _classCallCheck(this, Header);
-
-    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
-
-    var adaptation = (0, _utilities.getParsed)("adaptations");
-    var adaptationVisited = (0, _utilities.getParsed)("visited");
-
-    _this.state = {
-      adaptation: adaptation,
-      adaptationVisited: adaptationVisited,
-      renderSettings: false,
-      highlight: !adaptationVisited["Privacy_futureRequests"]["highlight"] && adaptation["privacy_futureRequests"] == "high" || !adaptationVisited["Timeline_seePost"]["highlight"] && adaptation["timeline_seePost"] === "high" || !adaptationVisited["Block_User"]["highlight"] && adaptation["block_User"] == "high" || !adaptationVisited["Block_Event"]["highlight"] && adaptation["block_Event"] == "high" || !adaptationVisited["Block_App"]["highlight"] && adaptation["block_App"] == "high" || !adaptationVisited["Block_AppInvite"]["highlight"] && adaptation["block_AppInvite"] == "high" ? true : false
-
-    };
-
-    _this.changeIcon = _this.changeIcon.bind(_this);
-    _this.settingsdropDown = _this.settingsdropDown.bind(_this);
-    return _this;
-  }
-
-  _createClass(Header, [{
-    key: 'changeIcon',
-    value: function changeIcon() {
-      this.setState({
-        highlight: false
-      });
-    }
-  }, {
-    key: 'settingsdropDown',
-    value: function settingsdropDown() {
-
-      this.setState(function (prevState, props) {
-        return {
-
-          renderSettings: !prevState.renderSettings
-        };
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'header',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: {
-              pathname: '/',
-              state: { fromHeader: true } } },
-          _react2.default.createElement(
-            'h1',
-            { id: 'logo' },
-            'FriendBook'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { id: 'user' },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: {
-                pathname: '/profile/Alex_doe',
-                state: { fromNewsFeed: true } } },
-            _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/users/alex_profile_img.jpg' }),
-            _react2.default.createElement(
-              'span',
-              { id: 'header-text' },
-              '  Alex'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { id: 'header-text' },
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: {
-                    pathname: '/',
-                    state: { fromNewsFeed: true } } },
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  'Home'
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Create'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/findfriends.png' })
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/messages.png' })
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/notifications.png' })
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/quick_help.png' })
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                _Button2.default,
-                { onClick: this.settingsdropDown },
-                this.state.highlight ? _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/settings4.png' }) : _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/settings.png' })
-              )
-            ),
-            this.state.renderSettings ? _react2.default.createElement(_Settingsdropdown2.default, { SettingsdropDown: this.settingsdropDown, changeIcon: this.changeIcon }) : null
-          )
-        )
-      );
-    }
-  }]);
-
-  return Header;
-}(_react2.default.Component);
-
-exports.default = Header;
-
-/***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17824,33 +18902,25 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(7);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(14);
+
 var _utilities = __webpack_require__(4);
 
 var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _AudienceMenu = __webpack_require__(61);
+var _Settingsdropdown = __webpack_require__(175);
 
-var _AudienceMenu2 = _interopRequireDefault(_AudienceMenu);
+var _Settingsdropdown2 = _interopRequireDefault(_Settingsdropdown);
 
-var _PostArea = __webpack_require__(43);
+var _Notificationdropdown = __webpack_require__(160);
 
-var _PostArea2 = _interopRequireDefault(_PostArea);
-
-var _UploadPopup = __webpack_require__(154);
-
-var _UploadPopup2 = _interopRequireDefault(_UploadPopup);
-
-var _AutomationBoilerplate = __webpack_require__(18);
-
-var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
-
-var _SuggestionBoilerplate = __webpack_require__(25);
-
-var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
-
-var _Highlight = __webpack_require__(14);
+var _Notificationdropdown2 = _interopRequireDefault(_Notificationdropdown);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17860,242 +18930,162 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NewPostArea = function (_React$Component) {
-    _inherits(NewPostArea, _React$Component);
+var Header = function (_React$Component) {
+    _inherits(Header, _React$Component);
 
-    function NewPostArea(props) {
-        _classCallCheck(this, NewPostArea);
+    function Header(props) {
+        _classCallCheck(this, Header);
 
-        var _this = _possibleConstructorReturn(this, (NewPostArea.__proto__ || Object.getPrototypeOf(NewPostArea)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
-        var adaptation = (0, _utilities.getParsed)('adaptations');
+        var adaptation = (0, _utilities.getParsed)("adaptations");
         var adaptationVisited = (0, _utilities.getParsed)("visited");
 
-        _this.state = { value: '',
-            photo: '',
-            audience: 'public',
+        _this.state = {
+            adaptation: adaptation,
             adaptationVisited: adaptationVisited,
-            renderUploadPopup: false,
-            suggestion: !adaptationVisited["Status_Audience"]["suggestion"] && adaptation["status_Audience"] === "sugst",
-            highlight1: !adaptationVisited["Status_Audience"]["highlight"] && adaptation["status_Audience"] == "high" ? true : false,
-            highlight: !adaptationVisited["Status_Audience"]["highlight"] && adaptation["status_Audience"] == "high" ? "high" : null,
-            automation: !adaptationVisited["Status_Audience"]["automation"] && adaptation["status_Audience"] === "auto",
-            displayAutomationPopup: false,
-            displaySuggestionPopup: false,
-            action: "Status_Audience, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
-            context: "Status_Audience",
-            label_Sugst: " Hi Alex - Sorry to interrupt. You haven't changed who can see your posts lately, so we just wanted to make sure you are sharing this post with the right audience. (Your current setting is Public, though you can change this whenever you post).  Would you want to share this post with \"Friends\"",
-            label_Auto: "This post's audience is automatically set to be shared with \"Friends\""
+            renderSettings: false,
+            renderNotification: false,
+            showNotificationIcon: true,
+            highlight: !adaptationVisited["Privacy_futureRequests"]["highlight"] && adaptation["privacy_futureRequests"] == "high" || !adaptationVisited["Timeline_seePost"]["highlight"] && adaptation["timeline_seePost"] === "high" || !adaptationVisited["Block_User"]["highlight"] && adaptation["block_User"] == "high" || !adaptationVisited["Block_Event"]["highlight"] && adaptation["block_Event"] == "high" || !adaptationVisited["Block_App"]["highlight"] && adaptation["block_App"] == "high" || !adaptationVisited["Block_AppInvite"]["highlight"] && adaptation["block_AppInvite"] == "high" ? true : false
 
-        };
-        _this.onChange = _this.onChange.bind(_this);
-        _this.onClick = _this.onClick.bind(_this);
-        _this.onClickPhoto = _this.onClickPhoto.bind(_this);
-        _this.onChangeAudience = _this.onChangeAudience.bind(_this);
-
-        /*Highlight Adaptation */
-        _this.changeStyle = _this.changeStyle.bind(_this);
-
-        /*Suggestion Adaptation*/
-        _this.onClickDestroySuggestion = _this.onClickDestroySuggestion.bind(_this);
-        _this.onClickOK_Suggestion = _this.onClickOK_Suggestion.bind(_this);
-
-        /*Automation Adaptation*/
-        _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
-        _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
-
+            //this.changeIcon = this.changeIcon.bind(this);
+        };_this.settingsdropDown = _this.settingsdropDown.bind(_this);
+        _this.notification = _this.notification.bind(_this);
         return _this;
     }
 
-    /*Method for the Highlight Adaptation*/
+    /*changeIcon(){
+        this.setState ({
+            highlight:false
+        })
+    }*/
 
+    _createClass(Header, [{
+        key: 'notification',
+        value: function notification() {
 
-    _createClass(NewPostArea, [{
-        key: 'changeStyle',
-        value: function changeStyle() {
-            if (!this.state.adaptationVisited["Status_Audience"]['highlight']) {
-                this.setState({
-                    highlight1: false
-                });
-            }
-        }
-
-        /*Methods for the Suggestion Adaptation*/
-
-    }, {
-        key: 'onClickDestroySuggestion',
-        value: function onClickDestroySuggestion() {
-            this.setState({
-                displaySuggestionPopup: false
+            this.setState(function (prevState, props) {
+                return {
+                    renderNotification: !prevState.renderNotification,
+                    showNotificationIcon: false
+                };
             });
         }
     }, {
-        key: 'onClickOK_Suggestion',
-        value: function onClickOK_Suggestion() {
-            //this.changeAudience("future_requests","friends")
+        key: 'settingsdropDown',
+        value: function settingsdropDown() {
 
-            this.setState({
-                audience: 'Friends'
+            this.setState(function (prevState, props) {
+                return {
+
+                    renderSettings: !prevState.renderSettings
+                };
             });
-
-            this.post();
-        }
-
-        /*Methods for the Automation Adaptation*/
-
-    }, {
-        key: 'onClickOk_Auto',
-        value: function onClickOk_Auto() {
-
-            this.setState({
-                displayAutomationPopup: false
-            });
-
-            this.post();
-        }
-    }, {
-        key: 'onClickUndo_Auto',
-        value: function onClickUndo_Auto() {
-
-            this.setState({
-                displayAutomationPopup: false
-            });
-        }
-    }, {
-        key: 'onClickPhoto',
-        value: function onClickPhoto(photo) {
-            this.setState({ photo: photo, renderUploadPopup: false });
-        }
-    }, {
-        key: 'post',
-        value: function post() {
-            var event = {
-                action: 'Post Created',
-                context: 'From NewsFeed',
-                name: 'Alex Doe'
-            };
-
-            if (this.state.value === '' && this.state.photo === '') {
-                return null;
-            }
-
-            var posts = JSON.parse(localStorage.getItem('posts'));
-
-            var post = { name: 'Alex Doe',
-                img: './assets/users/alex_profile_img.jpg',
-                content: this.state.value,
-                photo: this.state.photo,
-                key: posts.length,
-                comments: [],
-                audience: this.state.audience,
-                time: "Just now",
-                new: true };
-
-            localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
-            (0, _utilities.indexPosts)();
-            this.props.postarea.update();
-            this.setState({ value: '', photo: '', renderUploadPopup: false });
-
-            localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
-            (0, _utilities.indexPosts)();
-            this.props.postarea.update();
-            this.setState({ value: '', photo: '', renderUploadPopup: false });
-            return event;
-        }
-    }, {
-        key: 'onClick',
-        value: function onClick() {
-
-            if (this.state.automation) {
-                this.setState({
-                    displayAutomationPopup: true,
-                    audience: 'friends'
-                });
-            } else if (this.state.suggestion) {
-                this.setState({
-                    displaySuggestionPopup: true
-                });
-            } else {
-                this.post();
-            }
-        }
-    }, {
-        key: 'onChange',
-        value: function onChange(e) {
-            this.setState({ value: e.target.value });
-        }
-    }, {
-        key: 'onChangeAudience',
-        value: function onChangeAudience(audience) {
-            this.setState({ audience: audience });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var uploadPopup = _react2.default.createElement(_UploadPopup2.default, {
-                onClickPhoto: this.onClickPhoto,
-                destroy: function destroy() {
-                    _this2.setState({ renderUploadPopup: false });
-                } });
-
-            var photo = this.state.photo ? _react2.default.createElement('img', { src: this.state.photo,
-                style: { width: 60, height: 60 } }) : null;
-
-            var currentFriendList = (0, _utilities.getCurrentFriendLists)();
             return _react2.default.createElement(
-                'div',
-                { id: 'new-post-area' },
+                'header',
+                null,
+                _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: {
+                            pathname: '/',
+                            state: { fromHeader: true } } },
+                    _react2.default.createElement(
+                        'h1',
+                        { id: 'logo' },
+                        'FriendBook'
+                    )
+                ),
                 _react2.default.createElement(
                     'div',
-                    { id: 'new-post-area-content' },
-                    _react2.default.createElement('textarea', { rows: '6', placeholder: 'What\'s on your mind, Alex?', value: this.state.value, onChange: this.onChange }),
-                    photo,
-                    _react2.default.createElement('hr', null),
+                    { id: 'user' },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: {
+                                pathname: '/profile/Alex_doe',
+                                state: { fromNewsFeed: true } } },
+                        _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/users/alex_profile_img.jpg' }),
+                        _react2.default.createElement(
+                            'span',
+                            { id: 'header-text' },
+                            '  Alex'
+                        )
+                    ),
                     _react2.default.createElement(
                         'div',
-                        { id: 'actions' },
+                        { id: 'header-text' },
                         _react2.default.createElement(
-                            _Button2.default,
-                            { type: 'confirm', onClick: this.onClick },
-                            'Post'
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link,
+                                { to: {
+                                        pathname: '/',
+                                        state: { fromNewsFeed: true } } },
+                                _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    'Home'
+                                )
+                            )
                         ),
                         _react2.default.createElement(
-                            _Button2.default,
-                            { type: 'cancel', onClick: function onClick() {
-                                    _this2.setState({ renderUploadPopup: true });
-                                } },
-                            'Photo/Video'
+                            'p',
+                            null,
+                            'Create'
                         ),
-                        _react2.default.createElement(_AudienceMenu2.default, { onChange: this.onChangeAudience, className: 'new-post-menu',
-                            options: ["public", "friends", "friends_except", "only_me", "more"],
-                            more: ["specific_friends", "see_all"],
-                            see_all: currentFriendList,
-                            title: 'Who should see this?',
-                            highlight: this.state.highlight1 && this.state.highlight ? _Highlight.highLight : _Highlight.No_highLight,
-                            removeHighlightOnClick: this.changeStyle,
-                            adapt: this.state.highlight,
-                            context: this.state.context })
-                    ),
-                    this.state.renderUploadPopup ? uploadPopup : null
-                ),
-                /*The Automation Adaptation Popup*/
-                this.state.displayAutomationPopup && this.state.automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto
-                }),
-                /*The Suggestion Adaptation*/
-                this.state.displaySuggestionPopup && this.state.suggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion })
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/findfriends.png' })
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/messages.png' })
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                _Button2.default,
+                                { onClick: this.notification },
+                                _react2.default.createElement('img', { id: 'profile-pic', src: this.state.showNotificationIcon ? '/assets/notifications3.png' : '/assets/notifications.png' })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/quick_help.png' })
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                _Button2.default,
+                                { onClick: this.settingsdropDown },
+                                this.state.highlight ? _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/settings4.png' }) : _react2.default.createElement('img', { id: 'profile-pic', src: '/assets/settings.png' })
+                            )
+                        ),
+                        this.state.renderSettings ? _react2.default.createElement(_Settingsdropdown2.default, { SettingsdropDown: this.settingsdropDown, changeIcon: this.changeIcon }) : null,
+                        this.state.renderNotification ? _react2.default.createElement(_Notificationdropdown2.default, { notification: this.notification }) : null
+                    )
+                )
             );
         }
     }]);
 
-    return NewPostArea;
+    return Header;
 }(_react2.default.Component);
 
-exports.default = NewPostArea;
+exports.default = Header;
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18111,19 +19101,307 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(16);
-
 var _utilities = __webpack_require__(4);
 
-var _PostArea = __webpack_require__(43);
+var _Button = __webpack_require__(5);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _AudienceMenu = __webpack_require__(62);
+
+var _AudienceMenu2 = _interopRequireDefault(_AudienceMenu);
+
+var _PostArea = __webpack_require__(44);
 
 var _PostArea2 = _interopRequireDefault(_PostArea);
 
-var _ProfileLink = __webpack_require__(28);
+var _UploadPopup = __webpack_require__(159);
+
+var _UploadPopup2 = _interopRequireDefault(_UploadPopup);
+
+var _AutomationBoilerplate = __webpack_require__(16);
+
+var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
+
+var _SuggestionBoilerplate = __webpack_require__(20);
+
+var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
+
+var _Highlight = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewPostArea = function (_React$Component) {
+  _inherits(NewPostArea, _React$Component);
+
+  function NewPostArea(props) {
+    _classCallCheck(this, NewPostArea);
+
+    var _this = _possibleConstructorReturn(this, (NewPostArea.__proto__ || Object.getPrototypeOf(NewPostArea)).call(this, props));
+
+    var adaptation = (0, _utilities.getParsed)('adaptations');
+    var adaptationVisited = (0, _utilities.getParsed)("visited");
+
+    _this.state = { value: '',
+      photo: '',
+      audience: 'public',
+      adaptationVisited: adaptationVisited,
+      renderUploadPopup: false,
+      suggestion: !adaptationVisited["Status_Audience"]["suggestion"] && adaptation["status_Audience"] === "sugst",
+      highlight1: !adaptationVisited["Status_Audience"]["highlight"] && adaptation["status_Audience"] == "high" ? true : false,
+      highlight: !adaptationVisited["Status_Audience"]["highlight"] && adaptation["status_Audience"] == "high" ? "high" : null,
+      automation: !adaptationVisited["Status_Audience"]["automation"] && adaptation["status_Audience"] === "auto",
+      displayAutomationPopup: false,
+      displaySuggestionPopup: false,
+      action: "Status_Audience, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+      context: "Status_Audience",
+      label_Sugst: " Hi Alex - You seem to be posting about looking for a job. With the current settings, this post would be visible to all including your current colleagues. Do you want to restrict your custom friend list “Colleagues” from seeing this post?",
+      label_Auto: "Your friend list “colleagues” has automatically been restricted from seeing this post."
+
+    };
+    _this.onChange = _this.onChange.bind(_this);
+    _this.onClick = _this.onClick.bind(_this);
+    _this.onClickPhoto = _this.onClickPhoto.bind(_this);
+    _this.onChangeAudience = _this.onChangeAudience.bind(_this);
+
+    /*Highlight Adaptation */
+    _this.changeStyle = _this.changeStyle.bind(_this);
+
+    /*Suggestion Adaptation*/
+    _this.onClickDestroySuggestion = _this.onClickDestroySuggestion.bind(_this);
+    _this.onClickOK_Suggestion = _this.onClickOK_Suggestion.bind(_this);
+
+    /*Automation Adaptation*/
+    _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
+    _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
+
+    return _this;
+  }
+
+  /*Method for the Highlight Adaptation*/
+
+
+  _createClass(NewPostArea, [{
+    key: 'changeStyle',
+    value: function changeStyle() {
+      if (!this.state.adaptationVisited["Status_Audience"]['highlight']) {
+        this.setState({
+          highlight1: false
+        });
+      }
+    }
+
+    /*Methods for the Suggestion Adaptation*/
+
+  }, {
+    key: 'onClickDestroySuggestion',
+    value: function onClickDestroySuggestion() {
+      this.setState({
+        displaySuggestionPopup: false
+      });
+    }
+  }, {
+    key: 'onClickOK_Suggestion',
+    value: function onClickOK_Suggestion() {
+      var _this2 = this;
+
+      //this.changeAudience("future_requests","friends")
+
+      this.setState({
+        audience: 'custom'
+      }, function () {
+        return _this2.post();
+      });
+    }
+
+    /*Methods for the Automation Adaptation*/
+
+  }, {
+    key: 'onClickOk_Auto',
+    value: function onClickOk_Auto() {
+
+      this.setState({
+        displayAutomationPopup: false
+      });
+
+      this.post();
+    }
+  }, {
+    key: 'onClickUndo_Auto',
+    value: function onClickUndo_Auto() {
+
+      this.setState({
+        displayAutomationPopup: false,
+        automation: false,
+        audience: 'public'
+      });
+    }
+  }, {
+    key: 'onClickPhoto',
+    value: function onClickPhoto(photo) {
+      this.setState({ photo: photo, renderUploadPopup: false });
+    }
+  }, {
+    key: 'post',
+    value: function post() {
+      var event = {
+        action: 'Post Created',
+        context: 'From NewsFeed',
+        name: 'Alex Doe'
+      };
+
+      if (this.state.value === '' && this.state.photo === '') {
+        return null;
+      }
+
+      var posts = JSON.parse(localStorage.getItem('posts'));
+
+      var post = { name: 'Alex Doe',
+        img: './assets/users/alex_profile_img.jpg',
+        content: this.state.value,
+        photo: this.state.photo,
+        key: posts.length,
+        comments: [],
+        audience: this.state.audience,
+        time: "Just now",
+        new: true };
+
+      if (this.props.forTimeline && this.props.name != "Alex Doe") post.target_friend = this.props.name;
+
+      localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
+      (0, _utilities.indexPosts)();
+      this.props.postarea.update();
+      this.setState({ value: '', photo: '', renderUploadPopup: false });
+      return event;
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+
+      if (this.state.automation) {
+        this.setState({
+          displayAutomationPopup: true,
+          audience: 'custom'
+        });
+      } else if (this.state.suggestion) {
+        this.setState({
+          displaySuggestionPopup: true
+        });
+      } else {
+        this.post();
+      }
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(e) {
+      this.setState({ value: e.target.value });
+    }
+  }, {
+    key: 'onChangeAudience',
+    value: function onChangeAudience(audience) {
+      this.setState({ audience: audience });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var uploadPopup = _react2.default.createElement(_UploadPopup2.default, {
+        onClickPhoto: this.onClickPhoto,
+        destroy: function destroy() {
+          _this3.setState({ renderUploadPopup: false });
+        } });
+
+      var photo = this.state.photo ? _react2.default.createElement('img', { src: this.state.photo,
+        style: { width: 60, height: 60 } }) : null;
+
+      var currentFriendList = (0, _utilities.getCurrentFriendLists)();
+      return _react2.default.createElement(
+        'div',
+        { id: 'new-post-area' },
+        _react2.default.createElement(
+          'div',
+          { id: 'new-post-area-content' },
+          _react2.default.createElement('textarea', { rows: '6', placeholder: this.props.forTimeline && this.props.name != "Alex Doe" ? 'Write something to ' + this.props.name.split(" ")[0] : "What's on your mind, Alex?", value: this.state.value, onChange: this.onChange }),
+          photo,
+          _react2.default.createElement('hr', null),
+          _react2.default.createElement(
+            'div',
+            { id: 'actions' },
+            _react2.default.createElement(
+              _Button2.default,
+              { type: 'confirm', onClick: this.onClick },
+              'Post'
+            ),
+            _react2.default.createElement(
+              _Button2.default,
+              { type: 'cancel', onClick: function onClick() {
+                  _this3.setState({ renderUploadPopup: true });
+                } },
+              'Photo/Video'
+            ),
+            _react2.default.createElement(_AudienceMenu2.default, { onChange: this.onChangeAudience, className: 'new-post-menu',
+              options: ["public", "friends", "friends_except", "only_me", "more"],
+              more: ["specific_friends", "see_all"],
+              see_all: currentFriendList,
+              title: 'Who should see this?',
+              highlight: this.state.highlight1 && this.state.highlight ? _Highlight.highLight : _Highlight.No_highLight,
+              removeHighlightOnClick: this.changeStyle,
+              adapt: this.state.highlight,
+              context: this.state.context })
+          ),
+          this.state.renderUploadPopup ? uploadPopup : null
+        ),
+        /*The Automation Adaptation Popup*/
+        this.state.displayAutomationPopup && this.state.automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto
+        }),
+        /*The Suggestion Adaptation*/
+        this.state.displaySuggestionPopup && this.state.suggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion })
+      );
+    }
+  }]);
+
+  return NewPostArea;
+}(_react2.default.Component);
+
+exports.default = NewPostArea;
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(7);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(14);
+
+var _utilities = __webpack_require__(4);
+
+var _PostArea = __webpack_require__(44);
+
+var _PostArea2 = _interopRequireDefault(_PostArea);
+
+var _ProfileLink = __webpack_require__(27);
 
 var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
 
@@ -18175,27 +19453,6 @@ var NewsFeed = function (_React$Component) {
                 'News Feed'
               )
             )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              'a',
-              { href: 'javascript:void(0)', onClick: function onClick() {
-                  (0, _utilities.resetAll)();
-                } },
-              'Reset Posts(DEBUG)'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              'h3',
-              null,
-              'session_id: ',
-              localStorage.session_id
-            )
           )
         ),
         _react2.default.createElement(_PostArea2.default, null)
@@ -18209,7 +19466,7 @@ var NewsFeed = function (_React$Component) {
 exports.default = NewsFeed;
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18225,19 +19482,19 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _utilities = __webpack_require__(4);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
 var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Comment = __webpack_require__(146);
+var _Comment = __webpack_require__(148);
 
 var _Comment2 = _interopRequireDefault(_Comment);
 
@@ -18245,47 +19502,55 @@ var _NewCommentArea = __webpack_require__(94);
 
 var _NewCommentArea2 = _interopRequireDefault(_NewCommentArea);
 
-var _PostArea = __webpack_require__(43);
+var _PostArea = __webpack_require__(44);
 
 var _PostArea2 = _interopRequireDefault(_PostArea);
 
-var _Menu = __webpack_require__(62);
+var _Menu = __webpack_require__(63);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
-var _ContactInfoSuggestion = __webpack_require__(164);
+var _ContactInfoSuggestion = __webpack_require__(170);
 
 var _ContactInfoSuggestion2 = _interopRequireDefault(_ContactInfoSuggestion);
 
-var _Suggestion = __webpack_require__(60);
+var _Suggestion = __webpack_require__(61);
 
 var _Suggestion2 = _interopRequireDefault(_Suggestion);
 
-var _Automation = __webpack_require__(42);
+var _Automation = __webpack_require__(43);
 
 var _Automation2 = _interopRequireDefault(_Automation);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
-var _SuggestionBoilerplate = __webpack_require__(25);
+var _SuggestionBoilerplate = __webpack_require__(20);
 
 var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
 
-var _HighlightBoilerplate = __webpack_require__(91);
+var _HighlightBoilerplate = __webpack_require__(34);
 
-var _classnames = __webpack_require__(35);
+var _classnames = __webpack_require__(21);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _ProfileLink = __webpack_require__(28);
+var _ProfileLink = __webpack_require__(27);
 
 var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
+
+var _FriendSubscription = __webpack_require__(95);
+
+var _FriendSubscription2 = _interopRequireDefault(_FriendSubscription);
+
+var _reactVisibilitySensor = __webpack_require__(301);
+
+var _reactVisibilitySensor2 = _interopRequireDefault(_reactVisibilitySensor);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18299,7 +19564,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 //.high1
 
-//TODO: Need to work adaptation rendering lifecycle
+//TODO: Need to work on adaptation rendering lifecycle
 
 var Post = function (_React$Component) {
   _inherits(Post, _React$Component);
@@ -18315,8 +19580,8 @@ var Post = function (_React$Component) {
     var hidden = false;
     posts.some(function (post, index, array) {
       if (post.key == _this.props.index) {
-        if (post.hidden) {
-          hidden = true;
+        if (post.hidden && !_this.props.forTimeline) {
+          //hidden = true;
         }
         return true;
       }
@@ -18335,28 +19600,42 @@ var Post = function (_React$Component) {
       showPostWhenHidden: false,
       renderSuggestion: false,
       hidden: hidden,
+      unfollow: false,
+      unfollowedName: "",
       tagRemoved: _this.props.tagRemoved,
       displayContactInfoSuggestion: true,
+      displayBasicInfoSuggestion: true,
       adaptations: adaptations,
       adaptationVisited: adaptationVisited,
 
+      //Scroll Position and Show
+      onScrollShowTagSuggestion: false,
+      onScrollShowHideSuggestion: false,
+      onscrollShowDeleteSuggestion: false,
+      //scrollPos:0,
+
       //Highlight Adaptation
       hideHighlight1: !adaptationVisited["Hide_Post"]["highlight"] && adaptations["hide_Post"] == "high" ? true : false,
-      untag_Higlight: !adaptationVisited["Untag_Post"]["highlight"] && adaptations["untag_Post"] == "high" ? true : false,
+      untag_Highlight: !adaptationVisited["Untag_Post"]["highlight"] && adaptations["untag_Post"] == "high" ? true : false,
+      delete_Highlight: !adaptationVisited["Delete_Post"]["highlight"] && adaptations["delete_Post"] == "high" ? true : false,
       //highlight: !adaptationVisited["Hide_Post"]["highlight"] && (adaptations["hide_Post"] == "high")? "high":null,
 
       //Hide Suggestion Adaptation
       hidesuggestion: !adaptationVisited["Hide_Post"]["suggestion"] && adaptations["hide_Post"] === "sugst",
       untag_Suggestion: !adaptationVisited["Untag_Post"]["suggestion"] && adaptations["untag_Post"] === "sugst",
+      delete_Suggestion: !adaptationVisited["Delete_Post"]["suggestion"] && adaptations['delete_Post'] === "sugst",
       displayHideSuggestionPopup: true,
       displayUntagSuggestionPopup: true,
-      untag_label_Sugst: "Hi Alex, Kyle Parker tagged you in a Post \"I am hanging out tonight with Alex Doe\". Would you like to untag yourself from it?",
-      label_Sugst: "Hi Alex - Sorry to interrupt. Would you want to hide the Post that reads as \"To all those who treat \".... ",
+      unsubcribe_displaySuggestionPopup: true,
+      categorize_displaySuggestionPopup: true,
+      untag_label_Sugst: "Hi Alex - You’ve been tagged in this post by Loren Payton, which contains alcohol. Do you want to untag yourself from this post?",
+      label_Sugst: "Hi Alex - Trevin Noushy has posted this message to your Timeline, which contains a reference to drug use. Do you want to hide this post from your Timeline? It may still appear in other places on FriendBook.",
 
       //Hide Automation Adaptation
       hideAutomation: !adaptationVisited["Hide_Post"]["automation"] && adaptations["hide_Post"] === "auto",
-      untag_Automation: !adaptationVisited["Untag_Post"]["automation"] && adaptations["untag_Post"] === "auto"
-    }, _defineProperty(_this$state, 'action', "Hide_Post, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation) "), _defineProperty(_this$state, 'action_tag', "Untag_Post,Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"), _defineProperty(_this$state, 'context_tag', "Untag_Post"), _defineProperty(_this$state, 'context', "Hide_Post"), _defineProperty(_this$state, 'untag_Context', "Untag_Post"), _defineProperty(_this$state, 'displayHideAutomationPopup', true), _defineProperty(_this$state, 'displayUnTagAutomationPopup', true), _defineProperty(_this$state, 'label_Auto', "This post was automatically hidden"), _defineProperty(_this$state, 'untag_label_Auto', "A tag of you was automatically removed from this post."), _this$state);
+      untag_Automation: !adaptationVisited["Untag_Post"]["automation"] && adaptations["untag_Post"] === "auto",
+      delete_Automation: !adaptationVisited["Delete_Post"]["automation"] && adaptations["delete_Post"] === "auto"
+    }, _defineProperty(_this$state, 'action', "Hide_Post, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation) "), _defineProperty(_this$state, 'action_tag', "Untag_Post,Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"), _defineProperty(_this$state, 'context_tag', "Untag_Post"), _defineProperty(_this$state, 'context', "Hide_Post"), _defineProperty(_this$state, 'untag_Context', "Untag_Post"), _defineProperty(_this$state, 'displayHideAutomationPopup', true), _defineProperty(_this$state, 'displayUnTagAutomationPopup', true), _defineProperty(_this$state, 'label_Auto', "This post by Trevin Noushy was automatically hidden from your Timeline."), _defineProperty(_this$state, 'untag_label_Auto', "A tag of you was automatically removed from this post."), _this$state);
 
     _this.onClickDelete = _this.onClickDelete.bind(_this);
     _this.onClickShare = _this.onClickShare.bind(_this);
@@ -18364,10 +19643,13 @@ var Post = function (_React$Component) {
     _this.onClickComment = _this.onClickComment.bind(_this);
     _this.onClickHide = _this.onClickHide.bind(_this);
     _this.onClickRemoveTag = _this.onClickRemoveTag.bind(_this);
+    _this.onClickUnfollow = _this.onClickUnfollow.bind(_this);
     _this.onClickUndo = _this.onClickUndo.bind(_this);
     _this.onClickAutoOk = _this.onClickAutoOk.bind(_this);
     _this.onDisplayContactInfoSuggestion = _this.onDisplayContactInfoSuggestion.bind(_this);
+    _this.onDisplayBasicInfoSuggestion = _this.onDisplayBasicInfoSuggestion.bind(_this);
     _this.show = _this.show.bind(_this);
+    _this.onMenuOpen = _this.onMenuOpen.bind(_this);
 
     /*Suggestion Adaptation*/
     _this.onClickDestroySuggestion = _this.onClickDestroySuggestion.bind(_this);
@@ -18375,15 +19657,53 @@ var Post = function (_React$Component) {
     _this.onClickUntag_DestroySuggestion = _this.onClickUntag_DestroySuggestion.bind(_this);
     _this.onClickUntag_OKSuggestion = _this.onClickUntag_OKSuggestion.bind(_this);
 
+    /* Unsubscribe Friend Suggestion Adaptation */
+
+    _this.onClickDestroyUnsubscribeSuggestion = _this.onClickDestroyUnsubscribeSuggestion.bind(_this);
+    _this.onClickOK_UnsubscribeSuggestion = _this.onClickOK_UnsubscribeSuggestion.bind(_this);
+
+    /* Categorize Friend Suggestion Adaptation */
+
+    _this.onClickDestroyCategorizeSuggestion = _this.onClickDestroyCategorizeSuggestion.bind(_this);
+    _this.onClickOK_CategorizeSuggestion = _this.onClickOK_CategorizeSuggestion.bind(_this);
+
     /*Automation Adaptation */
     _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
     _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
     _this.onClickUntag_Ok_Auto = _this.onClickUntag_Ok_Auto.bind(_this);
     _this.onClickUntag_Undo_Auto = _this.onClickUntag_Undo_Auto.bind(_this);
+
+    /*Handle Scroll*/
+    _this.onChangeVisible = _this.onChangeVisible.bind(_this);
+
     return _this;
   }
 
   _createClass(Post, [{
+    key: 'onChangeVisible',
+    value: function onChangeVisible(isVisible, postIndex) {
+
+      //console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
+
+      if (postIndex === 27) {
+        this.setState({
+          onScrollShowTagSuggestion: isVisible
+        });
+      }
+
+      if (postIndex === 28) {
+        this.setState({
+          onScrollShowHideSuggestion: isVisible
+        });
+      }
+
+      if (postIndex === 2) {
+        this.setState({
+          onscrollShowDeleteSuggestion: isVisible
+        });
+      }
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -18394,11 +19714,15 @@ var Post = function (_React$Component) {
           return _this2.show();
         }, 2000);
       }
+      //console.log("Component mounted");
+      //window.addEventListener('scroll', this.handleScroll,true); 
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       clearInterval(this.timerID);
+      //console.log("Component removed");
+      // window.removeEventListener("scroll", this.handleScroll,true);
     }
 
     /*Methods for the Hide Automation Adapatation*/
@@ -18408,16 +19732,61 @@ var Post = function (_React$Component) {
     value: function logHide() {
       var _this3 = this;
 
-      //console.log("In hiding");
       var posts = JSON.parse(localStorage.getItem('posts'));
       posts.some(function (post, index, array) {
-        if (post.key == 19) {
+        if (post.key == _this3.props.index) {
           posts[index].hidden = true;
           localStorage.setItem('posts', JSON.stringify(posts));
-          _this3.setState({ render: false });
+          _this3.setState({ hidden: true });
           return true;
         }
       });
+
+      var used = JSON.parse(localStorage.featuresUsed);
+      used.posts.hide = true;
+      localStorage.setItem("featuresUsed", JSON.stringify(used));
+    }
+
+    /*Methods for the Categorizing Suggestion Adaptation*/
+
+  }, {
+    key: 'onClickDestroyCategorizeSuggestion',
+    value: function onClickDestroyCategorizeSuggestion() {
+
+      this.setState({
+        categorize_displaySuggestionPopup: false
+      });
+    }
+  }, {
+    key: 'onClickOK_CategorizeSuggestion',
+    value: function onClickOK_CategorizeSuggestion() {
+
+      this.setState({
+        categorize_displaySuggestionPopup: false
+      });
+
+      (0, _utilities.AddfriendList)();
+      //this.props.updateSubscribe();
+    }
+
+    /*Methods for the Unsubscribing Suggestion Adaptation*/
+
+  }, {
+    key: 'onClickDestroyUnsubscribeSuggestion',
+    value: function onClickDestroyUnsubscribeSuggestion() {
+      this.setState({
+        unsubcribe_displaySuggestionPopup: false
+      });
+    }
+  }, {
+    key: 'onClickOK_UnsubscribeSuggestion',
+    value: function onClickOK_UnsubscribeSuggestion() {
+
+      this.setState({
+        unsubcribe_displaySuggestionPopup: false
+      });
+
+      this.props.updateSubscribe();
     }
 
     //For Hiding
@@ -18425,11 +19794,13 @@ var Post = function (_React$Component) {
   }, {
     key: 'onClickOk_Auto',
     value: function onClickOk_Auto() {
+      var _this4 = this;
+
       this.setState({
         displayHideAutomationPopup: false
+      }, function () {
+        return _this4.onClickHide();
       });
-
-      this.logHide();
     }
 
     //For Untagging
@@ -18463,7 +19834,10 @@ var Post = function (_React$Component) {
     value: function onClickUntag_Undo_Auto() {
 
       this.setState({
-        displayUnTagAutomationPopup: false
+        displayUnTagAutomationPopup: false,
+        tagRemoved: false,
+        untag_Automation: false
+
       });
     }
 
@@ -18479,7 +19853,7 @@ var Post = function (_React$Component) {
       });
     }
 
-    //For Untagging
+    //For Untagging Suggestion
 
   }, {
     key: 'onClickUntag_DestroySuggestion',
@@ -18495,12 +19869,14 @@ var Post = function (_React$Component) {
   }, {
     key: 'onClickOK_Suggestion',
     value: function onClickOK_Suggestion() {
+      var _this5 = this;
+
       //this.changeAudience("future_requests","friends")
       this.setState({
         displayHideSuggestionPopup: false
+      }, function () {
+        return _this5.onClickHide();
       });
-
-      this.logHide();
     }
 
     //For Untagging
@@ -18526,11 +19902,14 @@ var Post = function (_React$Component) {
   }, {
     key: 'onDisplayContactInfoSuggestion',
     value: function onDisplayContactInfoSuggestion() {
-      //console.log("The contactInfo suggestion has been closed")
-
       this.setState({ displayContactInfoSuggestion: false });
-      //this.setState({displayContactInfoSuggestion:false,})
     }
+  }, {
+    key: 'onDisplayBasicInfoSuggestion',
+    value: function onDisplayBasicInfoSuggestion() {
+      this.setState({ displayBasicInfoSuggestion: false });
+    }
+
     // Show the Suggestion
 
   }, {
@@ -18543,7 +19922,7 @@ var Post = function (_React$Component) {
   }, {
     key: 'onClickDelete',
     value: function onClickDelete() {
-      var _this4 = this;
+      var _this6 = this;
 
       var event = {
         render: false,
@@ -18559,7 +19938,7 @@ var Post = function (_React$Component) {
       this.setState(event);
       var posts = JSON.parse(localStorage.getItem('posts'));
       posts.some(function (post, index, array) {
-        if (post.key == _this4.props.index) {
+        if (post.key == _this6.props.index) {
           posts.splice(index, 1);
           return true;
         }
@@ -18568,9 +19947,9 @@ var Post = function (_React$Component) {
       (0, _utilities.indexPosts)();
 
       //if the highlighted button has not been visited and there is a highlight adaptation
-      if (!this.state.adaptationVisited["DeletePost"]["highlight"] && this.state.adaptations['deletetimeline'] === "high") {
+      if (!this.state.adaptationVisited["Delete_Post"]["highlight"] && this.state.adaptations['delete_Post'] === "high") {
 
-        this.visitedAdaptation("DeletePost", "highlight");
+        this.visitedAdaptation("Delete_Post", "highlight");
       }
       return event;
     }
@@ -18587,7 +19966,10 @@ var Post = function (_React$Component) {
       var post = { name: 'Alex Doe',
         original_poster: this.props.name,
         content: this.props.children,
+        photo: this.props.photo,
+        time: "Just now",
         comments: [],
+        new: true,
         key: posts.length };
       localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
       (0, _utilities.indexPosts)();
@@ -18599,12 +19981,12 @@ var Post = function (_React$Component) {
   }, {
     key: 'onClickLike',
     value: function onClickLike() {
-      var _this5 = this;
+      var _this7 = this;
 
       var posts = (0, _utilities.getParsed)('posts');
       var new_state = false;
       posts.some(function (post, index, array) {
-        if (post.key == _this5.props.index) {
+        if (post.key == _this7.props.index) {
           new_state = !post.liked;
           return true;
         }
@@ -18618,7 +20000,7 @@ var Post = function (_React$Component) {
 
       var posts = (0, _utilities.getParsed)('posts');
       posts.some(function (post, index, array) {
-        if (post.key == _this5.props.index) {
+        if (post.key == _this7.props.index) {
           post.liked = new_state;
           return true;
         }
@@ -18646,17 +20028,30 @@ var Post = function (_React$Component) {
       }
     }
   }, {
+    key: 'onClickUnfollow',
+    value: function onClickUnfollow(name) {
+      var _this8 = this;
+
+      this.setState({
+        unfollow: true,
+        unfollowedName: name
+      }, function () {
+        return _this8.props.hideAllPosts(name);
+      });
+    }
+  }, {
     key: 'onClickHide',
     value: function onClickHide() {
-      var _this6 = this;
+      var _this9 = this;
 
+      //console.log("On hide "+element)
       // TODO: Add confirmation popup and undo button
       var posts = JSON.parse(localStorage.getItem('posts'));
       posts.some(function (post, index, array) {
-        if (post.key == _this6.props.index) {
+        if (post.key == _this9.props.index) {
           posts[index].hidden = true;
           localStorage.setItem('posts', JSON.stringify(posts));
-          _this6.setState({ hidden: true });
+          _this9.setState({ hidden: true });
           return true;
         }
       });
@@ -18680,34 +20075,43 @@ var Post = function (_React$Component) {
   }, {
     key: 'onClickRemoveTag',
     value: function onClickRemoveTag() {
-      var _this7 = this;
+      var _this10 = this;
 
       var used = JSON.parse(localStorage.featuresUsed);
       used.untag.self = true;
       localStorage.setItem("featuresUsed", JSON.stringify(used));
       var posts = JSON.parse(localStorage.getItem('posts'));
       posts.some(function (post, index, array) {
-        if (post.key == _this7.props.index) {
+        if (post.key == _this10.props.index) {
           posts[index].tagRemoved = true;
           localStorage.setItem('posts', JSON.stringify(posts));
-          _this7.setState({ tagRemoved: true });
+          _this10.setState({ tagRemoved: true });
           return true;
         }
       });
 
-      if (!this.state.adaptationVisited["Untag_Post"]['highlight'] && this.state.untag_Higlight) {
+      if (!this.state.adaptationVisited["Untag_Post"]['highlight'] && this.state.untag_Highlight) {
 
         this.setState({
-          untag_Higlight: false
+          untag_Highlight: false
         });
 
         (0, _HighlightBoilerplate.HighlightBoilerplate)(this.state.context_tag);
       }
     }
   }, {
+    key: 'onMenuOpen',
+    value: function onMenuOpen() {
+      if (this.props.children.toLocaleLowerCase().includes("alex doe")) {
+        var visited = JSON.parse(localStorage.featuresVisited);
+        visited.untag.self = true;
+        localStorage.setItem("featuresVisited", JSON.stringify(visited));
+      }
+    }
+  }, {
     key: 'actions',
     value: function actions() {
-      var _this8 = this;
+      var _this11 = this;
 
       //let adaptations = getParsed('adaptations');
       //let adaptationVisited = getParsed("visited");
@@ -18717,7 +20121,7 @@ var Post = function (_React$Component) {
       var liked = false;
 
       posts.some(function (post, index, array) {
-        if (post.key == _this8.props.index) {
+        if (post.key == _this11.props.index) {
           liked = post.liked;
           return true;
         }
@@ -18725,94 +20129,112 @@ var Post = function (_React$Component) {
 
       var like_text = liked ? 'Unlike' : 'Like';
 
-      if (this.props.name == 'Alex Doe') {
-        // console.log("The delete button adaptation is", adaptMethod.deletepost)
-        // Keep an array where I specify index and just loop  
-        return _react2.default.createElement(
+      // if (this.props.name == 'Alex Doe') {
+      // console.log("The delete button adaptation is", adaptMethod.Delete_Post)
+      // Keep an array where I specify index and just loop 
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'actions' },
+        _react2.default.createElement(
           'div',
-          { id: 'actions' },
+          { className: 'icon_actions like_icon' },
+          ' ',
+          _react2.default.createElement('img', { src: '/assets/like-icon.png' }),
+          ' ',
           _react2.default.createElement(
             _Button2.default,
-            { href: 'javascript:void(0);', onClick: this.onClickLike, adapt: !this.state.adaptationVisited["LikePost"]["highlight"] && this.props.index === 3 ? this.state.adaptations['liketimeline'] : "" },
+            { onClick: this.onClickLike },
             like_text
           ),
-          _react2.default.createElement(
-            'a',
-            { href: 'javascript:void(0);', onClick: this.onClickComment },
-            'Comment'
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { href: 'javascript:void(0);', onClick: this.onClickDelete, adapt: !this.state.adaptationVisited["DeletePost"]["highlight"] && this.props.index === 6 ? this.state.adaptations['deletetimeline'] : "" },
-            'Delete'
-          )
-        );
-      } else {
-        return _react2.default.createElement(
+          ' '
+        ),
+        _react2.default.createElement(
           'div',
-          { id: 'actions' },
+          { className: 'icon_actions comment_icon' },
+          ' ',
+          _react2.default.createElement('img', { src: '/assets/comment-icon.png' }),
+          ' ',
           _react2.default.createElement(
             _Button2.default,
-            { href: 'javascript:void(0);', onClick: this.onClickLike, adapt: this.state.adaptations['liketimeline'] },
-            like_text
-          ),
-          _react2.default.createElement(
-            'a',
-            { href: 'javascript:void(0);', onClick: this.onClickComment },
+            { onClick: this.onClickComment },
             'Comment'
           ),
+          ' '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'icon_actions remove_icon' },
+          ' ',
+          _react2.default.createElement('img', { src: '/assets/share-icon.png' }),
+          ' ',
           _react2.default.createElement(
             _Button2.default,
-            { href: 'javascript:void(0);', onClick: this.onClickShare },
+            { onClick: this.onClickShare },
             'Share'
-          )
-        );
-      }
+          ),
+          ' '
+        )
+      );
+      // }
+      /*  else {
+          return(
+            <div id='actions'>
+              <Button href='javascript:void(0);' onClick={this.onClickLike} adapt={this.state.adaptations['liketimeline']}>{like_text}</Button>
+              <a href='javascript:void(0);' onClick={this.onClickComment}>Comment</a>
+              <Button href='javascript:void(0);' onClick={this.onClickShare}>Share</Button>
+            </div>);
+        }*/
     }
   }, {
     key: 'onClickUndo',
     value: function onClickUndo() {
-      var event = {
-        render: false,
-        action: 'Undo Delete Post',
-        context: this.state.context,
-        name: this.props.name + '\'s Post',
-        showPostWhenHidden: true
-      };
-      this.setState(event);
+      /* var event = {
+         render: true,
+         action: 'Undo Delete Post',
+         context: this.state.context,
+         name: this.props.name + '\'s Post',
+         showPostWhenHidden: true
+       };*/
+      this.setState({
+        showPostWhenHidden: true,
+        render: true
+      });
 
-      this.visitedAdaptation("DeletePost", "automation");
-      return event;
+      /// this.visitedAdaptation("Delete_Post","automation");
+      // return event;
     }
   }, {
     key: 'onClickAutoOk',
     value: function onClickAutoOk() {
-      var event = {
-        render: false,
-        action: 'Ok With Automatic Deletion of Post',
-        context: this.state.context,
-        name: this.props.name + '\'s Post',
-        showPostWhenHidden: true
-      };
-      this.setState(event);
-      this.visitedAdaptation("DeletePost", "automation");
 
-      return event;
+      /**var event = {
+      render: false,
+      action: 'Ok With Automatic Deletion of Post',
+      context: this.state.context,
+      name: this.props.name + '\'s Post',
+      showPostWhenHidden: true
+      };*/
+
+      this.setState({
+        render: false,
+        showPostWhenHidden: true
+      });
+      //this.visitedAdaptation("Delete_Post","automation");
+
+      // return event; 
     }
   }, {
     key: 'renderPost',
     value: function renderPost(comments, post_title) {
-      var _this9 = this;
+      var _this12 = this;
 
-      //let adaptations = getParsed('adaptations');
-      //let adaptationVisited = getParsed("visited");
-
-      if (!this.state.adaptationVisited["DeletePost"]["automation"] && this.state.adaptations['deletetimeline'] === 'auto' && !this.state.showPostWhenHidden && this.props.index === 9) {
-        return _react2.default.createElement(_Automation2.default, { undoButton: 'Undo', okButton: 'Ok', onOkClick: this.onClickAutoOk, label: 'This post was automatically deleted', onUndoClick: this.onClickUndo });
+      if (this.state.delete_Automation && !this.state.showPostWhenHidden && this.props.index === 2) {
+        return _react2.default.createElement(_AutomationBoilerplate2.default, { action: "Delete_Post,Check to see if the suggested delete action for the post was followed/not followed (for Undo_Automation)", context: "Delete_Post", label: "This post about 'Mexican's going back to their country..' was automatically deleted", onClickOK_Auto: this.onClickAutoOk, onClickUnDo_Auto: this.onClickUndo });
       } else {
         // Suggestion adaptation for the delete method
         var Suggestion_Popup;
-        if (!this.state.adaptationVisited["DeletePost"]["suggestion"] && this.state.adaptations['deletetimeline'] === 'sugst' && this.props.index === 6) {
+        if (this.state.delete_Suggestion && this.state.onscrollShowDeleteSuggestion) {
           {/*TO DO: Delete post on click of'OK' and record edb event*/}
 
           var Suggestion_Popup = _react2.default.createElement(
@@ -18821,56 +20243,36 @@ var Post = function (_React$Component) {
                 var event = {
                   render: false,
                   action: 'Followed and agreed with Suggestion',
-                  context: _this9.state.context,
-                  name: _this9.props.name + '\'s Post: ' + _this9.props.children,
+                  context: _this12.state.context,
+                  name: _this12.props.name + '\'s Post: ' + _this12.props.children,
                   renderSuggestion: false
                 };
-                _this9.setState(event);
+                _this12.setState(event);
 
                 //if the suggestion has not been visited/engaged with yet
-                _this9.visitedAdaptation("DeletePost", "suggestion");
+                _this12.visitedAdaptation("Delete_Post", "suggestion");
                 return event;
               },
 
               destroy: function destroy() {
                 var event = {
-                  render: false,
+                  render: true,
                   action: 'Rather Not follow the Suggestion',
-                  context: _this9.state.context,
-                  name: _this9.props.name + '\'s Post: ' + _this9.props.children,
+                  context: _this12.state.context,
+                  name: _this12.props.name + '\'s Post: ' + _this12.props.children,
                   renderSuggestion: false
                 };
-                _this9.setState(event);
+                _this12.setState(event);
 
                 //if the suggestion has not been visited/engaged with yet
-                _this9.visitedAdaptation("DeletePost", "suggestion");
+                _this12.visitedAdaptation("Delete_Post", "suggestion");
 
                 return event;
               } },
             _react2.default.createElement(
               'label',
               null,
-              'Hi ',
-              (" "this.props.name.split)[0],
-              ' - I think you should delete the post that states "',
-              _react2.default.createElement(
-                'strong',
-                null,
-                this.props.children,
-                ' '
-              ),
-              '" This sounds like hate speech. Furthermore, did you know your current audience is set to ',
-              _react2.default.createElement(
-                'strong',
-                null,
-                this.props.audience
-              ),
-              ' meaning anyone on Fakebook can see this post.',
-              _react2.default.createElement(
-                'a',
-                { href: 'https://www.FriendBook.com/communitystandards/hate_speech' },
-                ' Learn More'
-              )
+              'Hi Alex - You used foul language in this post. Do you want to delete it?'
             )
           );
         }
@@ -18903,21 +20305,22 @@ var Post = function (_React$Component) {
                 (0, _utilities.audienceText)(this.props.audience)
               )
             ),
-            _react2.default.createElement(
+            this.props.forTimeline && this.props.name != "Alex Doe" ? null : _react2.default.createElement(
               _Menu2.default,
-              { icon: this.state.hideHighlight1 && this.props.index === 19 || this.state.untag_Higlight && this.props.index === 21 ? 'horiz high1' : 'horiz' },
+              { icon: this.state.hideHighlight1 && this.props.index === 28 || this.state.untag_Highlight && this.props.index === 27 || this.state.delete_Highlight && this.props.index === 2 ? 'horiz high1' : 'horiz',
+                onOpen: this.onMenuOpen },
               _react2.default.createElement(
                 'div',
-                { className: this.state.hideHighlight1 && this.props.index === 19 ? "high1" : null },
+                { className: this.state.hideHighlight1 && this.props.index === 28 ? "high1" : null },
                 _react2.default.createElement(
                   _Button2.default,
                   { onClick: this.onClickHide },
-                  'Hide post'
+                  this.props.index === 28 ? "Hide from Timeline" : "Hide post"
                 )
               ),
               !this.state.tagRemoved && this.props.children.toLocaleLowerCase().includes("alex doe") ? _react2.default.createElement(
                 'div',
-                { className: this.state.untag_Higlight && this.props.index === 21 ? "high1" : null },
+                { className: this.state.untag_Highlight && this.props.index === 27 ? "high1" : null },
                 _react2.default.createElement(
                   _Button2.default,
                   { onClick: this.onClickRemoveTag },
@@ -18926,48 +20329,64 @@ var Post = function (_React$Component) {
               ) : null,
               this.props.name != "Alex Doe" ? _react2.default.createElement(
                 _Button2.default,
-                null,
+                { onClick: function onClick() {
+                    return _this12.onClickUnfollow(_this12.props.name);
+                  } },
                 'Unfollow ',
                 this.props.name
+              ) : null,
+              this.props.name === "Alex Doe" ? _react2.default.createElement(
+                'div',
+                { className: this.state.delete_Highlight && this.props.index === 2 ? "high1" : null },
+                ' ',
+                _react2.default.createElement(
+                  _Button2.default,
+                  { href: 'javascript:void(0);', onClick: this.onClickDelete },
+                  'Delete'
+                )
               ) : null
             )
           ),
           _react2.default.createElement(
-            'p',
-            null,
-            (0, _utilities.namesToLinks)(this.props.children, this.state.tagRemoved)
+            _reactVisibilitySensor2.default,
+            { onChange: function onChange(isVisible) {
+                return _this12.onChangeVisible(isVisible, _this12.props.index);
+              }, partialVisibility: true, offset: { top: 50, bottom: 50 } },
+            _react2.default.createElement(
+              'p',
+              null,
+              (0, _utilities.namesToLinks)(this.props.children, this.state.tagRemoved)
+            )
           ),
           this.props.photo ? _react2.default.createElement('img', { src: this.props.photo, width: '100%', height: '100%' }) : null,
-          _react2.default.createElement(
-            'div',
-            { id: 'post-content' },
-            /*The Untag Automation Adaptation Popup*/
-            this.state.untag_Automation && this.state.displayUnTagAutomationPopup && this.props.index == 21 && !this.state.tagRemoved && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action_tag, context: this.state.context_tag, label: this.state.untag_label_Auto, onClickOK_Auto: this.onClickUntag_Ok_Auto, onClickUnDo_Auto: this.onClickUntag_Undo_Auto
-            })
-          ),
+          /*The Untag Automation Adaptation Popup*/
+          this.state.untag_Automation && this.state.displayUnTagAutomationPopup && this.props.index == 27 && !this.state.tagRemoved && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action_tag, context: this.state.context_tag, label: this.state.untag_label_Auto, onClickOK_Auto: this.onClickUntag_Ok_Auto, onClickUnDo_Auto: this.onClickUntag_Undo_Auto
+          }),
           _react2.default.createElement('hr', null),
           this.actions(),
           _react2.default.createElement('hr', null),
           comments.map(function (comment, i) {
             return _react2.default.createElement(
               _Comment2.default,
-              { post: _this9, index: _this9.props.index, key: i, commentindex: i, name: comment.name },
+              { post: _this12, index: _this12.props.index, key: i, commentindex: i, name: comment.name },
               comment.content
             );
           }),
           _react2.default.createElement(_NewCommentArea2.default, { type: 'post', index: this.props.index, post: this }),
           this.state.renderSuggestion ? Suggestion_Popup : null,
           /*The Hide Suggestion Adaptation*/
-          this.state.hidesuggestion && this.state.displayHideSuggestionPopup && this.props.index == 19 && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion }),
+          this.state.hidesuggestion && this.state.displayHideSuggestionPopup && this.state.onScrollShowHideSuggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion }),
           /*The Untag Suggestion Adaptation*/
-          this.state.untag_Suggestion && this.state.displayUntagSuggestionPopup && this.props.index === 21 && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action_tag, context: this.state.context_tag, label: this.state.untag_label_Sugst, agree: this.onClickUntag_OKSuggestion, destroy: this.onClickUntag_DestroySuggestion })
+          this.state.untag_Suggestion && this.state.displayUntagSuggestionPopup && this.state.onScrollShowTagSuggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action_tag, context: this.state.context_tag, label: this.state.untag_label_Sugst, agree: this.onClickUntag_OKSuggestion, destroy: this.onClickUntag_DestroySuggestion })
         );
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this10 = this;
+      var _this13 = this;
+
+      // console.log("The state for hidden is "+this.state.hidden);
 
       if (!this.state.render) {
         return null;
@@ -18975,28 +20394,38 @@ var Post = function (_React$Component) {
 
       if (this.state.hidden) {
         // TODO: Make this say newsfeed when it is newsfeed
+        //|| This post is now hidden from your Timeline
         return _react2.default.createElement(
           'div',
           { id: 'post', className: 'hidden' },
           _react2.default.createElement(
             'div',
             { id: 'post-content' },
-            'This post is now hidden from your timeline.',
-            " ",
+            _react2.default.createElement('i', { className: 'hidePosts' }),
+            this.props.forTimeline ? " This post is now hidden from your Timeline" : _react2.default.createElement(
+              'span',
+              { className: 'hide_title_1' },
+              'Post hidden'
+            ),
             _react2.default.createElement(
-              _Button2.default,
-              { onClick: function onClick() {
-                  _this10.setState({ hidden: false });
-                  var posts = JSON.parse(localStorage.getItem('posts'));
-                  posts.some(function (post, index, array) {
-                    if (post.key == _this10.props.index) {
-                      posts[index].hidden = false;
-                      localStorage.setItem('posts', JSON.stringify(posts));
-                      return true;
-                    }
-                  });
-                } },
-              'Undo'
+              'span',
+              { className: this.props.forTimeline ? "hideUndoButton_timeline" : "hideUndoButton" },
+              ' ',
+              _react2.default.createElement(
+                _Button2.default,
+                { className: 'hideUndoButton', onClick: function onClick() {
+                    _this13.setState({ hidden: false });
+                    var posts = JSON.parse(localStorage.getItem('posts'));
+                    posts.some(function (post, index, array) {
+                      if (post.key == _this13.props.index) {
+                        posts[index].hidden = false;
+                        localStorage.setItem('posts', JSON.stringify(posts));
+                        return true;
+                      }
+                    });
+                  } },
+                'Undo'
+              )
             ),
             _react2.default.createElement(
               'span',
@@ -19004,20 +20433,94 @@ var Post = function (_React$Component) {
               _react2.default.createElement(
                 _Button2.default,
                 { onClick: function onClick() {
-                    return _this10.setState({ render: false });
+                    return _this13.setState({ render: false });
                   } },
                 'X'
               )
+            ),
+            !this.props.forTimeline ? _react2.default.createElement(
+              'div',
+              { className: 'hide_title_2' },
+              'You won\'t see this post in your News Feed.'
+            ) : null
+          )
+        );
+      }
+
+      if (this.props.name == 'Alex Doe') {
+        var visited = JSON.parse(localStorage.featuresVisited);
+        visited.posts.delete = true;
+        localStorage.setItem("featuresVisited", JSON.stringify(visited));
+      }
+
+      if (this.state.unfollow) {
+        var hideClass = (0, _classnames2.default)('hidePosts', 'allPosts');
+        return _react2.default.createElement(
+          'div',
+          { id: 'post', className: 'hidden' },
+          _react2.default.createElement(
+            'div',
+            { id: 'post-content' },
+            _react2.default.createElement('i', { className: hideClass }),
+            _react2.default.createElement(
+              'span',
+              { className: 'hide_title_1' },
+              'All posts hidden'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'hideUndoButton' },
+              _react2.default.createElement(
+                _Button2.default,
+                { onClick: function onClick() {
+
+                    (0, _utilities.followUser)(_this13.state.unfollowedName);
+                    _this13.setState({ unfollow: false });
+                    _this13.props.update();
+
+                    var users = JSON.parse(localStorage.getItem('users'));
+                    users.some(function (user, index, array) {
+                      if (user.name == _this13.state.unfollowedName) {
+                        users[index].follow = true, localStorage.setItem('users', JSON.stringify(users));
+                        return true;
+                      }
+                    });
+
+                    //console.log(users);
+                  } },
+                'Undo'
+              )
+            ),
+            _react2.default.createElement(
+              'span',
+              { id: 'hide-post-dismiss' },
+              _react2.default.createElement(
+                _Button2.default,
+                { onClick: function onClick() {
+                    return _this13.setState({ render: false });
+                  } },
+                'X'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'hide_title_2' },
+              'You won\'t see Posts from ',
+              this.state.unfollowedName,
+              ' in your NewsFeed.'
             )
           )
         );
       }
 
+      if (this.props.hidden && !this.props.forTimeline) {
+        return null;
+      }
       //http://localhost:8080/?session=a09eb84d555bb8d55510ef28a56a6f3d&hide_Post=auto
 
 
       /*Automation of Hiding Post */
-      if (this.state.hideAutomation && this.state.displayHideAutomationPopup && this.props.index == 19) {
+      if (this.state.hideAutomation && this.state.displayHideAutomationPopup && this.props.index == 28) {
 
         return _react2.default.createElement(
           'div',
@@ -19034,48 +20537,53 @@ var Post = function (_React$Component) {
 
       //To indicate shared Post
       var post_title = [_react2.default.createElement(_ProfileLink2.default, { name: this.props.name, key: 0 })];
+
       if (this.props.original_poster) {
         post_title.push(' shared ');
         post_title.push(_react2.default.createElement(_ProfileLink2.default, { name: this.props.original_poster, key: 1 }));
         post_title.push('\'s post');
+      } else if (this.props.target_friend) {
+        post_title.push(' ➤ ');
+        post_title.push(_react2.default.createElement(_ProfileLink2.default, { name: this.props.target_friend, key: 1 }));
       }
 
-      /**To indicate tagged Post
-      if(!this.props.tagRemoved && this.props.children.includes("Alex Doe")){
-          post_title.push(' is with ');
-          //post_title.push(namesTagged(this.props.children));
-          //post_title.push(namesToLinks("Alex", this.state.tagRemoved));  
-      }*/
+      /*To indicate tagged Post*/
+      if (!this.state.tagRemoved && !this.state.untag_Automation && this.props.children.includes("Alex Doe")) {
+        post_title.push(' is with');
+        post_title.push(_react2.default.createElement(_ProfileLink2.default, { name: "Alex Doe", key: 1 }));
+      }
+
+      /*To indicate updated profile picture */
+
+      if (this.props.index == 28) {
+        post_title.push(' updated his profile picture ');
+      }
 
       var posts = JSON.parse(localStorage.getItem('posts'));
       var comments = [];
       posts.some(function (post, index, array) {
-        if (post.key == _this10.props.index) {
+        if (!_this13.props.hidden && post.key == _this13.props.index) {
           comments = post.comments;
           return true;
         }
       });
       comments = comments ? comments : [];
 
-      var Children = this.props.children;
-      //let adaptations = JSON.parse(localStorage.adaptations);
-
-
       return _react2.default.createElement(
         'div',
         { id: 'post' },
-        !this.state.adaptationVisited["DeletePost"]["automation"] && this.state.adaptations['deletetimeline'] === 'auto' && this.props.index === 9 ? _react2.default.createElement(
-          'div',
-          { id: 'except-warning' },
-          _react2.default.createElement('p', null),
-          this.renderPost(comments, post_title),
-          this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && _react2.default.createElement(_ContactInfoSuggestion2.default, { username: this.props.name.split(" ")[0], destroy: this.onDisplayContactInfoSuggestion })
-        ) : _react2.default.createElement(
+        _react2.default.createElement(
           'div',
           { id: 'post-content' },
-          _react2.default.createElement('p', null),
           this.renderPost(comments, post_title),
-          this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && _react2.default.createElement(_ContactInfoSuggestion2.default, { username: this.props.name, destroy: this.onDisplayContactInfoSuggestion })
+          this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && _react2.default.createElement(_ContactInfoSuggestion2.default, { username: this.props.name, context: "Contact_Info", label: 'Hi Alex -You seem to have an old email address listed on your profile. Do you want to update your email address to "alexdoe@gmail.com".', destroy: this.onDisplayContactInfoSuggestion }),
+          this.props.displayBasicInfoSuggestion && this.state.displayBasicInfoSuggestion && this.props.index === 0 && _react2.default.createElement(_ContactInfoSuggestion2.default, { username: this.props.name, context: "Basic_Info", label: "Hi Alex - You recently removed some of your posts about politics. Do you want to remove your political views from your profile page?", destroy: this.onDisplayBasicInfoSuggestion }),
+          /*These happen on the Timeline */
+
+          /*The Unsubscribe Suggestion Adaptation*/
+          this.props.name == "Jack Scout" && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: "Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)", context: "Unsubscribe_Friend", label: "Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore.", agree: this.onClickOK_UnsubscribeSuggestion, destroy: this.onClickDestroyUnsubscribeSuggestion }),
+          /*The Categorize Suggestion Adaptation*/
+          this.props.name == "Sasha Riley" && this.props.displayCategorizeSuggestion && this.state.categorize_displaySuggestionPopup && this.props.index === 21 && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: "Categorize_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)", context: "Categorize_Friend", label: "Hi Alex - Would you like to add Sasha Riley  to the “Family” friend list as you seem to all work at the same place. ", agree: this.onClickOK_CategorizeSuggestion, destroy: this.onClickDestroyCategorizeSuggestion })
         )
       );
     }
@@ -19087,7 +20595,579 @@ var Post = function (_React$Component) {
 exports.default = Post;
 
 /***/ }),
-/* 154 */
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(14);
+
+var _Popup = __webpack_require__(17);
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _utilities = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ExitExperiment = function (_React$Component) {
+    _inherits(ExitExperiment, _React$Component);
+
+    function ExitExperiment() {
+        _classCallCheck(this, ExitExperiment);
+
+        var _this = _possibleConstructorReturn(this, (ExitExperiment.__proto__ || Object.getPrototypeOf(ExitExperiment)).call(this));
+
+        _this.USAGE_WEIGHT = 3;
+        _this.MIN_SCORE_TO_PROCEED = 15;
+
+        _this.state = { renderCompletionPopup: false,
+            featuresVisited: {},
+            featuresUsed: {} };
+        _this.score = _this.score.bind(_this);
+        _this.submitExperiment = _this.submitExperiment.bind(_this);
+        _this.unusedList = _this.unusedList.bind(_this);
+        return _this;
+    }
+
+    _createClass(ExitExperiment, [{
+        key: 'score',
+        value: function score() {
+            var _this2 = this;
+
+            var sc = 0;
+
+            var _loop = function _loop(feat) {
+                sc += _this2.USAGE_WEIGHT * Object.keys(_this2.state.featuresUsed[feat]).some(function (a) {
+                    return _this2.state.featuresUsed[feat][a];
+                });
+            };
+
+            for (var feat in this.state.featuresUsed) {
+                _loop(feat);
+            }
+
+            var _loop2 = function _loop2(feat) {
+                sc += Object.keys(_this2.state.featuresVisited[feat]).some(function (a) {
+                    return _this2.state.featuresVisited[feat][a];
+                });
+            };
+
+            for (var feat in this.state.featuresVisited) {
+                _loop2(feat);
+            }
+            return sc;
+        }
+    }, {
+        key: 'submitExperiment',
+        value: function submitExperiment() {
+            var _this3 = this;
+
+            //alert('My Master has not told me what to do yet. But I guess this is the point where I move onto the post-experiment survey')
+            this.setState({ featuresVisited: (0, _utilities.getParsed)("featuresVisited"),
+                featuresUsed: (0, _utilities.getParsed)("featuresUsed") }, function () {
+                var sc = _this3.score();
+
+                if (sc < _this3.MIN_SCORE_TO_PROCEED) {
+                    _this3.setState({ renderCompletionPopup: true });
+                } else {
+                    location.href = 'https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                }
+            });
+        }
+    }, {
+        key: 'unusedList',
+        value: function unusedList() {
+            var _this4 = this;
+
+            var unusedNames = [];
+
+            var _loop3 = function _loop3(feat) {
+                if (!Object.keys(_this4.state.featuresUsed[feat]).some(function (a) {
+                    return _this4.state.featuresUsed[feat][a];
+                })) {
+                    unusedNames.push((0, _utilities.longFeatureTitle)(feat));
+                }
+            };
+
+            for (var feat in this.state.featuresUsed) {
+                _loop3(feat);
+            }
+
+            return unusedNames.map(function (s, i) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: i },
+                    s
+                );
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this5 = this;
+
+            var completionPopup = _react2.default.createElement(
+                _Popup2.default,
+                { title: 'Some features not visited', closeButton: true, closeButtonName: 'Close',
+                    cancel: function cancel() {
+                        _this5.setState({ renderCompletionPopup: false });
+                    } },
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'You should try some of these things before moving on:'
+                ),
+                _react2.default.createElement(
+                    'ul',
+                    { id: 'unused-list' },
+                    this.unusedList()
+                )
+            );
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                this.state.renderCompletionPopup ? completionPopup : null,
+                _react2.default.createElement(
+                    'button',
+                    { className: 'finish-button', onClick: this.submitExperiment },
+                    _react2.default.createElement(
+                        'label',
+                        { className: 'list-text' },
+                        'EXIT'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ExitExperiment;
+}(_react2.default.Component);
+
+exports.default = ExitExperiment;
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ScenarioFeature = __webpack_require__(158);
+
+var _ScenarioFeature2 = _interopRequireDefault(_ScenarioFeature);
+
+var _ProfileLink = __webpack_require__(27);
+
+var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Scenario = function (_React$Component) {
+    _inherits(Scenario, _React$Component);
+
+    function Scenario() {
+        _classCallCheck(this, Scenario);
+
+        var _this = _possibleConstructorReturn(this, (Scenario.__proto__ || Object.getPrototypeOf(Scenario)).call(this));
+
+        _this.state = {
+            toggled: false
+        };
+
+        _this.toggleMenu = _this.toggleMenu.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(Scenario, [{
+        key: 'toggleMenu',
+        value: function toggleMenu() {
+
+            this.setState(function (prevState) {
+                return { toggled: !prevState.toggled };
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            var scenarioTextClass = (0, _classnames2.default)({
+                'scenario_text': true,
+                'floatbutton_pressed': this.state.toggled
+            });
+
+            var buttons = [];
+            var className = "scenario-menu";
+            var icon = "add";
+
+            if (this.state.toggled) {
+                className += " open";
+                icon = "close";
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Categorize friends', icon: '13', action: null, key: 'i13', id: 'feature13' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Who can see that your online', icon: '12', action: null, key: 'i12', id: 'feature12' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Verify post audience', icon: '11', action: null, key: 'i11', id: 'feature11' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Review basic information', icon: '10', action: null, key: 'i10', id: 'feature10' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Review contact information', icon: '9', action: null, key: 'i9', id: 'feature9' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Who can post on  your timeline', icon: '8', action: null, key: 'i8', id: 'feature8' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Undesirable personal posts \n', icon: '7', action: null, key: 'i7', id: 'feature7' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Trolls', icon: '6', action: null, key: 'i6', id: 'feature6' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: ' Endless event invites', icon: '5', action: null, key: 'i5', id: 'feature5' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Endless  app invites', icon: '4', action: null, key: 'i4', id: 'feature4' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Embarrassing personal posts.', icon: '3', action: null, key: 'i3', id: 'feature3' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Annoying friends.', icon: '2', action: null, key: 'i2', id: 'feature2' }));
+
+                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: ' Embarassing friend posts.', icon: '1', action: null, key: 'i1', id: 'feature1' }));
+            }
+
+            buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: '', icon: icon, action: this.toggleMenu, key: 'm', id: 'mainDescription' }));
+
+            return _react2.default.createElement(
+                'div',
+                { id: 'scenario-area' },
+                _react2.default.createElement(
+                    'h3',
+                    { className: 'scenario_head' },
+                    'What is my Task ?'
+                ),
+                _react2.default.createElement(
+                    'p',
+                    { className: 'scenario_text' },
+                    'You are ',
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        _react2.default.createElement(_ProfileLink2.default, { name: 'Alex Doe' })
+                    ),
+                    ' from Fresno. California and regularly use FriendBook for professional and leisure activities. You are looking for a job and have been advised by your mentor that employers monitor and scrutinize applicants\u2019 FriendBook profile before making decisions on whether to hire them or not. They have provided you with the following ',
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        ' list of items'
+                    ),
+                    ' to consider about your profile as you go through the application process. '
+                ),
+                _react2.default.createElement(
+                    'p',
+                    { className: 'scenario_task' },
+                    'Given that you have an upcoming interview, go through your profile and see if you are okay with what\'s on it.'
+                ),
+                _react2.default.createElement(
+                    'ol',
+                    { id: 'list' },
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Write a post stating that you are looking for a job'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            ' It\u2019s not uncommon for people to find a job via their social network. Write a post that states your looking for a job to notify your friends about your search. To avoid awkward situations, though, it is probably best not to tell anyone at your current employer about it'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Review your contact information'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'Make sure you have a professional email address listed (alexdoe@gmail.com) where recruiters can contact you'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Review your profile page'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'Research shows that recruiters can be biased by things on candidates\u2019 FreindBook profile pages. Think about removing or hiding parts of your profile that may bias a potential recruiter'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Remove undesirable personal posts'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'Revisit your previous posts. Are there any posts that are no longer reflective of who you are as a person?'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Get rid of embarraing posts about you by others'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'Some of your friends may have tagged you in posts or posted on your timeline embarrassing content about you that you may not want potential employers to see'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            ' Limit what other people can post about you'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'In general, it may make sense to limit the extent to which other people post things about you on FriendBook'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Reduce distractions (chat, invites, etc.)'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'A job search can be stressful and it is a good idea to remove any distractions, e.g. by limiting invitations, chats, etc'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Get rid of annoying friends'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'It may also help to get rid of annoying distractions, such as FriendBook friends who post uninteresting or annoying content.'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Categorize future job contacts'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'Make sure to keep track of whom among your Friendbook contacts is a recruiter or a potential future colleague'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'scenario-menu-item' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Block and/or report abusive friends'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'tooltiptext' },
+                            'If you are being harassed online, is best not to engage. Instead, block and/or report the abusive friend'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Scenario;
+}(_react2.default.Component);
+
+exports.default = Scenario;
+
+/*
+  var btnClass = classNames({
+      btn: true,
+      'btn-pressed': this.state.isPressed,
+      'btn-over': !this.state.isPressed && this.state.isHovered
+    });
+
+*/
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ScenarioFeature = function (_React$Component) {
+    _inherits(ScenarioFeature, _React$Component);
+
+    function ScenarioFeature(props) {
+        _classCallCheck(this, ScenarioFeature);
+
+        var _this = _possibleConstructorReturn(this, (ScenarioFeature.__proto__ || Object.getPrototypeOf(ScenarioFeature)).call(this, props));
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
+    }
+
+    _createClass(ScenarioFeature, [{
+        key: "handleClick",
+        value: function handleClick() {
+            this.props.action();
+        }
+        //${this.props.icon}
+
+    }, {
+        key: "render",
+        value: function render() {
+
+            var buttonStyle = {
+                // backgroundImage: url("/assets/scenario/add.png");
+            };
+
+            var label = void 0;
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { onClick: this.handleClick, className: "scenario-menu-item" },
+                    this.props.label != "" ? _react2.default.createElement(
+                        "label",
+                        null,
+                        this.props.label
+                    ) : null,
+                    _react2.default.createElement(
+                        "div",
+                        { className: this.props.id != 'mainDescription' ? "scenario-menu-icon-number" : "scenario-menu-icon" },
+                        this.props.id != 'mainDescription' ? _react2.default.createElement(
+                            "span",
+                            { className: "number-icon" },
+                            this.props.icon
+                        ) : _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement(
+                                "i",
+                                { className: "material-icons" },
+                                this.props.icon
+                            ),
+                            _react2.default.createElement(
+                                "span",
+                                { className: "list-text" },
+                                "Items"
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ScenarioFeature;
+}(_react2.default.Component);
+
+exports.default = ScenarioFeature;
+
+/*
+<div className=".scenario-done-button">DONE</div>
+ <!--<label>{this.props.label}</label> -->
+*/
+
+/***/ }),
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19107,7 +21187,7 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
@@ -19183,7 +21263,7 @@ var UploadPopup = function (_React$Component) {
 exports.default = UploadPopup;
 
 /***/ }),
-/* 155 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19199,7 +21279,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -19207,15 +21287,7 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Highlight = __webpack_require__(14);
-
-var _HighlightBoilerplate = __webpack_require__(91);
-
-var _classnames = __webpack_require__(35);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _utilities = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19225,164 +21297,172 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FriendSubscription = function (_React$Component) {
-    _inherits(FriendSubscription, _React$Component);
+var Notificationdropdown = function (_React$Component) {
+    _inherits(Notificationdropdown, _React$Component);
 
-    function FriendSubscription(props) {
-        _classCallCheck(this, FriendSubscription);
+    function Notificationdropdown(props) {
+        _classCallCheck(this, Notificationdropdown);
 
-        var _this = _possibleConstructorReturn(this, (FriendSubscription.__proto__ || Object.getPrototypeOf(FriendSubscription)).call(this, props));
-
-        var adaptation = (0, _utilities.getParsed)('adaptations');
-        var adaptationVisited = (0, _utilities.getParsed)("visited");
-
-        _this.state = {
-            subscribe: !_this.props.auto, //true
-            adaptationVisited: adaptationVisited,
-            highlight1: !adaptationVisited["Unsubscribe_Friend"]["highlight"] && adaptation["unsubscribe_Friend"] == "high" ? true : false,
-            //highlight: !adaptationVisited["Unsubscribe_Friend"]["highlight"] && (adaptation["unsubscribe_Friend"] == "high")? "high":null,
-            context: "Unsubscribe_Friend"
-
-        };
+        var _this = _possibleConstructorReturn(this, (Notificationdropdown.__proto__ || Object.getPrototypeOf(Notificationdropdown)).call(this, props));
 
         _this.handleClick = _this.handleClick.bind(_this);
-
-        /*Highlight Adaptation */
-        // this.changeStyle = this.changeStyle.bind(this);
-
         return _this;
     }
 
-    _createClass(FriendSubscription, [{
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextProps) {
-
-            if (nextProps.auto !== this.props.auto) {
-                this.setState({ subscribe: nextProps.auto });
-            } else {
-
-                this.setState({ subscribe: true });
-            }
-        }
-
-        /*Method for the Highlight Adaptation
-        changeStyle(){
-            
-            
-             if(!this.state.adaptationVisited["Unsubscribe_Friend"]['highlight']){
-                 
-                 //console.log("I am in here");
-                this.setState({
-                 highlight1:false,
-                })
-              }
-            
-            
-        }*/
-
-    }, {
+    _createClass(Notificationdropdown, [{
         key: 'handleClick',
         value: function handleClick() {
 
-            this.setState(function (state) {
-                return {
-                    subscribe: !state.subscribe
-
-                };
-            });
-
-            if (!this.state.adaptationVisited["Unsubscribe_Friend"]['highlight']) {
-
-                this.setState({
-                    //highlight: null,
-                    highlight1: false
-                });
-
-                (0, _HighlightBoilerplate.HighlightBoilerplate)(this.state.context);
-            }
+            this.props.changeIcon();
+            this.props.settingsdropDown();
         }
     }, {
         key: 'render',
         value: function render() {
-
-            var dropbtn_style = (0, _classnames2.default)({
-                'dropbtn_1': !this.state.highlight1,
-                'dropbtn_1_highlight': this.state.highlight1
-            });
-
+            // console.log("I have been called");
             return _react2.default.createElement(
                 'div',
-                { className: 'dropdown_1' },
-                this.state.subscribe ? _react2.default.createElement(
+                { id: 'notification_container' },
+                _react2.default.createElement('div', { className: 'beeper' }),
+                _react2.default.createElement(
                     'div',
-                    null,
-                    _react2.default.createElement(
-                        'button',
-                        { className: dropbtn_style },
-                        ' \u2713 Following \u25BC'
-                    ),
+                    { id: 'notification_header' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'dropdown_content_1' },
+                        { id: 'header_top' },
                         _react2.default.createElement(
-                            'a',
-                            { href: '#' },
-                            'See First '
+                            'h3',
+                            null,
+                            ' Notifications '
                         ),
                         _react2.default.createElement(
-                            'a',
-                            { href: '#' },
-                            'Default'
-                        ),
-                        _react2.default.createElement('hr', null),
+                            'div',
+                            { id: 'header_top_right' },
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Mark all as read'
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Settings'
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'dropdown_header' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'notification-id' },
+                        _react2.default.createElement('img', { src: '/assets/users/kyle_profile_img.jpg' }),
                         _react2.default.createElement(
-                            _Button2.default,
-                            { onClick: this.handleClick, style: this.state.highlight1 ? _Highlight.highLight : null },
-                            'Unfollow'
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                ' Kyle Parker invited you to Rave Night '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Accept '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Decline '
+                            )
                         )
                     ),
                     _react2.default.createElement(
-                        'button',
-                        { className: 'btn' },
-                        ' Message '
+                        'div',
+                        { className: 'notification-id' },
+                        _react2.default.createElement('img', { src: '/assets/users/kyle_profile_img.jpg' }),
+                        _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                ' Kyle Parker invited you to TwerkOut '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Accept '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Decline '
+                            )
+                        )
                     ),
                     _react2.default.createElement(
-                        'button',
-                        { className: 'btn' },
-                        '...'
-                    )
-                ) : _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'dropbtn_1', onClick: this.handleClick },
-                        'Follow'
+                        'div',
+                        { className: 'notification-id' },
+                        _react2.default.createElement('img', { src: '/assets/users/jim_profile_img.jpg' }),
+                        _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                ' Jim Mend invited you to play CandyOut '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Accept '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Decline '
+                            )
+                        )
                     ),
                     _react2.default.createElement(
-                        'button',
-                        { className: 'btn' },
-                        ' Message '
-                    ),
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'btn' },
-                        '...'
+                        'div',
+                        { className: 'notification-id' },
+                        _react2.default.createElement('img', { src: '/assets/users/jim_profile_img.jpg' }),
+                        _react2.default.createElement(
+                            'ul',
+                            null,
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                ' Jim Mend invited you to play SwordIt  '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Accept '
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                null,
+                                ' Decline '
+                            )
+                        )
                     )
                 )
             );
         }
     }]);
 
-    return FriendSubscription;
+    return Notificationdropdown;
 }(_react2.default.Component);
 
-exports.default = FriendSubscription;
-
-//<span style={highLight}><Button onClick={this.handleClick}>Unfollow</Button></span>
+exports.default = Notificationdropdown;
 
 /***/ }),
-/* 156 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19398,7 +21478,292 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _utilities = __webpack_require__(4);
+
+var _Highlight = __webpack_require__(15);
+
+var _HighlightBoilerplate = __webpack_require__(34);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Button = __webpack_require__(5);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _Popup = __webpack_require__(17);
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _blockUsers = __webpack_require__(97);
+
+var _blockUsers2 = _interopRequireDefault(_blockUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BlockFriend = function (_React$Component) {
+    _inherits(BlockFriend, _React$Component);
+
+    function BlockFriend(props) {
+        _classCallCheck(this, BlockFriend);
+
+        var _this = _possibleConstructorReturn(this, (BlockFriend.__proto__ || Object.getPrototypeOf(BlockFriend)).call(this, props));
+
+        var adaptation = (0, _utilities.getParsed)('adaptations');
+        var adaptationVisited = (0, _utilities.getParsed)("visited");
+
+        _this.state = {
+            adaptationVisited: adaptationVisited,
+            highlight1: !adaptationVisited["Block_User"]["highlight"] && adaptation["block_User"] == "high" ? true : false,
+            context: "Block_User",
+            renderDropdown: true,
+            renderPopup: false,
+            renderBlockConfirmation: false
+        };
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.agreeToBlock = _this.agreeToBlock.bind(_this);
+        _this.cancelBlock = _this.cancelBlock.bind(_this);
+        return _this;
+    }
+
+    _createClass(BlockFriend, [{
+        key: 'handleClick',
+        value: function handleClick() {
+
+            /*TODO: Add user to block list */
+            this.setState({
+                renderPopup: true,
+                renderDropdown: false
+            });
+
+            if (!this.state.adaptationVisited["Block_User"]['highlight'] && this.props.friendName === "ira_slipan") {
+
+                this.setState({
+                    highlight1: false
+
+                });
+
+                (0, _HighlightBoilerplate.HighlightBoilerplate)(this.state.context);
+            }
+        }
+    }, {
+        key: 'agreeToBlock',
+        value: function agreeToBlock() {
+
+            (0, _utilities.blockFriend)(this.props.friendName);
+
+            this.setState({
+                renderBlockConfirmation: true,
+                renderPopup: false
+
+            });
+        }
+    }, {
+        key: 'cancelBlock',
+        value: function cancelBlock(what) {
+
+            if (what === 'first') {
+                this.setState({
+                    renderPopup: false,
+                    renderDropdown: true
+                });
+            }
+
+            if (what === 'second') {
+                this.setState({
+                    renderBlockConfirmation: false,
+                    renderDropdown: true
+                });
+            }
+        }
+
+        //Say "yes" tp cancel
+
+    }, {
+        key: 'FriendBlocked',
+        value: function FriendBlocked() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                _Popup2.default,
+                { title: 'User Blocked', cancel: function cancel() {
+                        return _this2.cancelBlock('second');
+                    }, closeButton: true, closeButtonName: 'OK', grayHeader: true, content_style: true, destroy: function destroy() {
+                        null;
+                    }, noFooter: false, height: 30, routeTo: "/settings_general/blocking" },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'popup_content' },
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        ' You\'ve blocked ',
+                        (0, _utilities.linkToName)(this.props.friendName),
+                        '. We\'re sorry that you\'ve had this experience.'
+                    )
+                )
+            );
+        }
+    }, {
+        key: 'BlockPopup',
+        value: function BlockPopup() {
+            var _this3 = this;
+
+            return _react2.default.createElement(
+                _Popup2.default,
+                { title: 'Confirm Block', okay: this.agreeToBlock, okButtonName: 'Confirm', cancel: function cancel() {
+                        return _this3.cancelBlock('first');
+                    }, grayHeader: true, content_style: true, destroy: function destroy() {
+                        null;
+                    }, noFooter: false, height: 30 },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'popup_content' },
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        ' Are you sure you want to block ',
+                        (0, _utilities.linkToName)(this.props.friendName)
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        (0, _utilities.linkToName)(this.props.friendName),
+                        ' will no longer be able to:'
+                    ),
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            ' See things you post on your timeline'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            ' Tag you'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            ' Invite you to events or groups'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            ' Start a converstation with you'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            ' Add you as a friend'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'If you\'re friends, blocking ',
+                        (0, _utilities.linkToName)(this.props.friendName),
+                        ' will also unfriend him '
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        ' If you want to limit what you share with ',
+                        (0, _utilities.linkToName)(this.props.friendName).split(" ")[0],
+                        ' or see less of him on FriendBook, you can take a break from him instead.'
+                    )
+                )
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            //There are 2 dialog boxes and then it brings you to the privacy settings page.
+
+            var dropbtn_style = (0, _classnames2.default)({
+                'dropbtn_1': !this.state.highlight1 || this.props.friendName !== "ira_slipan" && this.state.highlight1,
+                'dropbtn_1_highlight': this.props.friendName === "ira_slipan" && this.state.highlight1
+            });
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'dropdown_2' },
+                _react2.default.createElement(
+                    'button',
+                    { className: dropbtn_style },
+                    '...'
+                ),
+                this.state.renderDropdown ? _react2.default.createElement(
+                    'div',
+                    { className: 'dropdown_content_1' },
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#' },
+                        'See friendship'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#' },
+                        'Invite Jack to like your pages'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#' },
+                        'Find Support or report profile '
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        { className: this.props.friendName === "ira_slipan" && this.state.highlight1 ? "high1" : null },
+                        _react2.default.createElement(
+                            _Button2.default,
+                            { onClick: this.handleClick },
+                            ' Block '
+                        )
+                    )
+                ) : null,
+                this.state.renderPopup ? this.BlockPopup() : null,
+                this.state.renderBlockConfirmation ? this.FriendBlocked() : null
+            );
+        }
+    }]);
+
+    return BlockFriend;
+}(_react2.default.Component);
+
+exports.default = BlockFriend;
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -19408,9 +21773,11 @@ var _Button2 = _interopRequireDefault(_Button);
 
 var _utilities = __webpack_require__(4);
 
-var _NameFriendList = __webpack_require__(157);
+var _NameFriendList = __webpack_require__(163);
 
 var _NameFriendList2 = _interopRequireDefault(_NameFriendList);
+
+var _HighlightBoilerplate = __webpack_require__(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19431,6 +21798,8 @@ var Friends = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Friends.__proto__ || Object.getPrototypeOf(Friends)).call(this, props));
 
         var list = (0, _utilities.getParsed)('list');
+        var adaptation = (0, _utilities.getParsed)('adaptations');
+        var adaptationVisited = (0, _utilities.getParsed)("visited");
 
         var listIdCounter = 2;
         _this.state = {
@@ -19438,15 +21807,13 @@ var Friends = function (_React$Component) {
             currentLists: list,
             check: false,
             idCounter: listIdCounter,
-            displayInputText: false
+            displayInputText: false,
+            adaptationVisited: adaptationVisited,
+            highlight1: !adaptationVisited["Categorize_Friend"]["highlight"] && adaptation["categorize_Friend"] == "high" ? true : false,
+            context: "Categorize_Friend"
+        };
 
-            //set a call back ref
-            //this.createFriendList = null;
-            //this.setFriendList = element => {
-            //     this.createFriendList = element
-            //}
-
-        };_this.handleClick = _this.handleClick.bind(_this);
+        _this.handleClick = _this.handleClick.bind(_this);
         _this.addCheck = _this.addCheck.bind(_this);
         _this.addNewList = _this.addNewList.bind(_this);
         _this.input = _this.input.bind(_this);
@@ -19461,6 +21828,12 @@ var Friends = function (_React$Component) {
          }
          
         
+     }*/
+
+    /* componentWillReceiveProps(nextProps) {
+         if(this.props.auto === true) {
+             this.addCheck(1);
+         }
      }*/
 
     _createClass(Friends, [{
@@ -19511,6 +21884,15 @@ var Friends = function (_React$Component) {
 
                 };
             });
+
+            if (!this.state.adaptationVisited["Categorize_Friend"]['highlight'] && this.props.friendName === "sasha_riley") {
+
+                this.setState({
+                    highlight1: false
+                });
+
+                (0, _HighlightBoilerplate.HighlightBoilerplate)(this.state.context);
+            }
         }
     }, {
         key: 'addNewList',
@@ -19527,6 +21909,15 @@ var Friends = function (_React$Component) {
                 idCounter: nextId,
                 displayInputText: false
             });
+
+            if (!this.state.adaptationVisited["Categorize_Friend"]['highlight'] && this.props.friendName === "sasha_riley") {
+
+                this.setState({
+                    highlight1: false
+                });
+
+                (0, _HighlightBoilerplate.HighlightBoilerplate)(this.state.context);
+            }
         }
     }, {
         key: 'input',
@@ -19549,7 +21940,7 @@ var Friends = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         'button',
-                        { className: 'dropbtn' },
+                        { className: this.state.highlight1 && this.props.friendName === "sasha_riley" ? "dropbtn_highlight" : "dropbtn" },
                         ' \u2713 Friends \u25BC '
                     ),
                     _react2.default.createElement(
@@ -19576,7 +21967,7 @@ var Friends = function (_React$Component) {
                             ),
                             _react2.default.createElement(
                                 'span',
-                                null,
+                                { className: this.state.highlight1 && this.props.friendName === "sasha_riley" ? "high1" : null },
                                 _react2.default.createElement(
                                     _Button2.default,
                                     { onClick: this.handleClick },
@@ -19619,9 +22010,13 @@ var Friends = function (_React$Component) {
                                 );
                             }),
                             this.state.displayInputText ? _react2.default.createElement(_NameFriendList2.default, { addNewList: this.addNewList }) : _react2.default.createElement(
-                                _Button2.default,
-                                { onClick: this.input },
-                                ' \u2795 New List'
+                                'span',
+                                { className: this.state.highlight1 && this.props.friendName === "sasha_riley" ? "high1" : null },
+                                _react2.default.createElement(
+                                    _Button2.default,
+                                    { onClick: this.input },
+                                    ' \u2795 New List'
+                                )
                             )
                         )
                     )
@@ -19636,7 +22031,7 @@ var Friends = function (_React$Component) {
 exports.default = Friends;
 
 /***/ }),
-/* 157 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19652,7 +22047,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -19720,7 +22115,7 @@ var NameFriendList = function (_React$Component) {
 exports.default = NameFriendList;
 
 /***/ }),
-/* 158 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19738,29 +22133,37 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
 
 var _utilities = __webpack_require__(4);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
-var _Timeline = __webpack_require__(159);
+var _SuggestionBoilerplate = __webpack_require__(20);
+
+var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
+
+var _Timeline = __webpack_require__(165);
 
 var _Timeline2 = _interopRequireDefault(_Timeline);
 
-var _About = __webpack_require__(160);
+var _About = __webpack_require__(166);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _FriendSubscription = __webpack_require__(155);
+var _FriendSubscription = __webpack_require__(95);
 
 var _FriendSubscription2 = _interopRequireDefault(_FriendSubscription);
 
-var _Friends = __webpack_require__(156);
+var _BlockFriend = __webpack_require__(161);
+
+var _BlockFriend2 = _interopRequireDefault(_BlockFriend);
+
+var _Friends = __webpack_require__(162);
 
 var _Friends2 = _interopRequireDefault(_Friends);
 
@@ -19787,35 +22190,86 @@ var Profile = function (_React$Component) {
 
       adaptation: adaptation,
       adaptationVisited: adaptationVisited,
-      highlight: !adaptationVisited["ContactInfo"]["highlight"] && adaptation["contactInfo"] === "high" ? _Highlight.highLight : _Highlight.noHighLight,
-      displayContactInfoSuggestion: !adaptationVisited["ContactInfo"]["suggestion"] && adaptation["contactInfo"] === "sugst",
+      highlight: !adaptationVisited["Contact_Info"]["highlight"] && adaptation["contact_Info"] === "high" || !adaptationVisited["Basic_Info"]["highlight"] && adaptation["basic_Info"] === "high" ? _Highlight.highLight : _Highlight.noHighLight,
+
+      displayContactInfoSuggestion: !adaptationVisited["Contact_Info"]["suggestion"] && adaptation["contact_Info"] === "sugst",
+
+      displayBasicInfoSuggestion: !adaptationVisited["Basic_Info"]["suggestion"] && adaptation["basic_Info"] === "sugst",
 
       //Suggestion: Unsubscribe from friend
-      suggestion: !adaptationVisited["Unsubscribe_Friend"]["suggestion"] && adaptation["unsubscribe_Friend"] === "sugst",
+      unsubscribe_suggestion: !adaptationVisited["Unsubscribe_Friend"]["suggestion"] && adaptation["unsubscribe_Friend"] === "sugst",
+      unsubcribe_displaySuggestionPopup: true,
+      // unsubscribe_label_Sugst:"We think you should Unfollow Jack Scout ",
+      suggestAgree: true,
+
+      //Suggestion: Categorize friend
+      categorize_suggestion: !adaptationVisited["Categorize_Friend"]["suggestion"] && adaptation["categorize_Friend"] === "sugst",
+      categorize_displaySuggestionPopup: true,
 
       //Unsubscribe from friend: AUtomation
       unsubscribe_automation: !adaptationVisited["Unsubscribe_Friend"]["automation"] && adaptation["unsubscribe_Friend"] === "auto",
       unsubscribe_action: "Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
       unsubscribe_displayAutomationPopup: true,
       unsubscribe_label_Auto: "You were automatically unsubscribed from following Jack Scout",
-      unsubscribe_context: "Unsubscribe_Friend"
+      unsubscribe_context: "Unsubscribe_Friend",
+
+      //Categorize Friend:Automation
+
+      categorize_automation: !adaptationVisited["Categorize_Friend"]["automation"] && adaptation["categorize_Friend"] === "auto",
+      categorize_action: "Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+      categorize_displayAutomationPopup: true,
+      auto_CategorizeAccept: false,
+      categorize_label_Auto: " Sasha Riley was automatically added to the \"Family\" friends list",
+      categorize_context: "Categorize_Friend"
     };
 
     _this.changeStyle = _this.changeStyle.bind(_this);
 
-    /*Automation Adaptation*/
+    /* Unsubscribe Friend Suggestion Adaptation 
+           this.onClickDestroyUnsubscribeSuggestion = this.onClickDestroyUnsubscribeSuggestion.bind(this);
+    this.onClickOK_UnsubscribeSuggestion = this.onClickOK_UnsubscribeSuggestion.bind(this);*/
+
+    /*Automation Unsubscribe Adaptation*/
     _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
     _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
+    _this.updateSubscribe = _this.updateSubscribe.bind(_this);
+
+    /*Automation Categorization Adaptation*/
+    _this.onClickOk_CategorizeAuto = _this.onClickOk_CategorizeAuto.bind(_this);
+    _this.onClickUndo_CategorizeAuto = _this.onClickUndo_CategorizeAuto.bind(_this);
     return _this;
   }
 
   _createClass(Profile, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
-      console.log("I am in here in Profile");
+      //console.log("I am in here in Profile");
       if (prevState.unsubscribe_automation !== this.state.unsubscribe_automation) {
-        console.log("I was called in here" + this.state.unsubscribe_displayAutomationPopup + " and automation " + this.state.unsubscribe_automation + " Test" + this.state.test);
+        // console.log("I was called in here"+ this.state.unsubscribe_displayAutomationPopup+" and automation "+this.state.unsubscribe_automation);
       }
+    }
+
+    /*Methods for the Categorization Automation Adaptation*/
+
+  }, {
+    key: 'onClickOk_CategorizeAuto',
+    value: function onClickOk_CategorizeAuto() {
+
+      this.setState({
+        categorize_displayAutomationPopup: false
+      });
+
+      (0, _utilities.AddfriendList)();
+    }
+  }, {
+    key: 'onClickUndo_CategorizeAuto',
+    value: function onClickUndo_CategorizeAuto() {
+
+      //console.log("Undo Automation has been clicked"); 
+
+      this.setState({
+        categorize_displayAutomationPopup: false
+      });
     }
 
     /*Methods for the Automation Adaptation*/
@@ -19824,11 +22278,11 @@ var Profile = function (_React$Component) {
     key: 'onClickOk_Auto',
     value: function onClickOk_Auto() {
 
-      console.log("Automation ok has been clicked");
-
+      (0, _utilities.unFollowUser)(this.props.match.params.user);
       this.setState({
         unsubscribe_displayAutomationPopup: false,
-        unsubscribe_automation: false
+        unsubscribe_automation: false,
+        auto_CategorizeAccept: true
 
       });
     }
@@ -19837,19 +22291,24 @@ var Profile = function (_React$Component) {
     value: function onClickUndo_Auto() {
 
       //console.log("Undo Automation has been clicked"); 
-
+      (0, _utilities.followUser)(this.props.match.params.user);
       this.setState({
         unsubscribe_displayAutomationPopup: false,
         unsubscribe_automation: true
       });
     }
   }, {
+    key: 'updateSubscribe',
+    value: function updateSubscribe() {
+      this.setState({ suggestAgree: false });
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (this.state.displayContactInfoSuggestion !== (this.state.adaptationVisited["ContactInfo"]["suggestion"] && this.state.adaptation["contactInfo"] === "sugst")) {
+      if (this.state.displayContactInfoSuggestion !== (this.state.adaptationVisited["Contact_Info"]["suggestion"] && this.state.adaptation["contact_Info"] === "sugst")) {
 
         this.setState({
-          displayContactInfoSuggestion: this.state.adaptationVisited["ContactInfo"]["suggestion"]
+          displayContactInfoSuggestion: this.state.adaptationVisited["Contact_Info"]["suggestion"]
         });
 
         //console.log("The visited state of suggestion in components will receive props" + this.state.displayContactInfoSuggestion)
@@ -19858,7 +22317,7 @@ var Profile = function (_React$Component) {
   }, {
     key: 'changeStyle',
     value: function changeStyle() {
-      if (!this.state.adaptationVisited["ContactInfo"]['highlight']) {
+      if (!this.state.adaptationVisited["Contact_Info"]['highlight'] || !this.state.adaptationVisited["Basic_Info"]['highlight']) {
         this.setState({
           highlight: _Highlight.noHighLight
         });
@@ -19910,8 +22369,9 @@ var Profile = function (_React$Component) {
               ) : _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_Friends2.default, { friendName: this.props.match.params.user }),
-                _react2.default.createElement(_FriendSubscription2.default, { auto: this.state.unsubscribe_automation })
+                _react2.default.createElement(_Friends2.default, { friendName: this.props.match.params.user, auto: this.state.auto_CategorizeAccept }),
+                _react2.default.createElement(_FriendSubscription2.default, { friendName: this.props.match.params.user, auto: this.state.unsubscribe_automation, sugst: this.state.suggestAgree }),
+                _react2.default.createElement(_BlockFriend2.default, { friendName: this.props.match.params.user })
               )
             ),
             _react2.default.createElement(
@@ -19972,21 +22432,22 @@ var Profile = function (_React$Component) {
               { className: 'profile_photo' },
               _react2.default.createElement('img', { src: '/assets/users/' + this.props.match.params.user.split("_")[0].toLowerCase() + '_profile_img.jpg' })
             ),
-            console.log("The name is " + this.props.match.params.user),
             _react2.default.createElement(
               'h2',
               null,
               (0, _utilities.linkToName)(this.props.match.params.user)
             ),
-            /*The Automation Adaptation Popup*/
-            this.state.unsubscribe_displayAutomationPopup && this.state.unsubscribe_automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.unsubscribe_action, context: this.state.unsubscribe_context, label: this.state.unsubscribe_label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto })
+            /*The Unsubscribe Automation Adaptation Popup*/
+            this.props.match.params.user === "jack_scout" && this.state.unsubscribe_displayAutomationPopup && this.state.unsubscribe_automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.unsubscribe_action, context: this.state.unsubscribe_context, label: this.state.unsubscribe_label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto }),
+            /*The Categorization Automation Adaptation Popup*/
+            this.props.match.params.user === "sasha_riley" && this.state.categorize_displayAutomationPopup && this.state.categorize_automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.categorize_action, context: this.state.categorize_context, label: this.state.categorize_label_Auto, onClickOK_Auto: this.onClickOk_CategorizeAuto, onClickUnDo_Auto: this.onClickUndo_CategorizeAuto })
           ),
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
             _react2.default.createElement(_reactRouterDom.Route, { path: '/profile/:user/about/:section', component: _About2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/profile/:user', render: function render(props) {
-                return _react2.default.createElement(_Timeline2.default, _extends({}, props, { displayContactInfoSuggestion: _this2.state.displayContactInfoSuggestion }));
+                return _react2.default.createElement(_Timeline2.default, _extends({}, props, { displayContactInfoSuggestion: _this2.state.displayContactInfoSuggestion, displayBasicInfoSuggestion: _this2.state.displayBasicInfoSuggestion, displayUnsubscribeSuggestion: _this2.state.unsubscribe_suggestion, updateSubscribe: _this2.updateSubscribe, displayCategorizeSuggestion: _this2.state.categorize_suggestion }));
               } })
           )
         )
@@ -20000,7 +22461,7 @@ var Profile = function (_React$Component) {
 exports.default = Profile;
 
 /***/ }),
-/* 159 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20018,7 +22479,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utilities = __webpack_require__(4);
 
-var _PostArea = __webpack_require__(43);
+var _PostArea = __webpack_require__(44);
 
 var _PostArea2 = _interopRequireDefault(_PostArea);
 
@@ -20042,14 +22503,21 @@ var Timeline = function (_React$Component) {
   _createClass(Timeline, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      // location.reload();
+
+      // console.log("Old "+this.props.match.params.user)
+      //console.log("New "+newProps.match.params.user)
+
+      if (this.props.match.params.user != newProps.match.params.user) {
+        location.reload();
+      }
     }
   }, {
     key: 'render',
     value: function render() {
+      // console.log("I am here for the fun");
       // console.log(linkToName(this.props.match.params.user))
       //console.log("Timeline: The suggestion is "+this.props.displayContactInfoSuggestion)
-      return _react2.default.createElement(_PostArea2.default, { name: (0, _utilities.linkToName)(this.props.match.params.user), displayContactInfoSuggestion: this.props.displayContactInfoSuggestion });
+      return _react2.default.createElement(_PostArea2.default, { name: (0, _utilities.linkToName)(this.props.match.params.user), displayContactInfoSuggestion: this.props.displayContactInfoSuggestion, displayBasicInfoSuggestion: this.props.displayBasicInfoSuggestion, displayUnsubscribeSuggestion: this.props.displayUnsubscribeSuggestion, updateSubscribe: this.props.updateSubscribe, displayCategorizeSuggestion: this.props.displayCategorizeSuggestion, forTimeline: true });
     }
   }]);
 
@@ -20059,7 +22527,7 @@ var Timeline = function (_React$Component) {
 exports.default = Timeline;
 
 /***/ }),
-/* 160 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20075,17 +22543,17 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
 
 var _utilities = __webpack_require__(4);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
-var _ContactInfo = __webpack_require__(161);
+var _ContactInfo = __webpack_require__(167);
 
 var _ContactInfo2 = _interopRequireDefault(_ContactInfo);
 
-var _Overview = __webpack_require__(162);
+var _Overview = __webpack_require__(168);
 
 var _Overview2 = _interopRequireDefault(_Overview);
 
@@ -20110,7 +22578,7 @@ var About = function (_React$Component) {
 
     _this.state = {
       adaptationVisited: adaptationVisited,
-      highlight: !adaptationVisited["ContactInfo"]["highlight"] && adaptation["contactInfo"] === "high" ? _Highlight.highLight : _Highlight.noHighLight
+      highlight: !adaptationVisited["Contact_Info"]["highlight"] && adaptation["contact_Info"] === "high" || !adaptationVisited["Basic_Info"]["highlight"] && adaptation["basic_Info"] === "high" ? _Highlight.highLight : _Highlight.noHighLight
     };
 
     _this.overview = _this.overview.bind(_this);
@@ -20122,7 +22590,7 @@ var About = function (_React$Component) {
   _createClass(About, [{
     key: 'changeStyle',
     value: function changeStyle() {
-      if (!this.state.adaptationVisited["ContactInfo"]['highlight']) {
+      if (!this.state.adaptationVisited["Contact_Info"]['highlight'] || !this.state.adaptationVisited["Basic_Info"]['highlight']) {
         this.setState({
           highlight: _Highlight.noHighLight
         });
@@ -20230,7 +22698,7 @@ var About = function (_React$Component) {
 exports.default = About;
 
 /***/ }),
-/* 161 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20250,19 +22718,19 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _EditInfoDisplay = __webpack_require__(165);
+var _EditInfoDisplay = __webpack_require__(171);
 
 var _EditInfoDisplay2 = _interopRequireDefault(_EditInfoDisplay);
 
-var _ExistingInfoDisplay = __webpack_require__(166);
+var _ExistingInfoDisplay = __webpack_require__(172);
 
 var _ExistingInfoDisplay2 = _interopRequireDefault(_ExistingInfoDisplay);
 
-var _AddInfoDisplay = __webpack_require__(163);
+var _AddInfoDisplay = __webpack_require__(169);
 
 var _AddInfoDisplay2 = _interopRequireDefault(_AddInfoDisplay);
 
-var _Automation = __webpack_require__(42);
+var _Automation = __webpack_require__(43);
 
 var _Automation2 = _interopRequireDefault(_Automation);
 
@@ -20286,12 +22754,13 @@ var ContactInfo = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (ContactInfo.__proto__ || Object.getPrototypeOf(ContactInfo)).call(this, props));
 
-    var adapatation = (0, _utilities.getParsed)('adaptations');
+    var adaptation = (0, _utilities.getParsed)('adaptations');
     var existingInformation = (0, _utilities.getParsed)('contactInfo');
     var adaptationVisited = (0, _utilities.getParsed)("visited");
 
     _this.state = {
-      adapt: adapatation['contactInfo'],
+      adapt: adaptation['contact_Info'],
+      adapt_basic: adaptation['basic_Info'],
       adaptationVisited: adaptationVisited,
       contactInfoStored: existingInformation,
       mobile: existingInformation['mobile'],
@@ -20337,7 +22806,8 @@ var ContactInfo = function (_Component) {
       BasicPoliticalAdded: existingInformation['political'] !== undefined ? true : false,
 
       edit: false,
-      renderAuto: false,
+      renderContactAuto: false,
+      renderBasicAuto: false,
       unhide_addedinfo: false
     };
 
@@ -20346,8 +22816,15 @@ var ContactInfo = function (_Component) {
     _this.onClickCancel = _this.onClickCancel.bind(_this);
     _this.onClickToggle = _this.onClickToggle.bind(_this);
     _this.onClickEdit = _this.onClickEdit.bind(_this);
-    _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
-    _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
+
+    //Contact Info
+    _this.onClickUndoContact_Auto = _this.onClickUndoContact_Auto.bind(_this);
+    _this.onClickOkContact_Auto = _this.onClickOkContact_Auto.bind(_this);
+
+    //Basic Info
+    _this.onClickUndoBasic_Auto = _this.onClickUndoBasic_Auto.bind(_this);
+    _this.onClickOkBasic_Auto = _this.onClickOkBasic_Auto.bind(_this);
+
     _this.visitedAdaptation = _this.visitedAdaptation.bind(_this);
     _this.display = _this.display.bind(_this);
 
@@ -20358,11 +22835,21 @@ var ContactInfo = function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
 
-      if (!this.state.adaptationVisited["ContactInfo"]["automation"] && this.state.adapt === 'auto') {
+      if (!this.state.adaptationVisited["Contact_Info"]["automation"] && this.state.adapt === 'auto') {
         this.setState({
-          political: 'Republican',
-          BasicPoliticalAdded: true,
-          renderAuto: true
+          email: 'alexdoe@gmail.com',
+          BasicEmailAdded: true,
+          renderContactAuto: true
+        });
+      }
+
+      //adapt_basic
+
+      if (!this.state.adaptationVisited["Basic_Info"]["automation"] && this.state.adapt_basic === 'auto') {
+        this.setState({
+          //email:'alexdoe@gmail.com',
+          // BasicEmailAdded:true,
+          renderBasicAuto: true
         });
       }
     }
@@ -20389,7 +22876,7 @@ var ContactInfo = function (_Component) {
   }, {
     key: 'visitedAdaptation',
     value: function visitedAdaptation(name) {
-      this.state.adaptationVisited["ContactInfo"][name] = true;
+      this.state.adaptationVisited["Contact_Info"][name] = true;
       (0, _utilities.addToLocalStorageObject)("visited", this.state.adaptationVisited);
     }
   }, {
@@ -20429,7 +22916,7 @@ var ContactInfo = function (_Component) {
         /*when user saves with new input*/
         event = {
           action: infoAdded,
-          context: 'Basic ' + inputfieldname + ' Contact Information Added',
+          context: 'Basic ' + inputfieldname + ' Contact Information Added. NB: When adaptation is highlight, then && email, then was just edited/changed.',
           name: 'Alex Doe'
         };
 
@@ -20450,8 +22937,22 @@ var ContactInfo = function (_Component) {
       }
 
       //For the highlight adaptation 
-      if (!this.state.adaptationVisited["ContactInfo"]["highlight"] && this.state.adapt === "high" && infoAdded === "BasicAddressAdded") {
+      if (!this.state.adaptationVisited["Contact_Info"]["highlight"] && this.state.adapt === "high" && infoAdded === "BasicEmailAdded") {
+
+        this.setState({
+          adapt: "none"
+        });
+
         this.visitedAdaptation("highlight");
+      }
+
+      if (!this.state.adaptationVisited["Basic_Info"]["highlight"] && this.state.adapt_basic === "high" && infoAdded === "BasicPoliticalAdded") {
+
+        this.setState({
+          adapt_basic: "none"
+        });
+        (0, _utilities.saveVisitedAdaptation)("Basic_Info", "highlight");
+        // this.visitedAdaptation("highlight")   
       }
 
       this.state.contactInfoStored[inputfieldname_lwrcse] = this.state[inputfieldname_lwrcse] === "" ? undefined : this.state[inputfieldname_lwrcse];
@@ -20513,7 +23014,7 @@ var ContactInfo = function (_Component) {
       var inputfieldname = this.regex(buttonname);
       var add = 'Add' + inputfieldname + 'Info';
 
-      console.log('The edit button is ' + buttonname);
+      // console.log('The edit button is ' + buttonname)
       this.setState(function (prevState) {
         var _ref7;
 
@@ -20521,30 +23022,79 @@ var ContactInfo = function (_Component) {
       });
     }
   }, {
-    key: 'onClickUndo_Auto',
-    value: function onClickUndo_Auto() {
+    key: 'onClickOkContact_Auto',
+    value: function onClickOkContact_Auto() {
       var event = {
-        action: 'Undo_Automatic Political Views set',
-        context: 'In Contact Info, automation was declined with the clicking of Undo',
-        renderAuto: false,
-        BasicPoliticalAdded: false
+        action: 'Automatic change of email was accepted',
+        context: 'In Contact Info, automation was accepted with the clicking of OK'
       };
       this.visitedAdaptation("automation");
-      this.setState(event);
+
+      this.setState({
+        renderContactAuto: false
+        //BasicEmailAdded:false,
+      });
+
       return event;
     }
   }, {
-    key: 'onClickOk_Auto',
-    value: function onClickOk_Auto() {
+    key: 'onClickOkBasic_Auto',
+    value: function onClickOkBasic_Auto() {
       var event = {
-        action: 'Automatically set political views were accepted',
-        context: 'In Contact Info, automation was accepted with the clicking of OK',
-        renderAuto: false
+        action: 'Automatic removal of political views was accepted',
+        context: 'In Basic Info, automation was accepted with the clicking of OK'
+      };
+      //this.visitedAdaptation("automation")
+
+      (0, _utilities.saveVisitedAdaptation)("Basic_Info", "automation");
+
+      this.setState({
+        renderBasicAuto: false,
+        BasicPoliticalAdded: false
+      });
+
+      return event;
+    }
+  }, {
+    key: 'onClickUndoContact_Auto',
+    value: function onClickUndoContact_Auto() {
+      var event = {
+        action: ' Undo_Automatic Email setting',
+        context: 'In Contact Info, automatic setting of email was declined with the clicking of Undo'
+
+      };
+
+      this.onClickSave("BasicEmailAdded");
+      this.visitedAdaptation("automation");
+
+      this.setState({
+        email: 'ladiesman69@yahoo.com',
+        BasicEmailAdded: true,
+        renderContactAuto: false
+      });
+
+      return event;
+    }
+  }, {
+    key: 'onClickUndoBasic_Auto',
+    value: function onClickUndoBasic_Auto() {
+      var event = {
+        action: ' Undo_Automatic Political View removal',
+        context: 'In Basic Info, automatic removal of political views was declined with the clicking of Undo'
+
       };
 
       this.onClickSave("BasicPoliticalAdded");
-      this.visitedAdaptation("automation");
-      this.setState(event);
+      //this.visitedAdaptation("automation")
+
+      (0, _utilities.saveVisitedAdaptation)("Basic_Info", "automation");
+
+      this.setState({
+        political: 'Moderate',
+        BasicPoliticalAdded: true,
+        renderBasicAuto: false
+      });
+
       return event;
     }
   }, {
@@ -20571,7 +23121,7 @@ var ContactInfo = function (_Component) {
 
         return _react2.default.createElement(_ExistingInfoDisplay2.default, { response: this.state[info_lwercase], onClick: function onClick(e) {
             return _this4.onClickEdit(basic_info);
-          }, infoName: Info });
+          }, infoName: Info, adapt: adapt });
       } else {
 
         if (this.state[add_info]) {
@@ -20580,7 +23130,7 @@ var ContactInfo = function (_Component) {
               return _this4.onClickSave(basic_info, e);
             }, onClickCancel: function onClickCancel(e) {
               return _this4.onClickCancel(add_info, e);
-            } });
+            }, adapt: adapt });
         } else {
 
           return _react2.default.createElement(_AddInfoDisplay2.default, { add_request: add_request, onClickToggle: function onClickToggle() {
@@ -20593,24 +23143,22 @@ var ContactInfo = function (_Component) {
     key: 'render',
     value: function render() {
 
-      var shouldDisplayAutomation = this.state.renderAuto;
-
       return _react2.default.createElement(
         'div',
         { className: 'contact_section' },
-        shouldDisplayAutomation && _react2.default.createElement(
-          'div',
-          { id: 'except-warning' },
-          _react2.default.createElement(_Automation2.default, { undoButton: 'Undo', okButton: 'Ok', onOkClick: this.onClickOk_Auto, label: 'Your political views were automatically set', onUndoClick: this.onClickUndo_Auto })
-        ),
         _react2.default.createElement(
           'div',
           { className: 'heading' },
           'Contact Information'
         ),
         this.display("Mobile", "+ Add a mobile phone", "enter mobile number"),
-        this.display("Address", "+ Add your address", "Address,Town/City,Zip,Neighbourhood", !this.state.adaptationVisited["ContactInfo"]["highlight"] ? this.state.adapt : null),
-        this.display("Email", "+ Add an Email address", "enter email address"),
+        this.display("Address", "+ Add your address", "Address,Town/City,Zip,Neighbourhood"),
+        this.display("Email", "+ Add an Email address", "enter email address", !this.state.adaptationVisited["Contact_Info"]["highlight"] && this.state.adapt === 'high' ? this.state.adapt : null),
+        this.state.renderContactAuto && _react2.default.createElement(
+          'div',
+          { id: 'except-warning' },
+          _react2.default.createElement(_Automation2.default, { undoButton: 'Undo', okButton: 'Ok', onOkClick: this.onClickOkContact_Auto, label: 'Your email address was automatically changed from "ladiesman69@yahoo.com" to "alexdoe@gmail.com"', onUndoClick: this.onClickUndoContact_Auto })
+        ),
         this.display("Key", "+ Add a public key", "Enter a PGP public key"),
         _react2.default.createElement('br', null),
         _react2.default.createElement(
@@ -20632,7 +23180,12 @@ var ContactInfo = function (_Component) {
         this.display("Languages", "+ Add a language", ""),
         this.display("Interest", "+ Add who you're interested in", ""),
         this.display("Religious", "+ Add your religious view", ""),
-        this.display("Political", "+ Add your political views", "")
+        this.display("Political", "+ Add your political views", "", !this.state.adaptationVisited["Basic_Info"]["highlight"] && this.state.adapt_basic === 'high' ? this.state.adapt_basic : null),
+        this.state.renderBasicAuto && _react2.default.createElement(
+          'div',
+          { id: 'except-warning' },
+          _react2.default.createElement(_Automation2.default, { undoButton: 'Undo', okButton: 'Ok', onOkClick: this.onClickOkBasic_Auto, label: 'Your political views were automatically removed from your profile page', onUndoClick: this.onClickUndoBasic_Auto })
+        )
       );
     }
   }]);
@@ -20643,7 +23196,7 @@ var ContactInfo = function (_Component) {
 exports.default = ContactInfo;
 
 /***/ }),
-/* 162 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20752,7 +23305,7 @@ var Overview = function (_React$Component) {
 exports.default = Overview;
 
 /***/ }),
-/* 163 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20772,7 +23325,7 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Automation = __webpack_require__(42);
+var _Automation = __webpack_require__(43);
 
 var _Automation2 = _interopRequireDefault(_Automation);
 
@@ -20820,7 +23373,7 @@ var AddInfoDisplay = function (_Component) {
 exports.default = AddInfoDisplay;
 
 /***/ }),
-/* 164 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20836,7 +23389,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -20885,11 +23438,11 @@ var ContactInfoSuggestion = function (_Component) {
         key: 'okay',
         value: function okay() {
             var event = {
-                action: ' Followed and agreed with Suggestion for ContactInfo, Check to see if they actually input the requested information',
-                context: "ContactInfo",
+                action: ' Followed and agreed with Suggestion for ' + this.props.context + ', Check to see if they actually input the requested information',
+                context: this.props.context,
                 name: this.props.username
             };
-            this.visited("ContactInfo", "suggestion");
+            this.visited(this.props.context, "suggestion");
             return event;
         }
     }, {
@@ -20897,11 +23450,11 @@ var ContactInfoSuggestion = function (_Component) {
         value: function destroy() {
             //TODO Should just adjust the suggestion lifeCycle. 
             var event = {
-                action: 'Rather Not/Declined to follow the Suggestion for ContactInfo',
-                context: "ContactInfo",
+                action: 'Rather Not/Declined to follow the Suggestion for ' + this.props.context,
+                context: this.props.context,
                 name: this.props.username
             };
-            this.visited("ContactInfo", "suggestion");
+            this.visited(this.props.context, "suggestion");
             return event;
         }
     }, {
@@ -20910,26 +23463,7 @@ var ContactInfoSuggestion = function (_Component) {
             return _react2.default.createElement(
                 'label',
                 null,
-                'Hi ',
-                this.props.username.split(" ")[0],
-                ' - I think you should add your ',
-                _react2.default.createElement(
-                    'strong',
-                    null,
-                    'Address'
-                ),
-                ' information in the ',
-                _react2.default.createElement(
-                    'strong',
-                    null,
-                    'Contact Information'
-                ),
-                ' section ',
-                _react2.default.createElement(
-                    'a',
-                    { href: 'https://www.FriendBook.com/help/1017657581651994/?helpref=hc_fnav' },
-                    ' Learn More'
-                )
+                this.props.label
             );
         }
     }, {
@@ -20961,7 +23495,7 @@ var ContactInfoSuggestion = function (_Component) {
                 return event;
               }}>
                 <label>
-                  Hi {this.props.username.split(" ")[0]} - I think you should add your <strong>Address</strong> information in the <strong>Contact Information</strong> section <a href="https://www.FriendBook.com/help/1017657581651994/?helpref=hc_fnav"> Learn More</a> 
+                  Hi {this.props.username.split(" ")[0]} - I think you should add your <strong>Address</strong> information in the <strong>Contact Information</strong> section <a href="https://www.facebook.com/help/1017657581651994/?helpref=hc_fnav"> Learn More</a> 
               </label>
               <br></br>
             </SuggestionPopup>*/
@@ -20975,7 +23509,7 @@ var ContactInfoSuggestion = function (_Component) {
 exports.default = ContactInfoSuggestion;
 
 /***/ }),
-/* 165 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21049,7 +23583,7 @@ var EditInfoDisplay = function (_Component) {
 exports.default = EditInfoDisplay;
 
 /***/ }),
-/* 166 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21068,6 +23602,10 @@ var _react2 = _interopRequireDefault(_react);
 var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
+
+var _classnames = __webpack_require__(21);
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21090,6 +23628,10 @@ var ExistingInfoDisplay = function (_Component) {
         key: 'render',
         value: function render() {
 
+            var responseStyle = (0, _classnames2.default)({
+                'response': true,
+                'high1': this.props.adapt
+            });
             return _react2.default.createElement(
                 'div',
                 { className: 'details_2' },
@@ -21099,13 +23641,13 @@ var ExistingInfoDisplay = function (_Component) {
                     _react2.default.createElement('img', { src: '/assets/edit_icon.png' }),
                     _react2.default.createElement(
                         _Button2.default,
-                        { href: 'javascript:void(0)', onClick: this.props.onClick },
+                        { href: 'javascript:void(0)', onClick: this.props.onClick, adapt: this.props.adapt },
                         'Edit'
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'response' },
+                    { className: responseStyle },
                     _react2.default.createElement(
                         'label',
                         null,
@@ -21131,7 +23673,7 @@ var ExistingInfoDisplay = function (_Component) {
 exports.default = ExistingInfoDisplay;
 
 /***/ }),
-/* 167 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21147,7 +23689,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
@@ -21269,7 +23811,7 @@ var CheckBox = function (_React$Component) {
 exports.default = CheckBox;
 
 /***/ }),
-/* 168 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21285,31 +23827,31 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
 
-var _blocking = __webpack_require__(171);
+var _blocking = __webpack_require__(177);
 
 var _blocking2 = _interopRequireDefault(_blocking);
 
-var _apps_and_websites = __webpack_require__(170);
+var _apps_and_websites = __webpack_require__(176);
 
 var _apps_and_websites2 = _interopRequireDefault(_apps_and_websites);
 
-var _timeline_and_tagging = __webpack_require__(178);
+var _timeline_and_tagging = __webpack_require__(183);
 
 var _timeline_and_tagging2 = _interopRequireDefault(_timeline_and_tagging);
 
-var _privacy = __webpack_require__(177);
+var _privacy = __webpack_require__(182);
 
 var _privacy2 = _interopRequireDefault(_privacy);
 
-var _general = __webpack_require__(176);
+var _general = __webpack_require__(181);
 
 var _general2 = _interopRequireDefault(_general);
 
 var _utilities = __webpack_require__(4);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21539,7 +24081,7 @@ var GeneralSettings = function (_React$Component) {
 exports.default = GeneralSettings;
 
 /***/ }),
-/* 169 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21555,7 +24097,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -21563,7 +24105,9 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
+
+var _utilities = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21581,7 +24125,15 @@ var Settingsdropdown = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Settingsdropdown.__proto__ || Object.getPrototypeOf(Settingsdropdown)).call(this, props));
 
+        var adaptation = (0, _utilities.getParsed)("adaptations");
+        var adaptationVisited = (0, _utilities.getParsed)("visited");
+
+        _this.state = {
+            highlight: !adaptationVisited["Privacy_futureRequests"]["highlight"] && adaptation["privacy_futureRequests"] == "high" || !adaptationVisited["Timeline_seePost"]["highlight"] && adaptation["timeline_seePost"] === "high" || !adaptationVisited["Block_User"]["highlight"] && adaptation["block_User"] == "high" || !adaptationVisited["Block_Event"]["highlight"] && adaptation["block_Event"] == "high" || !adaptationVisited["Block_App"]["highlight"] && adaptation["block_App"] == "high" || !adaptationVisited["Block_AppInvite"]["highlight"] && adaptation["block_AppInvite"] == "high" ? true : false
+        };
+
         _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleHighlight = _this.handleHighlight.bind(_this);
         return _this;
     }
 
@@ -21593,9 +24145,17 @@ var Settingsdropdown = function (_React$Component) {
             this.props.settingsdropDown();
         }
     }, {
+        key: 'handleHighlight',
+        value: function handleHighlight() {
+
+            this.setState({
+                highlight: false
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            console.log("I have been called");
+            //console.log("I have been called");
             return _react2.default.createElement(
                 'div',
                 { id: 'dropdown_header' },
@@ -21655,7 +24215,7 @@ var Settingsdropdown = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'li',
-                        null,
+                        { className: this.state.highlight ? "high1" : null },
                         _react2.default.createElement(
                             _reactRouterDom.Link,
                             { className: 'settings_options_b', to: {
@@ -21669,7 +24229,7 @@ var Settingsdropdown = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             'a',
-                            { className: 'settings_options_b', href: '#Log Out' },
+                            { className: 'settings_options_b', href: 'https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR' },
                             'Log Out'
                         )
                     )
@@ -21684,7 +24244,7 @@ var Settingsdropdown = function (_React$Component) {
 exports.default = Settingsdropdown;
 
 /***/ }),
-/* 170 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21700,7 +24260,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Popup = __webpack_require__(20);
+var _Popup = __webpack_require__(17);
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
@@ -21881,7 +24441,7 @@ var Apps = function (_Component) {
 exports.default = Apps;
 
 /***/ }),
-/* 171 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21897,19 +24457,19 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _blockUsers = __webpack_require__(175);
+var _blockUsers = __webpack_require__(97);
 
 var _blockUsers2 = _interopRequireDefault(_blockUsers);
 
-var _blockApp = __webpack_require__(172);
+var _blockApp = __webpack_require__(178);
 
 var _blockApp2 = _interopRequireDefault(_blockApp);
 
-var _blockAppInvites = __webpack_require__(173);
+var _blockAppInvites = __webpack_require__(179);
 
 var _blockAppInvites2 = _interopRequireDefault(_blockAppInvites);
 
-var _blockEventInvites = __webpack_require__(174);
+var _blockEventInvites = __webpack_require__(180);
 
 var _blockEventInvites2 = _interopRequireDefault(_blockEventInvites);
 
@@ -21957,7 +24517,7 @@ var Blocking = function (_React$Component) {
 exports.default = Blocking;
 
 /***/ }),
-/* 172 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21973,7 +24533,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AutocompleteInput = __webpack_require__(33);
+var _AutocompleteInput = __webpack_require__(35);
 
 var _AutocompleteInput2 = _interopRequireDefault(_AutocompleteInput);
 
@@ -21983,15 +24543,15 @@ var _Button2 = _interopRequireDefault(_Button);
 
 var _utilities = __webpack_require__(4);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
-var _SuggestionBoilerplate = __webpack_require__(25);
+var _SuggestionBoilerplate = __webpack_require__(20);
 
 var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
 
-var _Event = __webpack_require__(59);
+var _Event = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22220,7 +24780,7 @@ var BlockApp = function (_React$Component) {
             var _this3 = this;
 
             var autocomplete = _react2.default.createElement(_AutocompleteInput2.default, {
-                className: this.state.highlight ? "block_high" : null,
+                className: this.state.highlight ? "high1" : null,
                 commaSeperated: true,
                 onChange: function onChange(value) {
                     return _this3.handleChange(value);
@@ -22275,7 +24835,7 @@ var BlockApp = function (_React$Component) {
 exports.default = BlockApp;
 
 /***/ }),
-/* 173 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22291,7 +24851,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AutocompleteInput = __webpack_require__(33);
+var _AutocompleteInput = __webpack_require__(35);
 
 var _AutocompleteInput2 = _interopRequireDefault(_AutocompleteInput);
 
@@ -22301,15 +24861,15 @@ var _Button2 = _interopRequireDefault(_Button);
 
 var _utilities = __webpack_require__(4);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
-var _SuggestionBoilerplate = __webpack_require__(25);
+var _SuggestionBoilerplate = __webpack_require__(20);
 
 var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
 
-var _Event = __webpack_require__(59);
+var _Event = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22353,7 +24913,7 @@ var BlockAppInvites = function (_React$Component) {
             object: " blocking of Mike Rogers",
             objectSugst: "block Jim Mend",
             label_Sugst: " I think you should block \"Jim Mend\" from sending you app invites",
-            label_Auto: "The grayed out and underlined entries were automatically blocked"
+            label_Auto: "The grayed out and underlined people were automatically blocked from sending you App Invites"
         };
 
         _this.handleChange = _this.handleChange.bind(_this);
@@ -22369,6 +24929,9 @@ var BlockAppInvites = function (_React$Component) {
         _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
         _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
 
+        var visited = JSON.parse(localStorage.featuresVisited);
+        visited.notifications.app = true;
+        localStorage.setItem("featuresVisited", JSON.stringify(visited));
         return _this;
     }
 
@@ -22523,11 +25086,15 @@ var BlockAppInvites = function (_React$Component) {
                                     { key: index },
                                     friend,
                                     _react2.default.createElement(
-                                        _Button2.default,
-                                        { href: 'javascript:void(0)', onClick: function onClick() {
-                                                return _this2.onClickUnBlock(friend);
-                                            } },
-                                        'Unblock'
+                                        'span',
+                                        { style: { marginLeft: '10px' } },
+                                        _react2.default.createElement(
+                                            _Button2.default,
+                                            { href: 'javascript:void(0)', onClick: function onClick() {
+                                                    return _this2.onClickUnBlock(friend);
+                                                } },
+                                            'Unblock '
+                                        )
                                     )
                                 );
                             }
@@ -22544,7 +25111,7 @@ var BlockAppInvites = function (_React$Component) {
             var _this3 = this;
 
             var autocomplete = _react2.default.createElement(_AutocompleteInput2.default, {
-                className: this.state.highlight ? "block_high" : null,
+                className: this.state.highlight ? "high1" : null,
                 commaSeperated: true,
                 onChange: function onChange(value) {
                     return _this3.handleChange(value);
@@ -22592,7 +25159,7 @@ var BlockAppInvites = function (_React$Component) {
 exports.default = BlockAppInvites;
 
 /***/ }),
-/* 174 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22608,7 +25175,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AutocompleteInput = __webpack_require__(33);
+var _AutocompleteInput = __webpack_require__(35);
 
 var _AutocompleteInput2 = _interopRequireDefault(_AutocompleteInput);
 
@@ -22618,15 +25185,15 @@ var _Button2 = _interopRequireDefault(_Button);
 
 var _utilities = __webpack_require__(4);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
-var _SuggestionBoilerplate = __webpack_require__(25);
+var _SuggestionBoilerplate = __webpack_require__(20);
 
 var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
 
-var _Event = __webpack_require__(59);
+var _Event = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22671,7 +25238,7 @@ var BlockEventInvites = function (_React$Component) {
             object: " blocking of Richard Midor",
             objectSugst: "block Kyle Parker",
             label_Sugst: " I think you should block \"Kyle Parker\" from sending you event invites",
-            label_Auto: "The grayed out and underlined entries were automatically blocked"
+            label_Auto: "The grayed out and underlined people were automatically blocked"
         };
 
         _this.handleChange = _this.handleChange.bind(_this);
@@ -22687,6 +25254,9 @@ var BlockEventInvites = function (_React$Component) {
         _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
         _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
 
+        var visited = JSON.parse(localStorage.featuresVisited);
+        visited.notifications.event = true;
+        localStorage.setItem("featuresVisited", JSON.stringify(visited));
         return _this;
     }
 
@@ -22848,11 +25418,15 @@ var BlockEventInvites = function (_React$Component) {
                                     { key: index },
                                     friend,
                                     _react2.default.createElement(
-                                        _Button2.default,
-                                        { href: 'javascript:void(0)', onClick: function onClick() {
-                                                return _this2.onClickUnBlock(friend);
-                                            } },
-                                        'Unblock'
+                                        'span',
+                                        { style: { marginLeft: '10px' } },
+                                        _react2.default.createElement(
+                                            _Button2.default,
+                                            { href: 'javascript:void(0)', onClick: function onClick() {
+                                                    return _this2.onClickUnBlock(friend);
+                                                } },
+                                            'Unblock'
+                                        )
                                     )
                                 );
                             }
@@ -22870,7 +25444,7 @@ var BlockEventInvites = function (_React$Component) {
 
             //console.log("The state of highlight is "+ this.state.highlight);   
             var autocomplete = _react2.default.createElement(_AutocompleteInput2.default, {
-                className: this.state.highlight ? "block_high" : null,
+                className: this.state.highlight ? "high1" : null,
                 commaSeperated: true,
                 onChange: function onChange(value) {
                     return _this3.handleChange(value);
@@ -22918,684 +25492,7 @@ var BlockEventInvites = function (_React$Component) {
 exports.default = BlockEventInvites;
 
 /***/ }),
-/* 175 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__(5);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _Popup = __webpack_require__(20);
-
-var _Popup2 = _interopRequireDefault(_Popup);
-
-var _algorithms = __webpack_require__(143);
-
-var _utilities = __webpack_require__(4);
-
-var _AutomationBoilerplate = __webpack_require__(18);
-
-var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
-
-var _SuggestionBoilerplate = __webpack_require__(25);
-
-var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
-
-var _classnames = __webpack_require__(35);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
-So, the users_friendship is being updated based on the current changes being made to it,  however it is gotten from the friendsList function that keeps getting updated based on the users being blocked. I therefore need to find a way to keep the original list in sysnc with the updated list without shortening the users list.
-**/
-
-var BlockUsers = function (_React$Component) {
-    _inherits(BlockUsers, _React$Component);
-
-    function BlockUsers(props) {
-        _classCallCheck(this, BlockUsers);
-
-        var _this = _possibleConstructorReturn(this, (BlockUsers.__proto__ || Object.getPrototypeOf(BlockUsers)).call(this, props));
-
-        var adaptation = (0, _utilities.getParsed)('adaptations');
-        var adaptationVisited = (0, _utilities.getParsed)("visited");
-
-        _this.state = { username: '',
-            high_username: 'Jack Scout',
-            renderPopup: false,
-            friendsList: (0, _utilities.friendsList)(),
-            renderUltimateBlock: false,
-            blockedUserslist: JSON.parse(localStorage.getItem('blockedUsers')),
-            showUnblockPopup: false,
-            highlight: !adaptationVisited["Block_User"]["highlight"] && adaptation["block_User"] == "high" ? true : false,
-            suggestion: !adaptationVisited["Block_User"]["suggestion"] && adaptation["block_User"] === "sugst",
-            automation: !adaptationVisited["Block_User"]["automation"] && adaptation["block_User"] === "auto",
-            displayAutomationPopup: true,
-            displaySuggestionPopup: true,
-
-            action: "Block_User, Check to see if the suggested users were blocked/unblocked (for undo_automation)",
-            context: "Block_User",
-            label_Sugst: " I think that you should block \"Jack Scout\"",
-            label_Auto: "The grayed out and underlined entries were automatically blocked"
-        };
-
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleChange_high = _this.handleChange_high.bind(_this);
-        _this.onClickBlock = _this.onClickBlock.bind(_this);
-        _this.onClickUltimateBlock = _this.onClickUltimateBlock.bind(_this);
-        _this.onClickUnblock = _this.onClickUnblock.bind(_this);
-        _this.showBlockedUsers = _this.showBlockedUsers.bind(_this);
-
-        _this.onClickDestroySuggestion = _this.onClickDestroySuggestion.bind(_this);
-        _this.onClickOK_Suggestion = _this.onClickOK_Suggestion.bind(_this);
-
-        _this.onClickOk_Auto = _this.onClickOk_Auto.bind(_this);
-        _this.onClickUndo_Auto = _this.onClickUndo_Auto.bind(_this);
-
-        return _this;
-    }
-
-    _createClass(BlockUsers, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            //var blockedUsers = JSON.parse(localStorage.getItem('blockedUsers'));
-
-            //var friends = JSON.parse(localStorage.getItem('friends'))
-            // var friends_profile = JSON.parse(localStorage.getItem('friend_profile'))
-
-            //console.log('The blocked'+  blockedUsers)
-
-            this.setState({
-                // blockedUserslist: blockedUsers,
-                // friendsList: friends,
-                //friend_profile:friends_profile
-            });
-
-            //console.log('The state blocked' +this.state.blockedUserslist.length)
-        }
-
-        /*Methods for the Suggestion Adaptation*/
-
-    }, {
-        key: 'onClickDestroySuggestion',
-        value: function onClickDestroySuggestion() {
-            this.setState({
-                displaySuggestionPopup: false
-            });
-        }
-    }, {
-        key: 'onClickOK_Suggestion',
-        value: function onClickOK_Suggestion() {
-            //this.changeAudience("future_requests","friends")
-
-            this.setState({
-                username: 'Jack Scout'
-            });
-
-            this.onClickBlock();
-        }
-
-        //Methods for the Automation Adaptation
-
-    }, {
-        key: 'onClickOk_Auto',
-        value: function onClickOk_Auto() {
-            this.setState({
-                displayAutomationPopup: false
-            });
-        }
-    }, {
-        key: 'onClickUndo_Auto',
-        value: function onClickUndo_Auto() {
-
-            var list_Length = this.state.blockedUserslist.length;
-            this.onClickUnblock(this.state.blockedUserslist[list_Length - 1]);
-
-            if (this.state.blockedUserslist.length === 0) {
-                this.setState({
-                    //blockedUserslist: unblockUsers,
-                    displayAutomationPopup: false
-                });
-            }
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(email) {
-
-            this.setState({ username: email.target.value });
-
-            // console.log("In the handleChange" +username)
-        }
-    }, {
-        key: 'handleChange_high',
-        value: function handleChange_high(name) {
-            this.setState({ high_username: name.target.value });
-        }
-    }, {
-        key: 'onClickBlock',
-        value: function onClickBlock() {
-            this.setState({ renderPopup: true });
-        }
-    }, {
-        key: 'cancel',
-        value: function cancel(what) {
-
-            if (what === 'first') {
-                this.setState({ renderPopup: false });
-            } else if (what === 'second') {
-                this.setState({ renderUltimateBlock: false,
-                    friendsList: (0, _utilities.friendsList)() });
-            } else if (what == 'third') {
-                this.setState({ showUnblockPopup: false });
-            }
-        }
-
-        /*setLocalStorage(){
-         //localStorage.setItem('blockedUsers',JSON.stringify(this.state.blockedUserslist))  
-            addToLocalStorageObject('blockedUsers',this.state.blockedUserslist);
-        }*/
-
-    }, {
-        key: 'allowed',
-        value: function allowed(event) {
-
-            var blockedFriend = this.state.username;
-            this.state.blockedUserslist.push(blockedFriend);
-
-            //Change friendship status in users localStorage
-            this.state.friendsList.forEach(function (element, index) {
-
-                if (element.name === blockedFriend) {
-                    element['friend'] = false;
-                }
-            });
-            (0, _utilities.addToLocalStorageObject)('users', this.state.friendsList);
-            (0, _utilities.addToLocalStorageObject)('blockedUsers', this.state.blockedUserslist);
-
-            //this.setLocalStorage(); 
-
-            this.cancel('second');
-            this.cancel('first');
-
-            //if highlight Adaptation, clear the input value
-            if (this.state.highlight) {
-
-                this.setState({
-                    highlight: false,
-                    high_username: ''
-                });
-
-                //console.log("I cleared the input")
-
-                (0, _utilities.saveVisitedAdaptation)("Block_User", "highlight");
-            }
-
-            //saveVisitedAdaptation("Privacy_futureRequests","highlight");
-        }
-    }, {
-        key: 'onClickUltimateBlock',
-        value: function onClickUltimateBlock(user) {
-            this.setState({
-                renderUltimateBlock: true,
-                username: user });
-        }
-    }, {
-        key: 'UltimateBlock',
-        value: function UltimateBlock() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                _Popup2.default,
-                { title: 'Are you sure you want to block ' + this.state.username + '?', cancel: function cancel() {
-                        _this2.cancel('second');
-                    },
-                    okay: function okay() {
-                        _this2.allowed();
-                    },
-                    okButtonName: 'Block ' + this.state.username.split(" ")[0], destroy: function destroy() {
-                        null;
-                    } },
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'popup_imgwrap' },
-                        _react2.default.createElement('img', { src: '../../assets/warning.png', width: '53', height: '48' })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'popup_content' },
-                        _react2.default.createElement(
-                            'div',
-                            null,
-                            _react2.default.createElement(
-                                'h4',
-                                null,
-                                this.state.username,
-                                ' will no longer be able to:'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'ul',
-                            null,
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                'See things you post on your timeline'
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                'Tag you'
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                'Invite you to events or groups'
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                'Start a conversation with you'
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                'Add you as a friend'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'popup_content_2' },
-                            'If you\'re friends, blocking ',
-                            this.state.username,
-                            ' will also unfriend him.'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'popup_content_2' },
-                            'If you just want to limit what you share with ',
-                            this.state.username,
-                            ' or see less of him on Fakebook, you cacn ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: 'javascript:void(0)' },
-                                'take a break'
-                            ),
-                            ' from him instead '
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'popup_content_border' },
-                            ' '
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'popup_content_2' },
-                            'Instead, you may want to send ',
-                            this.state.username,
-                            ' a message because he might not know he is bothering you.  ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: '' },
-                                'Let him know.'
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }, {
-        key: 'BlockPopup',
-        value: function BlockPopup() {
-            var _this3 = this;
-
-            var pop;
-
-            if (this.state.username !== '' || this.state.highlight) {
-                var user;
-                //this is hard coded for the highlight adaptation
-                if (this.state.highlight) {
-                    user = this.state.high_username;
-                } else {
-                    user = this.state.username;
-                }
-
-                var foundelements = [];
-                var found = false;
-
-                //console.log("The friendlist is as follows:");
-                //console.log(this.state.friendsList);
-                this.state.friendsList.forEach(function (element, index) {
-
-                    var editdistance = (0, _algorithms.levenshteinDistance)(user, element.name);
-                    //I choose 7 for username input where it takes atleast 7 edits to arrive to exising usernames 
-
-                    if (editdistance <= 7) {
-                        found = true;
-                        foundelements.push(element.name);
-                    }
-                });
-
-                pop =
-                //Popup has no okay button, just the x button to cancel
-
-                _react2.default.createElement(
-                    _Popup2.default,
-                    { title: 'Block People', cancel: function cancel() {
-                            _this3.cancel('first');
-                        }, noFooter: true, header_style: true, content_style: true, closeButton: true },
-                    !found ? _react2.default.createElement(
-                        'div',
-                        null,
-                        'No results found'
-                    ) : _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'The list below shows results for people whose profile includes words similar to "',
-                            this.state.username,
-                            '". These people may not be your friends or followers'
-                        ),
-                        _react2.default.createElement(
-                            'ul',
-                            { className: 'BlockPopup' },
-                            foundelements.map(function (element, index) {
-
-                                var profile_image = (0, _utilities.getProfilePic)(element);
-                                //var profile_image = this.state.friend_profile[element].profile_pic;
-                                //src={`../../../assets/users/${profile_image}`
-
-
-                                return _react2.default.createElement(
-                                    'li',
-                                    { key: index },
-                                    ' ',
-                                    element,
-                                    _react2.default.createElement('img', { src: profile_image }),
-                                    _react2.default.createElement(
-                                        _Button2.default,
-                                        { type: 'cancel', href: 'javascript:void(0)', onClick: function onClick() {
-                                                _this3.onClickUltimateBlock(element);
-                                            } },
-                                        ' Block '
-                                    ),
-                                    ' '
-                                );
-                            })
-                        )
-                    )
-                );
-            } else {
-                pop = _react2.default.createElement(
-                    _Popup2.default,
-                    { title: 'Invalid Search Query', cancel: function cancel() {
-                            _this3.cancel('first');
-                        }, width: 900, height: 10, closeButton: true, closeButtonName: 'Close', content_style: true, header_style: true },
-                    _react2.default.createElement(
-                        'p',
-                        null,
-                        'Please type a valid query in the search box and try again'
-                    )
-                );
-            }
-
-            return pop;
-        }
-    }, {
-        key: 'allowUnblock',
-        value: function allowUnblock(user) {
-            var Index = this.state.blockedUserslist.indexOf(user);
-            this.state.blockedUserslist.splice(Index, 1);
-
-            //console.log('The user is'+user);
-            //Change friendship status in users localStorage
-            this.state.friendsList.forEach(function (element, index) {
-
-                if (element.name === user) {
-                    element['friend'] = true;
-                    //console.log("The element name is"+element.name+"User is "+user);
-                }
-            });
-
-            (0, _utilities.addToLocalStorageObject)('users', this.state.friendsList);
-            (0, _utilities.addToLocalStorageObject)('blockedUsers', this.state.blockedUserslist);
-
-            //this.setLocalStorage(); 
-            this.cancel('third');
-        }
-    }, {
-        key: 'onClickUnblock',
-        value: function onClickUnblock(user) {
-            this.setState({
-                showUnblockPopup: true,
-                username: user
-            });
-        }
-    }, {
-        key: 'unblockUser',
-        value: function unblockUser() {
-            var _this4 = this;
-
-            //Find the index of the user from the array and then delete it from the array. 
-            var user = this.state.username;
-
-            return _react2.default.createElement(
-                _Popup2.default,
-                { title: 'Unblock ' + user, cancel: function cancel() {
-                        _this4.cancel('third');
-                    }, okay: function okay() {
-                        return _this4.allowUnblock(user);
-                    }, okButtonName: 'Confirm', destroy: void 0 },
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    'Are you sure you want to unblock ',
-                    user
-                ),
-                _react2.default.createElement(
-                    'ul',
-                    null,
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        user,
-                        ' may be able to see your timeline or contact you, depending on your privacy settings'
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'Tags you and ',
-                        user,
-                        ' previously added of each other may be restored'
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        null,
-                        'You can remove tags of yourself on your activity log'
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    'Please remember you\'ll have to wait 48 hour before you can re-block ',
-                    user,
-                    '.'
-                )
-            );
-        }
-    }, {
-        key: 'showBlockedUsers',
-        value: function showBlockedUsers() {
-            var _this5 = this;
-
-            if (this.state.blockedUserslist.length > 0) {
-                return _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'ul',
-                        null,
-                        this.state.blockedUserslist.map(function (user, index) {
-                            if (_this5.state.displayAutomationPopup && _this5.state.automation) {
-                                return _react2.default.createElement(
-                                    'li',
-                                    { key: index },
-                                    _react2.default.createElement(
-                                        'span',
-                                        { className: 'righttop_text_onAutomation' },
-                                        user
-                                    ),
-                                    _react2.default.createElement(
-                                        _Button2.default,
-                                        { href: 'javascript:void(0)', onClick: function onClick() {
-                                                _this5.onClickUnblock(user);
-                                            } },
-                                        'Unblock'
-                                    )
-                                );
-                            } else {
-                                return _react2.default.createElement(
-                                    'li',
-                                    { key: index },
-                                    user,
-                                    _react2.default.createElement(
-                                        _Button2.default,
-                                        { href: 'javascript:void(0)', onClick: function onClick() {
-                                                _this5.onClickUnblock(user);
-                                            } },
-                                        'Unblock'
-                                    )
-                                );
-                            }
-                        })
-                    ),
-                    /*The Automation Adaptation Popup*/
-                    this.state.displayAutomationPopup && this.state.automation && _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto })
-                );
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-
-            var block_value_high_style = (0, _classnames2.default)({
-                'block_value': !this.state.highlight,
-                'block_value_high': this.state.highlight
-            });
-
-            //console.log("The highlight state is "+ this.state.highlight)
-            // console.log("The highlight name is "+ this.state.high_username)
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'h2',
-                        { className: 'right_header' },
-                        ' Manage blocking '
-                    )
-                ),
-                _react2.default.createElement('hr', null),
-                _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'div',
-                    { id: 'right_top' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'righttop_label' },
-                        ' Restricted List '
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { className: 'right_link', href: '#' },
-                        ' Edit List '
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'righttop_text' },
-                        'When you add a friend to your Restricted list, they won\'t see posts on Fakebook that you share to Friends only. They may still see things that you share to Public or on a mutual friend\'s timeline, and posts that they\'re tagged in. Fakebook doesn\'t notify your friends when you add them to your Restricted list. ',
-                        _react2.default.createElement(
-                            'a',
-                            { href: '#' },
-                            'Learn more'
-                        )
-                    )
-                ),
-                _react2.default.createElement('hr', null),
-                _react2.default.createElement(
-                    'div',
-                    { id: 'right_bottom' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'rightbottom_label' },
-                        ' Block users '
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'rightbottom_text' },
-                        'Once you block someone, that person can no longer see things you post on your timeline, tag you, invite you to events or groups,start a conversation with you, or add you as a friend. Note: Does not include apps, games or groups you both participate in.'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { id: 'right_bottom_form' },
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            ' Block users',
-                            this.state.highlight ? _react2.default.createElement('input', { id: 'text', className: block_value_high_style, type: 'text', defaultValue: this.state.high_username, onChange: this.handleChange_high }) : _react2.default.createElement('input', { id: 'text', type: 'text', placeholder: 'Add name or email', onChange: this.handleChange })
-                        ),
-                        _react2.default.createElement(
-                            _Button2.default,
-                            { href: 'javascript:void(0)', type: 'confirm', onClick: this.onClickBlock },
-                            'Block '
-                        ),
-                        _react2.default.createElement('br', null),
-                        this.state.renderPopup ? this.BlockPopup() : null,
-                        this.state.renderUltimateBlock ? this.UltimateBlock() : null,
-                        this.state.showUnblockPopup ? this.unblockUser() : null,
-                        this.showBlockedUsers(),
-                        /*The Suggestion Adaptation*/
-                        this.state.displaySuggestionPopup && this.state.suggestion && _react2.default.createElement(_SuggestionBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Sugst, agree: this.onClickOK_Suggestion, destroy: this.onClickDestroySuggestion })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return BlockUsers;
-}(_react2.default.Component);
-
-exports.default = BlockUsers;
-
-/***/ }),
-/* 176 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23779,7 +25676,7 @@ var General = function (_Component) {
 exports.default = General;
 
 /***/ }),
-/* 177 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23799,27 +25696,27 @@ var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Edit = __webpack_require__(95);
+var _Edit = __webpack_require__(96);
 
 var _Edit2 = _interopRequireDefault(_Edit);
 
-var _CheckBox = __webpack_require__(167);
+var _CheckBox = __webpack_require__(173);
 
 var _CheckBox2 = _interopRequireDefault(_CheckBox);
 
-var _AudienceMenu = __webpack_require__(61);
+var _AudienceMenu = __webpack_require__(62);
 
 var _AudienceMenu2 = _interopRequireDefault(_AudienceMenu);
 
-var _SuggestionBoilerplate = __webpack_require__(25);
+var _SuggestionBoilerplate = __webpack_require__(20);
 
 var _SuggestionBoilerplate2 = _interopRequireDefault(_SuggestionBoilerplate);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
-var _Highlight = __webpack_require__(14);
+var _Highlight = __webpack_require__(15);
 
 var _utilities = __webpack_require__(4);
 
@@ -24201,7 +26098,7 @@ var body = function (_Component) {
 exports.default = body;
 
 /***/ }),
-/* 178 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24217,27 +26114,27 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(16);
+var _reactRouterDom = __webpack_require__(14);
 
 var _Button = __webpack_require__(5);
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Edit = __webpack_require__(95);
+var _Edit = __webpack_require__(96);
 
 var _Edit2 = _interopRequireDefault(_Edit);
 
-var _ProfileLink = __webpack_require__(28);
+var _ProfileLink = __webpack_require__(27);
 
 var _ProfileLink2 = _interopRequireDefault(_ProfileLink);
 
 var _utilities = __webpack_require__(4);
 
-var _AudienceMenu = __webpack_require__(61);
+var _AudienceMenu = __webpack_require__(62);
 
 var _AudienceMenu2 = _interopRequireDefault(_AudienceMenu);
 
-var _AutomationBoilerplate = __webpack_require__(18);
+var _AutomationBoilerplate = __webpack_require__(16);
 
 var _AutomationBoilerplate2 = _interopRequireDefault(_AutomationBoilerplate);
 
@@ -24560,7 +26457,7 @@ var TimelineandTagging = function (_Component) {
 exports.default = TimelineandTagging;
 
 /***/ }),
-/* 179 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24570,11 +26467,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(142);
+var _App = __webpack_require__(144);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -24584,12 +26481,12 @@ var app = document.getElementById('app');
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), app);
 
 /***/ }),
-/* 180 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -24598,9 +26495,9 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), ap
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var emptyObject = __webpack_require__(44);
+var emptyObject = __webpack_require__(45);
 var _invariant = __webpack_require__(2);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -25387,7 +27284,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
 
   /**
    * Creates a composite component class given a class specification.
-   * See https://FriendBook.github.io/react/docs/top-level-api.html#react.createclass
+   * See https://facebook.github.io/react/docs/top-level-api.html#react.createclass
    *
    * @param {object} spec Class specification (which must define `render`).
    * @return {function} Component constructor function.
@@ -25518,14 +27415,14 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 181 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -25555,12 +27452,12 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 182 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -25572,7 +27469,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(181);
+var camelize = __webpack_require__(186);
 
 var msPattern = /^-ms-/;
 
@@ -25600,14 +27497,14 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 183 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -25617,7 +27514,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(191);
+var isTextNode = __webpack_require__(196);
 
 /*eslint-disable no-bitwise */
 
@@ -25645,14 +27542,14 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 184 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -25778,14 +27675,14 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 185 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -25799,8 +27696,8 @@ module.exports = createArrayFromMixed;
 
 var ExecutionEnvironment = __webpack_require__(10);
 
-var createArrayFromMixed = __webpack_require__(184);
-var getMarkupWrap = __webpack_require__(186);
+var createArrayFromMixed = __webpack_require__(189);
+var getMarkupWrap = __webpack_require__(191);
 var invariant = __webpack_require__(2);
 
 /**
@@ -25868,14 +27765,14 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 186 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -25969,12 +27866,12 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 187 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26013,14 +27910,14 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 188 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26051,12 +27948,12 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 189 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26068,7 +27965,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(188);
+var hyphenate = __webpack_require__(193);
 
 var msPattern = /^ms-/;
 
@@ -26095,14 +27992,14 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 190 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26125,14 +28022,14 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 191 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26142,7 +28039,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(190);
+var isNode = __webpack_require__(195);
 
 /**
  * @param {*} object The object to check.
@@ -26155,12 +28052,12 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 192 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26190,12 +28087,12 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 193 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26218,14 +28115,14 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 194 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -26235,14 +28132,14 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(193);
+var performance = __webpack_require__(198);
 
 var performanceNow;
 
 /**
  * Detect if we can use `window.performance.now()` and gracefully fallback to
  * `Date.now()` if it doesn't exist. We need to support Firefox < 15 for now
- * because of FriendBook's testing infrastructure.
+ * because of Facebook's testing infrastructure.
  */
 if (performance.now) {
   performanceNow = function performanceNow() {
@@ -26257,7 +28154,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 195 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26332,7 +28229,7 @@ module.exports = hoistNonReactStatics;
 
 
 /***/ }),
-/* 196 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -36937,12 +38834,12 @@ return jQuery;
 
 
 /***/ }),
-/* 197 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, FriendBook, Inc.
+ * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -36955,7 +38852,7 @@ return jQuery;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(2);
   var warning = __webpack_require__(3);
-  var ReactPropTypesSecret = __webpack_require__(64);
+  var ReactPropTypesSecret = __webpack_require__(65);
   var loggedTypeFailures = {};
 }
 
@@ -37006,12 +38903,12 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 198 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, FriendBook, Inc.
+ * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -37023,7 +38920,7 @@ module.exports = checkPropTypes;
 
 var emptyFunction = __webpack_require__(12);
 var invariant = __webpack_require__(2);
-var ReactPropTypesSecret = __webpack_require__(64);
+var ReactPropTypesSecret = __webpack_require__(65);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -37072,12 +38969,12 @@ module.exports = function() {
 
 
 /***/ }),
-/* 199 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -37149,12 +39046,12 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 200 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -37165,7 +39062,7 @@ module.exports = ARIADOMPropertyConfig;
 
 var ReactDOMComponentTree = __webpack_require__(9);
 
-var focusNode = __webpack_require__(97);
+var focusNode = __webpack_require__(99);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -37176,12 +39073,12 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 201 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -37190,11 +39087,11 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(37);
+var EventPropagators = __webpack_require__(38);
 var ExecutionEnvironment = __webpack_require__(10);
-var FallbackCompositionState = __webpack_require__(207);
-var SyntheticCompositionEvent = __webpack_require__(250);
-var SyntheticInputEvent = __webpack_require__(253);
+var FallbackCompositionState = __webpack_require__(212);
+var SyntheticCompositionEvent = __webpack_require__(255);
+var SyntheticInputEvent = __webpack_require__(258);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -37563,12 +39460,12 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 202 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -37577,14 +39474,14 @@ module.exports = BeforeInputEventPlugin;
 
 
 
-var CSSProperty = __webpack_require__(102);
+var CSSProperty = __webpack_require__(104);
 var ExecutionEnvironment = __webpack_require__(10);
 var ReactInstrumentation = __webpack_require__(13);
 
-var camelizeStyleName = __webpack_require__(182);
-var dangerousStyleValue = __webpack_require__(260);
-var hyphenateStyleName = __webpack_require__(189);
-var memoizeStringOnly = __webpack_require__(192);
+var camelizeStyleName = __webpack_require__(187);
+var dangerousStyleValue = __webpack_require__(265);
+var hyphenateStyleName = __webpack_require__(194);
+var memoizeStringOnly = __webpack_require__(197);
 var warning = __webpack_require__(3);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -37782,12 +39679,12 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 203 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -37796,17 +39693,17 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(36);
-var EventPropagators = __webpack_require__(37);
+var EventPluginHub = __webpack_require__(37);
+var EventPropagators = __webpack_require__(38);
 var ExecutionEnvironment = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactUpdates = __webpack_require__(15);
-var SyntheticEvent = __webpack_require__(19);
+var ReactUpdates = __webpack_require__(18);
+var SyntheticEvent = __webpack_require__(22);
 
-var inputValueTracking = __webpack_require__(119);
-var getEventTarget = __webpack_require__(76);
-var isEventSupported = __webpack_require__(77);
-var isTextInputElement = __webpack_require__(121);
+var inputValueTracking = __webpack_require__(121);
+var getEventTarget = __webpack_require__(77);
+var isEventSupported = __webpack_require__(78);
+var isTextInputElement = __webpack_require__(123);
 
 var eventTypes = {
   change: {
@@ -37857,7 +39754,7 @@ function manualDispatchChangeEvent(nativeEvent) {
   // elements instead of directly on the input). Without this, controlled
   // components don't work properly in conjunction with event bubbling because
   // the component is rerendered and the value reverted before all the event
-  // handlers can run. See https://github.com/FriendBook/react/issues/708.
+  // handlers can run. See https://github.com/facebook/react/issues/708.
   ReactUpdates.batchedUpdates(runEventInBatch, event);
 }
 
@@ -38097,12 +39994,12 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 204 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38113,10 +40010,10 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(6);
 
-var DOMLazyTree = __webpack_require__(29);
+var DOMLazyTree = __webpack_require__(30);
 var ExecutionEnvironment = __webpack_require__(10);
 
-var createNodesFromMarkup = __webpack_require__(185);
+var createNodesFromMarkup = __webpack_require__(190);
 var emptyFunction = __webpack_require__(12);
 var invariant = __webpack_require__(2);
 
@@ -38147,12 +40044,12 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 205 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38176,12 +40073,12 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 206 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38190,9 +40087,9 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(37);
+var EventPropagators = __webpack_require__(38);
 var ReactDOMComponentTree = __webpack_require__(9);
-var SyntheticMouseEvent = __webpack_require__(47);
+var SyntheticMouseEvent = __webpack_require__(48);
 
 var eventTypes = {
   mouseEnter: {
@@ -38277,12 +40174,12 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 207 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38291,11 +40188,11 @@ module.exports = EnterLeaveEventPlugin;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var PooledClass = __webpack_require__(26);
+var PooledClass = __webpack_require__(28);
 
-var getTextContentAccessor = __webpack_require__(118);
+var getTextContentAccessor = __webpack_require__(120);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -38375,12 +40272,12 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 208 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38389,7 +40286,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var DOMProperty = __webpack_require__(21);
+var DOMProperty = __webpack_require__(23);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -38594,7 +40491,7 @@ var HTMLDOMPropertyConfig = {
 
       // Number inputs get special treatment due to some edge cases in
       // Chrome. Let everything else assign the value attribute as normal.
-      // https://github.com/FriendBook/react/issues/7253#issuecomment-236074326
+      // https://github.com/facebook/react/issues/7253#issuecomment-236074326
       if (node.type !== 'number' || node.hasAttribute('value') === false) {
         node.setAttribute('value', '' + value);
       } else if (node.validity && !node.validity.badInput && node.ownerDocument.activeElement !== node) {
@@ -38615,12 +40512,12 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 209 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38629,12 +40526,12 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(30);
+var ReactReconciler = __webpack_require__(31);
 
-var instantiateReactComponent = __webpack_require__(120);
-var KeyEscapeUtils = __webpack_require__(68);
-var shouldUpdateReactComponent = __webpack_require__(78);
-var traverseAllChildren = __webpack_require__(123);
+var instantiateReactComponent = __webpack_require__(122);
+var KeyEscapeUtils = __webpack_require__(69);
+var shouldUpdateReactComponent = __webpack_require__(79);
+var traverseAllChildren = __webpack_require__(125);
 var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
@@ -38642,9 +40539,9 @@ var ReactComponentTreeHook;
 if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
-  // https://github.com/FriendBook/react/issues/7240
+  // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
-  // https://github.com/FriendBook/react/pull/7178
+  // https://github.com/facebook/react/pull/7178
   ReactComponentTreeHook = __webpack_require__(11);
 }
 
@@ -38736,7 +40633,7 @@ var ReactChildReconciler = {
         var nextChildInstance = instantiateReactComponent(nextElement, true);
         nextChildren[name] = nextChildInstance;
         // Creating mount image now ensures refs are resolved in right order
-        // (see https://github.com/FriendBook/react/pull/7101 for explanation).
+        // (see https://github.com/facebook/react/pull/7101 for explanation).
         var nextChildMountImage = ReactReconciler.mountComponent(nextChildInstance, transaction, hostParent, hostContainerInfo, context, selfDebugID);
         mountImages.push(nextChildMountImage);
       }
@@ -38772,12 +40669,12 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 210 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38786,8 +40683,8 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(65);
-var ReactDOMIDOperations = __webpack_require__(217);
+var DOMChildrenOperations = __webpack_require__(66);
+var ReactDOMIDOperations = __webpack_require__(222);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -38803,12 +40700,12 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 211 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38818,25 +40715,25 @@ module.exports = ReactComponentBrowserEnvironment;
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var React = __webpack_require__(31);
-var ReactComponentEnvironment = __webpack_require__(70);
-var ReactCurrentOwner = __webpack_require__(17);
-var ReactErrorUtils = __webpack_require__(71);
-var ReactInstanceMap = __webpack_require__(38);
+var React = __webpack_require__(32);
+var ReactComponentEnvironment = __webpack_require__(71);
+var ReactCurrentOwner = __webpack_require__(19);
+var ReactErrorUtils = __webpack_require__(72);
+var ReactInstanceMap = __webpack_require__(39);
 var ReactInstrumentation = __webpack_require__(13);
-var ReactNodeTypes = __webpack_require__(112);
-var ReactReconciler = __webpack_require__(30);
+var ReactNodeTypes = __webpack_require__(114);
+var ReactReconciler = __webpack_require__(31);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(259);
+  var checkReactTypeSpec = __webpack_require__(264);
 }
 
-var emptyObject = __webpack_require__(44);
+var emptyObject = __webpack_require__(45);
 var invariant = __webpack_require__(2);
-var shallowEqual = __webpack_require__(63);
-var shouldUpdateReactComponent = __webpack_require__(78);
+var shallowEqual = __webpack_require__(64);
+var shouldUpdateReactComponent = __webpack_require__(79);
 var warning = __webpack_require__(3);
 
 var CompositeTypes = {
@@ -39707,12 +41604,12 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 212 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -39724,15 +41621,15 @@ module.exports = ReactCompositeComponent;
 
 
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactDefaultInjection = __webpack_require__(229);
-var ReactMount = __webpack_require__(111);
-var ReactReconciler = __webpack_require__(30);
-var ReactUpdates = __webpack_require__(15);
-var ReactVersion = __webpack_require__(244);
+var ReactDefaultInjection = __webpack_require__(234);
+var ReactMount = __webpack_require__(113);
+var ReactReconciler = __webpack_require__(31);
+var ReactUpdates = __webpack_require__(18);
+var ReactVersion = __webpack_require__(249);
 
-var findDOMNode = __webpack_require__(261);
-var getHostComponentFromComposite = __webpack_require__(117);
-var renderSubtreeIntoContainer = __webpack_require__(268);
+var findDOMNode = __webpack_require__(266);
+var getHostComponentFromComposite = __webpack_require__(119);
+var renderSubtreeIntoContainer = __webpack_require__(273);
 var warning = __webpack_require__(3);
 
 ReactDefaultInjection.inject();
@@ -39809,9 +41706,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactInstrumentation = __webpack_require__(13);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(226);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(220);
-  var ReactDOMInvalidARIAHook = __webpack_require__(219);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(231);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(225);
+  var ReactDOMInvalidARIAHook = __webpack_require__(224);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -39822,12 +41719,12 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 213 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -39839,34 +41736,34 @@ module.exports = ReactDOM;
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var AutoFocusUtils = __webpack_require__(200);
-var CSSPropertyOperations = __webpack_require__(202);
-var DOMLazyTree = __webpack_require__(29);
-var DOMNamespaces = __webpack_require__(66);
-var DOMProperty = __webpack_require__(21);
-var DOMPropertyOperations = __webpack_require__(104);
-var EventPluginHub = __webpack_require__(36);
-var EventPluginRegistry = __webpack_require__(45);
-var ReactBrowserEventEmitter = __webpack_require__(46);
-var ReactDOMComponentFlags = __webpack_require__(105);
+var AutoFocusUtils = __webpack_require__(205);
+var CSSPropertyOperations = __webpack_require__(207);
+var DOMLazyTree = __webpack_require__(30);
+var DOMNamespaces = __webpack_require__(67);
+var DOMProperty = __webpack_require__(23);
+var DOMPropertyOperations = __webpack_require__(106);
+var EventPluginHub = __webpack_require__(37);
+var EventPluginRegistry = __webpack_require__(46);
+var ReactBrowserEventEmitter = __webpack_require__(47);
+var ReactDOMComponentFlags = __webpack_require__(107);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactDOMInput = __webpack_require__(218);
-var ReactDOMOption = __webpack_require__(221);
-var ReactDOMSelect = __webpack_require__(106);
-var ReactDOMTextarea = __webpack_require__(224);
+var ReactDOMInput = __webpack_require__(223);
+var ReactDOMOption = __webpack_require__(226);
+var ReactDOMSelect = __webpack_require__(108);
+var ReactDOMTextarea = __webpack_require__(229);
 var ReactInstrumentation = __webpack_require__(13);
-var ReactMultiChild = __webpack_require__(237);
-var ReactServerRenderingTransaction = __webpack_require__(242);
+var ReactMultiChild = __webpack_require__(242);
+var ReactServerRenderingTransaction = __webpack_require__(247);
 
 var emptyFunction = __webpack_require__(12);
-var escapeTextContentForBrowser = __webpack_require__(49);
+var escapeTextContentForBrowser = __webpack_require__(50);
 var invariant = __webpack_require__(2);
-var isEventSupported = __webpack_require__(77);
-var shallowEqual = __webpack_require__(63);
-var inputValueTracking = __webpack_require__(119);
-var validateDOMNesting = __webpack_require__(79);
+var isEventSupported = __webpack_require__(78);
+var shallowEqual = __webpack_require__(64);
+var inputValueTracking = __webpack_require__(121);
+var validateDOMNesting = __webpack_require__(80);
 var warning = __webpack_require__(3);
 
 var Flags = ReactDOMComponentFlags;
@@ -40331,7 +42228,7 @@ ReactDOMComponent.Mixin = {
           el = ownerDocument.createElement(this._currentElement.type, props.is);
         } else {
           // Separate else branch instead of using `props.is || undefined` above becuase of a Firefox bug.
-          // See discussion in https://github.com/FriendBook/react/pull/6896
+          // See discussion in https://github.com/facebook/react/pull/6896
           // and discussion in https://bugzilla.mozilla.org/show_bug.cgi?id=1276240
           el = ownerDocument.createElement(this._currentElement.type);
         }
@@ -40518,7 +42415,7 @@ ReactDOMComponent.Mixin = {
         // Avoid setting textContent when the text is empty. In IE11 setting
         // textContent on a text area will cause the placeholder to not
         // show within the textarea until it has been focused and blurred again.
-        // https://github.com/FriendBook/react/issues/6731#issuecomment-254874553
+        // https://github.com/facebook/react/issues/6731#issuecomment-254874553
         if (contentToUse !== '') {
           if (process.env.NODE_ENV !== 'production') {
             setAndValidateContentChildDev.call(this, contentToUse);
@@ -40840,12 +42737,12 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 214 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -40854,7 +42751,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(79);
+var validateDOMNesting = __webpack_require__(80);
 
 var DOC_NODE_TYPE = 9;
 
@@ -40877,12 +42774,12 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 215 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -40891,9 +42788,9 @@ module.exports = ReactDOMContainerInfo;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var DOMLazyTree = __webpack_require__(29);
+var DOMLazyTree = __webpack_require__(30);
 var ReactDOMComponentTree = __webpack_require__(9);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -40940,12 +42837,12 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 216 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -40962,12 +42859,12 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 217 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -40976,7 +42873,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(65);
+var DOMChildrenOperations = __webpack_require__(66);
 var ReactDOMComponentTree = __webpack_require__(9);
 
 /**
@@ -40998,12 +42895,12 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 218 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41013,12 +42910,12 @@ module.exports = ReactDOMIDOperations;
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var DOMPropertyOperations = __webpack_require__(104);
-var LinkedValueUtils = __webpack_require__(69);
+var DOMPropertyOperations = __webpack_require__(106);
+var LinkedValueUtils = __webpack_require__(70);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactUpdates = __webpack_require__(15);
+var ReactUpdates = __webpack_require__(18);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -41175,7 +43072,7 @@ var ReactDOMInput = {
         // Here we check to see if the defaultValue has actually changed, avoiding these problems
         // when the user is inputting text
         //
-        // https://github.com/FriendBook/react/issues/7253
+        // https://github.com/facebook/react/issues/7253
         if (node.defaultValue !== '' + props.defaultValue) {
           node.defaultValue = '' + props.defaultValue;
         }
@@ -41211,7 +43108,7 @@ var ReactDOMInput = {
       case 'time':
       case 'week':
         // This fixes the no-show issue on iOS Safari and Android Chrome:
-        // https://github.com/FriendBook/react/issues/7233
+        // https://github.com/facebook/react/issues/7233
         node.value = '';
         node.value = node.defaultValue;
         break;
@@ -41244,7 +43141,7 @@ function _handleChange(event) {
 
   // Here we use asap to wait until all updates have propagated, which
   // is important when using controlled components within layers:
-  // https://github.com/FriendBook/react/issues/1698
+  // https://github.com/facebook/react/issues/1698
   ReactUpdates.asap(forceUpdateIfMounted, this);
 
   var name = props.name;
@@ -41289,12 +43186,12 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 219 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41303,7 +43200,7 @@ module.exports = ReactDOMInput;
 
 
 
-var DOMProperty = __webpack_require__(21);
+var DOMProperty = __webpack_require__(23);
 var ReactComponentTreeHook = __webpack_require__(11);
 
 var warning = __webpack_require__(3);
@@ -41386,12 +43283,12 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 220 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41433,12 +43330,12 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 221 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41447,11 +43344,11 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var React = __webpack_require__(31);
+var React = __webpack_require__(32);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactDOMSelect = __webpack_require__(106);
+var ReactDOMSelect = __webpack_require__(108);
 
 var warning = __webpack_require__(3);
 var didWarnInvalidOptionChildren = false;
@@ -41559,12 +43456,12 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 222 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41575,8 +43472,8 @@ module.exports = ReactDOMOption;
 
 var ExecutionEnvironment = __webpack_require__(10);
 
-var getNodeForCharacterOffset = __webpack_require__(265);
-var getTextContentAccessor = __webpack_require__(118);
+var getNodeForCharacterOffset = __webpack_require__(270);
+var getTextContentAccessor = __webpack_require__(120);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -41774,12 +43671,12 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 223 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41789,15 +43686,15 @@ module.exports = ReactDOMSelection;
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var DOMChildrenOperations = __webpack_require__(65);
-var DOMLazyTree = __webpack_require__(29);
+var DOMChildrenOperations = __webpack_require__(66);
+var DOMLazyTree = __webpack_require__(30);
 var ReactDOMComponentTree = __webpack_require__(9);
 
-var escapeTextContentForBrowser = __webpack_require__(49);
+var escapeTextContentForBrowser = __webpack_require__(50);
 var invariant = __webpack_require__(2);
-var validateDOMNesting = __webpack_require__(79);
+var validateDOMNesting = __webpack_require__(80);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -41940,12 +43837,12 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 224 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -41955,11 +43852,11 @@ module.exports = ReactDOMTextComponent;
 
 
 var _prodInvariant = __webpack_require__(6),
-    _assign = __webpack_require__(7);
+    _assign = __webpack_require__(8);
 
-var LinkedValueUtils = __webpack_require__(69);
+var LinkedValueUtils = __webpack_require__(70);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactUpdates = __webpack_require__(15);
+var ReactUpdates = __webpack_require__(18);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -42104,12 +44001,12 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 225 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42244,12 +44141,12 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 226 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42258,8 +44155,8 @@ module.exports = {
 
 
 
-var DOMProperty = __webpack_require__(21);
-var EventPluginRegistry = __webpack_require__(45);
+var DOMProperty = __webpack_require__(23);
+var EventPluginRegistry = __webpack_require__(46);
 var ReactComponentTreeHook = __webpack_require__(11);
 
 var warning = __webpack_require__(3);
@@ -42360,12 +44257,12 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 227 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2016-present, FriendBook, Inc.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42375,12 +44272,12 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(235);
-var ReactHostOperationHistoryHook = __webpack_require__(233);
+var ReactInvalidSetStateWarningHook = __webpack_require__(240);
+var ReactHostOperationHistoryHook = __webpack_require__(238);
 var ReactComponentTreeHook = __webpack_require__(11);
 var ExecutionEnvironment = __webpack_require__(10);
 
-var performanceNow = __webpack_require__(194);
+var performanceNow = __webpack_require__(199);
 var warning = __webpack_require__(3);
 
 var hooks = [];
@@ -42725,12 +44622,12 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 228 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42739,10 +44636,10 @@ module.exports = ReactDebugTool;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var ReactUpdates = __webpack_require__(15);
-var Transaction = __webpack_require__(48);
+var ReactUpdates = __webpack_require__(18);
+var Transaction = __webpack_require__(49);
 
 var emptyFunction = __webpack_require__(12);
 
@@ -42796,12 +44693,12 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 229 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42810,25 +44707,25 @@ module.exports = ReactDefaultBatchingStrategy;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(199);
-var BeforeInputEventPlugin = __webpack_require__(201);
-var ChangeEventPlugin = __webpack_require__(203);
-var DefaultEventPluginOrder = __webpack_require__(205);
-var EnterLeaveEventPlugin = __webpack_require__(206);
-var HTMLDOMPropertyConfig = __webpack_require__(208);
-var ReactComponentBrowserEnvironment = __webpack_require__(210);
-var ReactDOMComponent = __webpack_require__(213);
+var ARIADOMPropertyConfig = __webpack_require__(204);
+var BeforeInputEventPlugin = __webpack_require__(206);
+var ChangeEventPlugin = __webpack_require__(208);
+var DefaultEventPluginOrder = __webpack_require__(210);
+var EnterLeaveEventPlugin = __webpack_require__(211);
+var HTMLDOMPropertyConfig = __webpack_require__(213);
+var ReactComponentBrowserEnvironment = __webpack_require__(215);
+var ReactDOMComponent = __webpack_require__(218);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactDOMEmptyComponent = __webpack_require__(215);
-var ReactDOMTreeTraversal = __webpack_require__(225);
-var ReactDOMTextComponent = __webpack_require__(223);
-var ReactDefaultBatchingStrategy = __webpack_require__(228);
-var ReactEventListener = __webpack_require__(232);
-var ReactInjection = __webpack_require__(234);
-var ReactReconcileTransaction = __webpack_require__(240);
-var SVGDOMPropertyConfig = __webpack_require__(245);
-var SelectEventPlugin = __webpack_require__(246);
-var SimpleEventPlugin = __webpack_require__(247);
+var ReactDOMEmptyComponent = __webpack_require__(220);
+var ReactDOMTreeTraversal = __webpack_require__(230);
+var ReactDOMTextComponent = __webpack_require__(228);
+var ReactDefaultBatchingStrategy = __webpack_require__(233);
+var ReactEventListener = __webpack_require__(237);
+var ReactInjection = __webpack_require__(239);
+var ReactReconcileTransaction = __webpack_require__(245);
+var SVGDOMPropertyConfig = __webpack_require__(250);
+var SelectEventPlugin = __webpack_require__(251);
+var SimpleEventPlugin = __webpack_require__(252);
 
 var alreadyInjected = false;
 
@@ -42885,12 +44782,12 @@ module.exports = {
 };
 
 /***/ }),
-/* 230 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42908,12 +44805,12 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 231 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42922,7 +44819,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(36);
+var EventPluginHub = __webpack_require__(37);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -42943,12 +44840,12 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 232 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -42957,16 +44854,16 @@ module.exports = ReactEventEmitterMixin;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var EventListener = __webpack_require__(96);
+var EventListener = __webpack_require__(98);
 var ExecutionEnvironment = __webpack_require__(10);
-var PooledClass = __webpack_require__(26);
+var PooledClass = __webpack_require__(28);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactUpdates = __webpack_require__(15);
+var ReactUpdates = __webpack_require__(18);
 
-var getEventTarget = __webpack_require__(76);
-var getUnboundedScrollPosition = __webpack_require__(187);
+var getEventTarget = __webpack_require__(77);
+var getUnboundedScrollPosition = __webpack_require__(192);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -43101,12 +44998,12 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 233 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2016-present, FriendBook, Inc.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43138,12 +45035,12 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 234 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43152,14 +45049,14 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 
-var DOMProperty = __webpack_require__(21);
-var EventPluginHub = __webpack_require__(36);
-var EventPluginUtils = __webpack_require__(67);
-var ReactComponentEnvironment = __webpack_require__(70);
-var ReactEmptyComponent = __webpack_require__(107);
-var ReactBrowserEventEmitter = __webpack_require__(46);
-var ReactHostComponent = __webpack_require__(109);
-var ReactUpdates = __webpack_require__(15);
+var DOMProperty = __webpack_require__(23);
+var EventPluginHub = __webpack_require__(37);
+var EventPluginUtils = __webpack_require__(68);
+var ReactComponentEnvironment = __webpack_require__(71);
+var ReactEmptyComponent = __webpack_require__(109);
+var ReactBrowserEventEmitter = __webpack_require__(47);
+var ReactHostComponent = __webpack_require__(111);
+var ReactUpdates = __webpack_require__(18);
 
 var ReactInjection = {
   Component: ReactComponentEnvironment.injection,
@@ -43175,12 +45072,12 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 235 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2016-present, FriendBook, Inc.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43216,12 +45113,12 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 236 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43230,7 +45127,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 
 
 
-var adler32 = __webpack_require__(258);
+var adler32 = __webpack_require__(263);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -43269,12 +45166,12 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 237 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43285,16 +45182,16 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactComponentEnvironment = __webpack_require__(70);
-var ReactInstanceMap = __webpack_require__(38);
+var ReactComponentEnvironment = __webpack_require__(71);
+var ReactInstanceMap = __webpack_require__(39);
 var ReactInstrumentation = __webpack_require__(13);
 
-var ReactCurrentOwner = __webpack_require__(17);
-var ReactReconciler = __webpack_require__(30);
-var ReactChildReconciler = __webpack_require__(209);
+var ReactCurrentOwner = __webpack_require__(19);
+var ReactReconciler = __webpack_require__(31);
+var ReactChildReconciler = __webpack_require__(214);
 
 var emptyFunction = __webpack_require__(12);
-var flattenChildren = __webpack_require__(262);
+var flattenChildren = __webpack_require__(267);
 var invariant = __webpack_require__(2);
 
 /**
@@ -43719,12 +45616,12 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 238 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43816,12 +45713,12 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 239 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43845,12 +45742,12 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 240 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -43859,15 +45756,15 @@ module.exports = ReactPropTypeLocationNames;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var CallbackQueue = __webpack_require__(103);
-var PooledClass = __webpack_require__(26);
-var ReactBrowserEventEmitter = __webpack_require__(46);
-var ReactInputSelection = __webpack_require__(110);
+var CallbackQueue = __webpack_require__(105);
+var PooledClass = __webpack_require__(28);
+var ReactBrowserEventEmitter = __webpack_require__(47);
+var ReactInputSelection = __webpack_require__(112);
 var ReactInstrumentation = __webpack_require__(13);
-var Transaction = __webpack_require__(48);
-var ReactUpdateQueue = __webpack_require__(72);
+var Transaction = __webpack_require__(49);
+var ReactUpdateQueue = __webpack_require__(73);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -44027,12 +45924,12 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 241 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44042,7 +45939,7 @@ module.exports = ReactReconcileTransaction;
 
 
 
-var ReactOwner = __webpack_require__(238);
+var ReactOwner = __webpack_require__(243);
 
 var ReactRef = {};
 
@@ -44119,12 +46016,12 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 242 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, FriendBook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44133,12 +46030,12 @@ module.exports = ReactRef;
 
 
 
-var _assign = __webpack_require__(7);
+var _assign = __webpack_require__(8);
 
-var PooledClass = __webpack_require__(26);
-var Transaction = __webpack_require__(48);
+var PooledClass = __webpack_require__(28);
+var Transaction = __webpack_require__(49);
 var ReactInstrumentation = __webpack_require__(13);
-var ReactServerUpdateQueue = __webpack_require__(243);
+var ReactServerUpdateQueue = __webpack_require__(248);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -44213,12 +46110,12 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 243 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2015-present, FriendBook, Inc.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44230,7 +46127,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(72);
+var ReactUpdateQueue = __webpack_require__(73);
 
 var warning = __webpack_require__(3);
 
@@ -44356,12 +46253,12 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 244 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44373,12 +46270,12 @@ module.exports = ReactServerUpdateQueue;
 module.exports = '15.6.2';
 
 /***/ }),
-/* 245 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44678,12 +46575,12 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 246 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44692,15 +46589,15 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(37);
+var EventPropagators = __webpack_require__(38);
 var ExecutionEnvironment = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactInputSelection = __webpack_require__(110);
-var SyntheticEvent = __webpack_require__(19);
+var ReactInputSelection = __webpack_require__(112);
+var SyntheticEvent = __webpack_require__(22);
 
-var getActiveElement = __webpack_require__(98);
-var isTextInputElement = __webpack_require__(121);
-var shallowEqual = __webpack_require__(63);
+var getActiveElement = __webpack_require__(100);
+var isTextInputElement = __webpack_require__(123);
+var shallowEqual = __webpack_require__(64);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -44869,12 +46766,12 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 247 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -44886,23 +46783,23 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(6);
 
-var EventListener = __webpack_require__(96);
-var EventPropagators = __webpack_require__(37);
+var EventListener = __webpack_require__(98);
+var EventPropagators = __webpack_require__(38);
 var ReactDOMComponentTree = __webpack_require__(9);
-var SyntheticAnimationEvent = __webpack_require__(248);
-var SyntheticClipboardEvent = __webpack_require__(249);
-var SyntheticEvent = __webpack_require__(19);
-var SyntheticFocusEvent = __webpack_require__(252);
-var SyntheticKeyboardEvent = __webpack_require__(254);
-var SyntheticMouseEvent = __webpack_require__(47);
-var SyntheticDragEvent = __webpack_require__(251);
-var SyntheticTouchEvent = __webpack_require__(255);
-var SyntheticTransitionEvent = __webpack_require__(256);
-var SyntheticUIEvent = __webpack_require__(39);
-var SyntheticWheelEvent = __webpack_require__(257);
+var SyntheticAnimationEvent = __webpack_require__(253);
+var SyntheticClipboardEvent = __webpack_require__(254);
+var SyntheticEvent = __webpack_require__(22);
+var SyntheticFocusEvent = __webpack_require__(257);
+var SyntheticKeyboardEvent = __webpack_require__(259);
+var SyntheticMouseEvent = __webpack_require__(48);
+var SyntheticDragEvent = __webpack_require__(256);
+var SyntheticTouchEvent = __webpack_require__(260);
+var SyntheticTransitionEvent = __webpack_require__(261);
+var SyntheticUIEvent = __webpack_require__(40);
+var SyntheticWheelEvent = __webpack_require__(262);
 
 var emptyFunction = __webpack_require__(12);
-var getEventCharCode = __webpack_require__(74);
+var getEventCharCode = __webpack_require__(75);
 var invariant = __webpack_require__(2);
 
 /**
@@ -44945,7 +46842,7 @@ var onClickListeners = {};
 
 function getDictionaryKey(inst) {
   // Prevents V8 performance issue:
-  // https://github.com/FriendBook/react/pull/7232
+  // https://github.com/facebook/react/pull/7232
   return '.' + inst._rootNodeID;
 }
 
@@ -45099,12 +46996,12 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 248 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45113,7 +47010,7 @@ module.exports = SimpleEventPlugin;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(22);
 
 /**
  * @interface Event
@@ -45141,12 +47038,12 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 249 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45155,7 +47052,7 @@ module.exports = SyntheticAnimationEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(22);
 
 /**
  * @interface Event
@@ -45182,12 +47079,12 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 250 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45196,7 +47093,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(22);
 
 /**
  * @interface Event
@@ -45221,12 +47118,12 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 251 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45235,7 +47132,7 @@ module.exports = SyntheticCompositionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(47);
+var SyntheticMouseEvent = __webpack_require__(48);
 
 /**
  * @interface DragEvent
@@ -45260,12 +47157,12 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 252 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45274,7 +47171,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(39);
+var SyntheticUIEvent = __webpack_require__(40);
 
 /**
  * @interface FocusEvent
@@ -45299,12 +47196,12 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 253 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45313,7 +47210,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(22);
 
 /**
  * @interface Event
@@ -45339,12 +47236,12 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 254 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45353,11 +47250,11 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(39);
+var SyntheticUIEvent = __webpack_require__(40);
 
-var getEventCharCode = __webpack_require__(74);
-var getEventKey = __webpack_require__(263);
-var getEventModifierState = __webpack_require__(75);
+var getEventCharCode = __webpack_require__(75);
+var getEventKey = __webpack_require__(268);
+var getEventModifierState = __webpack_require__(76);
 
 /**
  * @interface KeyboardEvent
@@ -45426,12 +47323,12 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 255 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45440,9 +47337,9 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(39);
+var SyntheticUIEvent = __webpack_require__(40);
 
-var getEventModifierState = __webpack_require__(75);
+var getEventModifierState = __webpack_require__(76);
 
 /**
  * @interface TouchEvent
@@ -45474,12 +47371,12 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 256 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45488,7 +47385,7 @@ module.exports = SyntheticTouchEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(22);
 
 /**
  * @interface Event
@@ -45516,12 +47413,12 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 257 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45530,7 +47427,7 @@ module.exports = SyntheticTransitionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(47);
+var SyntheticMouseEvent = __webpack_require__(48);
 
 /**
  * @interface WheelEvent
@@ -45570,12 +47467,12 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 258 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45617,12 +47514,12 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 259 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45633,8 +47530,8 @@ module.exports = adler32;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactPropTypeLocationNames = __webpack_require__(239);
-var ReactPropTypesSecret = __webpack_require__(113);
+var ReactPropTypeLocationNames = __webpack_require__(244);
+var ReactPropTypesSecret = __webpack_require__(115);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -45644,9 +47541,9 @@ var ReactComponentTreeHook;
 if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
-  // https://github.com/FriendBook/react/issues/7240
+  // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
-  // https://github.com/FriendBook/react/pull/7178
+  // https://github.com/facebook/react/pull/7178
   ReactComponentTreeHook = __webpack_require__(11);
 }
 
@@ -45708,12 +47605,12 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 260 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45722,7 +47619,7 @@ module.exports = checkReactTypeSpec;
 
 
 
-var CSSProperty = __webpack_require__(102);
+var CSSProperty = __webpack_require__(104);
 var warning = __webpack_require__(3);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -45791,12 +47688,12 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 261 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45807,18 +47704,18 @@ module.exports = dangerousStyleValue;
 
 var _prodInvariant = __webpack_require__(6);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(9);
-var ReactInstanceMap = __webpack_require__(38);
+var ReactInstanceMap = __webpack_require__(39);
 
-var getHostComponentFromComposite = __webpack_require__(117);
+var getHostComponentFromComposite = __webpack_require__(119);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
 /**
  * Returns the DOM node rendered by this element.
  *
- * See https://FriendBook.github.io/react/docs/top-level-api.html#reactdom.finddomnode
+ * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.finddomnode
  *
  * @param {ReactComponent|DOMElement} componentOrElement
  * @return {?DOMElement} The root node of this element.
@@ -45855,12 +47752,12 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 262 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45870,8 +47767,8 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(68);
-var traverseAllChildren = __webpack_require__(123);
+var KeyEscapeUtils = __webpack_require__(69);
+var traverseAllChildren = __webpack_require__(125);
 var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
@@ -45879,9 +47776,9 @@ var ReactComponentTreeHook;
 if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
-  // https://github.com/FriendBook/react/issues/7240
+  // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
-  // https://github.com/FriendBook/react/pull/7178
+  // https://github.com/facebook/react/pull/7178
   ReactComponentTreeHook = __webpack_require__(11);
 }
 
@@ -45935,12 +47832,12 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 263 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -45949,7 +47846,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(74);
+var getEventCharCode = __webpack_require__(75);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -46050,12 +47947,12 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 264 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -46094,12 +47991,12 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 265 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -46171,12 +48068,12 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 266 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -46275,12 +48172,12 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 267 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -46289,7 +48186,7 @@ module.exports = getVendorPrefixedEventName;
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(49);
+var escapeTextContentForBrowser = __webpack_require__(50);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -46304,12 +48201,12 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 268 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -46318,15 +48215,15 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var ReactMount = __webpack_require__(111);
+var ReactMount = __webpack_require__(113);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 269 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hotjar = __webpack_require__(270);
+var hotjar = __webpack_require__(275);
 
 module.exports = {
 	hotjar: {
@@ -46338,7 +48235,7 @@ module.exports = {
 
 
 /***/ }),
-/* 270 */
+/* 275 */
 /***/ (function(module, exports) {
 
 module.exports = function(id, sv) {
@@ -46359,18 +48256,18 @@ module.exports = function(id, sv) {
 
 
 /***/ }),
-/* 271 */
+/* 276 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(81);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -46425,18 +48322,18 @@ BrowserRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (BrowserRouter);
 
 /***/ }),
-/* 272 */
+/* 277 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(81);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -46490,27 +48387,27 @@ HashRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (HashRouter);
 
 /***/ }),
-/* 273 */
+/* 278 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__ = __webpack_require__(129);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__["a" /* default */]);
 
 /***/ }),
-/* 274 */
+/* 279 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Link__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Link__ = __webpack_require__(126);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -46587,95 +48484,95 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (NavLink);
 
 /***/ }),
-/* 275 */
+/* 280 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__ = __webpack_require__(130);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__["a" /* default */]);
 
 /***/ }),
-/* 276 */
+/* 281 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__ = __webpack_require__(131);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__["a" /* default */]);
 
 /***/ }),
-/* 277 */
+/* 282 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__ = __webpack_require__(132);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__["a" /* default */]);
 
 /***/ }),
-/* 278 */
+/* 283 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__ = __webpack_require__(133);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__["a" /* default */]);
 
 /***/ }),
-/* 279 */
+/* 284 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__ = __webpack_require__(87);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__["a" /* default */]);
 
 /***/ }),
-/* 280 */
+/* 285 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__ = __webpack_require__(56);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__["a" /* default */]);
 
 /***/ }),
-/* 281 */
+/* 286 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__ = __webpack_require__(134);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
 
 /***/ }),
-/* 282 */
+/* 287 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(128);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -46968,18 +48865,18 @@ var createBrowserHistory = function createBrowserHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createBrowserHistory);
 
 /***/ }),
-/* 283 */
+/* 288 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(128);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -47289,15 +49186,15 @@ var createHashHistory = function createHashHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createHashHistory);
 
 /***/ }),
-/* 284 */
+/* 289 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(82);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -47457,12 +49354,12 @@ var createMemoryHistory = function createMemoryHistory() {
 /* unused harmony default export */ var _unused_webpack_default_export = (createMemoryHistory);
 
 /***/ }),
-/* 285 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -47473,7 +49370,7 @@ var createMemoryHistory = function createMemoryHistory() {
 var printWarning = function() {};
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret = __webpack_require__(84);
+  var ReactPropTypesSecret = __webpack_require__(85);
   var loggedTypeFailures = {};
 
   printWarning = function(text) {
@@ -47556,12 +49453,12 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 286 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -47569,7 +49466,7 @@ module.exports = checkPropTypes;
 
 
 
-var ReactPropTypesSecret = __webpack_require__(84);
+var ReactPropTypesSecret = __webpack_require__(85);
 
 function emptyFunction() {}
 
@@ -47622,12 +49519,12 @@ module.exports = function() {
 
 
 /***/ }),
-/* 287 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -47635,10 +49532,10 @@ module.exports = function() {
 
 
 
-var assign = __webpack_require__(7);
+var assign = __webpack_require__(8);
 
-var ReactPropTypesSecret = __webpack_require__(84);
-var checkPropTypes = __webpack_require__(285);
+var ReactPropTypesSecret = __webpack_require__(85);
+var checkPropTypes = __webpack_require__(290);
 
 var printWarning = function() {};
 
@@ -48185,30 +50082,30 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 288 */
+/* 293 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__ = __webpack_require__(129);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Prompt__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Prompt__ = __webpack_require__(130);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_1__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redirect__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redirect__ = __webpack_require__(131);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_2__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(86);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_3__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(55);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_4__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StaticRouter__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StaticRouter__ = __webpack_require__(132);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_5__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(133);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_6__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__generatePath__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__generatePath__ = __webpack_require__(87);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "generatePath", function() { return __WEBPACK_IMPORTED_MODULE_7__generatePath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__matchPath__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__matchPath__ = __webpack_require__(56);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_8__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__withRouter__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__withRouter__ = __webpack_require__(134);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__withRouter__["a"]; });
 
 
@@ -48232,18 +50129,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 289 */
+/* 294 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(135);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -48536,18 +50433,18 @@ var createBrowserHistory = function createBrowserHistory() {
 /* unused harmony default export */ var _unused_webpack_default_export = (createBrowserHistory);
 
 /***/ }),
-/* 290 */
+/* 295 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(135);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -48857,15 +50754,15 @@ var createHashHistory = function createHashHistory() {
 /* unused harmony default export */ var _unused_webpack_default_export = (createHashHistory);
 
 /***/ }),
-/* 291 */
+/* 296 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(88);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -49025,7 +50922,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createMemoryHistory);
 
 /***/ }),
-/* 292 */
+/* 297 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -49034,12 +50931,12 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 293 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -49050,7 +50947,7 @@ module.exports = Array.isArray || function (arr) {
 var printWarning = function() {};
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret = __webpack_require__(89);
+  var ReactPropTypesSecret = __webpack_require__(90);
   var loggedTypeFailures = {};
 
   printWarning = function(text) {
@@ -49133,12 +51030,12 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 294 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -49146,7 +51043,7 @@ module.exports = checkPropTypes;
 
 
 
-var ReactPropTypesSecret = __webpack_require__(89);
+var ReactPropTypesSecret = __webpack_require__(90);
 
 function emptyFunction() {}
 
@@ -49199,12 +51096,12 @@ module.exports = function() {
 
 
 /***/ }),
-/* 295 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -49212,10 +51109,10 @@ module.exports = function() {
 
 
 
-var assign = __webpack_require__(7);
+var assign = __webpack_require__(8);
 
-var ReactPropTypesSecret = __webpack_require__(89);
-var checkPropTypes = __webpack_require__(293);
+var ReactPropTypesSecret = __webpack_require__(90);
+var checkPropTypes = __webpack_require__(298);
 
 var printWarning = function() {};
 
@@ -49762,12 +51659,607 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 296 */
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory(__webpack_require__(1), __webpack_require__(7));
+	else if(typeof define === 'function' && define.amd)
+		define(["React", "ReactDOM"], factory);
+	else if(typeof exports === 'object')
+		exports["react-visibility-sensor"] = factory(require("react"), require("react-dom"));
+	else
+		root["react-visibility-sensor"] = factory(root["React"], root["ReactDOM"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(2);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _propTypes = __webpack_require__(3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _isVisibleWithOffset = __webpack_require__(6);
+
+var _isVisibleWithOffset2 = _interopRequireDefault(_isVisibleWithOffset);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function normalizeRect(rect) {
+  if (rect.width === undefined) {
+    rect.width = rect.right - rect.left;
+  }
+
+  if (rect.height === undefined) {
+    rect.height = rect.bottom - rect.top;
+  }
+
+  return rect;
+}
+
+var VisibilitySensor = function (_React$Component) {
+  _inherits(VisibilitySensor, _React$Component);
+
+  function VisibilitySensor(props) {
+    _classCallCheck(this, VisibilitySensor);
+
+    var _this = _possibleConstructorReturn(this, (VisibilitySensor.__proto__ || Object.getPrototypeOf(VisibilitySensor)).call(this, props));
+
+    _this.getContainer = function () {
+      return _this.props.containment || window;
+    };
+
+    _this.addEventListener = function (target, event, delay, throttle) {
+      if (!_this.debounceCheck) {
+        _this.debounceCheck = {};
+      }
+
+      var timeout = void 0;
+      var func = void 0;
+
+      var later = function later() {
+        timeout = null;
+        _this.check();
+      };
+
+      if (throttle > -1) {
+        func = function func() {
+          if (!timeout) {
+            timeout = setTimeout(later, throttle || 0);
+          }
+        };
+      } else {
+        func = function func() {
+          clearTimeout(timeout);
+          timeout = setTimeout(later, delay || 0);
+        };
+      }
+
+      var info = {
+        target: target,
+        fn: func,
+        getLastTimeout: function getLastTimeout() {
+          return timeout;
+        }
+      };
+
+      target.addEventListener(event, info.fn);
+      _this.debounceCheck[event] = info;
+    };
+
+    _this.startWatching = function () {
+      if (_this.debounceCheck || _this.interval) {
+        return;
+      }
+
+      if (_this.props.intervalCheck) {
+        _this.interval = setInterval(_this.check, _this.props.intervalDelay);
+      }
+
+      if (_this.props.scrollCheck) {
+        _this.addEventListener(_this.getContainer(), "scroll", _this.props.scrollDelay, _this.props.scrollThrottle);
+      }
+
+      if (_this.props.resizeCheck) {
+        _this.addEventListener(window, "resize", _this.props.resizeDelay, _this.props.resizeThrottle);
+      }
+
+      // if dont need delayed call, check on load ( before the first interval fires )
+      !_this.props.delayedCall && _this.check();
+    };
+
+    _this.stopWatching = function () {
+      if (_this.debounceCheck) {
+        // clean up event listeners and their debounce callers
+        for (var debounceEvent in _this.debounceCheck) {
+          if (_this.debounceCheck.hasOwnProperty(debounceEvent)) {
+            var debounceInfo = _this.debounceCheck[debounceEvent];
+
+            clearTimeout(debounceInfo.getLastTimeout());
+            debounceInfo.target.removeEventListener(debounceEvent, debounceInfo.fn);
+
+            _this.debounceCheck[debounceEvent] = null;
+          }
+        }
+      }
+      _this.debounceCheck = null;
+
+      if (_this.interval) {
+        _this.interval = clearInterval(_this.interval);
+      }
+    };
+
+    _this.check = function () {
+      var el = _this.node;
+      var rect = void 0;
+      var containmentRect = void 0;
+
+      // if the component has rendered to null, dont update visibility
+      if (!el) {
+        return _this.state;
+      }
+
+      rect = normalizeRect(_this.roundRectDown(el.getBoundingClientRect()));
+
+      if (_this.props.containment) {
+        var containmentDOMRect = _this.props.containment.getBoundingClientRect();
+        containmentRect = {
+          top: containmentDOMRect.top,
+          left: containmentDOMRect.left,
+          bottom: containmentDOMRect.bottom,
+          right: containmentDOMRect.right
+        };
+      } else {
+        containmentRect = {
+          top: 0,
+          left: 0,
+          bottom: window.innerHeight || document.documentElement.clientHeight,
+          right: window.innerWidth || document.documentElement.clientWidth
+        };
+      }
+
+      // Check if visibility is wanted via offset?
+      var offset = _this.props.offset || {};
+      var hasValidOffset = (typeof offset === "undefined" ? "undefined" : _typeof(offset)) === "object";
+
+      if (hasValidOffset) {
+        containmentRect.top += offset.top || 0;
+        containmentRect.left += offset.left || 0;
+        containmentRect.bottom -= offset.bottom || 0;
+        containmentRect.right -= offset.right || 0;
+      }
+
+      var visibilityRect = {
+        top: rect.top >= containmentRect.top,
+        left: rect.left >= containmentRect.left,
+        bottom: rect.bottom <= containmentRect.bottom,
+        right: rect.right <= containmentRect.right
+      };
+
+      // https://github.com/joshwnj/react-visibility-sensor/pull/114
+      var hasSize = rect.height > 0 && rect.width > 0;
+
+      var isVisible = hasSize && visibilityRect.top && visibilityRect.left && visibilityRect.bottom && visibilityRect.right;
+
+      // check for partial visibility
+      if (hasSize && _this.props.partialVisibility) {
+        var partialVisible = rect.top <= containmentRect.bottom && rect.bottom >= containmentRect.top && rect.left <= containmentRect.right && rect.right >= containmentRect.left;
+
+        // account for partial visibility on a single edge
+        if (typeof _this.props.partialVisibility === "string") {
+          partialVisible = visibilityRect[_this.props.partialVisibility];
+        }
+
+        // if we have minimum top visibility set by props, lets check, if it meets the passed value
+        // so if for instance element is at least 200px in viewport, then show it.
+        isVisible = _this.props.minTopValue ? partialVisible && rect.top <= containmentRect.bottom - _this.props.minTopValue : partialVisible;
+      }
+
+      // Deprecated options for calculating offset.
+      if (typeof offset.direction === "string" && typeof offset.value === "number") {
+        console.warn("[notice] offset.direction and offset.value have been deprecated. They still work for now, but will be removed in next major version. Please upgrade to the new syntax: { %s: %d }", offset.direction, offset.value);
+
+        isVisible = (0, _isVisibleWithOffset2.default)(offset, rect, containmentRect);
+      }
+
+      var state = _this.state;
+      // notify the parent when the value changes
+      if (_this.state.isVisible !== isVisible) {
+        state = {
+          isVisible: isVisible,
+          visibilityRect: visibilityRect
+        };
+        _this.setState(state);
+        if (_this.props.onChange) _this.props.onChange(isVisible);
+      }
+
+      return state;
+    };
+
+    _this.state = {
+      isVisible: null,
+      visibilityRect: {}
+    };
+    return _this;
+  }
+
+  _createClass(VisibilitySensor, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.node = _reactDom2.default.findDOMNode(this);
+      if (this.props.active) {
+        this.startWatching();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.stopWatching();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      // re-register node in componentDidUpdate if children diffs [#103]
+      this.node = _reactDom2.default.findDOMNode(this);
+
+      if (this.props.active && !prevProps.active) {
+        this.setState({
+          isVisible: null,
+          visibilityRect: {}
+        });
+
+        this.startWatching();
+      } else if (!this.props.active) {
+        this.stopWatching();
+      }
+    }
+  }, {
+    key: "roundRectDown",
+    value: function roundRectDown(rect) {
+      return {
+        top: Math.floor(rect.top),
+        left: Math.floor(rect.left),
+        bottom: Math.floor(rect.bottom),
+        right: Math.floor(rect.right)
+      };
+    }
+
+    /**
+     * Check if the element is within the visible viewport
+     */
+
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.props.children instanceof Function) {
+        return this.props.children({
+          isVisible: this.state.isVisible,
+          visibilityRect: this.state.visibilityRect
+        });
+      }
+      return _react2.default.Children.only(this.props.children);
+    }
+  }]);
+
+  return VisibilitySensor;
+}(_react2.default.Component);
+
+VisibilitySensor.defaultProps = {
+  active: true,
+  partialVisibility: false,
+  minTopValue: 0,
+  scrollCheck: false,
+  scrollDelay: 250,
+  scrollThrottle: -1,
+  resizeCheck: false,
+  resizeDelay: 250,
+  resizeThrottle: -1,
+  intervalCheck: true,
+  intervalDelay: 100,
+  delayedCall: false,
+  offset: {},
+  containment: null,
+  children: _react2.default.createElement("span", null)
+};
+VisibilitySensor.propTypes = {
+  onChange: _propTypes2.default.func,
+  active: _propTypes2.default.bool,
+  partialVisibility: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(["top", "right", "bottom", "left"])]),
+  delayedCall: _propTypes2.default.bool,
+  offset: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+    top: _propTypes2.default.number,
+    left: _propTypes2.default.number,
+    bottom: _propTypes2.default.number,
+    right: _propTypes2.default.number
+  }),
+  // deprecated offset property
+  _propTypes2.default.shape({
+    direction: _propTypes2.default.oneOf(["top", "right", "bottom", "left"]),
+    value: _propTypes2.default.number
+  })]),
+  scrollCheck: _propTypes2.default.bool,
+  scrollDelay: _propTypes2.default.number,
+  scrollThrottle: _propTypes2.default.number,
+  resizeCheck: _propTypes2.default.bool,
+  resizeDelay: _propTypes2.default.number,
+  resizeThrottle: _propTypes2.default.number,
+  intervalCheck: _propTypes2.default.bool,
+  intervalDelay: _propTypes2.default.number,
+  containment: typeof window !== "undefined" ? _propTypes2.default.instanceOf(window.Element) : _propTypes2.default.any,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func]),
+  minTopValue: _propTypes2.default.number
+};
+exports.default = VisibilitySensor;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(4)();
+}
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = __webpack_require__(5);
+
+function emptyFunction() {}
+
+module.exports = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    var err = new Error(
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+    err.name = 'Invariant Violation';
+    throw err;
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Tell whether the rect is visible, given an offset
+//
+// return: boolean
+module.exports = function (offset, rect, containmentRect) {
+  var offsetDir = offset.direction;
+  var offsetVal = offset.value;
+
+  // Rules for checking different kind of offsets. In example if the element is
+  // 90px below viewport and offsetTop is 100, it is considered visible.
+  switch (offsetDir) {
+    case 'top':
+      return containmentRect.top + offsetVal < rect.top && containmentRect.bottom > rect.bottom && containmentRect.left < rect.left && containmentRect.right > rect.right;
+
+    case 'left':
+      return containmentRect.left + offsetVal < rect.left && containmentRect.bottom > rect.bottom && containmentRect.top < rect.top && containmentRect.right > rect.right;
+
+    case 'bottom':
+      return containmentRect.bottom - offsetVal > rect.bottom && containmentRect.left < rect.left && containmentRect.right > rect.right && containmentRect.top < rect.top;
+
+    case 'right':
+      return containmentRect.right - offsetVal > rect.right && containmentRect.left < rect.left && containmentRect.top < rect.top && containmentRect.bottom > rect.bottom;
+  }
+};
+
+/***/ })
+/******/ ]);
+});
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -49824,12 +52316,12 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 297 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -49839,7 +52331,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(32);
+var _prodInvariant = __webpack_require__(33);
 
 var invariant = __webpack_require__(2);
 
@@ -49940,12 +52432,12 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 298 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -49954,11 +52446,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(297);
-var ReactElement = __webpack_require__(27);
+var PooledClass = __webpack_require__(303);
+var ReactElement = __webpack_require__(29);
 
 var emptyFunction = __webpack_require__(12);
-var traverseAllChildren = __webpack_require__(308);
+var traverseAllChildren = __webpack_require__(314);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -49998,7 +52490,7 @@ function forEachSingleChild(bookKeeping, child, name) {
 /**
  * Iterates through children that are typically specified as `props.children`.
  *
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.children.foreach
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.children.foreach
  *
  * The provided forEachFunc(child, index) will be called for each
  * leaf child.
@@ -50075,7 +52567,7 @@ function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
 /**
  * Maps children that are typically specified as `props.children`.
  *
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.children.map
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.children.map
  *
  * The provided mapFunction(child, key, index) will be called for each
  * leaf child.
@@ -50102,7 +52594,7 @@ function forEachSingleChildDummy(traverseContext, child, name) {
  * Count the number of children that are typically specified as
  * `props.children`.
  *
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.children.count
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.children.count
  *
  * @param {?*} children Children tree container.
  * @return {number} The number of children.
@@ -50115,7 +52607,7 @@ function countChildren(children, context) {
  * Flatten a children object (typically specified as `props.children`) and
  * return an array with appropriately re-keyed children.
  *
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.children.toarray
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.children.toarray
  */
 function toArray(children) {
   var result = [];
@@ -50134,12 +52626,12 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 299 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50148,7 +52640,7 @@ module.exports = ReactChildren;
 
 
 
-var ReactElement = __webpack_require__(27);
+var ReactElement = __webpack_require__(29);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -50157,7 +52649,7 @@ var ReactElement = __webpack_require__(27);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(137);
+  var ReactElementValidator = __webpack_require__(139);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -50307,12 +52799,12 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 300 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50336,12 +52828,12 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 301 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50350,20 +52842,20 @@ module.exports = ReactPropTypeLocationNames;
 
 
 
-var _require = __webpack_require__(27),
+var _require = __webpack_require__(29),
     isValidElement = _require.isValidElement;
 
-var factory = __webpack_require__(99);
+var factory = __webpack_require__(101);
 
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 302 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50378,12 +52870,12 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 303 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50395,12 +52887,12 @@ module.exports = ReactPropTypesSecret;
 module.exports = '15.6.2';
 
 /***/ }),
-/* 304 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50409,10 +52901,10 @@ module.exports = '15.6.2';
 
 
 
-var _prodInvariant = __webpack_require__(32);
+var _prodInvariant = __webpack_require__(33);
 
-var ReactPropTypeLocationNames = __webpack_require__(300);
-var ReactPropTypesSecret = __webpack_require__(302);
+var ReactPropTypeLocationNames = __webpack_require__(306);
+var ReactPropTypesSecret = __webpack_require__(308);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -50422,9 +52914,9 @@ var ReactComponentTreeHook;
 if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
-  // https://github.com/FriendBook/react/issues/7240
+  // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
-  // https://github.com/FriendBook/react/pull/7178
+  // https://github.com/facebook/react/pull/7178
   ReactComponentTreeHook = __webpack_require__(11);
 }
 
@@ -50486,12 +52978,12 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 305 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50500,24 +52992,24 @@ module.exports = checkReactTypeSpec;
 
 
 
-var _require = __webpack_require__(135),
+var _require = __webpack_require__(137),
     Component = _require.Component;
 
-var _require2 = __webpack_require__(27),
+var _require2 = __webpack_require__(29),
     isValidElement = _require2.isValidElement;
 
-var ReactNoopUpdateQueue = __webpack_require__(138);
-var factory = __webpack_require__(180);
+var ReactNoopUpdateQueue = __webpack_require__(140);
+var factory = __webpack_require__(185);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 306 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50536,12 +53028,12 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 307 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50549,9 +53041,9 @@ module.exports = getNextDebugID;
  */
 
 
-var _prodInvariant = __webpack_require__(32);
+var _prodInvariant = __webpack_require__(33);
 
-var ReactElement = __webpack_require__(27);
+var ReactElement = __webpack_require__(29);
 
 var invariant = __webpack_require__(2);
 
@@ -50559,7 +53051,7 @@ var invariant = __webpack_require__(2);
  * Returns the first child in a collection of children and verifies that there
  * is only one child in the collection.
  *
- * See https://FriendBook.github.io/react/docs/top-level-api.html#react.children.only
+ * See https://facebook.github.io/react/docs/top-level-api.html#react.children.only
  *
  * The current implementation of this function assumes that a single child gets
  * passed without a wrapper, but the purpose of this helper function is to
@@ -50578,12 +53070,12 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 308 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, FriendBook, Inc.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50592,14 +53084,14 @@ module.exports = onlyChild;
 
 
 
-var _prodInvariant = __webpack_require__(32);
+var _prodInvariant = __webpack_require__(33);
 
-var ReactCurrentOwner = __webpack_require__(17);
-var REACT_ELEMENT_TYPE = __webpack_require__(136);
+var ReactCurrentOwner = __webpack_require__(19);
+var REACT_ELEMENT_TYPE = __webpack_require__(138);
 
-var getIteratorFn = __webpack_require__(139);
+var getIteratorFn = __webpack_require__(141);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(296);
+var KeyEscapeUtils = __webpack_require__(302);
 var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';

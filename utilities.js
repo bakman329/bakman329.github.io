@@ -664,6 +664,17 @@ export function resetFeaturesUsed() {
   }));
 }
 
+export function longFeatureTitle(title) {
+    return {chat: "Change your chat settings",
+            untag: "Untag yourself from a post",
+            friends: "Unfollow a friend",
+            notifications: "Change your notification settings",
+            posts: "Delete or hide a post",
+            withhold_info: "Remove personal information from your account",
+            custom_lists: "Organize your friends into lists",
+            block: "Block people or apps",
+            audience: "Restrict the visibility of your posts or albums"}[title]
+}
 
 export function resetAll() {
   resetPosts();

@@ -4,7 +4,6 @@ var config = {
    output: {
        filename:'index.js',
        path:__dirname + '/',
-       publicPath:'/',
    },
 	
    devServer: {
@@ -31,3 +30,4 @@ var config = {
 }
 
 module.exports = config;
+

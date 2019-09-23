@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 import {hotjar} from 'react-hotjar'
-import {BrowserRouter, Link, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Link, Switch, Route,HashRouter} from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 import NewsFeed from './components/NewsFeed.jsx'
@@ -156,7 +156,7 @@ class App extends React.Component {
     return (
       <div>
        
-        <BrowserRouter>
+        <HashRouter>
           <div >
             <Header />
             <Scenario/> 
@@ -170,7 +170,7 @@ class App extends React.Component {
             </div>
             
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }

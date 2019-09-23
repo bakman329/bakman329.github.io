@@ -31,7 +31,7 @@ class BlockUsers extends React.Component {
                   displayAutomationPopup:true,
                   displaySuggestionPopup:true,
                   
-                  action:"Block_User, Check to see if the suggested users were blocked/unblocked (for undo_automation)",
+                  action:"Adapation of Block_User of Ira Siplan",
                   context:"Block_User",
                   label_Sugst:" Hi Alex - Posts by Ira Siplan have repeatedly been flagged as abusive. Do you want to block Ira?",
                   label_Auto: "The grayed out and underlined person was automatically blocked.",
@@ -119,8 +119,7 @@ handleChange(email) {
  }
 
 handleChange_high(name){
-    this.setState({high_username:name.target.value})
-    
+    this.setState({high_username:name.target.value})   
 }
     
 onClickBlock(){

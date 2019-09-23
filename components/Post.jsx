@@ -96,9 +96,9 @@ class Post extends React.Component {
       hideAutomation:!adaptationVisited ["Hide_Post"]["automation"]&& (adaptations["hide_Post"] === "auto"),
       untag_Automation:!adaptationVisited ["Untag_Post"]["automation"]&& (adaptations["untag_Post"] === "auto"),
       delete_Automation: !adaptationVisited["Delete_Post"]["automation"] && (adaptations["delete_Post"] === "auto"),
-      action:"Hide_Post, Check to see if the suggested hide action for the post was followed/not followed (for Undo_Automation) ",
-      action_tag:"Untag_Post,Check to see if the suggested tag action for the post was followed/not followed (for Undo_Automation)",
-      action_block:"Block_User,Check to see if the suggested block advice for the post was followed/not followed (for Undo_Automation)",
+      action:"Adapation was for Hide_Post -> hiding Post 42 ",
+      action_tag:"Adaptation was for Untag_Post -> untagging Post 27",
+      action_block:"Adaptation was for Block_User -> Blocking Ira Siplan",
         
      //Context
       context_tag:"Untag_Post",
@@ -235,7 +235,7 @@ class Post extends React.Component {
            saveVisitedAdaptation("Block_User","NewsFeed_highlight");
         }
 
-        registerEvent('Clicked on '+this.props.name+"'\s profile link to visit their profile page", 'at post '+this.props.index,(this.props.forTimeline?"Timeline":"NewsFeed"));   
+        registerEvent('Clicked on '+this.props.name+"'\s profile link to visit their profile page", 'from post '+this.props.index,(this.props.forTimeline?"Timeline":"NewsFeed"));   
    }
     
    //Suggestion 
@@ -456,7 +456,7 @@ class Post extends React.Component {
         render: false,
         action: 'Deleted '+ this.props.name + '\'s',
         context: 'Post '+this.props.index,
-        name:"Timeline",
+        object :"Timeline",
       };
 
         let used = JSON.parse(localStorage.featuresUsed);
@@ -487,7 +487,7 @@ class Post extends React.Component {
       var event = {
         action: "Shared '+this.props.name + '\'s", 
         context:'Post '+ this.props.index,
-        name:(this.props.forTimeline?"Timeline":"NewsFeed")
+        object:(this.props.forTimeline?"Timeline":"NewsFeed")
       };
 
       var posts = JSON.parse(localStorage.getItem('posts'));
@@ -501,9 +501,9 @@ class Post extends React.Component {
                   key: posts.length};
       localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
       indexPosts();
+      registerEvent('Clicked to Share ', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
       this.props.update();
-      //PostArea.update;
-
+      
       return event;
   }
 
@@ -697,7 +697,7 @@ class Post extends React.Component {
 
     if (this.state.delete_Automation && !this.state.showPostWhenHidden && this.props.index === 2) {
       return (
-          <AutomationBoilerplate action = {"Delete_Post,Check to see if the suggested delete action for the post was followed/not followed (for Undo_Automation)"} context = {"Delete_Post"} label={"This post about 'Mexican's going back to their country..' was automatically deleted"} onClickOK_Auto={this.onClickAutoOk} onClickUnDo_Auto = {this.onClickUndo}/>
+          <AutomationBoilerplate action = {"Adapation was for Delete_Post -> Deleting Post 2"} context = {"Delete_Post"} label={"This post about 'Mexican's going back to their country..' was automatically deleted"} onClickOK_Auto={this.onClickAutoOk} onClickUnDo_Auto = {this.onClickUndo}/>
       );
         
     } else {
@@ -710,9 +710,9 @@ class Post extends React.Component {
           <SuggestionPopup title="Suggestion" okay={()=>{
               var event={
                 render:false,
-                action: 'Followed and agreed with Delete_Post Suggestion',
-                context: this.props.name+'\'s Post: '+this.props.children,
-                name: (this.props.forTimeline?"Timeline":"NewsFeed"),
+                action: 'Suggestion : Delete_Post',
+                context:"1",
+                object: `Adaptation was for Delete_Post 2 -> ${this.props.name}\'s Post: ${this.props.children} at the ${this.props.forTimeline?"Timeline":"NewsFeed"}`,
                 renderSuggestion:false
               };
               this.setState(event);
@@ -725,9 +725,9 @@ class Post extends React.Component {
             destroy={()=>{
               var event={
                 render:true,
-                action:'Rather Not follow the Delete_Post Suggestion',
-                context: this.props.name+'\'s Post: '+this.props.children,
-                name: (this.props.forTimeline?"Timeline":"NewsFeed"),
+                 action: 'Decline_Suggestion : Delete_Post',
+                context:"0",
+                object: `Adaptation was for Delete_Post 2-> ${this.props.name}\'s Post: ${this.props.children} at the ${this.props.forTimeline?"Timeline":"NewsFeed"}`,
                 renderSuggestion:false
               };
               this.setState(event);
@@ -953,11 +953,11 @@ class Post extends React.Component {
    
     if (this.props.original_poster) {
       post_title.push(' shared ');
-      post_title.push(<ProfileLink name={this.props.original_poster} key={1} onClick={this.registerClick}/>);
+      post_title.push(<ProfileLink name={this.props.original_poster} key={this.props.index} onClick={this.registerClick}/>);
       post_title.push('\'s post');
     } else if (this.props.target_friend) {
       post_title.push(' ➤ ');
-      post_title.push(<ProfileLink name={this.props.target_friend} key={1} onClick={this.registerClick}/>);
+      post_title.push(<ProfileLink name={this.props.target_friend} key={this.props.index} onClick={this.registerClick}/>);
     }
       
     /*To indicate tagged Post*/
@@ -998,12 +998,12 @@ class Post extends React.Component {
           {    /*These happen on the Timeline */
                 
                 /*The Unsubscribe Suggestion Adaptation*/
-            (this.props.name == "Jack Scout") && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && <SuggestionBoilerplate action={"Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"}  context={"Unsubscribe_Friend"} label={"Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore."} agree ={this.onClickOK_UnsubscribeSuggestion} destroy = {this.onClickDestroyUnsubscribeSuggestion}/>
+            (this.props.name == "Jack Scout") && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && <SuggestionBoilerplate action={"Adaptation was unsubscribe_Friend -> unfollowing Jack Scout"}  context={"Unsubscribe_Friend"} label={"Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore."} agree ={this.onClickOK_UnsubscribeSuggestion} destroy = {this.onClickDestroyUnsubscribeSuggestion}/>
                   
            }
            
              {  /*The Categorize Suggestion Adaptation*/
-             (this.props.name == "Sasha Riley") && this.props.displayCategorizeSuggestion&& this.state.categorize_displaySuggestionPopup && this.props.index === 21 && <SuggestionBoilerplate action={"Categorize_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"}  context={"Categorize_Friend"} label={"Hi Alex - You recently added Sasha Riley, who is a recruiter at RBW, as a friend. Would you like to add Sasha Riley  to the “Recruiters” friend list?"} agree ={this.onClickOK_CategorizeSuggestion} destroy = {this.onClickDestroyCategorizeSuggestion}/>
+             (this.props.name == "Sasha Riley") && this.props.displayCategorizeSuggestion&& this.state.categorize_displaySuggestionPopup && this.props.index === 21 && <SuggestionBoilerplate action={"Adaptation was Categorize_Friend -> categorizing Sasha Riley as  a Recruiter"}  context={"Categorize_Friend"} label={"Hi Alex - You recently added Sasha Riley, who is a recruiter at RBW, as a friend. Would you like to add Sasha Riley  to the “Recruiters” friend list?"} agree ={this.onClickOK_CategorizeSuggestion} destroy = {this.onClickDestroyCategorizeSuggestion}/>
                   
            }
               

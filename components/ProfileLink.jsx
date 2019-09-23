@@ -12,7 +12,7 @@ class ProfileLink extends React.Component {
       //registerEvent('Clicked on ProfileLink for '+this.props.name, "Add something",this.props.fromNewsFeed);
     return (
       <Link to={{
-        pathname: '/profile/' + nameToLink(this.props.name),
+        pathname: `/profile/${nameToLink(this.props.name)}`,
         state: {fromNewsFeed: (this.props.fromNewsFeed) ? (this.props.fromNewsFeed) : false}}} onClick={this.props.onClick !== undefined? this.props.onClick:null}>
            <span id="left-navagation-profile_name">{this.props.name}</span>
       </Link>

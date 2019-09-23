@@ -43,7 +43,7 @@ class Profile extends React.Component {
         
         //Unsubscribe from friend: AUtomation
         unsubscribe_automation:!adaptationVisited ["Unsubscribe_Friend"]["automation"]&& (adaptation["unsubscribe_Friend"] === "auto"),
-        unsubscribe_action:"Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+        unsubscribe_action:"Adaptation was for unfollowing Jack Scout.",
         unsubscribe_displayAutomationPopup:true,
         unsubscribe_label_Auto: "Jack Scout was automatically unfollowed.",
         unsubscribe_context: "Unsubscribe_Friend",
@@ -51,7 +51,7 @@ class Profile extends React.Component {
         //Categorize Friend:Automation
         
         categorize_automation:!adaptationVisited ["Categorize_Friend"]["automation"]&& (adaptation["categorize_Friend"] === "auto"),
-        categorize_action:"Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+        categorize_action:"Adaptation was Categorize_Friend -> categorizing Sasha Riley as  a Recruiter",
         categorize_displayAutomationPopup:true,
         auto_CategorizeAccept: false,
         categorize_label_Auto: " Sasha Riley was automatically added to the \"Recruiters\" friends list",

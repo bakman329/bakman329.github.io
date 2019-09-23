@@ -27,6 +27,7 @@ class Settingsdropdown extends React.Component {
         this.props.changeIcon();
         this.props.settingsdropDown();
         
+        registerEvent("Clicked on the Settings button within the dropdown", "Transferred to the privacy settings page ");
     }
     
     

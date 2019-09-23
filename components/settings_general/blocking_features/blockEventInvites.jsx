@@ -4,6 +4,7 @@ import Button from '../../Button.jsx';
 import {friendsList,addToLocalStorageObject,getProfilePic,getParsed,saveVisitedAdaptation} from '../../../utilities.js';
 import AutomationBoilerplate from '../../../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../../../adaptations/Suggestion/SuggestionBoilerplate.jsx'
+import {HighlightBoilerplate} from '../../../adaptations/Highlight/HighlightBoilerplate.jsx'
 import {createEvent} from '../../../adaptations/Event.jsx'
 
 
@@ -34,7 +35,7 @@ class BlockEventInvites extends React.Component {
         displayAutomationPopup:true,
         displaySuggestionPopup:true,
 
-        action:"Block_Event Invitations",    
+        action:"Adaptation for Block_Event Invitations of Kyle Parker",    
         context:"Block_Event",
         object:" blocking of Richard Midor", 
         objectSugst: "block Kyle Parker",    
@@ -122,14 +123,8 @@ class BlockEventInvites extends React.Component {
             
             this.setState({highlight:false})
             
-            saveVisitedAdaptation("Block_Event","highlight");
+            HighlightBoilerplate("Block_Event")
             
-        event = {
-             action: `Block event invites`,
-             object: `Pressed the Enter key to block friend`,
-             context: `Block ${friendname} from sending event invites as highlighted by the Highlight adaptation`,
-             
-        };
       
         }
         

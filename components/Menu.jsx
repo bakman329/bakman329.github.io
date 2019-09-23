@@ -32,7 +32,6 @@ class Menu extends React.Component {
   }
     
    
-   
   onClick(e) {
     // Pass checkContains to keep the menu open if a click occurs within the menu options
     if (this.props.checkContains && e.target.closest(".dropdown-menu")) { // this.dropdownMenu.contains(e.target)) {

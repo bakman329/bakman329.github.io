@@ -1,4 +1,4 @@
- import React from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 
 
@@ -143,17 +143,13 @@ class AutocompleteInput extends React.Component {
           this.setState({value:""})
         
       }
-    
-        
        
     }
        
 
     this.setState({current_focus: new_focus},
-      () => {this.createList(e)});
-      
-      
-  }
+      () => {this.createList(e)});  
+    }
     
 	render() {
            

@@ -4,6 +4,7 @@ import Button from '../../Button.jsx';
 import {friendsList,addToLocalStorageObject,getProfilePic,getParsed,saveVisitedAdaptation} from '../../../utilities.js';
 import AutomationBoilerplate from '../../../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../../../adaptations/Suggestion/SuggestionBoilerplate.jsx'
+import {HighlightBoilerplate} from '../../../adaptations/Highlight/HighlightBoilerplate.jsx'
 import {createEvent} from '../../../adaptations/Event.jsx'
 
 
@@ -94,28 +95,18 @@ class BlockApp extends React.Component {
              
         };
         
-     
+        createEvent(event);
        
         //When adaptation is highligh and enter is pressed
         if(this.state.highlight){
             
             this.setState({highlight:false})
             
-            saveVisitedAdaptation("Block_App","highlight");
-            
-        event = {
-             action: `Block apps `,
-             object: `Pressed the Enter key to the block app`,
-             context: `Blocked ${app} app as highlighted by the Highlight adaptation`,
-             
-        };
+            HighlightBoilerplate ("Block_App");
+           // saveVisitedAdaptation("Block_App","highlight");
       
         }
-        
-       
-       createEvent(event);
-       
-        
+         
     }
     
     onClickUnBlock(app){

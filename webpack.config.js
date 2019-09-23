@@ -3,7 +3,8 @@ var config = {
 	
    output: {
        filename:'index.js',
-       path:__dirname + '/'
+       path:__dirname + '/',
+       publicPath:'/',
    },
 	
    devServer: {

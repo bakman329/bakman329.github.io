@@ -44,7 +44,7 @@ class Header extends React.Component {
             renderSettings:!prevState.renderSettings,
         }));
         
-         registerEvent("Clicked on the privacy settings button", 'to open the settings drop down', ' Header'); 
+         registerEvent("Clicked on the privacy settings dropdown button", 'to open the settings drop down', ' Header'); 
          
     }
     

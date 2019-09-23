@@ -24,9 +24,9 @@ class SuggestionBoilerplate extends Component{
     
     okay(){
         var event={
-            action: `Followed and agreed with the Suggestion for ${this.props.action}`,
-            context: this.props.context,
-            name: 'Suggestion Adaptation'
+            action: `Suggestion: ${this.props.context}`,
+            context: "1",
+            object: this.props.action
         };
         
         this.props.agree();
@@ -37,31 +37,16 @@ class SuggestionBoilerplate extends Component{
     destroy(origin){
     
         var event = {
-            action: origin+` the Suggestion for ${this.props.context}`,
-            context:this.props.context,
-            name:'Suggestion Adaptation'
+            action: `Decline_Suggestion: ${this.props.context}`,
+            context:"0",
+            object:this.props.action
         };
         
         this.visited(this.props.context, "suggestion");
-        //return event;
-         CreateEvent(event);
+        return event;
+       
     }
     
-   /** dismissed(e){
-
-        console.log("I am being pressed")
-        e.preventDefault();
-        
-        
-        var event = {
-            action:`Dismissed the Suggestion for ${this.props.context}`,
-            context:this.props.context,
-            name:'Alex_doe'
-        };
-        
-       
-        this.visited(this.props.context, "suggestion");
-    }*/
     
     label(){
         return(

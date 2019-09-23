@@ -33,9 +33,7 @@ class FriendSubscription extends React.Component {
         // this.changeStyle = this.changeStyle.bind(this);
     }
     
-    componentWillMount(){
-        this.set
-    }
+   
     
     componentWillReceiveProps(nextProps) {
         
@@ -76,8 +74,6 @@ class FriendSubscription extends React.Component {
             
         }))
         
-        
-        
         if(!this.state.adaptationVisited["Unsubscribe_Friend"]['highlight'] && (this.props.friendName === "jack_scout") ) {
             
             this.setState({
@@ -99,7 +95,7 @@ class FriendSubscription extends React.Component {
     
     render() {
         
-        console.log(getFollowStatus(this.props.friendName));
+        //console.log(getFollowStatus(this.props.friendName));
          var dropbtn_style = classNames({
              'dropbtn_1':!this.state.highlight1 || (this.props.friendName !== "jack_scout") && this.state.highlight1,
              'dropbtn_1_highlight':(this.props.friendName === "jack_scout") && this.state.highlight1,

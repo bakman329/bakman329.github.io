@@ -9,7 +9,7 @@ export function createEvent (props) {
       action: props.action,
       object:props.object,
       details: props.context,
-      session_id:localStorage.session_id
+      session_id:localStorage.session
       
   }; 
     

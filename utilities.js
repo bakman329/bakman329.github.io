@@ -10,7 +10,7 @@ export function registerEvent(action, details, object) {
         action: action,
         details: details,
         object:object,
-        session:localStorage.session_id
+        session: localStorage.session
     };
     
     CreateEvent(event)
@@ -555,16 +555,26 @@ export function resetAdaptations() {
 }
 
 export function resetSession() {
-  localStorage.setItem('session_id', "");
+  localStorage.setItem('session', "");
 }
 
 export function resetContactInfo(){
     localStorage.setItem('contactInfo',JSON.stringify({
+        alex_doe : {
         mobile:'801234567',
         email:'ladiesman69@yahoo.com',
         dob:'01 January',
         year:'1979',
-        gender:'Gender-Neutral',
+        gender:'Gender-Neutral'
+        },
+       jack_scout:{
+         mobile:'2406589813',
+          email:'jacks@gmail.com',
+         dob:'21 March',
+         year:'1980',
+         gender:'Male'
+        }
+        
         /**email:{
             email:'alexdoe@gmail.com',
             AddEmailInfo:false,
@@ -753,6 +763,17 @@ export function resetFeaturesUsed() {
   }));
 }
 
+export function longFeatureTitle(title) {
+    return {chat: "Change your chat settings",
+            untag: "Untag yourself from a post",
+            friends: "Unfollow a friend",
+            notifications: "Change your notification settings",
+            posts: "Delete or hide a post",
+            withhold_info: "Remove personal information from your account",
+            custom_lists: "Organize your friends into lists",
+            block: "Block people or apps",
+            audience: "Restrict the visibility of your posts or albums"}[title]
+}
 
 export function resetAll() {
   resetPosts();
@@ -963,6 +984,7 @@ export function linkToName(link) {
 }
 
 export function audienceText(audience) {
+    
   let text = "";
   switch (audience) {
     case "public":
@@ -994,9 +1016,10 @@ export function audienceText(audience) {
        break;
           
     default:
-      text = "";
+      text = (audience !== "")?audience:" ";
   }
 
+   
   return text;
 }
 

@@ -96,7 +96,7 @@ class Popup extends React.Component {
        }
        
       return (
-        <Draggable>
+        <Draggable cancel=".not-draggable">
          <div className="popup" style={style}>
             <div className="popup-header" style={header_style}>
               {this.props.title}

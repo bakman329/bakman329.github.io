@@ -26,22 +26,7 @@ class AudienceMenu extends React.Component {
   setAudience(audience) {
     this.props.onChange(audience);
     this.setState({audience: audience});
-   
-      // For adaptation: if one of the friends audience option is highlighted and selected 
-    if(this.props.adapt == "high" && audience == "friends"){
     
-    
-      var event = { action:`User concurs with the Audience Highlight for ${this.props.context}`,
-                    details:this.props.context,
-                    object:'Alex Doe',
-                    session:localStorage.session_id}
-      
-      saveVisitedAdaptation(this.props.context,"highlight");
-        
-       CreateEvent(event);
-    
-    }
-     
     var settings = JSON.parse(localStorage.getItem('settings'));
     settings["post_audience_settings"][0] = audience;
     localStorage.setItem('settings', JSON.stringify(settings));
@@ -159,17 +144,19 @@ class AudienceMenu extends React.Component {
 
         case "custom":
           buttons.push(
-            <Button onClick={() => {this.setState({"render_custom": true})}} key={i}>
+            <div  className={this.props.adapt?"high1":null} key={this.props.adapt}>
+             <Button onClick={() => {this.setState({"render_custom": true})}} key={i}>
               {text[0]}
               {subtext}
             </Button>
+            </div>
           );
           i++;
           break;
 
         default:
           buttons.push(
-            <Button onClick={() => {this.setAudience(option)}} key={i} adapt={text[0]=="Friends" && this.props.adapt}>
+            <Button onClick={() => {this.setAudience(option)}} key={i} >
               {text[0]}
               {subtext}
             </Button>
@@ -199,7 +186,7 @@ class AudienceMenu extends React.Component {
     );
 
     let custom_popup = (
-      <CustomSelector okay={(new_audience) => {this.setAudience(new_audience)}} destroy={this.unrenderPopups} />
+      <CustomSelector okay={(new_audience) => {this.setAudience(new_audience)}} destroy={this.unrenderPopups}  adapt={this.props.adapt} unHighlight={this.props.unHighlight}/>
     );
 
       

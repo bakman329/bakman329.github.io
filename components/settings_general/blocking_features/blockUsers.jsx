@@ -31,10 +31,10 @@ class BlockUsers extends React.Component {
                   displayAutomationPopup:true,
                   displaySuggestionPopup:true,
                   
-                  action:"Block_User, Check to see if the suggested users were blocked/unblocked (for undo_automation)",
+                  action:"Adapation of Block_User of Ira Siplan",
                   context:"Block_User",
-                  label_Sugst:" I think that you should block \"Jack Scout\"",
-                  label_Auto: "The grayed out and underlined entries were automatically blocked",
+                  label_Sugst:" Hi Alex - Posts by Ira Siplan have repeatedly been flagged as abusive. Do you want to block Ira?",
+                  label_Auto: "The grayed out and underlined person was automatically blocked.",
             };
       
     this.handleChange = this.handleChange.bind(this);
@@ -119,8 +119,7 @@ handleChange(email) {
  }
 
 handleChange_high(name){
-    this.setState({high_username:name.target.value})
-    
+    this.setState({high_username:name.target.value})   
 }
     
 onClickBlock(){
@@ -376,7 +375,7 @@ unblockUser(){
                        
                    }else {
                        return (
-                           <li key={index} style={{marginBottom:'3px'}}>{user}
+                           <li key={index} style={{marginBottom:'3px'}}><span className={user === "Ira Slipan"?"block_high1":null}>{user}</span>
                               
                               <span style = {{marginLeft:'10px',}}><Button href="javascript:void(0)" onClick={()=>{this.onClickUnblock(user)}}>Unblock</Button></span>
                             </li>)

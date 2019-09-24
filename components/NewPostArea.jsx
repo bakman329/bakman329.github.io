@@ -5,7 +5,7 @@ import Button from './Button.jsx'
 import AudienceMenu from './AudienceMenu.jsx'
 import PostArea from './PostArea.jsx'
 import UploadPopup from './UploadPopup.jsx'
-import{addToLocalStorageObject,getParsed,saveVisitedAdaptation,getCurrentFriendLists} from '../utilities.js';
+import{addToLocalStorageObject,getParsed,saveVisitedAdaptation,getCurrentFriendLists,registerEvent} from '../utilities.js';
 import AutomationBoilerplate from '../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../adaptations/Suggestion/SuggestionBoilerplate.jsx'
 import {highLight,highLightExtended,No_highLight} from '../adaptations/Highlight.js';
@@ -24,11 +24,11 @@ class NewPostArea extends React.Component {
                     renderUploadPopup: false,
                     suggestion: !adaptationVisited ["Status_Audience"]["suggestion"]&& (adaptation["status_Audience"] === "sugst"),
                     highlight1: !adaptationVisited["Status_Audience"]["highlight"] && (adaptation["status_Audience"] == "high")? true:false,
-                    highlight: !adaptationVisited["Status_Audience"]["highlight"] && (adaptation["status_Audience"] == "high")? "high":null,
+                    highlight: !adaptationVisited["Status_Audience"]["highlight"] && (adaptation["status_Audience"] == "high")? true:false,
                     automation:!adaptationVisited ["Status_Audience"]["automation"]&& (adaptation["status_Audience"] === "auto"),
                     displayAutomationPopup:false,
                     displaySuggestionPopup:false,
-                    action:"Status_Audience, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+                    action:"Adaptation was for Custom audience -> To exclude from sharing with Colleagues",
                     context:"Status_Audience",
                     label_Sugst:" Hi Alex - You seem to be posting about looking for a job. With the current settings, this post would be visible to all including your current colleagues. Do you want to restrict your custom friend list “Colleagues” from seeing this post?",
                     label_Auto: "Your friend list “colleagues” has automatically been restricted from seeing this post.",
@@ -42,6 +42,7 @@ class NewPostArea extends React.Component {
        
     /*Highlight Adaptation */
       this.changeStyle = this.changeStyle.bind(this);
+       this.unHighlight = this.unHighlight.bind(this);
        
        /*Suggestion Adaptation*/
         this.onClickDestroySuggestion = this.onClickDestroySuggestion.bind(this);
@@ -61,6 +62,15 @@ class NewPostArea extends React.Component {
             })
           }
     }
+
+    unHighlight() {
+
+         if(this.state.highlight) {
+             this.setState({
+                 highlight:false, 
+             })
+         }
+     }
 
 /*Methods for the Suggestion Adaptation*/
     onClickDestroySuggestion() {
@@ -134,8 +144,11 @@ class NewPostArea extends React.Component {
      localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
      indexPosts();
      this.props.postarea.update();
+       
+    registerEvent("Created new Post ","it reads: "+this.state.value, (this.props.forTimeline?"Timeline":"NewsFeed"));
      this.setState({value: '', photo: '', renderUploadPopup: false});
-     return event;
+    
+    
    }
     
    onClick() {
@@ -159,7 +172,8 @@ class NewPostArea extends React.Component {
    onChange(e) {
       this.setState({value: e.target.value});
    }
-
+    
+ 
    onChangeAudience(audience) {
       this.setState({audience: audience});
    }
@@ -185,12 +199,13 @@ class NewPostArea extends React.Component {
                   <Button type="confirm" onClick={this.onClick}>Post</Button>
                   <Button type="cancel" onClick={() => {this.setState({renderUploadPopup: true})}}>Photo/Video</Button>
                   <AudienceMenu onChange={this.onChangeAudience} className="new-post-menu"
-                    options={["public", "friends", "friends_except", "only_me", "more"]}
-                    more={["specific_friends", "see_all"]}
-                    see_all={currentFriendList}
+                    options={["public", "friends", "friends_except", "only_me"].concat(currentFriendList)}
+                    //more={["specific_friends", "see_all"]}
+                    //see_all={currentFriendList}
                     title="Who should see this?" 
                     highlight={this.state.highlight1 && this.state.highlight?highLight:No_highLight}
                     removeHighlightOnClick={this.changeStyle}
+                    unHighlight = {this.unHighlight}
                     adapt = {this.state.highlight}
                     context={this.state.context} />
                </div>

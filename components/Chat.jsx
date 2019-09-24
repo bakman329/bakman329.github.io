@@ -14,6 +14,7 @@ import {HighlightBoilerplate} from '../adaptations/Highlight/HighlightBoilerplat
 import AutomationBoilerplate from '../adaptations/Automation/AutomationBoilerplate.jsx';
 import SuggestionBoilerplate from '../adaptations/Suggestion/SuggestionBoilerplate.jsx';
 
+
 class Chat extends React.Component {
     constructor(props) {
         super(props);
@@ -42,11 +43,11 @@ class Chat extends React.Component {
         displayChatAutomationPopup:true,
         displayStatusLabel:false,    
         label_Auto: "Your Active Status on Chat was automatically turned off. Your friends and contacts will no longer see when you’re online on FriendBook.",  
-        action:"Chat_Offline, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"  ,  
+        action:"Adapatation was for Chat_Offline, Check to see if the suggested audience for Turning off active status for all the contacts."  ,  
             
         //Chat Suggest Adaptation
         chatSuggestion: !adaptationVisited ["Chat_Offline"]["suggestion"]&& (adaptations["chat_Offline"] === "sugst"),
-        label_Sugst:"Hi Alex- Would you like to turn off Active Status on Chat. Your friends and contacts will no longer see when you're online on FriendBook.",
+        label_Sugst:"Hi Alex - You have been ignoring chat messages lately. Do you want to turn off Active Status on Chat? Your friends and contacts will no longer see when you're online on FriendBook.",
             
         };
        
@@ -372,8 +373,7 @@ class Chat extends React.Component {
             You'll appear active or recently active unless you turn off the setting every place you're using mezzenger or FriendBook.
             You'll also see when your friends and contacts are active or recently active.
             </p>
-
-            {except_warning}
+            {except_warning}  
         </Popup>);
           
         // TODO: Consider if there's a better solution than this warning
@@ -389,7 +389,7 @@ class Chat extends React.Component {
                     {chats}
                 </div>
                 <div id='chat'>
-                    {this.state.renderChatPopup ? turnOffChatPopup : null}
+                    {this.state.renderChatPopup ?  turnOffChatPopup  : null}
                     {friends}
                     <div id='chat-footer'>
                         <div id='settings'>

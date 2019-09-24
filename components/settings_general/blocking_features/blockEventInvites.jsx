@@ -4,6 +4,7 @@ import Button from '../../Button.jsx';
 import {friendsList,addToLocalStorageObject,getProfilePic,getParsed,saveVisitedAdaptation} from '../../../utilities.js';
 import AutomationBoilerplate from '../../../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../../../adaptations/Suggestion/SuggestionBoilerplate.jsx'
+import {HighlightBoilerplate} from '../../../adaptations/Highlight/HighlightBoilerplate.jsx'
 import {createEvent} from '../../../adaptations/Event.jsx'
 
 
@@ -34,12 +35,12 @@ class BlockEventInvites extends React.Component {
         displayAutomationPopup:true,
         displaySuggestionPopup:true,
 
-        action:"Block_Event Invitations",    
+        action:"Adaptation for Block_Event Invitations of Kyle Parker",    
         context:"Block_Event",
         object:" blocking of Richard Midor", 
         objectSugst: "block Kyle Parker",    
-        label_Sugst:" I think you should block \"Kyle Parker\" from sending you event invites", 
-        label_Auto: "The grayed out and underlined people were automatically blocked",  
+        label_Sugst:"Hi Alex - You have ignored several event invites from Kyle Parker. Do you want to block Kyle’s Event Invites?", 
+        label_Auto: "The grayed out and underlined person was automatically blocked from sending you Event Invites.",  
     }
         
      this.handleChange = this.handleChange.bind(this);
@@ -122,14 +123,8 @@ class BlockEventInvites extends React.Component {
             
             this.setState({highlight:false})
             
-            saveVisitedAdaptation("Block_Event","highlight");
+            HighlightBoilerplate("Block_Event")
             
-        event = {
-             action: `Block event invites`,
-             object: `Pressed the Enter key to block friend`,
-             context: `Block ${friendname} from sending event invites as highlighted by the Highlight adaptation`,
-             
-        };
       
         }
         

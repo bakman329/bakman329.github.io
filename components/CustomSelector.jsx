@@ -1,14 +1,16 @@
 import React from 'react'
-import {getProfilePic, containsIgnoreCase, namesAndLists} from '../utilities.js'
+import {getProfilePic, containsIgnoreCase, registerEvent,namesAndLists} from '../utilities.js'
 
 import Popup from './Popup.jsx'
 import AutocompleteInput from './AutocompleteInput.jsx'
+import {HighlightBoilerplate} from '../adaptations/Highlight/HighlightBoilerplate.jsx'
 
 class CustomSelector extends React.Component {
   constructor(props) {
     super(props);
  
     let share = "";
+     
     let dont = "";
     JSON.parse(localStorage.getItem('users')).forEach((user, index, array) => {
       if (!user.friend) {
@@ -21,8 +23,24 @@ class CustomSelector extends React.Component {
       dont = (audience_settings[1]) ? audience_settings[1].join(", ") : "";
     });
 
+      console.log(dont)
     this.state = {share_value: share, dont_share_value: dont}
   }
+    
+ componentWillMount(){
+    
+     if(this.props.adapt){
+          console.log("I am here")
+         this.setState({
+             dont_share_value : "Colleagues",
+         })
+     }else {
+         
+          this.setState({
+             dont_share_value : "",
+         })
+     }
+ }
 
   parseText(str) {
     if (!str) return;
@@ -44,8 +62,6 @@ class CustomSelector extends React.Component {
   }
 
   newAudience() {
-      
-        console.log("I am in here");
     let share = this.parseText(this.state.share_value) || [];
     let dont = this.parseText(this.state.dont_share_value) || [];
 
@@ -73,7 +89,7 @@ class CustomSelector extends React.Component {
   }
 
   render() {
-       console.log("I am in Custom Selector");
+    
     return (
       <Popup saveChanges title="Custom Privacy"
         destroy={this.props.destroy}
@@ -86,16 +102,24 @@ class CustomSelector extends React.Component {
           localStorage.setItem('settings', JSON.stringify(settings));
           this.setState({share: audience_settings[0], dont: audience_settings[1]});
           this.props.okay(this.newAudience());
+        
+          if(this.props.adapt){
+              
+            HighlightBoilerplate("Status_Audience")  
+            this.props.unHighlight();
+          }
         }}
-        cancel={() => {return;}}
+        
+        cancel={() => { return;}}
         confirmDisabled={() => {return (this.state.dont_share_value === "" && this.state.share_value === "");}}
         noPadding grayHeader dismissButton>
         <div id="custom-popup-container">
           <div id="custom-popup-share-container">
             {'+ '}<strong>Share with</strong><br />
             <label>
-              <span>These people or lists{' '}</span>
+              <span>These people or lists{'  '}</span>
               <AutocompleteInput
+               className="not-draggable"
                 commaSeperated
                 onChange={(value) => this.setState({share_value: value})}
                 defaultValue={this.state.share_value}
@@ -111,8 +135,9 @@ class CustomSelector extends React.Component {
           <div id="custom-popup-dont-container">
             {'X '}<strong>Don't share with</strong><br />
             <label>
-              <span>These people or lists{' '}</span>
+              <span>These people or lists{'  '}</span>
               <AutocompleteInput
+                className={this.props.adapt? "not-draggable high1":"not-draggable"}
                 commaSeperated
                 onChange={(value) => this.setState({dont_share_value: value})}
                 defaultValue={this.state.dont_share_value}

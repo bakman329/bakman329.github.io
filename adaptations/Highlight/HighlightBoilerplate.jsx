@@ -8,10 +8,10 @@ export function HighlightBoilerplate (props) {
     // alert("I am here in HighlighBoilerplate")
     
    var event = { 
-       action:`User concurs with the Highlight for ${props}`,
-        details:props,
-        object:'Alex Doe',
-        session:localStorage.session_id
+       action:`Highlight: ${props}`,
+        details:"1",
+        object:"Highlight Adaptation",
+        session:localStorage.session
    }
       
     saveVisitedAdaptation(props,"highlight");

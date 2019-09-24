@@ -16,12 +16,14 @@ class AutomationBoilerplate extends Component {
         saveVisitedAdaptation(feature, name);
         //this.props.destroy();
     }
+ 
+   
 
     onClickOk_Auto() {
         var event = {
-            action: `User concurs with the Automation for ${this.props.action}`,
-            context:  this.props.context,
-            name: 'Alex Doe'
+            action: `Automation: ${this.props.context}`,
+            context: "1",
+            object: this.props.action
         }
 
         this.props.onClickOK_Auto();
@@ -31,9 +33,9 @@ class AutomationBoilerplate extends Component {
 
     onClickUndo_Auto(){
         var event = {
-            action: `User Undid the Automation for ${this.props.action}`,
-            context:this.props.context,
-            name: 'Alex Doe'
+            action: `Undo_Automation: ${this.props.context}`,
+            context: "0",
+            object: this.props.action
         }
 
         this.props.onClickUnDo_Auto();
@@ -44,7 +46,7 @@ class AutomationBoilerplate extends Component {
     render(){
         return(
         <div id ='except-warning'>
-                <Automation undoButton="Undo" okButton="Ok" onOkClick={this.onClickOk_Auto} label={this.props.label} onUndoClick={this.onClickUndo_Auto}/></div>
+                <Automation undoButton="Undo" okButton="Ok" onOkClick={this.onClickOk_Auto} label={this.props.label} onUndoClick={this.onClickUndo_Auto} routeTo={this.props.routeTo != undefined? this.props.routeTo:null}/></div>
        )
     }
 

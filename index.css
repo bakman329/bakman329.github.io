@@ -4,6 +4,8 @@ body {
     font-size: 14px;
 }
 
+
+
 header {
     width: 100%;
     height: 42px;
@@ -457,6 +459,11 @@ background-position: -250px -330px;
 
 .high1 {
     background-color:rgb(255,255,153) ;
+    /*background-color: lightblue;*/
+}
+
+.block_high1 {
+    background-color: #FFD662FF;
 }
 
 
@@ -472,7 +479,8 @@ background-position: -250px -330px;
     background-clip: padding-box;
     border:1px solid rgba(0,0,0, .15);
     box-shadow:0 3px 8px rgba(0,0,0, .3);
-    
+    height:250px;
+    overflow: scroll;
 }
 
 #dropdown_header:after {
@@ -637,6 +645,17 @@ color: #ffffff;}
     #chat-area {
         background-color: #000;
         display: none;
+    }
+}
+
+@media (max-height: 768px) {
+    #scenario-area {
+     overflow-y: scroll; 
+  
+    }
+    
+    .tooltiptext{
+        z-index:100;
     }
 }
 
@@ -872,7 +891,7 @@ color: #ffffff;}
 }
 .popup-content_altHeight{
     background-color: #ffffff;
-    padding: 10px 20px 10px 20px;
+    padding: 5px 5px 5px 5px;
     overflow: scroll;
 }
 
@@ -1212,16 +1231,22 @@ Edit_Icon_pos{
   /*padding: inherit;*/
   background-color: #e9ebee;
   /*float: center;*/
-  position: absolute;
+  position: fixed;
+   
   top:42px;
   width: 100%;
-margin-left: 291px;
-  /*height: 100%;*/
+  margin-left: 291px;
+  /*z-index: -1;*/
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x:none;
+    
 }
 
 #profile-content {
  /* margin-left: 21%;*/
     margin-left:4%;
+    width: fit-content;
 }
 
 #profile-content h2 {
@@ -2179,8 +2204,8 @@ text-align: center;
  #scenario-area {
     position:fixed;
     width: 275px;
-    height: 98%;
-    top: 10px;
+    height: 99vh;
+    top: 1vh;
     left: 8px;
     background-color:#efeff4; /*e0e0e0*/
     border-radius: 10px;
@@ -2191,7 +2216,7 @@ text-align: center;
 .scenario_head {
     font-size:  15px;
     text-align: center;
-    margin: 10px 10px 0px 10px;
+    margin: 20px 10px 0px 10px;
         
 }
 
@@ -2287,7 +2312,9 @@ text-align: center;
 }
 .scenario-menu-item:hover .tooltiptext{
     visibility: visible;
+    display: inline;
 }
+
 
 .tooltiptext::after {
   content: " ";
@@ -2419,10 +2446,10 @@ text-align: center;
 }
 
 #experiment-done {
-    position:fixed;
+    position:relative;
     bottom:15px;
     left:85px;
-    margin-top: 10px;
+    /*margin-top: 30px;*/
 }
 
 .finish-button {

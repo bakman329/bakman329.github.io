@@ -5,7 +5,7 @@ import Apps from './apps_and_websites.jsx'
 import TimelineandTagging from './timeline_and_tagging.jsx'
 import Privacy from './privacy.jsx'
 import General from './general.jsx'
-import {getParsed} from '../../utilities.js'
+import {getParsed, registerEvent} from '../../utilities.js'
 import {highLightExtended,noHighLight} from '../../adaptations/Highlight.js'
 
 
@@ -53,6 +53,9 @@ class GeneralSettings extends React.Component{
              highlightBlocking:noHighLight
             })    
         }
+        
+        
+         registerEvent(`Clicked on the ${section} button within the privacy settings page`, `Viewed ${section} settings`);
         
     }
     

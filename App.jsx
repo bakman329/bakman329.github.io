@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 import {hotjar} from 'react-hotjar'
-import {BrowserRouter, Link, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Link, Switch, Route,HashRouter} from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 import NewsFeed from './components/NewsFeed.jsx'
@@ -44,7 +44,7 @@ class App extends React.Component {
       
   
     let option_dict = {
-      "session_id": userparams.session_id
+      "session": userparams.session
     };
       
   
@@ -84,24 +84,14 @@ class App extends React.Component {
     });
       
     localStorage.setItem("adaptations", JSON.stringify(adaptations));
-      
-    
      
     if (update) {
       window.location.href = "/";
     }
       
-      
-      console.log("TODO: Begin time counter to understand how long user stays within the platform");
-      
   }
     
-    componentWillUnmount() {
-        
-        console.log("TODO: Stop timer and send time taken to DB");
-      //  window.addEventListener("beforeunload",alert("TODO: Stop timer and send time taken to DB"));
-       
-    }
+    
 
   // Turn the querystring into a JSON object
   urlqueryStringToJSON() {
@@ -122,32 +112,31 @@ class App extends React.Component {
     });
     
    
-      var session_data = {
+      /**var session_data = {
           session:result['session'],
           url:JSON.stringify(result),
       }
-    RegisterSession(session_data);
+    RegisterSession(session_data);*/
     return JSON.parse(JSON.stringify(result));
   }
 
   // Defines global variables
   getChildContext() {
       // Get the url parameters from JSON String
-    const {session_id,delete_Post,chat_Offline,contact_Info,basic_Info,privacy_futureRequests,timeline_seePost,block_User,block_Event,block_App,block_AppInvite,status_Audience,unsubscribe_Friend,hide_Post,untag_Post,categorize_Friend} = this.urlqueryStringToJSON();
+    const {session,delete_Post,chat_Offline,contact_Info,basic_Info,privacy_futureRequests,timeline_seePost,block_User,block_Event,block_App,block_AppInvite,status_Audience,unsubscribe_Friend,hide_Post,untag_Post,categorize_Friend} = this.urlqueryStringToJSON();
       
     // const {change}="Hello"
     // Assign url parameters to local variables
-    const current_session = {session_id,delete_Post,chat_Offline,contact_Info,basic_Info,privacy_futureRequests,timeline_seePost,block_User,block_Event,block_App,block_AppInvite,status_Audience,unsubscribe_Friend,hide_Post,untag_Post,categorize_Friend};
+    const current_session = {session,delete_Post,chat_Offline,contact_Info,basic_Info,privacy_futureRequests,timeline_seePost,block_User,block_Event,block_App,block_AppInvite,status_Audience,unsubscribe_Friend,hide_Post,untag_Post,categorize_Friend};
       
-
     // Assigns the local variables to the global variables 
     return {
-      session_id: current_session.session_id,
+      session: current_session.session,
       delete_Post: current_session.delete_Post,
       chat_Offline: current_session.chat_Offline,
       contact_Info: current_session.contact_Info,
       basic_Info:current_session.basic_Info,    
-      privacy_futureRequests:current_session.privacy_futureRequests,
+    privacy_futureRequests:current_session.privacy_futureRequests,
       timeline_seePost:current_session.timeline_seePost, 
       block_User:current_session.block_User,  
       block_Event:current_session.block_Event,
@@ -167,24 +156,21 @@ class App extends React.Component {
     return (
       <div>
        
-        <BrowserRouter>
-          <div>
-           <Scenario/> 
-            <div id="experiment-done">
-                <ExitExperiment />
-             </div>
+        <HashRouter>
+          <div >
             <Header />
+            <Scenario/> 
             <Switch>
               <Route exact path='/' component={NewsFeed} />
-              <Route path='/profile/:user' component={Profile} />
-              <Route path='/settings_general/:section' component={GeneralSettings} />
+              <Route path="/profile/:user" component={Profile} />
+              <Route path="/settings_general/:section" component={GeneralSettings} />
             </Switch>
             <div id='chat-area'>
               <Chat />
             </div>
             
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }
@@ -193,7 +179,7 @@ class App extends React.Component {
 // Defines the types of objects that getChildContext returns
 // Defines the features that are to be adapted
 App.childContextTypes = {
-  session_id: PropTypes.string,
+  session: PropTypes.string,
   NewsFeed: PropTypes.bool,
   Timeline: PropTypes.bool,
   delete_Post:PropTypes.string,

@@ -4,6 +4,7 @@ import Button from '../../Button.jsx';
 import {friendsList,addToLocalStorageObject,getProfilePic,getParsed,saveVisitedAdaptation} from '../../../utilities.js'
 import AutomationBoilerplate from '../../../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../../../adaptations/Suggestion/SuggestionBoilerplate.jsx'
+import HighlightBoilerplate from '../../../adaptations/Highlight/HighlightBoilerplate.jsx'
 import {createEvent} from '../../../adaptations/Event.jsx'
 
 class BlockAppInvites extends React.Component {
@@ -31,12 +32,12 @@ class BlockAppInvites extends React.Component {
         displayAutomationPopup:true,
         displaySuggestionPopup:true,
 
-        action:"Block_AppInvite Invitations",    
+        action:"Adaptation for Block_AppInvite Invitations from Jim Mend",    
         context:"Block_AppInvite",
-        object:" blocking of Mike Rogers", 
+        object:" blocking of Jim Mend", 
         objectSugst: "block Jim Mend",    
-        label_Sugst:" I think you should block \"Jim Mend\" from sending you app invites", 
-        label_Auto: "The grayed out and underlined people were automatically blocked from sending you App Invites", 
+        label_Sugst:"Hi Alex - You have ignored several App Invites from Jim Mend. Do you want to block Jim’s App Invites?", 
+        label_Auto: "The grayed out and underlined person was automatically blocked from sending you App Invites.", 
     }
         
      this.handleChange = this.handleChange.bind(this);
@@ -112,14 +113,7 @@ class BlockAppInvites extends React.Component {
             
             this.setState({highlight:false})
             
-            saveVisitedAdaptation("Block_AppInvite","highlight");
-            
-        event = {
-             action: `Block app invites`,
-             object: `Pressed the Enter key to block friend`,
-             context: `Block ${friendname} from sending app invites as highlighted by the Highlight adaptation`,
-             
-        };
+            HighlightBoilerplate("Block_AppInvite")
       
         }
         

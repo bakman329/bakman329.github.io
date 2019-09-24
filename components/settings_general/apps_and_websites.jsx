@@ -37,13 +37,6 @@ onClickEdit(){
      
      this.onClickCancel();
      
-     /*var event={
-        action:`Turned ${this.state.decision?"on":"off"} fame and app notifications`,
-         context:"Game and app notifications",
-         name: "Alex Doe"
-     }
-     
-     return event;*/
  }
 
     

@@ -23,7 +23,7 @@ class body extends Component {
             adapt:adaptation['privacy_futureRequests'], //"high"/"sugst"/"automation"
             adaptationVisited:adaptationVisited,
             highlight:!adaptationVisited ["Privacy_futureRequests"]["highlight"]&& (adaptation["privacy_futureRequests"] === "high")?"high":null,
-             suggestion: !adaptationVisited ["Privacy_futureRequests"]["suggestion"]&& (adaptation["privacy_futureRequests"] === "sugst"),
+            suggestion: !adaptationVisited ["Privacy_futureRequests"]["suggestion"]&& (adaptation["privacy_futureRequests"] === "sugst"),
             automation:!adaptationVisited ["Privacy_futureRequests"]["automation"]&& (adaptation["privacy_futureRequests"] === "auto"),
             future_requests:!adaptationVisited ["Privacy_futureRequests"]["automation"]&& (adaptation["privacy_futureRequests"] === "auto")?"Friends":"Public",
             friend_request:"Friends",
@@ -252,7 +252,7 @@ class body extends Component {
       
        
        {/*The Suggestion Adaptation*/
-                  this.state.displaySuggestionPopup && this.state.suggestion && <SuggestionBoilerplate action={this.state.action}  context={this.state.context} label={this.state.label} agree={this.onClickOK_Suggestion} destroy = {this.onClickDestroySuggestion}/>
+          this.state.displaySuggestionPopup && this.state.suggestion && <SuggestionBoilerplate action={this.state.action}  context={this.state.context} label={this.state.label} agree={this.onClickOK_Suggestion} destroy = {this.onClickDestroySuggestion}/>
         }
        
         <div id="right_top">

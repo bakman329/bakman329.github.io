@@ -3,11 +3,13 @@ var config = {
 	
    output: {
        filename:'index.js',
-       path:__dirname + '/'
+       path:__dirname + '/',
    },
 	
    devServer: {
       historyApiFallback:true,
+      contentBase: './',
+      hot: true,
       inline: true,
       port: 8080
    },
@@ -28,3 +30,4 @@ var config = {
 }
 
 module.exports = config;
+

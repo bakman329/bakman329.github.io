@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from './Button.jsx';
 import classNames from 'classnames'
+import Draggable from 'react-draggable';
 
 class Popup extends React.Component {
    constructor(props) {
@@ -84,8 +85,9 @@ class Popup extends React.Component {
           <div className="popup-footer">
             <Button type="cancel" onClick={() => {this.props.cancel();  this.props.destroy(true)}}>Cancel</Button>
             <Button type="confirm"
-              onClick={() => {this.props.okay(); this.props.destroy();}}
-              isDisabled={this.props.confirmDisabled}>{this.props.okButtonName != undefined? this.props.okButtonName:Okay}</Button>
+               onClick={() => {this.props.okay(); this.props.destroy();}}
+               isDisabled={this.props.confirmDisabled} routeTo = {this.props.routeTo != undefined?this.props.routeTo:null}>    {this.props.okButtonName != undefined? this.props.okButtonName:Okay}
+            </Button>
           </div>;
       }
        
@@ -94,6 +96,7 @@ class Popup extends React.Component {
        }
        
       return (
+        <Draggable cancel=".not-draggable">
          <div className="popup" style={style}>
             <div className="popup-header" style={header_style}>
               {this.props.title}
@@ -104,6 +107,7 @@ class Popup extends React.Component {
             </div>
             {!this.props.noFooter?footer:""}
          </div>
+         </Draggable>
       )
    }
 }

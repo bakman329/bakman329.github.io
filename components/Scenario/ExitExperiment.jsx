@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import {registerEvent} from '../../utilities.js';
 
 import Popup from '../Popup.jsx'
 import {getParsed, longFeatureTitle} from '../../utilities.js';
@@ -31,7 +32,7 @@ class ExitExperiment extends React.Component {
     }
 
     submitExperiment() {
-        //alert('My Master has not told me what to do yet. But I guess this is the point where I move onto the post-experiment survey')
+       
         this.setState({featuresVisited: getParsed("featuresVisited"),
                        featuresUsed: getParsed("featuresUsed")},
             () => {
@@ -44,6 +45,8 @@ class ExitExperiment extends React.Component {
                     location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
                 }
             });
+            
+            registerEvent("Finished Experiment", "Exiting the prototype -> the Suvery", "Scenario Area");
     }
 
     unusedList() {

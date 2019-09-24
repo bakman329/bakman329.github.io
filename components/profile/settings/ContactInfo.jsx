@@ -13,7 +13,8 @@ class ContactInfo extends Component {
     
       
        let adaptation = getParsed('adaptations')
-       let existingInformation = getParsed('contactInfo')
+       let existingInformation = getParsed('contactInfo')["jack_scout"];
+      //console.log(existingInformation)
        let adaptationVisited = getParsed("visited");
      
       

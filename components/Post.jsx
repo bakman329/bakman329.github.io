@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {indexPosts, getProfilePic, audienceText,getParsed,saveVisitedAdaptation, namesToLinks,namesTagged,AddfriendList,nameToLink,followUser} from '../utilities.js'
+import {indexPosts, getProfilePic, audienceText,getParsed,saveVisitedAdaptation, namesToLinks,namesTagged,AddfriendList,nameToLink,followUser,blockFriend,registerEvent} from '../utilities.js'
 import {highLight,highLightExtended,No_highLight } from '../adaptations/Highlight.js';
 import Button from './Button.jsx'
 import Comment from './Comment.jsx'
@@ -13,7 +13,7 @@ import SuggestionPopup from '../adaptations/Suggestion.jsx'
 import Automation from '../adaptations/Automation.jsx'
 import AutomationBoilerplate from '../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../adaptations/Suggestion/SuggestionBoilerplate.jsx'
-
+import BlockPopup from './profile/block_confirmations/BlockPopup.jsx'
 import {HighlightBoilerplate} from '../adaptations/Highlight/HighlightBoilerplate.jsx';
 import classNames from 'classnames'
 import ProfileLink from './ProfileLink.jsx'
@@ -58,14 +58,16 @@ class Post extends React.Component {
       unfollowedName:"",    
       tagRemoved: this.props.tagRemoved,
       displayContactInfoSuggestion:true,
-      displayBasicInfoSuggestion:true,    
+      displayBasicInfoSuggestion:true, 
+      renderBlockPopup:false,
       adaptations: adaptations,
       adaptationVisited: adaptationVisited,
         
       //Scroll Position and Show
-        onScrollShowTagSuggestion:false,
-        onScrollShowHideSuggestion:false,
+        onscrollShowTagSuggestion:false,
+        onscrollShowHideSuggestion:false,
         onscrollShowDeleteSuggestion:false,
+        onscrollShowBlockSuggestion:false,
         //scrollPos:0,
         
       //Highlight Adaptation
@@ -73,33 +75,41 @@ class Post extends React.Component {
       untag_Highlight:!adaptationVisited["Untag_Post"]["highlight"] && (adaptations["untag_Post"] == "high")? true:false,
       delete_Highlight:!adaptationVisited["Delete_Post"]["highlight"] && (adaptations["delete_Post"] == "high")? true:false,
       //highlight: !adaptationVisited["Hide_Post"]["highlight"] && (adaptations["hide_Post"] == "high")? "high":null,
+      block_Highlight: !adaptationVisited["Block_User"]["highlight"] && !adaptationVisited["Block_User"]["NewsFeed_highlight"] && (adaptations["block_User"] == "high")? true:false,
         
-     //Hide Suggestion Adaptation
+     //Suggestion Adaptation
+        block_Suggestion: !adaptationVisited ["Block_User"]["suggestion"] && (adaptations["block_User"] === "sugst"),
        hidesuggestion: !adaptationVisited ["Hide_Post"]["suggestion"]&& (adaptations["hide_Post"] === "sugst"),
        untag_Suggestion:!adaptationVisited ["Untag_Post"]["suggestion"]&& (adaptations["untag_Post"] === "sugst"),
        delete_Suggestion:!adaptationVisited["Delete_Post"]["suggestion"] && (adaptations['delete_Post'] === "sugst"),
+       displayBlockSuggestionPopup:true,
        displayHideSuggestionPopup:true,
        displayUntagSuggestionPopup:true,
        unsubcribe_displaySuggestionPopup:true,   
        categorize_displaySuggestionPopup:true,
+       block_label_Sugst:"Hi Alex - Posts by Ira Siplan have repeatedly been flagged as abusive. Do you want to block Ira?",
        untag_label_Sugst:"Hi Alex - You’ve been tagged in this post by Loren Payton, which contains alcohol. Do you want to untag yourself from this post?",
        label_Sugst:"Hi Alex - Trevin Noushy has posted this message to your Timeline, which contains a reference to drug use. Do you want to hide this post from your Timeline? It may still appear in other places on FriendBook.",
     
       //Hide Automation Adaptation
+      blockAutomation:!adaptationVisited ["Block_User"]["automation"]&& (adaptations["block_User"] === "auto"),
       hideAutomation:!adaptationVisited ["Hide_Post"]["automation"]&& (adaptations["hide_Post"] === "auto"),
       untag_Automation:!adaptationVisited ["Untag_Post"]["automation"]&& (adaptations["untag_Post"] === "auto"),
       delete_Automation: !adaptationVisited["Delete_Post"]["automation"] && (adaptations["delete_Post"] === "auto"),
-      action:"Hide_Post, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation) ",
-        
-       action_tag:"Untag_Post,Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)",
+      action:"Adapation was for Hide_Post -> hiding Post 42 ",
+      action_tag:"Adaptation was for Untag_Post -> untagging Post 27",
+      action_block:"Adaptation was for Block_User -> Blocking Ira Siplan",
         
      //Context
       context_tag:"Untag_Post",
+      context_block:"Block_User",    
       context:"Hide_Post",
       untag_Context:"Untag_Post",
       displayHideAutomationPopup:true,
       displayUnTagAutomationPopup:true,
+      displayBlockAutomationPopup:true,
       label_Auto: "This post by Trevin Noushy was automatically hidden from your Timeline.",
+      block_label_Auto: "This post by Ira Slipan is not visible because he has been automatically blocked.",  
       untag_label_Auto:"A tag of you was automatically removed from this post.",
 
     };
@@ -118,56 +128,82 @@ class Post extends React.Component {
     this.show = this.show.bind(this);
     this.onMenuOpen = this.onMenuOpen.bind(this);
       
-     /*Suggestion Adaptation*/
-        this.onClickDestroySuggestion = this.onClickDestroySuggestion.bind(this);
-        this.onClickOK_Suggestion = this.onClickOK_Suggestion.bind(this);
-        this.onClickUntag_DestroySuggestion = this.onClickUntag_DestroySuggestion.bind(this);
-        this.onClickUntag_OKSuggestion = this.onClickUntag_OKSuggestion.bind(this);
-       
-      /* Unsubscribe Friend Suggestion Adaptation */
-      
-        this.onClickDestroyUnsubscribeSuggestion = this.onClickDestroyUnsubscribeSuggestion.bind(this);
-        this.onClickOK_UnsubscribeSuggestion = this.onClickOK_UnsubscribeSuggestion.bind(this);
-      
-      /* Categorize Friend Suggestion Adaptation */
-      
-        this.onClickDestroyCategorizeSuggestion = this.onClickDestroyCategorizeSuggestion.bind(this);
-        this.onClickOK_CategorizeSuggestion = this.onClickOK_CategorizeSuggestion.bind(this);
-      
-      
+     
+    /*Suggestion Adaptation*/
+    this.onClickDestroySuggestion = this.onClickDestroySuggestion.bind(this);
+    this.onClickOK_Suggestion = this.onClickOK_Suggestion.bind(this);
+    this.onClickUntag_DestroySuggestion = this.onClickUntag_DestroySuggestion.bind(this);
+    this.onClickUntag_OKSuggestion = this.onClickUntag_OKSuggestion.bind(this);
+    this.onClickBlock_DestroySuggestion = this.onClickBlock_DestroySuggestion.bind(this);
+    this.onClickBlock_OKSuggestion = this.onClickBlock_OKSuggestion.bind(this);  
+
+    /* Unsubscribe Friend Suggestion Adaptation */
+
+    this.onClickDestroyUnsubscribeSuggestion = this.onClickDestroyUnsubscribeSuggestion.bind(this);
+    this.onClickOK_UnsubscribeSuggestion = this.onClickOK_UnsubscribeSuggestion.bind(this);
+
+    /* Categorize Friend Suggestion Adaptation */
+
+    this.onClickDestroyCategorizeSuggestion = this.onClickDestroyCategorizeSuggestion.bind(this);
+    this.onClickOK_CategorizeSuggestion = this.onClickOK_CategorizeSuggestion.bind(this);
+
+
     /*Automation Adaptation */
-      this.onClickOk_Auto = this.onClickOk_Auto.bind(this);
-      this.onClickUndo_Auto = this.onClickUndo_Auto.bind(this);
-      this.onClickUntag_Ok_Auto = this.onClickUntag_Ok_Auto.bind(this);
-      this.onClickUntag_Undo_Auto = this.onClickUntag_Undo_Auto.bind(this);
+    this.onClickOk_Auto = this.onClickOk_Auto.bind(this);
+    this.onClickUndo_Auto = this.onClickUndo_Auto.bind(this);
+    this.onClickUntag_Ok_Auto = this.onClickUntag_Ok_Auto.bind(this);
+    this.onClickUntag_Undo_Auto = this.onClickUntag_Undo_Auto.bind(this);
+    this.onClickBlock_Ok_Auto = this.onClickBlock_Ok_Auto.bind(this);
+    this.onClickBlock_Undo_Auto = this.onClickBlock_Undo_Auto.bind(this);
       
+
+    /*Block Adaptation*/
+    this.registerClick = this.registerClick.bind(this);
+    this.agreeToBlock = this.agreeToBlock.bind(this);
+    this.cancelBlock = this.cancelBlock.bind(this); 
+
     /*Handle Scroll*/
-      this.onChangeVisible = this.onChangeVisible.bind(this);
+    this.onChangeVisible = this.onChangeVisible.bind(this);
      
   }
+
 
    onChangeVisible(isVisible, postIndex) {
         
       //console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
        
+       //Tag Suggestion Adaptation
          if(postIndex === 27){
             this.setState({
-                   onScrollShowTagSuggestion:isVisible,
+                   onscrollShowTagSuggestion:isVisible,
                })
          }
        
-        if(postIndex === 28) {
+       //Hide Suggestion Adaptation
+        if(postIndex === 42) {
             this.setState({
-             onScrollShowHideSuggestion:isVisible,
+             onscrollShowHideSuggestion:isVisible,
             })
         }
        
+       //Delete Suggestion Adaptation
         if(postIndex === 2) {
             this.setState({
              onscrollShowDeleteSuggestion:isVisible
             })
         }
+       
+       //Block Suggestion Adaptation
+       let adaptationVisited = getParsed('visited')
+       
+       if( (postIndex === 17 || postIndex === 24 || postIndex === 32 || postIndex === 36|| postIndex === 41) &&  (!adaptationVisited["Block_User"]["suggestion"])) {
+           
+           this.setState({
+               onscrollShowBlockSuggestion:isVisible
+           })
+       }
         
+
     }
     
 
@@ -180,17 +216,79 @@ class Post extends React.Component {
      //console.log("Component mounted");
      //window.addEventListener('scroll', this.handleScroll,true); 
   }
-    
+
+
     
    componentWillUnmount(){
        clearInterval(this.timerID)
-       //console.log("Component removed");
-      // window.removeEventListener("scroll", this.handleScroll,true);
    }
     
  
+ /*Methods for the Block Adaptation*/
+ 
+   registerClick() {
+    
+        if(this.state.block_Highlight) {   
+               this.setState({
+                  block_Highlight:false, 
+               })
+           saveVisitedAdaptation("Block_User","NewsFeed_highlight");
+        }
 
- /*Methods for the Hide Automation Adapatation*/
+        registerEvent('Clicked on '+this.props.name+"'\s profile link to visit their profile page", 'from post '+this.props.index,(this.props.forTimeline?"Timeline":"NewsFeed"));   
+   }
+    
+   //Suggestion 
+   onClickBlock_OKSuggestion() {
+       this.setState({
+           displayBlockSuggestionPopup:false,
+           renderBlockPopup:true,
+        })
+   }    
+    
+   onClickBlock_DestroySuggestion() {
+       
+       this.setState({
+           displayBlockSuggestionPopup:false,
+        }) 
+       
+    }
+    
+    agreeToBlock(){
+        
+        blockFriend("ira_slipan");
+        this.setState({
+            renderBlockPopup:false, 
+        })
+    }
+    
+    cancelBlock(){
+        this.setState({
+            renderBlockPopup:false,
+        })
+    }
+    
+    //Automation
+    onClickBlock_Ok_Auto() {
+       
+       blockFriend("ira_slipan");
+        
+        this.setState({
+             displayBlockAutomationPopup:false
+        })  
+        
+    }
+    
+    onClickBlock_Undo_Auto() {
+        
+        this.setState({
+             displayBlockAutomationPopup:false
+        })  
+    
+      this.props.update(); 
+    }
+    
+ /*Methods for the Hide Automation Adaptation*/
     logHide() {
          var posts = JSON.parse(localStorage.getItem('posts'));
         posts.some((post, index, array) => {
@@ -225,8 +323,7 @@ class Post extends React.Component {
         this.setState({
             categorize_displaySuggestionPopup:false,
         })
-        
-        AddfriendList();
+         AddfriendList();
         //this.props.updateSubscribe();
     } 
     
@@ -248,14 +345,10 @@ class Post extends React.Component {
         
         this.props.updateSubscribe();
         
-        
-       
     } 
     
     //For Hiding
     onClickOk_Auto() {
-        
-    
         
         this.setState({
             displayHideAutomationPopup:false
@@ -361,9 +454,9 @@ class Post extends React.Component {
   onClickDelete() {
       var event = {
         render: false,
-        action: 'Deleted post '+this.props.index,
-        context: "Newsfeed",
-        name: this.props.name + '\'s Post'
+        action: 'Deleted '+ this.props.name + '\'s',
+        context: 'Post '+this.props.index,
+        object :"Timeline",
       };
 
         let used = JSON.parse(localStorage.featuresUsed);
@@ -392,9 +485,9 @@ class Post extends React.Component {
 
   onClickShare() {
       var event = {
-        action: 'Shared',
-        context: this.state.context,
-        name: this.props.name + '\'s Post'
+        action: "Shared '+this.props.name + '\'s", 
+        context:'Post '+ this.props.index,
+        object:(this.props.forTimeline?"Timeline":"NewsFeed")
       };
 
       var posts = JSON.parse(localStorage.getItem('posts'));
@@ -408,9 +501,9 @@ class Post extends React.Component {
                   key: posts.length};
       localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
       indexPosts();
+      registerEvent('Clicked to Share ', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
       this.props.update();
-      //PostArea.update;
-
+      
       return event;
   }
 
@@ -423,11 +516,11 @@ class Post extends React.Component {
         return true;
       }
     });
-
+      
     var event = {
-      action: ((new_state) ? 'Liked' : 'Unliked'),
-      context: this.state.context,
-      name: this.props.name + '\'s Post'
+      action: ((new_state) ? 'Liked ' : 'Unliked ') +  this.props.name + '\'s' ,
+      context:'Post '+ this.props.index ,
+     name: (this.props.forTimeline?"Timeline":"NewsFeed"),
     }
 
     var posts = getParsed('posts');
@@ -443,13 +536,6 @@ class Post extends React.Component {
     this.props.update();
     //PostArea.update();
     
-      
-      //if the highlighted button has not been visited and there is a highlight adaptation
-     if(!this.state.adaptationVisited["LikePost"]["highlight"] && this.state.adaptations['liketimeline'] === "high"){
-         
-       this.visitedAdaptation("LikePost","highlight");
-         
-     }
 
     return event;
   }
@@ -458,6 +544,8 @@ class Post extends React.Component {
     if (this.new_comment_area) {
       this.new_comment_area.focus();
     }
+      
+   registerEvent('Clicked on Comment icon of', this.props.name +'Post'+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
   }
 
 
@@ -468,16 +556,18 @@ class Post extends React.Component {
          unfollow:true,
          unfollowedName: name,
      }, ()=> this.props.hideAllPosts(name))
+     
+    registerEvent('Clicked to Unfollow ', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
  
  }
     
   onClickHide() {
       
-      //console.log("On hide "+element)
+     // console.log("On hide "+this.props.index)
     // TODO: Add confirmation popup and undo button
     var posts = JSON.parse(localStorage.getItem('posts'));
     posts.some((post, index, array) => {
-      if (post.key == this.props.index) {
+      if (post.key === this.props.index) {
         posts[index].hidden = true;
         localStorage.setItem('posts', JSON.stringify(posts));
         this.setState({hidden: true});
@@ -494,9 +584,12 @@ class Post extends React.Component {
         this.setState({
             hideHighlight1:false,
         })
-        
         HighlightBoilerplate(this.state.context);
+        
+    }else {
+     registerEvent('Clicked to Hide ', this.props.name +'\'s Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
     }
+      
   }
 
   // TODO: Consider adding undo based on what FriendBook does
@@ -521,6 +614,8 @@ class Post extends React.Component {
         })
         
         HighlightBoilerplate(this.state.context_tag);
+    }else {
+        registerEvent('Clicked to Remove Tag ', this.props.name + '\'s Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
     }
   }
 
@@ -574,46 +669,35 @@ class Post extends React.Component {
   }
 
   onClickUndo(){
-   /* var event = {
-      render: true,
-      action: 'Undo Delete Post',
-      context: this.state.context,
-      name: this.props.name + '\'s Post',
-      showPostWhenHidden: true
-    };*/
+   
     this.setState({
         showPostWhenHidden:true,
         render:true
     });
     
-   /// this.visitedAdaptation("Delete_Post","automation");
-   // return event;
    }
     
     onClickAutoOk(){
-       
-        /**var event = {
-      render: false,
-      action: 'Ok With Automatic Deletion of Post',
-      context: this.state.context,
-      name: this.props.name + '\'s Post',
-      showPostWhenHidden: true
-    };*/
     
-    this.setState({
-        render:false,
-        showPostWhenHidden:true
-    });
-    //this.visitedAdaptation("Delete_Post","automation");
-        
-   // return event; 
+        this.setState({
+            render:false,
+            showPostWhenHidden:true
+        });
     }
+    
+    //The Block Popup that pops up when the suggestion for blocking comes up.
+    BlockPopup() {
+        return(
+           < BlockPopup friendName={"ira_slipan"} agreeToBlock={this.agreeToBlock} cancelBlock={this.cancelBlock} routeTo={"/settings_general/blocking"}/>
+        )
+    }
+    
 
   renderPost(comments,post_title) {
 
     if (this.state.delete_Automation && !this.state.showPostWhenHidden && this.props.index === 2) {
       return (
-          <AutomationBoilerplate action = {"Delete_Post,Check to see if the suggested delete action for the post was followed/not followed (for Undo_Automation)"} context = {"Delete_Post"} label={"This post about 'Mexican's going back to their country..' was automatically deleted"} onClickOK_Auto={this.onClickAutoOk} onClickUnDo_Auto = {this.onClickUndo}/>
+          <AutomationBoilerplate action = {"Adapation was for Delete_Post -> Deleting Post 2"} context = {"Delete_Post"} label={"This post about 'Mexican's going back to their country..' was automatically deleted"} onClickOK_Auto={this.onClickAutoOk} onClickUnDo_Auto = {this.onClickUndo}/>
       );
         
     } else {
@@ -626,9 +710,9 @@ class Post extends React.Component {
           <SuggestionPopup title="Suggestion" okay={()=>{
               var event={
                 render:false,
-                action: 'Followed and agreed with Suggestion',
-                context: this.state.context,
-                name: this.props.name+'\'s Post: '+this.props.children,
+                action: 'Suggestion : Delete_Post',
+                context:"1",
+                object: `Adaptation was for Delete_Post 2 -> ${this.props.name}\'s Post: ${this.props.children} at the ${this.props.forTimeline?"Timeline":"NewsFeed"}`,
                 renderSuggestion:false
               };
               this.setState(event);
@@ -641,9 +725,9 @@ class Post extends React.Component {
             destroy={()=>{
               var event={
                 render:true,
-                action:'Rather Not follow the Suggestion',
-                context: this.state.context,
-                name: this.props.name+'\'s Post: '+this.props.children,
+                 action: 'Decline_Suggestion : Delete_Post',
+                context:"0",
+                object: `Adaptation was for Delete_Post 2-> ${this.props.name}\'s Post: ${this.props.children} at the ${this.props.forTimeline?"Timeline":"NewsFeed"}`,
                 renderSuggestion:false
               };
               this.setState(event);
@@ -673,19 +757,20 @@ class Post extends React.Component {
               <p style={{display: "inline"}}>{audienceText(this.props.audience)}</p>
             </div>
             
-           {this.props.forTimeline && this.props.name != "Alex Doe" ? null:
-                <Menu icon={this.state.hideHighlight1 && this.props.index === 28 || this.state.untag_Highlight && this.props.index === 27||this.state.delete_Highlight && this.props.index === 2 ?'horiz high1':'horiz'}
+                
+           {this.props.forTimeline && post_title.includes("Alex Doe")? null:
+                <Menu icon={this.state.hideHighlight1 && this.props.index === 42 || this.state.untag_Highlight && this.props.index === 27||this.state.delete_Highlight && this.props.index === 2 ?'horiz high1':'horiz'}
                  onOpen={this.onMenuOpen}>
 
 
-                  <div className={this.state.hideHighlight1 && this.props.index === 28?"high1":null}><Button onClick={ this.onClickHide}>{this.props.index === 28?"Hide from Timeline": "Hide post"}</Button></div>
+                  <div className={this.state.hideHighlight1 && this.props.index === 42?"high1":null}><Button onClick={ this.onClickHide}>{this.props.index === 42?"Hide from Timeline": "Hide post"}</Button></div>
 
                   {(!this.state.tagRemoved && this.props.children.toLocaleLowerCase().includes("alex doe"))
                       ? <div className={this.state.untag_Highlight && this.props.index === 27?"high1":null}><Button onClick={this.onClickRemoveTag}>Remove tag</Button></div> : null}
 
-                  {(this.props.name != "Alex Doe") ? <Button onClick={ () => this.onClickUnfollow(this.props.name)}>Unfollow {this.props.name}</Button> : null}
+                  {(this.props.name !== "Alex Doe" && this.props.target_friend !== "Alex Doe") ? <Button onClick={ () => this.onClickUnfollow(this.props.name)}>Unfollow {this.props.name}</Button> : null}
 
-                   {(this.props.name === "Alex Doe") ? <div className={this.state.delete_Highlight && this.props.index === 2?"high1":null}> <Button href='javascript:void(0);' onClick={this.onClickDelete}>Delete</Button></div>:null}
+                   {(this.props.name === "Alex Doe" || this.props.target_friend === "Alex Doe" ) ? <div className={this.state.delete_Highlight && this.props.index === 2?"high1":null}> <Button href='javascript:void(0);' onClick={this.onClickDelete}>Delete</Button></div>:null}
 
                 </Menu> 
            }                         
@@ -696,49 +781,47 @@ class Post extends React.Component {
           </VisibilitySensor>
           
           {this.props.photo ? <img src={this.props.photo} width="100%" height="100%"></img> : null}
-          
-              
+        
                  { /*The Untag Automation Adaptation Popup*/ 
-                    this.state.untag_Automation && this.state. displayUnTagAutomationPopup && this.props.index == 27 &&!this.state.tagRemoved && <AutomationBoilerplate action = {this.state.action_tag} context = {this.state.context_tag} label={this.state.untag_label_Auto} onClickOK_Auto={this.onClickUntag_Ok_Auto } onClickUnDo_Auto = {this.onClickUntag_Undo_Auto}
-                />}
-             
-          
-          <hr />
-          {this.actions()}
-          <hr />
+                    this.state.untag_Automation && this.state. displayUnTagAutomationPopup && this.props.index == 27 &&!this.state.tagRemoved && <AutomationBoilerplate action = {this.state.action_tag} context = {this.state.context_tag} label={this.state.untag_label_Auto} onClickOK_Auto={this.onClickUntag_Ok_Auto } onClickUnDo_Auto = {this.onClickUntag_Undo_Auto} />
+                  }
+              <hr />
+              {this.actions()}
+              <hr />
           
           
           {comments.map((comment, i) => <Comment post={this} index={this.props.index} key={i} commentindex={i} name={comment.name}>{comment.content}</Comment>)}
-          <NewCommentArea type='post' index={this.props.index} post={this} />
+          <NewCommentArea type='post' name={this.props.name} index={this.props.index} post={this} forTimeline={this.props.forTimeline} />
 
-            
-         
         
-        {this.state.renderSuggestion ? Suggestion_Popup : null}
-          
-           
-        { /*The Hide Suggestion Adaptation*/
-            this.state.hidesuggestion && this.state.displayHideSuggestionPopup && this.state.onScrollShowHideSuggestion && <SuggestionBoilerplate action={this.state.action}  context={this.state.context} label={this.state.label_Sugst} agree={this.onClickOK_Suggestion} destroy = {this.onClickDestroySuggestion}/>
-        }   
-           
-        
-               
-         {/*The Untag Suggestion Adaptation*/
-          this.state.untag_Suggestion && this.state.displayUntagSuggestionPopup &&  this.state.onScrollShowTagSuggestion && <SuggestionBoilerplate action={this.state.action_tag}  context={this.state.context_tag} label={this.state.untag_label_Sugst} agree={this.onClickUntag_OKSuggestion} destroy = {this.onClickUntag_DestroySuggestion}/>}
-        
-            
+           {this.state.renderSuggestion ? Suggestion_Popup : null}
+
+
+            { /*The Hide Suggestion Adaptation*/
+                this.state.hidesuggestion && this.state.displayHideSuggestionPopup && this.state.onscrollShowHideSuggestion && <SuggestionBoilerplate action={this.state.action}  context={this.state.context} label={this.state.label_Sugst} agree={this.onClickOK_Suggestion} destroy = {this.onClickDestroySuggestion}/>
+            }   
+
+            {/*The Untag Suggestion Adaptation*/
+              this.state.untag_Suggestion && this.state.displayUntagSuggestionPopup &&  this.state.onscrollShowTagSuggestion && <SuggestionBoilerplate action={this.state.action_tag}  context={this.state.context_tag} label={this.state.untag_label_Sugst} agree={this.onClickUntag_OKSuggestion} destroy = {this.onClickUntag_DestroySuggestion}/>}
+
+            {/*The Block Suggestion Adaptation*/
+              this.state.block_Suggestion && this.state.displayBlockSuggestionPopup &&  this.state.onscrollShowBlockSuggestion && <SuggestionBoilerplate action={this.state.action_block}  context={this.state.context_block} label={this.state.block_label_Sugst} agree={this.onClickBlock_OKSuggestion} destroy = {this.onClickBlock_DestroySuggestion}/> }
+
+            {/*The Block Popup that comes as confirmation after the Suggestion*/
+              this.state.renderBlockPopup?this.BlockPopup():null
+            }
+
         </div>);
     }
   }
 
     
   render() {
-      
-    // console.log("The state for hidden is "+this.state.hidden);
-      
+    
+
     if (!this.state.render) {
-     return null;
-   }
+       return null;
+    }
 
     if (this.state.hidden) {
       // TODO: Make this say newsfeed when it is newsfeed
@@ -762,7 +845,9 @@ class Post extends React.Component {
                   return true;
                 }
               });
-                   }}>Undo</Button></span>
+                       
+            registerEvent('Clicked to Undo Hide', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
+            }}>Undo</Button></span>
             <span id='hide-post-dismiss'>
               <Button onClick={() => this.setState({render: false})}>X</Button>
             </span>
@@ -775,7 +860,7 @@ class Post extends React.Component {
       );
     }
 
-    if (this.props.name == 'Alex Doe') {
+    if (this.props.name === 'Alex Doe') {
       let visited = JSON.parse(localStorage.featuresVisited);
       visited.posts.delete = true;
       localStorage.setItem("featuresVisited", JSON.stringify(visited));
@@ -805,7 +890,7 @@ class Post extends React.Component {
                    } 
                 });
                 
-                //console.log(users);
+              registerEvent('Clicked to Undo Unfollow', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
              
             }}>Undo</Button></span>
             <span id='hide-post-dismiss'>
@@ -817,7 +902,6 @@ class Post extends React.Component {
         
           </div>
           
-          
         </div>
       );
          
@@ -826,11 +910,9 @@ class Post extends React.Component {
     if (this.props.hidden && !this.props.forTimeline) {
          return null;
     }
-    //http://localhost:8080/?session=a09eb84d555bb8d55510ef28a56a6f3d&hide_Post=auto
       
-   
     /*Automation of Hiding Post */ 
-    if(this.state.hideAutomation && this.state.displayHideAutomationPopup && this.props.index == 28) {
+    if(this.state.hideAutomation && this.state.displayHideAutomationPopup && this.props.index === 42) {
      
         return (
              <div id='post' className='hidden'>
@@ -843,27 +925,45 @@ class Post extends React.Component {
         </div>
         )
     }
-    
-    
+      
+    /*Automation for Blocking Post*/
 
+       let adaptationVisited = getParsed('visited')
+      if(this.state.blockAutomation && this.state.displayBlockAutomationPopup && (!adaptationVisited["Block_User"]["automation"]) && (this.props.index === 17 || this.props.index === 24 || this.props.index === 32 || this.props.index === 36 || this.props.index === 41 )){
+          
+          return (
+             <div id='post' className='hidden'>
+              <div id='post-content'>
+              {/*The Automation Adaptation Popup*/ 
+                <AutomationBoilerplate action = {this.state.action_block} context = {this.state.context_block} label={this.state.block_label_Auto} onClickOK_Auto={this. onClickBlock_Ok_Auto} onClickUnDo_Auto = {this.onClickBlock_Undo_Auto} routeTo={"/settings_general/blocking"}
+                />
+               }
+            </div>
+        </div>
+        )
+      }
+      
+    //This is the special highlight adaptation case for block on the NewsFeed. 
+    let BlockHighlightStyle = classNames({
+          "high1": this.state.block_Highlight && this.props.name === "Ira Slipan"
+      });
 
     //To indicate shared Post
-    var post_title = [<ProfileLink name={this.props.name} key={0} />];
+    var post_title = [<span key={0} className= {BlockHighlightStyle}><ProfileLink name={this.props.name} key={0} onClick={this.registerClick} /></span>];
    
     if (this.props.original_poster) {
       post_title.push(' shared ');
-      post_title.push(<ProfileLink name={this.props.original_poster} key={1} />);
+      post_title.push(<ProfileLink name={this.props.original_poster} key={this.props.index} onClick={this.registerClick}/>);
       post_title.push('\'s post');
-    }
-    else if (this.props.target_friend) {
+    } else if (this.props.target_friend) {
       post_title.push(' ➤ ');
-      post_title.push(<ProfileLink name={this.props.target_friend} key={1} />);
+      post_title.push(<ProfileLink name={this.props.target_friend} key={this.props.index} onClick={this.registerClick}/>);
     }
       
     /*To indicate tagged Post*/
     if (!this.state.tagRemoved && !this.state.untag_Automation && this.props.children.includes("Alex Doe")  ){
-        post_title.push(' is with');
-        post_title.push(<ProfileLink name={"Alex Doe"} key={1}/>   );
+        post_title.push(' is with ');
+        post_title.push(<ProfileLink name={"Alex Doe"} key={1} onClick={this.registerClick}/>   );
     }
       
       /*To indicate updated profile picture */
@@ -898,17 +998,15 @@ class Post extends React.Component {
           {    /*These happen on the Timeline */
                 
                 /*The Unsubscribe Suggestion Adaptation*/
-            (this.props.name == "Jack Scout") && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && <SuggestionBoilerplate action={"Unsubscribe_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"}  context={"Unsubscribe_Friend"} label={"Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore."} agree ={this.onClickOK_UnsubscribeSuggestion} destroy = {this.onClickDestroyUnsubscribeSuggestion}/>
+            (this.props.name == "Jack Scout") && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && <SuggestionBoilerplate action={"Adaptation was unsubscribe_Friend -> unfollowing Jack Scout"}  context={"Unsubscribe_Friend"} label={"Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore."} agree ={this.onClickOK_UnsubscribeSuggestion} destroy = {this.onClickDestroyUnsubscribeSuggestion}/>
                   
            }
            
              {  /*The Categorize Suggestion Adaptation*/
-             (this.props.name == "Sasha Riley") && this.props.displayCategorizeSuggestion&& this.state.categorize_displaySuggestionPopup && this.props.index === 21 && <SuggestionBoilerplate action={"Categorize_Friend, Check to see if the suggested audience for the post was followed/not followed (for Undo_Automation)"}  context={"Categorize_Friend"} label={"Hi Alex - Would you like to add Sasha Riley  to the “Family” friend list as you seem to all work at the same place. "} agree ={this.onClickOK_CategorizeSuggestion} destroy = {this.onClickDestroyCategorizeSuggestion}/>
+             (this.props.name == "Sasha Riley") && this.props.displayCategorizeSuggestion&& this.state.categorize_displaySuggestionPopup && this.props.index === 21 && <SuggestionBoilerplate action={"Adaptation was Categorize_Friend -> categorizing Sasha Riley as  a Recruiter"}  context={"Categorize_Friend"} label={"Hi Alex - You recently added Sasha Riley, who is a recruiter at RBW, as a friend. Would you like to add Sasha Riley  to the “Recruiters” friend list?"} agree ={this.onClickOK_CategorizeSuggestion} destroy = {this.onClickDestroyCategorizeSuggestion}/>
                   
            }
-          
-         
-          
+              
           </div>
     
         

@@ -14,7 +14,7 @@ class FriendSubscription extends React.Component {
         
        let adaptation = getParsed('adaptations');
        let adaptationVisited = getParsed("visited");
-         let getSubscribeStatus = getFollowStatus(this.props.friendName);
+       let getSubscribeStatus = getFollowStatus(this.props.friendName);
         
         
         this.state = {
@@ -33,9 +33,7 @@ class FriendSubscription extends React.Component {
         // this.changeStyle = this.changeStyle.bind(this);
     }
     
-    componentWillMount(){
-        this.set
-    }
+   
     
     componentWillReceiveProps(nextProps) {
         
@@ -53,7 +51,7 @@ class FriendSubscription extends React.Component {
         
     }
 
-    handleClick() {
+    handleClick(element) {
       if (this.state.subscribe) {
         /* let visited = JSON.parse(localStorage.featuresVisited);
         visited.friends.unfollow = true;
@@ -63,11 +61,11 @@ class FriendSubscription extends React.Component {
         localStorage.setItem("featuresUsed", JSON.stringify(used));
       }
          
-         if(element == "Unfollow") {
+         if(element === "Unfollow") {
            unFollowUser(this.props.friendName);
          }
         
-        if(element == "Follow") {
+        if(element === "Follow") {
            followUser(this.props.friendName);
          }
         
@@ -75,8 +73,6 @@ class FriendSubscription extends React.Component {
             subscribe: !state.subscribe,
             
         }))
-        
-        
         
         if(!this.state.adaptationVisited["Unsubscribe_Friend"]['highlight'] && (this.props.friendName === "jack_scout") ) {
             
@@ -99,6 +95,7 @@ class FriendSubscription extends React.Component {
     
     render() {
         
+        //console.log(getFollowStatus(this.props.friendName));
          var dropbtn_style = classNames({
              'dropbtn_1':!this.state.highlight1 || (this.props.friendName !== "jack_scout") && this.state.highlight1,
              'dropbtn_1_highlight':(this.props.friendName === "jack_scout") && this.state.highlight1,
@@ -138,8 +135,9 @@ class FriendSubscription extends React.Component {
                 :
                    <div>
                     <button className="dropbtn_1" onClick={() => this.handleClick("Follow")}>Follow</button>
-                    <button className="btn"> Message </button>
-                    <button className="btn">...</button>
+                    <span data-tip="Not Implemented" >
+                       <button className="btn"> Message </button>
+                    </span>
                    </div>
              }
              
@@ -151,6 +149,4 @@ class FriendSubscription extends React.Component {
 }
 
 export default FriendSubscription;
-
-//<span style={highLight}><Button onClick={this.handleClick}>Unfollow</Button></span>
 

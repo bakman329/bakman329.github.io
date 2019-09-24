@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import SuggestionPopupBox from '../SuggestionPopupBox.jsx'
 import {saveVisitedAdaptation} from '../../utilities.js'
+import {CreateEvent} from '../../controller/databaseFunctions.js';
 
 
 class SuggestionBoilerplate extends Component{
@@ -14,6 +15,7 @@ class SuggestionBoilerplate extends Component{
         this.destroy = this.destroy.bind(this);
         this.label = this.label.bind(this);
         this.visited = this.visited.bind(this);
+        //this.dismissed = this.dismissed.bind(this);
     }
     visited(feature,name){
         saveVisitedAdaptation(feature,name)
@@ -22,9 +24,9 @@ class SuggestionBoilerplate extends Component{
     
     okay(){
         var event={
-            action: `Followed and agreed with the Suggestion for ${this.props.action}`,
-            context: this.props.context,
-            name: 'Alex_Doe'
+            action: `Suggestion: ${this.props.context}`,
+            context: "1",
+            object: this.props.action
         };
         
         this.props.agree();
@@ -32,16 +34,19 @@ class SuggestionBoilerplate extends Component{
         return event;
     }
     
-    destroy(){
+    destroy(origin){
+    
         var event = {
-            action:`Rather Not\\Declined to follow the Suggestion for ${this.props.context}`,
-            context:this.props.context,
-            name:'Alex_doe'
+            action: `Decline_Suggestion: ${this.props.context}`,
+            context:"0",
+            object:this.props.action
         };
         
         this.visited(this.props.context, "suggestion");
         return event;
+       
     }
+    
     
     label(){
         return(
@@ -54,7 +59,7 @@ class SuggestionBoilerplate extends Component{
     
     render(){
         return(
-            <SuggestionPopupBox okay={this.okay} destroy={this.destroy} routeTo= {this.props.routeTo != undefined?this.props.routeTo:null} label = {this.label()} />
+            <SuggestionPopupBox okay={this.okay} destroy={this.destroy}  routeTo= {this.props.routeTo != undefined?this.props.routeTo:null} label = {this.label()} />
         )
     }
 

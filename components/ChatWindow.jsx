@@ -31,6 +31,7 @@ class ChatWindow extends React.Component {
                outgoing_messages_list[this.props.name] = outgoing_messages_user;
                localStorage.outgoing_messages = JSON.stringify(outgoing_messages_list);
            }
+           this.setState({value: ""});
 
            registerEvent('Entered this chat message "'+ this.state.value +'"',' for '+ this.props.name, "In Chat Window");
        }

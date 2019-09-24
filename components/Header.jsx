@@ -31,6 +31,7 @@ class Header extends React.Component {
          this.setState( (prevState, props) => ({
             renderNotification:!prevState.renderNotification,
              showNotificationIcon:false,
+             renderSettings: false
         }));
         
          registerEvent("Clicked on the Notification button", 'to open the notifications drop down ', 'Header');    
@@ -42,6 +43,7 @@ class Header extends React.Component {
         this.setState( (prevState, props) => ({
             
             renderSettings:!prevState.renderSettings,
+            renderNotification: false
         }));
         
          registerEvent("Clicked on the privacy settings dropdown button", 'to open the settings drop down', ' Header'); 

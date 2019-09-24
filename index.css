@@ -2474,3 +2474,9 @@ text-align: center;
 #unused-list {
     list-style: none;
 }
+
+.notification-id .dropdown-menu {
+    position: absolute;
+    margin-left: -130px;
+    margin-top: -14px;
+}

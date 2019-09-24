@@ -111,6 +111,7 @@ class Post extends React.Component {
       label_Auto: "This post by Trevin Noushy was automatically hidden from your Timeline.",
       block_label_Auto: "This post by Ira Slipan is not visible because he has been automatically blocked.",  
       untag_label_Auto:"A tag of you was automatically removed from this post.",
+      renderSharePopup: false
 
     };
 
@@ -502,6 +503,7 @@ class Post extends React.Component {
       localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
       indexPosts();
       registerEvent('Clicked to Share ', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
+      this.setState({renderSharePopup: true});
       this.props.update();
       
       return event;
@@ -992,8 +994,13 @@ class Post extends React.Component {
           {this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && <ContactInfoSuggestion  username = {this.props.name}  context={"Contact_Info"} label={'Hi Alex -You seem to have an old email address listed on your profile. Do you want to update your email address to "alexdoe@gmail.com".'} destroy = {this.onDisplayContactInfoSuggestion}/>}
           
            {this.props.displayBasicInfoSuggestion && this.state.displayBasicInfoSuggestion && this.props.index === 0 && <ContactInfoSuggestion  username = {this.props.name}  context={"Basic_Info"} label={"Hi Alex - You recently removed some of your posts about politics. Do you want to remove your political views from your profile page?"} destroy = {this.onDisplayBasicInfoSuggestion}/>}
-          
-          
+            {this.state.renderSharePopup ?
+                    <Popup title="Post shared" closeButton
+                        cancel={() => {this.setState({renderSharePopup: false})}}
+                        closeButtonName="Close">
+                        This has been shared to your timeline.
+                    </Popup>
+                    : null}
           
           {    /*These happen on the Timeline */
                 

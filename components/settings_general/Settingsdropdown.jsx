@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Button from '../Button.jsx'
 import {Link} from 'react-router-dom';
-import {getParsed,registerEvent} from '../../utilities.js';
+import {getParsed,registerEvent,getSession} from '../../utilities.js';
 
 
 
@@ -26,7 +26,6 @@ class Settingsdropdown extends React.Component {
     
         this.props.changeIcon();
         this.props.settingsdropDown();
-        
         registerEvent("Clicked on the Settings button within the dropdown", "Transferred to the privacy settings page ");
     }
     
@@ -39,24 +38,27 @@ class Settingsdropdown extends React.Component {
     
     registerEvent(){
        registerEvent("Finished", "Exiting the prototype and heading to the Suvery", "Logout_Settings Dropdown");
-       location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';  
+        
+        let session_id = getSession();
+        location.href= `https://fakebook.usabart.nl/survey/?session=${session_id}&from=experiment`
+                  
+       //location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';  
     }
     
     render(){
-        //console.log("I have been called");
         return (  
             <div id = "dropdown_header"> 
                  <ul >
-                     <li> <a className="settings_options_a" href="#">Create Page</a> </li>
+                     <li> <a className="settings_options_a" href="javaScript:void(0)">Create Page</a> </li>
                      <li> <a className="settings_options_a">Create Ads</a> </li>
                      <li> <a className="settings_options_a">Manage Ads</a> </li>
                      
-                     <li><a className="settings_options_b" href="#Activity Logs">Activity Logs</a></li>
-                      <li><a className="settings_options_b" href="#Setting">News Feed preferences</a></li>
-                      <li className={this.state.highlight?"high1":null}><Link className="settings_options_b" to={{
+                     <li><a className="settings_options_b" href="javaScript:void(0)">Activity Logs</a></li>
+                      <li><a className="settings_options_b" href="javaScript:void(0)">News Feed preferences</a></li>
+                      <li className={this.state.highlight?"high1":null}><Link className="settings_options_a" to={{
                               pathname:'/settings_general/GeneralSettings',
                               state:{fromHeader:true}}} onClick={this.handleClick}>Settings</Link></li>
-                     <li className="settings_options_b"><Button onClick={this.registerEvent}>Log Out</Button></li>
+                     <li className="settings_options_a"><Button onClick={this.registerEvent}>Log Out</Button></li>
                </ul>  
             </div>
         )

@@ -9,7 +9,7 @@ import ChatWindow from './ChatWindow.jsx'
 import Popup from './Popup.jsx'
 import {highLight,No_highLight} from '../adaptations/Highlight.js'
 import SuggestionPopup from '../adaptations/Suggestion.jsx'
-import {containsIgnoreCase, getParsed} from '../utilities.js'
+import {containsIgnoreCase, getParsed,registerEvent} from '../utilities.js'
 import {HighlightBoilerplate} from '../adaptations/Highlight/HighlightBoilerplate.jsx';
 import AutomationBoilerplate from '../adaptations/Automation/AutomationBoilerplate.jsx';
 import SuggestionBoilerplate from '../adaptations/Suggestion/SuggestionBoilerplate.jsx';
@@ -190,39 +190,6 @@ class Chat extends React.Component {
                 
             )
         }
-        /**else if (this.state.chatSuggestion){
-            
-            
-            var Suggestion_Popup=(
-              <SuggestionPopup title="Suggestion" okay={()=>{
-                      var event={
-                          action:'Accept to turn off chat',
-                          context:this.state.context,
-                          name:'This is the Chat suggestion to turn off chat for all contacts',
-                          renderSuggestion:false
-                      };
-                      this.setState(event);
-                      return event;
-                  }} 
-
-                  cancel={()=>{
-                      var event={
-                          action:'Would rather not turn off chat',
-                          context:this.state.context,
-                          name:'This is the Chat suggestion to turn off chat for all contacts',
-                          renderSuggestion:false
-                      };
-                      this.setState(event);
-                      return event;
-                  }}>
-
-                  <label>
-                     Hi Alex- Would you like to turn off Active Status on Chat. Your friends and contacts will no longer see when you're online on FriendBook.  
-                  </label>
-              </SuggestionPopup>)
-        }*/
-
-        //let adaptation = JSON.parse(localStorage.adaptations)["chatoffline"];adapt={adaptation}
         return(
             <div>
                 <span className={this.state.chatHighlight?"high":null}><Menu ref={(_menu) => {this.menu = _menu}} upwards icon='gear'>
@@ -239,6 +206,8 @@ class Chat extends React.Component {
     
     cancelAllContacts(){
         this.setState({turnOffChat: "turnOnActiveStatus"});
+
+        registerEvent("Active Status","Turned on Active Status","Chat Area")
     }
 
     render() {
@@ -379,7 +348,6 @@ class Chat extends React.Component {
         // TODO: Consider if there's a better solution than this warning
         var turned_off_warning;
         if (this.state.turnOffChat == "allContacts" && this.state.displayStatusLabel) {
-            
            turned_off_warning = <p><a href="javaScript:void(0)" onClick={this.cancelAllContacts}>Turn on Active Status</a> to see who's available</p>;
         }
 
@@ -390,6 +358,7 @@ class Chat extends React.Component {
                 </div>
                 <div id='chat'>
                     {this.state.renderChatPopup ?  turnOffChatPopup  : null}
+                   <div className="chat_header">CONTACTS</div>
                     {friends}
                     <div id='chat-footer'>
                         <div id='settings'>

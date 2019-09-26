@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {registerEvent} from '../../utilities.js';
+import {registerEvent, getSession} from '../../utilities.js';
 
 import Popup from '../Popup.jsx'
 import {getParsed, longFeatureTitle} from '../../utilities.js';
@@ -40,13 +40,20 @@ class ExitExperiment extends React.Component {
 
                 if (sc < this.MIN_SCORE_TO_PROCEED) {
                     this.setState({renderCompletionPopup: true});
+                  registerEvent("Tracker_Completion Popup", `Held by the tracker with score ${sc}`, "Scenario Area");
                 }
                 else {
-                    location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                    //location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                   registerEvent("Finished Experiment", "Exiting the prototype -> the Suvery", "Scenario Area");
+                   let session_id = getSession();
+                   location.href= `https://fakebook.usabart.nl/survey/?session=${session_id}&from=experiment`
+                  
+                 
                 }
             });
             
-            registerEvent("Finished Experiment", "Exiting the prototype -> the Suvery", "Scenario Area");
+
+           
     }
 
     unusedList() {
@@ -57,7 +64,7 @@ class ExitExperiment extends React.Component {
             }
         }
 
-        return unusedNames.map((s, i) => {return <li key={i}>{s}</li>});
+        return unusedNames.map((s, i) => {return <li key={i} style={{marginBottom:'5px', lineHeight:'1.5'}}>{s}</li>});
     }
 
     render() {
@@ -82,3 +89,6 @@ class ExitExperiment extends React.Component {
 }
 
 export default ExitExperiment;
+
+
+        

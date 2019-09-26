@@ -82,12 +82,9 @@ class NewPostArea extends React.Component {
     
     onClickOK_Suggestion(){
         //this.changeAudience("future_requests","friends")
-        
         this.setState({
              audience:'custom'
-        },()=> this.post())
-        
-        
+        },()=> this.post())  
     } 
     
   /*Methods for the Automation Adaptation*/
@@ -95,10 +92,8 @@ class NewPostArea extends React.Component {
        
         this.setState({
             displayAutomationPopup:false,
-        })
-       
-       
-       this.post()
+            audience:'custom'
+        }, () => this.post())
     }
     
    onClickUndo_Auto(){
@@ -145,10 +140,8 @@ class NewPostArea extends React.Component {
      indexPosts();
      this.props.postarea.update();
        
-    registerEvent("Created new Post ","it reads: "+this.state.value, (this.props.forTimeline?"Timeline":"NewsFeed"));
+    registerEvent("Created a new Post ","it reads: "+this.state.value, (this.props.forTimeline?"Timeline":"NewsFeed"));
      this.setState({value: '', photo: '', renderUploadPopup: false});
-    
-    
    }
     
    onClick() {
@@ -188,7 +181,7 @@ class NewPostArea extends React.Component {
           style={{width: 60, height: 60}} />
         : null;
       
-       var currentFriendList = getCurrentFriendLists();
+      var currentFriendList = getCurrentFriendLists();
       return (
          <div id='new-post-area'>
             <div id='new-post-area-content'> 

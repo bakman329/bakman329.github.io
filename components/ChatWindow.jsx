@@ -37,7 +37,7 @@ class ChatWindow extends React.Component {
        }
    }
    registerClick() {
-    registerEvent('Clicked on '+this.props.name+", '\s profile link to visit their profile page", " From Chat Window");   
+    registerEvent(`Clicked on ${this.props.name}'\s`, "profile link to visit their profile page", " From Chat Window");   
    }
     
    destroyWindow() {

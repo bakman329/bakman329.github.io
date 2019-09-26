@@ -742,9 +742,10 @@ export function resetFeaturesVisited() {
     notifications: {app: false, event: false},
     posts: {delete: false, hide: false},
     withhold_info: {address: false, political: false}, // TODO
-    custom_lists: {create_custom: false, post_custom: false, photo_custom: false}, // TODO
-    block: {app: false, user: false}, // TODO: User
-    audience: {restrict_timeline: false, restrict_albums: false} // TODO
+    // custom_lists: {create_custom: false, post_custom: false, photo_custom: false}, // TODO
+    custom_lists: {post_custom: false},
+    block: {app: false, user: false},
+    audience: {restrict_timeline: false}
   }));
 }
 
@@ -757,9 +758,10 @@ export function resetFeaturesUsed() {
     notifications: {app: false, event: false},
     posts: {delete: false, hide: false},
     withhold_info: {address: false, political: false}, // TODO
-    custom_lists: {create_custom: false, post_custom: false, photo_custom: false}, // TODO
-    block: {app: false, user: false}, // TODO: User
-    audience: {restrict_timeline: false, restrict_albums: false} // TODO
+    // custom_lists: {create_custom: false, post_custom: false, photo_custom: false}, // TODO
+    custom_lists: {post_custom: false},
+    block: {app: false, user: false},
+    audience: {restrict_timeline: false}
   }));
 }
 

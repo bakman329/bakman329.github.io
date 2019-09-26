@@ -558,6 +558,9 @@ class Post extends React.Component {
          unfollow:true,
          unfollowedName: name,
      }, ()=> this.props.hideAllPosts(name))
+     let used = JSON.parse(localStorage.featuresUsed);
+     used.friends.unfollow = true;
+     localStorage.setItem("featuresUsed", JSON.stringify(used));
      
     registerEvent('Clicked to Unfollow ', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
  
@@ -625,6 +628,9 @@ class Post extends React.Component {
     if (this.props.children.toLocaleLowerCase().includes("alex doe")) {
       let visited = JSON.parse(localStorage.featuresVisited);
       visited.untag.self = true;
+      visited.posts.delete = true;
+      visited.posts.hide = true;
+      visited.friends.unfollow = true;
       localStorage.setItem("featuresVisited", JSON.stringify(visited));
     }
   }

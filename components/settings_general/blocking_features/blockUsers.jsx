@@ -199,7 +199,12 @@ onClickUltimateBlock(user){
 UltimateBlock(){
      return (
      <Popup title = {`Are you sure you want to block ${this.state.username}?`} cancel = {()=>{this.cancel('second')}} 
-     okay = {()=>{this.allowed()}} 
+     okay = {()=>{
+         this.allowed();
+         let used = JSON.parse(localStorage.featuresUsed);
+         used.block.user = true;
+         localStorage.setItem("featuresUsed", JSON.stringify(used));
+     }}
       okButtonName = {`Block ${this.state.username.split(" ")[0]}`} destroy = {() => {null}}> 
        <div>
           <div className="popup_imgwrap">
@@ -324,7 +329,6 @@ allowUnblock(user){
     addToLocalStorageObject('users', this.state.friendsList);
     addToLocalStorageObject('blockedUsers',this.state.blockedUserslist);
 
-    
     //this.setLocalStorage(); 
     this.cancel('third')
                 

@@ -25,6 +25,11 @@ class Edit extends React.Component{
         //Include the action to be taken when the audience is selected.
         //console.log("The audience has been selected")
         this.props.changeAudience(this.props.audienceType,audience)
+        if (this.props.audienceType == "timeline_see") {
+            let used = JSON.parse(localStorage.featuresUsed);
+            used.audience.restrict_timeline = true;
+            localStorage.setItem("featuresUsed", JSON.stringify(used));
+        }
     }
     
     //Open the edit dialog

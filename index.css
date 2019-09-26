@@ -114,6 +114,17 @@ textarea {
     transform: translateY(-50%);
 }
 
+header .popup-content {
+    color: black;
+    font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+header .popup-header {
+    height: 25px;
+}
+
 #header-text p {
     display: inline;
     padding-left: 12px;
@@ -2210,6 +2221,7 @@ text-align: center;
     background-color:#efeff4; /*e0e0e0*/
     border-radius: 10px;
     box-shadow:0 2px 4px rgba(0,0,0,.4);
+    z-index: 100;
      
    
 }

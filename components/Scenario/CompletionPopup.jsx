@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {registerEvent} from '../../utilities.js';
 
 import Popup from '../Popup.jsx'
-import {getParsed, longFeatureTitle} from '../../utilities.js';
+import {getParsed, longFeatureTitle, getSession} from '../../utilities.js';
 
 class CompletionPopup extends React.Component {
     constructor(){
@@ -55,7 +55,9 @@ class CompletionPopup extends React.Component {
                 else {
                     registerEvent("Finished Experiment", "Exiting the prototype -> the Suvery", "Scenario Area");
                 }
-                location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                // location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                let session_id = getSession();
+                location.href= `https://fakebook.usabart.nl/survey/?session=${session_id}&from=experiment`
             }
     }
 

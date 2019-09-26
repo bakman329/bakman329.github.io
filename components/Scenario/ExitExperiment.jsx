@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {registerEvent} from '../../utilities.js';
+import {registerEvent, getSession} from '../../utilities.js';
 
 import Popup from '../Popup.jsx'
 import CompletionPopup from './CompletionPopup.jsx'
@@ -35,3 +35,6 @@ class ExitExperiment extends React.Component {
 }
 
 export default ExitExperiment;
+
+
+        

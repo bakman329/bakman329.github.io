@@ -151,7 +151,7 @@ class AutocompleteInput extends React.Component {
       () => {this.createList(e)});  
     }
     
-	render() {
+	render() {    
            
     var container;
 		return (

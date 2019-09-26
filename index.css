@@ -141,6 +141,8 @@ header .popup-header {
     transform: translateY(25%);
     border-radius: 50%;
 }
+
+
 /**.settingsImage{
 background-image: url("/assets/settings.png");
 background-repeat: no-repeat;
@@ -490,15 +492,14 @@ background-position: -250px -330px;
     background-clip: padding-box;
     border:1px solid rgba(0,0,0, .15);
     box-shadow:0 3px 8px rgba(0,0,0, .3);
-    height:250px;
-    overflow: scroll;
+    height:310px;
 }
 
 #dropdown_header:after {
   content: " ";
   position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
-  left: 100%;
+  bottom: -15px;  /* At the top of the tooltip */
+  left: 255px;
   margin-left: 298px;
   border-width: 10px;
   border-style: solid;
@@ -642,17 +643,59 @@ color: #ffffff;}
 
 /** ------ **/
 /* TODO: Fix overlap on low-width screens */
+.chat_header {
+    color: #4a4a4a;
+    font-size: 15px;
+    font-weight: bold;
+    height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    margin:8px;
+        
+}
+
 #chat-area {
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: 0;
     margin-top: 42px;
     float: right;
-    height: calc(100% - 42px);
+    /*height: calc(100% - 42px);*/
+    height: calc(100% - 190px);
+    overflow: hidden;
+    border-left: 1px solid #d2d3d3;
 }
 
+.chat_username {
+    overflow: hidden;
+    padding-left: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333;
+    line-height: 32px;
+    font-size:14px;
+}
+
+
+
 /* TODO: Determine the necessity of this */
-@media (max-width: 732px) {
+@media (max-width:1300px) {
+  #page-content #post-area {
+    margin-left: 35px;
+  }
+ 
+  #left-navagation{
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 1031px) {
+    #user {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 1036px) {
     #chat-area {
         background-color: #000;
         display: none;
@@ -678,7 +721,7 @@ color: #ffffff;}
 #chat {
     height: 100%;
     width: 205px;
-    border-left: 1px solid black;
+  
     padding-left: 8px;
     float: right;
 }
@@ -2241,6 +2284,7 @@ text-align: center;
     text-align: left;
     overflow-wrap: break-word;
     white-space: normal;
+    font-weight: 520;
 }
 
 .scenario_task {

@@ -11,9 +11,9 @@ class ContactInfo extends Component {
     super(props)
 
     
-      
+      console.log("The user is "+ props.user);
        let adaptation = getParsed('adaptations')
-       let existingInformation = getParsed('contactInfo')["jack_scout"];
+       let existingInformation = getParsed('contactInfo')[props.user];
       //console.log(existingInformation)
        let adaptationVisited = getParsed("visited");
      

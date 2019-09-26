@@ -30,7 +30,7 @@ class ChatUser extends React.Component {
        return (
           <div id={chatUser}>
              <img id='profile-pic' src={getProfilePic(this.props.name)} />
-             <Button onClick={this.onClickName}>{this.props.name}</Button>
+             <Button onClick={this.onClickName}><span className="chat_username">{this.props.name}</span></Button>
           </div>
        );
     }

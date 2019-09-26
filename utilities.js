@@ -16,6 +16,10 @@ export function registerEvent(action, details, object) {
     CreateEvent(event)
 }
 
+export function getSession(){
+    return localStorage.session;
+}
+
 
 export function indexPosts() {
    var posts = JSON.parse(localStorage.getItem('posts'));
@@ -500,7 +504,7 @@ export function resetUsers() {
       friend:true,
       follow:true},
      
-     {name:" Lydia Chopover",
+     {name:"Lydia Chopover",
       profile_pic:'lydia_profile_img.jpg',
       friend:true,
       follow:true},
@@ -519,8 +523,9 @@ export function resetUsers() {
 
 
 
+
 export function friendList() {
-    localStorage.setItem('list', JSON.stringify([{id:1,name:"Family",members:[]},{id:2,name:"Colleagues",members:[]}, {id:3,name:"Recruiters",members:[]}],{id:4,name:"Work",members:[]}));
+    localStorage.setItem('list', JSON.stringify([{id:1,name:"Family",members:[]},{id:2,name:"Colleagues",members:[]}, {id:3,name:"Recruiters",members:[]},{id:4,name:"Work",members:[]},{id:5,name:"Close Friends",members:[]}]));
 }
 
 export function AddfriendList() {
@@ -532,10 +537,7 @@ export function AddfriendList() {
         }
     });
     
-    
-    localStorage.setItem('list',JSON.stringify(friendlists));
-    
-    //console.log(getParsed('list'));
+  localStorage.setItem('list',JSON.stringify(friendlists));
 }
 
 export function getCurrentFriendLists() {
@@ -546,7 +548,7 @@ export function getCurrentFriendLists() {
     friendlists.map( (list, index) => {
         arr .push(list.name); 
      })
-
+    
     return arr;
 }
 
@@ -560,41 +562,102 @@ export function resetSession() {
 
 export function resetContactInfo(){
     localStorage.setItem('contactInfo',JSON.stringify({
-        alex_doe : {
-        mobile:'801234567',
+        alex_doe:{
+        mobile:'+1 801 234-5679',
         email:'ladiesman69@yahoo.com',
         dob:'01 January',
         year:'1979',
         gender:'Gender-Neutral'
         },
+        
        jack_scout:{
-         mobile:'2406589813',
-          email:'jacks@gmail.com',
+         mobile:'+1 240 658-9813',
+         email:'jacks@gmail.com',
          dob:'21 March',
          year:'1980',
          gender:'Male'
-        }
+        },
         
-        /**email:{
-            email:'alexdoe@gmail.com',
-            AddEmailInfo:false,
-            BasicEmailAdded:true
+        jim_mend :{
+            mobile: '+1 203 123-4567',
+            email: 'jim_mend@hotmail.com',
+            dob: '23 September',
+            year:'1999',
+            gender: 'Male'
         },
-        dob:{
-            dob:'01 January',
-            AddDobInfo:false,
-            BasicDobAdded:true
+        
+        sasha_riley:{
+            mobile: '+1 803 187-3456',
+            email: 'sasha_riley@gmail.com',
+            dob: '25 December',
+            year:'1995',
+            gender: 'Male'
+        }, 
+        
+        kyle_parker:{
+            mobile: '+1 913 187-3956',
+            email: 'kyle_parker@gmail.com',
+            dob: '15 May',
+            year:'1992',
+            gender: 'Female'
+        }, 
+        
+        loren_payton:{
+            mobile: '+1 413 157-3456',
+            email: 'loren_payton@yahoo.com',
+            dob: '3 June',
+            year:'1997',
+            gender: 'Female'
+        }, 
+        
+        mike_booth:{
+            mobile: '+1 313 227-4948',
+            email: 'mike@gmail.com',
+            dob: '28 August',
+            year:'1998',
+            gender: 'Male'
         },
-        year:{
+        
+        ira_slipan:{
+            mobile: '+1 213 327-5545',
+            email: 'slipan@yahoo.com',
+            dob: '18 November',
+            year:'1991',
+            gender: 'Male'
+        },
+        
+        tanya_strotman:{
+            mobile: '+1 613 524-6845',
+            email: 'tanya@gmail.com',
+            dob: '2 October',
+            year:'1995',
+            gender: 'Female'
+        },
+        
+        lydia_chopover:{
+            mobile: '+1 413 427-4655',
+            email: 'lydia@gmail.com',
+            dob: '20 September',
             year:'1990',
-            AddYearInfo:false,
-            BasicYearAdded:true
+            gender: 'Female'
         },
-        gender:{
-            gender:'Custom',
-            AddGenderInfo:false,
-            BasicGenderAdded:true
-        }*/
+        
+        esther_rorgash:{
+            mobile: '+1 313 227-4948',
+            email: 'esther@yahoo.com',
+            dob: '23 February',
+            year:'1997',
+            gender: 'Female'
+        },
+        
+        trevin_noushy:{
+            mobile: '+1 813 237-6950',
+            email: 'trevin@gmail.com',
+            dob: '17 April',
+            year:'1994',
+            gender: 'Male'
+        },
+    
     }))
 }
 
@@ -766,15 +829,15 @@ export function resetFeaturesUsed() {
 }
 
 export function longFeatureTitle(title) {
-    return {chat: "Change your chat settings",
+    return {chat: "Check on your chat settings",
             untag: "Untag yourself from a post",
             friends: "Unfollow a friend",
-            notifications: "Change your notification settings",
-            posts: "Delete or hide a post",
-            withhold_info: "Remove personal information from your account",
-            custom_lists: "Organize your friends into lists",
-            block: "Block people or apps",
-            audience: "Restrict the visibility of your posts or albums"}[title]
+            notifications: "Check on your notifications",
+            posts: " Review some of your posts",
+            withhold_info: "Review on your contact and basic information",
+            custom_lists: "Review your friend lists",
+            block: "Block and/or report abusive friends",
+            audience: "Review your audience settings"}[title]
 }
 
 export function resetAll() {

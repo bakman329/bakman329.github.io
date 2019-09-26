@@ -14,7 +14,7 @@ class NewsFeed extends React.Component {
     
  registerClick(){
   
-     registerEvent('Clicked on Alex Doe', "'\s profile link to visit their profile page", " From NewsFeed-LeftSide");    
+     registerEvent("Clicked on Alex Doe'\s profile link","to visit their profile page", " From NewsFeed-LeftSide");    
  }
 
   render() {

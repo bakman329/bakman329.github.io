@@ -339,6 +339,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.registerEvent = registerEvent;
+exports.getSession = getSession;
 exports.indexPosts = indexPosts;
 exports.resetPosts = resetPosts;
 exports.resetChat = resetChat;
@@ -399,6 +400,10 @@ function registerEvent(action, details, object) {
     };
 
     (0, _databaseFunctions.CreateEvent)(event);
+}
+
+function getSession() {
+    return localStorage.session;
 }
 
 function indexPosts() {
@@ -769,7 +774,7 @@ function resetUsers() {
         follow: true }, { name: "Tanya Strotman",
         profile_pic: 'tanya_profile_img.jpg',
         friend: true,
-        follow: true }, { name: " Lydia Chopover",
+        follow: true }, { name: "Lydia Chopover",
         profile_pic: 'lydia_profile_img.jpg',
         friend: true,
         follow: true }, { name: "Esther Rorgash",
@@ -782,7 +787,7 @@ function resetUsers() {
 }
 
 function friendList() {
-    localStorage.setItem('list', JSON.stringify([{ id: 1, name: "Family", members: [] }, { id: 2, name: "Colleagues", members: [] }, { id: 3, name: "Recruiters", members: [] }], { id: 4, name: "Work", members: [] }));
+    localStorage.setItem('list', JSON.stringify([{ id: 1, name: "Family", members: [] }, { id: 2, name: "Colleagues", members: [] }, { id: 3, name: "Recruiters", members: [] }, { id: 4, name: "Work", members: [] }, { id: 5, name: "Close Friends", members: [] }]));
 }
 
 function AddfriendList() {
@@ -795,8 +800,6 @@ function AddfriendList() {
     });
 
     localStorage.setItem('list', JSON.stringify(friendlists));
-
-    //console.log(getParsed('list'));
 }
 
 function getCurrentFriendLists() {
@@ -822,40 +825,102 @@ function resetSession() {
 function resetContactInfo() {
     localStorage.setItem('contactInfo', JSON.stringify({
         alex_doe: {
-            mobile: '801234567',
+            mobile: '+1 801 234-5679',
             email: 'ladiesman69@yahoo.com',
             dob: '01 January',
             year: '1979',
             gender: 'Gender-Neutral'
         },
+
         jack_scout: {
-            mobile: '2406589813',
+            mobile: '+1 240 658-9813',
             email: 'jacks@gmail.com',
             dob: '21 March',
             year: '1980',
             gender: 'Male'
+        },
 
-            /**email:{
-                email:'alexdoe@gmail.com',
-                AddEmailInfo:false,
-                BasicEmailAdded:true
-            },
-            dob:{
-                dob:'01 January',
-                AddDobInfo:false,
-                BasicDobAdded:true
-            },
-            year:{
-                year:'1990',
-                AddYearInfo:false,
-                BasicYearAdded:true
-            },
-            gender:{
-                gender:'Custom',
-                AddGenderInfo:false,
-                BasicGenderAdded:true
-            }*/
-        } }));
+        jim_mend: {
+            mobile: '+1 203 123-4567',
+            email: 'jim_mend@hotmail.com',
+            dob: '23 September',
+            year: '1999',
+            gender: 'Male'
+        },
+
+        sasha_riley: {
+            mobile: '+1 803 187-3456',
+            email: 'sasha_riley@gmail.com',
+            dob: '25 December',
+            year: '1995',
+            gender: 'Male'
+        },
+
+        kyle_parker: {
+            mobile: '+1 913 187-3956',
+            email: 'kyle_parker@gmail.com',
+            dob: '15 May',
+            year: '1992',
+            gender: 'Female'
+        },
+
+        loren_payton: {
+            mobile: '+1 413 157-3456',
+            email: 'loren_payton@yahoo.com',
+            dob: '3 June',
+            year: '1997',
+            gender: 'Female'
+        },
+
+        mike_booth: {
+            mobile: '+1 313 227-4948',
+            email: 'mike@gmail.com',
+            dob: '28 August',
+            year: '1998',
+            gender: 'Male'
+        },
+
+        ira_slipan: {
+            mobile: '+1 213 327-5545',
+            email: 'slipan@yahoo.com',
+            dob: '18 November',
+            year: '1991',
+            gender: 'Male'
+        },
+
+        tanya_strotman: {
+            mobile: '+1 613 524-6845',
+            email: 'tanya@gmail.com',
+            dob: '2 October',
+            year: '1995',
+            gender: 'Female'
+        },
+
+        lydia_chopover: {
+            mobile: '+1 413 427-4655',
+            email: 'lydia@gmail.com',
+            dob: '20 September',
+            year: '1990',
+            gender: 'Female'
+        },
+
+        esther_rorgash: {
+            mobile: '+1 313 227-4948',
+            email: 'esther@yahoo.com',
+            dob: '23 February',
+            year: '1997',
+            gender: 'Female'
+        },
+
+        trevin_noushy: {
+            mobile: '+1 813 237-6950',
+            email: 'trevin@gmail.com',
+            dob: '17 April',
+            year: '1994',
+            gender: 'Male'
+        }
+
+    }));
 }
 
 function resetAdaptationDisplay() {
@@ -1020,15 +1085,15 @@ function resetFeaturesUsed() {
 }
 
 function longFeatureTitle(title) {
-    return { chat: "Change your chat settings",
+    return { chat: "Check on your chat settings",
         untag: "Untag yourself from a post",
         friends: "Unfollow a friend",
-        notifications: "Change your notification settings",
-        posts: "Delete or hide a post",
-        withhold_info: "Remove personal information from your account",
-        custom_lists: "Organize your friends into lists",
-        block: "Block people or apps",
-        audience: "Restrict the visibility of your posts or albums" }[title];
+        notifications: "Check on your notifications",
+        posts: " Review some of your posts",
+        withhold_info: "Review on your contact and basic information",
+        custom_lists: "Review your friend lists",
+        block: "Block and/or report abusive friends",
+        audience: "Review your audience settings" }[title];
 }
 
 function resetAll() {
@@ -11727,37 +11792,6 @@ var Chat = function (_React$Component) {
                     _react2.default.createElement(_AutomationBoilerplate2.default, { action: this.state.action, context: this.state.context, label: this.state.label_Auto, onClickOK_Auto: this.onClickOk_Auto, onClickUnDo_Auto: this.onClickUndo_Auto })
                 );
             }
-            /**else if (this.state.chatSuggestion){
-                
-                
-                var Suggestion_Popup=(
-                  <SuggestionPopup title="Suggestion" okay={()=>{
-                          var event={
-                              action:'Accept to turn off chat',
-                              context:this.state.context,
-                              name:'This is the Chat suggestion to turn off chat for all contacts',
-                              renderSuggestion:false
-                          };
-                          this.setState(event);
-                          return event;
-                      }} 
-                       cancel={()=>{
-                          var event={
-                              action:'Would rather not turn off chat',
-                              context:this.state.context,
-                              name:'This is the Chat suggestion to turn off chat for all contacts',
-                              renderSuggestion:false
-                          };
-                          this.setState(event);
-                          return event;
-                      }}>
-                       <label>
-                         Hi Alex- Would you like to turn off Active Status on Chat. Your friends and contacts will no longer see when you're online on FriendBook.  
-                      </label>
-                  </SuggestionPopup>)
-            }*/
-
-            //let adaptation = JSON.parse(localStorage.adaptations)["chatoffline"];adapt={adaptation}
             return _react2.default.createElement(
                 'div',
                 null,
@@ -11783,6 +11817,8 @@ var Chat = function (_React$Component) {
         key: 'cancelAllContacts',
         value: function cancelAllContacts() {
             this.setState({ turnOffChat: "turnOnActiveStatus" });
+
+            (0, _utilities.registerEvent)("Active Status", "Turned on Active Status", "Chat Area");
         }
     }, {
         key: 'render',
@@ -11932,7 +11968,6 @@ var Chat = function (_React$Component) {
             // TODO: Consider if there's a better solution than this warning
             var turned_off_warning;
             if (this.state.turnOffChat == "allContacts" && this.state.displayStatusLabel) {
-
                 turned_off_warning = _react2.default.createElement(
                     'p',
                     null,
@@ -11957,6 +11992,11 @@ var Chat = function (_React$Component) {
                     'div',
                     { id: 'chat' },
                     this.state.renderChatPopup ? turnOffChatPopup : null,
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'chat_header' },
+                        'CONTACTS'
+                    ),
                     friends,
                     _react2.default.createElement(
                         'div',
@@ -12187,12 +12227,14 @@ var ExitExperiment = function (_React$Component) {
 
                 if (sc < _this3.MIN_SCORE_TO_PROCEED) {
                     _this3.setState({ renderCompletionPopup: true });
+                    (0, _utilities.registerEvent)("Tracker_Completion Popup", 'Held by the tracker with score ' + sc, "Scenario Area");
                 } else {
-                    location.href = 'https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                    //location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+                    (0, _utilities.registerEvent)("Finished Experiment", "Exiting the prototype -> the Suvery", "Scenario Area");
+                    var session_id = (0, _utilities.getSession)();
+                    location.href = 'https://fakebook.usabart.nl/survey/?session=' + session_id + '&from=experiment';
                 }
             });
-
-            (0, _utilities.registerEvent)("Finished Experiment", "Exiting the prototype -> the Suvery", "Scenario Area");
         }
     }, {
         key: 'unusedList',
@@ -12216,7 +12258,7 @@ var ExitExperiment = function (_React$Component) {
             return unusedNames.map(function (s, i) {
                 return _react2.default.createElement(
                     'li',
-                    { key: i },
+                    { key: i, style: { marginBottom: '5px', lineHeight: '1.5' } },
                     s
                 );
             });
@@ -18588,7 +18630,11 @@ var ChatUser = function (_React$Component) {
                 _react2.default.createElement(
                     _Button2.default,
                     { onClick: this.onClickName },
-                    this.props.name
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'chat_username' },
+                        this.props.name
+                    )
                 )
             );
         }
@@ -18670,6 +18716,7 @@ var ChatWindow = function (_React$Component) {
                outgoing_messages_list[this.props.name] = outgoing_messages_user;
                localStorage.outgoing_messages = JSON.stringify(outgoing_messages_list);
             }
+            this.setState({ value: "" });
 
             (0, _utilities.registerEvent)('Entered this chat message "' + this.state.value + '"', ' for ' + this.props.name, "In Chat Window");
          }
@@ -18677,7 +18724,7 @@ var ChatWindow = function (_React$Component) {
    }, {
       key: 'registerClick',
       value: function registerClick() {
-         (0, _utilities.registerEvent)('Clicked on ' + this.props.name + ", '\s profile link to visit their profile page", " From Chat Window");
+         (0, _utilities.registerEvent)('Clicked on ' + this.props.name + '\'s', "profile link to visit their profile page", " From Chat Window");
       }
    }, {
       key: 'destroyWindow',
@@ -19527,7 +19574,8 @@ var Header = function (_React$Component) {
       this.setState(function (prevState, props) {
         return {
           renderNotification: !prevState.renderNotification,
-          showNotificationIcon: false
+          showNotificationIcon: false,
+          renderSettings: false
         };
       });
 
@@ -19540,7 +19588,8 @@ var Header = function (_React$Component) {
       this.setState(function (prevState, props) {
         return {
 
-          renderSettings: !prevState.renderSettings
+          renderSettings: !prevState.renderSettings,
+          renderNotification: false
         };
       });
 
@@ -19800,7 +19849,6 @@ var NewPostArea = function (_React$Component) {
             var _this2 = this;
 
             //this.changeAudience("future_requests","friends")
-
             this.setState({
                 audience: 'custom'
             }, function () {
@@ -19813,12 +19861,14 @@ var NewPostArea = function (_React$Component) {
     }, {
         key: 'onClickOk_Auto',
         value: function onClickOk_Auto() {
+            var _this3 = this;
 
             this.setState({
-                displayAutomationPopup: false
+                displayAutomationPopup: false,
+                audience: 'custom'
+            }, function () {
+                return _this3.post();
             });
-
-            this.post();
         }
     }, {
         key: 'onClickUndo_Auto',
@@ -19866,7 +19916,7 @@ var NewPostArea = function (_React$Component) {
             (0, _utilities.indexPosts)();
             this.props.postarea.update();
 
-            (0, _utilities.registerEvent)("Created new Post ", "it reads: " + this.state.value, this.props.forTimeline ? "Timeline" : "NewsFeed");
+            (0, _utilities.registerEvent)("Created a new Post ", "it reads: " + this.state.value, this.props.forTimeline ? "Timeline" : "NewsFeed");
             this.setState({ value: '', photo: '', renderUploadPopup: false });
         }
     }, {
@@ -19899,12 +19949,12 @@ var NewPostArea = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             var uploadPopup = _react2.default.createElement(_UploadPopup2.default, {
                 onClickPhoto: this.onClickPhoto,
                 destroy: function destroy() {
-                    _this3.setState({ renderUploadPopup: false });
+                    _this4.setState({ renderUploadPopup: false });
                 } });
 
             var photo = this.state.photo ? _react2.default.createElement('img', { src: this.state.photo,
@@ -19931,7 +19981,7 @@ var NewPostArea = function (_React$Component) {
                         _react2.default.createElement(
                             _Button2.default,
                             { type: 'cancel', onClick: function onClick() {
-                                    _this3.setState({ renderUploadPopup: true });
+                                    _this4.setState({ renderUploadPopup: true });
                                 } },
                             'Photo/Video'
                         ),
@@ -20019,7 +20069,7 @@ var NewsFeed = function (_React$Component) {
     key: 'registerClick',
     value: function registerClick() {
 
-      (0, _utilities.registerEvent)('Clicked on Alex Doe', "'\s profile link to visit their profile page", " From NewsFeed-LeftSide");
+      (0, _utilities.registerEvent)("Clicked on Alex Doe'\s profile link", "to visit their profile page", " From NewsFeed-LeftSide");
     }
   }, {
     key: 'render',
@@ -20245,7 +20295,7 @@ var Post = function (_React$Component) {
       hideAutomation: !adaptationVisited["Hide_Post"]["automation"] && adaptations["hide_Post"] === "auto",
       untag_Automation: !adaptationVisited["Untag_Post"]["automation"] && adaptations["untag_Post"] === "auto",
       delete_Automation: !adaptationVisited["Delete_Post"]["automation"] && adaptations["delete_Post"] === "auto"
-    }, _defineProperty(_this$state, 'action', "Adapation was for Hide_Post -> hiding Post 42 "), _defineProperty(_this$state, 'action_tag', "Adaptation was for Untag_Post -> untagging Post 27"), _defineProperty(_this$state, 'action_block', "Adaptation was for Block_User -> Blocking Ira Siplan"), _defineProperty(_this$state, 'context_tag', "Untag_Post"), _defineProperty(_this$state, 'context_block', "Block_User"), _defineProperty(_this$state, 'context', "Hide_Post"), _defineProperty(_this$state, 'untag_Context', "Untag_Post"), _defineProperty(_this$state, 'displayHideAutomationPopup', true), _defineProperty(_this$state, 'displayUnTagAutomationPopup', true), _defineProperty(_this$state, 'displayBlockAutomationPopup', true), _defineProperty(_this$state, 'label_Auto', "This post by Trevin Noushy was automatically hidden from your Timeline."), _defineProperty(_this$state, 'block_label_Auto', "This post by Ira Slipan is not visible because he has been automatically blocked."), _defineProperty(_this$state, 'untag_label_Auto', "A tag of you was automatically removed from this post."), _this$state);
+    }, _defineProperty(_this$state, 'action', "Adapation was for Hide_Post -> hiding Post 42 "), _defineProperty(_this$state, 'action_tag', "Adaptation was for Untag_Post -> untagging Post 27"), _defineProperty(_this$state, 'action_block', "Adaptation was for Block_User -> Blocking Ira Siplan"), _defineProperty(_this$state, 'context_tag', "Untag_Post"), _defineProperty(_this$state, 'context_block', "Block_User"), _defineProperty(_this$state, 'context', "Hide_Post"), _defineProperty(_this$state, 'untag_Context', "Untag_Post"), _defineProperty(_this$state, 'displayHideAutomationPopup', true), _defineProperty(_this$state, 'displayUnTagAutomationPopup', true), _defineProperty(_this$state, 'displayBlockAutomationPopup', true), _defineProperty(_this$state, 'label_Auto', "This post by Trevin Noushy was automatically hidden from your Timeline."), _defineProperty(_this$state, 'block_label_Auto', "This post by Ira Slipan is not visible because he has been automatically blocked."), _defineProperty(_this$state, 'untag_label_Auto', "A tag of you was automatically removed from this post."), _defineProperty(_this$state, 'renderSharePopup', false), _this$state);
 
     _this.onClickDelete = _this.onClickDelete.bind(_this);
     _this.onClickShare = _this.onClickShare.bind(_this);
@@ -20677,6 +20727,7 @@ var Post = function (_React$Component) {
       localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
       (0, _utilities.indexPosts)();
       (0, _utilities.registerEvent)('Clicked to Share ', this.props.name + ' Post ' + this.props.index, this.props.forTimeline ? "Timeline" : "NewsFeed");
+      this.setState({ renderSharePopup: true });
       this.props.update();
 
       return event;
@@ -21298,6 +21349,15 @@ var Post = function (_React$Component) {
           this.renderPost(comments, post_title),
           this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && _react2.default.createElement(_ContactInfoSuggestion2.default, { username: this.props.name, context: "Contact_Info", label: 'Hi Alex -You seem to have an old email address listed on your profile. Do you want to update your email address to "alexdoe@gmail.com".', destroy: this.onDisplayContactInfoSuggestion }),
           this.props.displayBasicInfoSuggestion && this.state.displayBasicInfoSuggestion && this.props.index === 0 && _react2.default.createElement(_ContactInfoSuggestion2.default, { username: this.props.name, context: "Basic_Info", label: "Hi Alex - You recently removed some of your posts about politics. Do you want to remove your political views from your profile page?", destroy: this.onDisplayBasicInfoSuggestion }),
+          this.state.renderSharePopup ? _react2.default.createElement(
+            _Popup2.default,
+            { title: 'Post shared', closeButton: true,
+              cancel: function cancel() {
+                _this13.setState({ renderSharePopup: false });
+              },
+              closeButtonName: 'Close' },
+            'This has been shared to your timeline.'
+          ) : null,
           /*These happen on the Timeline */
 
           /*The Unsubscribe Suggestion Adaptation*/
@@ -21383,48 +21443,6 @@ var Scenario = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
-            var scenarioTextClass = (0, _classnames2.default)({
-                'scenario_text': true,
-                'floatbutton_pressed': this.state.toggled
-            });
-
-            var buttons = [];
-            var className = "scenario-menu";
-            var icon = "add";
-
-            if (this.state.toggled) {
-                className += " open";
-                icon = "close";
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Categorize friends', icon: '13', action: null, key: 'i13', id: 'feature13' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Who can see that your online', icon: '12', action: null, key: 'i12', id: 'feature12' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Verify post audience', icon: '11', action: null, key: 'i11', id: 'feature11' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Review basic information', icon: '10', action: null, key: 'i10', id: 'feature10' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Review contact information', icon: '9', action: null, key: 'i9', id: 'feature9' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Who can post on  your timeline', icon: '8', action: null, key: 'i8', id: 'feature8' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Undesirable personal posts \n', icon: '7', action: null, key: 'i7', id: 'feature7' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Trolls', icon: '6', action: null, key: 'i6', id: 'feature6' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: ' Endless event invites', icon: '5', action: null, key: 'i5', id: 'feature5' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Endless  app invites', icon: '4', action: null, key: 'i4', id: 'feature4' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Embarrassing personal posts.', icon: '3', action: null, key: 'i3', id: 'feature3' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: 'Annoying friends.', icon: '2', action: null, key: 'i2', id: 'feature2' }));
-
-                buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: ' Embarassing friend posts.', icon: '1', action: null, key: 'i1', id: 'feature1' }));
-            }
-
-            buttons.push(_react2.default.createElement(_ScenarioFeature2.default, { label: '', icon: icon, action: this.toggleMenu, key: 'm', id: 'mainDescription' }));
 
             return _react2.default.createElement(
                 'div',
@@ -23224,7 +23242,7 @@ var About = function (_React$Component) {
         case "overview":
           return _react2.default.createElement(_Overview2.default, null);
         case "contact":
-          return _react2.default.createElement(_ContactInfo2.default, null);
+          return _react2.default.createElement(_ContactInfo2.default, { user: (0, _utilities.nameToLink)(this.props.match.params.user) });
         default:
           return _react2.default.createElement(_Overview2.default, null);
       }
@@ -23313,8 +23331,9 @@ var ContactInfo = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (ContactInfo.__proto__ || Object.getPrototypeOf(ContactInfo)).call(this, props));
 
+    console.log("The user is " + props.user);
     var adaptation = (0, _utilities.getParsed)('adaptations');
-    var existingInformation = (0, _utilities.getParsed)('contactInfo')["jack_scout"];
+    var existingInformation = (0, _utilities.getParsed)('contactInfo')[props.user];
     //console.log(existingInformation)
     var adaptationVisited = (0, _utilities.getParsed)("visited");
 
@@ -24674,7 +24693,6 @@ var Settingsdropdown = function (_React$Component) {
 
             this.props.changeIcon();
             this.props.settingsdropDown();
-
             (0, _utilities.registerEvent)("Clicked on the Settings button within the dropdown", "Transferred to the privacy settings page ");
         }
     }, {
@@ -24688,12 +24706,15 @@ var Settingsdropdown = function (_React$Component) {
         key: 'registerEvent',
         value: function registerEvent() {
             (0, _utilities.registerEvent)("Finished", "Exiting the prototype and heading to the Suvery", "Logout_Settings Dropdown");
-            location.href = 'https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';
+
+            var session_id = (0, _utilities.getSession)();
+            location.href = 'https://fakebook.usabart.nl/survey/?session=' + session_id + '&from=experiment';
+
+            //location.href='https://clemson.ca1.qualtrics.com/jfe/form/SV_4OYW85t2VedzdCR';  
         }
     }, {
         key: 'render',
         value: function render() {
-            //console.log("I have been called");
             return _react2.default.createElement(
                 'div',
                 { id: 'dropdown_header' },
@@ -24706,7 +24727,7 @@ var Settingsdropdown = function (_React$Component) {
                         ' ',
                         _react2.default.createElement(
                             'a',
-                            { className: 'settings_options_a', href: '#' },
+                            { className: 'settings_options_a', href: 'javaScript:void(0)' },
                             'Create Page'
                         ),
                         ' '
@@ -24738,7 +24759,7 @@ var Settingsdropdown = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             'a',
-                            { className: 'settings_options_b', href: '#Activity Logs' },
+                            { className: 'settings_options_b', href: 'javaScript:void(0)' },
                             'Activity Logs'
                         )
                     ),
@@ -24747,7 +24768,7 @@ var Settingsdropdown = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             'a',
-                            { className: 'settings_options_b', href: '#Setting' },
+                            { className: 'settings_options_b', href: 'javaScript:void(0)' },
                             'News Feed preferences'
                         )
                     ),
@@ -24756,7 +24777,7 @@ var Settingsdropdown = function (_React$Component) {
                         { className: this.state.highlight ? "high1" : null },
                         _react2.default.createElement(
                             _reactRouterDom.Link,
-                            { className: 'settings_options_b', to: {
+                            { className: 'settings_options_a', to: {
                                     pathname: '/settings_general/GeneralSettings',
                                     state: { fromHeader: true } }, onClick: this.handleClick },
                             'Settings'
@@ -24764,7 +24785,7 @@ var Settingsdropdown = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'li',
-                        { className: 'settings_options_b' },
+                        { className: 'settings_options_a' },
                         _react2.default.createElement(
                             _Button2.default,
                             { onClick: this.registerEvent },

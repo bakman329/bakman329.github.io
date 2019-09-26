@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {linkToName,getParsed,addToLocalStorageObject} from '../../../utilities.js'
+import {linkToName,getParsed,addToLocalStorageObject,nameToLink} from '../../../utilities.js'
 import {highLight,noHighLight} from '../../../adaptations/Highlight.js';
 import ReactTooltip from 'react-tooltip'
 import ContactInfo from './ContactInfo.jsx';
@@ -49,7 +49,7 @@ class About extends React.Component {
       case "overview":
         return <Overview />;
       case "contact":
-        return <ContactInfo />;
+        return <ContactInfo user = {nameToLink(this.props.match.params.user)} />;
       default:
         return <Overview />;
     }

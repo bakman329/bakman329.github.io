@@ -13,7 +13,7 @@ class CompletionPopup extends React.Component {
                       featuresUsed: {}}
 
         this.USAGE_WEIGHT = 3;
-        this.MIN_SCORE_TO_PROCEED = 15;
+        this.MIN_SCORE_TO_PROCEED = 10;
 
         this.score = this.score.bind(this);
         this.submitExperiment = this.submitExperiment.bind(this);

@@ -127,6 +127,7 @@ class body extends Component {
                          </div>
                         
                         <AudienceMenu onChange={audienceSelectionMethod}
+                          storage_key="friend_posts_audience_settings"
                           className="audience_selection"
                           options={["public","friends","friends_except","more"]}
                           more={["specific_friends","only_me","see_all"]}
@@ -163,6 +164,7 @@ class body extends Component {
                          <div className="audience_selection">
                           
                           <AudienceMenu onChange={audienceSelectionMethod}
+                          storage_key="friend_list_audience_settings"
                           className="new-post-menu"
                           options={["public","friends","friends_except","more"]}
                           more={["specific_friends","only_me","see_all"]}
@@ -214,7 +216,8 @@ class body extends Component {
                     <br/>
                     
                     <div className="audience_selection">
-                    <AudienceMenu 
+                    <AudienceMenu
+                        storage_key="default_priv_audience_settings"
                         onChange={audienceSelectionMethod}
                         className="new-post-menu"
                         options={["everyone","friends_of_friends"]}

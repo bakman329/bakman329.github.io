@@ -199,6 +199,7 @@ class NewPostArea extends React.Component {
                   <Button type="confirm" onClick={this.onClick}>Post</Button>
                   <Button type="cancel" onClick={() => {this.setState({renderUploadPopup: true})}}>Photo/Video</Button>
                   <AudienceMenu onChange={this.onChangeAudience} className="new-post-menu"
+                    storage_key="post_audience_settings"
                     options={["public", "friends", "friends_except", "only_me"].concat(currentFriendList)}
                     //more={["specific_friends", "see_all"]}
                     //see_all={currentFriendList}

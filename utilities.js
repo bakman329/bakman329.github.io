@@ -410,7 +410,12 @@ export function resetChat() {
 export function resetSettings() {
   // turn_off_chat: [setting, [list of "except" contacts], [list of "some" contacts]]
   // post_audience_settings: [setting, [list of "except" friends], [list of specific friends], [[List of custom groups/people to share with], [List not to share with]]]
-  localStorage.setItem('settings', JSON.stringify({"turn_off_chat": ["someContacts", [], []], "post_audience_settings": ["public", [], [], [[], []]]}));
+  localStorage.setItem('settings', JSON.stringify({"turn_off_chat": ["someContacts", [], []],
+                       "post_audience_settings": ["public", [], [], [[], []]],
+                       "friend_posts_audience_settings": ["public", [], [], [[], []]],
+                       "friend_list_audience_settings": ["public", [], [], [[], []]],
+                       "default_tag_audience_settings": ["friends", [], [], [[], []]],
+                       "default_priv_audience_settings": ["everyone", [], [], [[], []]]}));
 }
 
 /*export function resetFriends() {
@@ -1062,6 +1067,14 @@ export function audienceText(audience) {
     
     case "friends_except":
       text = "Friends except...";
+      break;
+    
+    case "friends_of_friends":
+      text = "Friends of friends";
+      break;
+    
+    case "everyone":
+      text = "Everyone";
       break;
 
     case "only_me":

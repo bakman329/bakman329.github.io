@@ -21,7 +21,7 @@ class Notificationdropdown extends React.Component {
     }
 
     onClick(e) {
-        console.log(e.target.closest("#notification_container"), this);
+        //console.log(e.target.closest("#notification_container"), this);
         if (e.target.closest("#notification_container")) { // this.dropdownMenu.contains(e.target)) {
           return;
         }

@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import Button from '../../Button.jsx';
 import Popup from '../../Popup.jsx'
 import {levenshteinDistance} from '../../../algorithms.js'
-import {friendsList,addToLocalStorageObject,getProfilePic,getParsed,saveVisitedAdaptation} from '../../../utilities.js';
+import {friendsList,addToLocalStorageObject,getProfilePic,getParsed,saveVisitedAdaptation, blockFriend} from '../../../utilities.js';
 import AutomationBoilerplate from '../../../adaptations/Automation/AutomationBoilerplate.jsx'
 import SuggestionBoilerplate from '../../../adaptations/Suggestion/SuggestionBoilerplate.jsx'
 import classNames from 'classnames'
@@ -53,23 +53,7 @@ class BlockUsers extends React.Component {
       
   }
 
-componentDidMount(){
-    //var blockedUsers = JSON.parse(localStorage.getItem('blockedUsers'));
-    
-    //var friends = JSON.parse(localStorage.getItem('friends'))
-   // var friends_profile = JSON.parse(localStorage.getItem('friend_profile'))
-    
-    //console.log('The blocked'+  blockedUsers)
-    
-    this.setState({
-      // blockedUserslist: blockedUsers,
-      // friendsList: friends,
-       //friend_profile:friends_profile
-    })
-    
-    //console.log('The state blocked' +this.state.blockedUserslist.length)
-}
-    
+
     
  /*Methods for the Suggestion Adaptation*/
     onClickDestroySuggestion() {
@@ -134,6 +118,7 @@ cancel(what){
     
     if (what === 'second'){
         this.setState({renderUltimateBlock:false,
+                       username: " ",
                       friendsList:friendsList(),})
     }
     
@@ -149,10 +134,17 @@ cancel(what){
     
 allowed(event){
    
-    var blockedFriend = this.state.username;
-    this.state.blockedUserslist.push(blockedFriend)
+    var  friend_name = this.state.username;
+    var blockedUsers = this.state.blockedUserslist;
     
-    //Change friendship status in users localStorage
+   blockFriend(friend_name,"Privacy Setting");
+    
+    if (blockedUsers.indexOf(friend_name === -1)) {
+        blockedUsers.push(friend_name)
+    }
+    
+ 
+   /* //Change friendship status in users localStorage
     this.state.friendsList.forEach((element,index) => {
      
         if(element.name === blockedFriend){
@@ -161,8 +153,9 @@ allowed(event){
         
         
     });
+    
      addToLocalStorageObject('users', this.state.friendsList);
-    addToLocalStorageObject('blockedUsers',this.state.blockedUserslist);
+    addToLocalStorageObject('blockedUsers',this.state.blockedUserslist);*/
 
     //this.setLocalStorage(); 
     

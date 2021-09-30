@@ -8,7 +8,6 @@ import NewCommentArea from './NewCommentArea.jsx'
 import PostArea from './PostArea.jsx'
 import Menu from './Menu.jsx'
 import Popup from './Popup.jsx'
-import ContactInfoSuggestion from './profile/settings/contactDisplays/ContactInfoSuggestion.jsx'
 import SuggestionPopup from '../adaptations/Suggestion.jsx'
 import Automation from '../adaptations/Automation.jsx'
 import AutomationBoilerplate from '../adaptations/Automation/AutomationBoilerplate.jsx'
@@ -57,8 +56,8 @@ class Post extends React.Component {
       unfollow:false, 
       unfollowedName:"",    
       tagRemoved: this.props.tagRemoved,
-      displayContactInfoSuggestion:true,
-      displayBasicInfoSuggestion:true, 
+      displayContactInfoSuggestion: true,
+      displayBasicInfoSuggestion: ((this.props.displayContactInfoSuggestion && this.props.displayContactInfoSuggestion) ? false:true), 
       renderBlockPopup:false,
       adaptations: adaptations,
       adaptationVisited: adaptationVisited,
@@ -97,7 +96,7 @@ class Post extends React.Component {
       untag_Automation:!adaptationVisited ["Untag_Post"]["automation"]&& (adaptations["untag_Post"] === "auto"),
       delete_Automation: !adaptationVisited["Delete_Post"]["automation"] && (adaptations["delete_Post"] === "auto"),
       action:"Adapation was for Hide_Post -> hiding Post 42 ",
-      action_tag:"Adaptation was for Untag_Post -> untagging Post 27",
+      action_tag:"Untag_Post_Adaptation -> untagging Post 27",
       action_block:"Adaptation was for Block_User -> Blocking Ira Siplan",
         
      //Context
@@ -124,8 +123,6 @@ class Post extends React.Component {
     this.onClickUnfollow = this.onClickUnfollow.bind(this);
     this.onClickUndo = this.onClickUndo.bind(this);
     this.onClickAutoOk = this.onClickAutoOk.bind(this);
-    this.onDisplayContactInfoSuggestion = this.onDisplayContactInfoSuggestion.bind(this);
-    this.onDisplayBasicInfoSuggestion = this.onDisplayBasicInfoSuggestion.bind(this);
     this.show = this.show.bind(this);
     this.onMenuOpen = this.onMenuOpen.bind(this);
       
@@ -136,8 +133,12 @@ class Post extends React.Component {
     this.onClickUntag_DestroySuggestion = this.onClickUntag_DestroySuggestion.bind(this);
     this.onClickUntag_OKSuggestion = this.onClickUntag_OKSuggestion.bind(this);
     this.onClickBlock_DestroySuggestion = this.onClickBlock_DestroySuggestion.bind(this);
-    this.onClickBlock_OKSuggestion = this.onClickBlock_OKSuggestion.bind(this);  
-
+    this.onClickBlock_OKSuggestion = this.onClickBlock_OKSuggestion.bind(this); 
+    this.onClickOK_ContactInfoSuggestion = this.onClickOK_ContactInfoSuggestion.bind(this);
+    this.onDisplayContactInfoSuggestion = this.onDisplayContactInfoSuggestion.bind(this);
+    this.onClickOK_BasicInfoSuggestion = this.onClickOK_BasicInfoSuggestion.bind(this);
+    this.onDisplayBasicInfoSuggestion = this.onDisplayBasicInfoSuggestion.bind(this);
+         
     /* Unsubscribe Friend Suggestion Adaptation */
 
     this.onClickDestroyUnsubscribeSuggestion = this.onClickDestroyUnsubscribeSuggestion.bind(this);
@@ -257,7 +258,7 @@ class Post extends React.Component {
     
     agreeToBlock(){
         
-        blockFriend("ira_slipan");
+        blockFriend("ira_slipan", "Timeline Block");
         this.setState({
             renderBlockPopup:false, 
         })
@@ -272,7 +273,7 @@ class Post extends React.Component {
     //Automation
     onClickBlock_Ok_Auto() {
        
-       blockFriend("ira_slipan");
+       blockFriend("ira_slipan", "Timeline Block");
         
         this.setState({
              displayBlockAutomationPopup:false
@@ -347,6 +348,8 @@ class Post extends React.Component {
         this.props.updateSubscribe();
         
     } 
+    
+    
     
     //For Hiding
     onClickOk_Auto() {
@@ -436,11 +439,37 @@ class Post extends React.Component {
     
     
     //Dismount the Suggestion for Contact Info in timeline
+    
+    /*Methods for the BasicInfo Suggestion Adaptation*/
+    
+     onClickOK_ContactInfoSuggestion() {
+         
+          this.setState({
+           displayContactInfoSuggestion:false,
+        })
+         
+         if(this.props.displayContactInfoSuggestion && this.props.displayContactInfoSuggestion) {
+             
+              this.setState({
+                  displayBasicInfoSuggestion:true,
+              })
+         }
+         
+     }
+
     onDisplayContactInfoSuggestion() {
         this.setState({displayContactInfoSuggestion: false});
     }
     
      
+    onClickOK_BasicInfoSuggestion() {
+         
+          this.setState({
+           displayBasicInfoSuggestion:false,
+        })
+         
+     }
+    
     onDisplayBasicInfoSuggestion() { 
         this.setState({displayBasicInfoSuggestion: false});
     }
@@ -485,11 +514,7 @@ class Post extends React.Component {
   }
 
   onClickShare() {
-      var event = {
-        action: "Shared '+this.props.name + '\'s", 
-        context:'Post '+ this.props.index,
-        object:(this.props.forTimeline?"Timeline":"NewsFeed")
-      };
+     
 
       var posts = JSON.parse(localStorage.getItem('posts'));
       var post = {name: 'Alex Doe',
@@ -502,11 +527,11 @@ class Post extends React.Component {
                   key: posts.length};
       localStorage.setItem('posts', JSON.stringify([post].concat(posts)));
       indexPosts();
-      registerEvent('Clicked to Share ', this.props.name +' Post '+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
+      registerEvent('Clicked to Share ', this.props.name +"'\s Post "+ this.props.index, (this.props.forTimeline?"Timeline":"NewsFeed"));
       this.setState({renderSharePopup: true});
       this.props.update();
       
-      return event;
+   
   }
 
   onClickLike() {
@@ -997,11 +1022,12 @@ class Post extends React.Component {
         <div id='post-content'> 
           {this.renderPost(comments,post_title)}
           
-          {this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && <ContactInfoSuggestion  username = {this.props.name}  context={"Contact_Info"} label={'Hi Alex -You seem to have an old email address listed on your profile. Do you want to update your email address to "alexdoe@gmail.com".'} destroy = {this.onDisplayContactInfoSuggestion}/>}
+          {this.props.displayContactInfoSuggestion && this.state.displayContactInfoSuggestion && this.props.index === 0 && <SuggestionBoilerplate action={"Contact_Info_Adaptation-> change email address"}  context={"Contact_Info"} label={'Hi Alex -You seem to have an old email address listed on your profile. Do you want to update your email address to "alexdoe@gmail.com".'} agree={this.onClickOK_ContactInfoSuggestion} destroy = {this.onDisplayContactInfoSuggestion}  routeTo={`/profile/${nameToLink("Alex Doe")}/about/contact`}/>}
           
-           {this.props.displayBasicInfoSuggestion && this.state.displayBasicInfoSuggestion && this.props.index === 0 && <ContactInfoSuggestion  username = {this.props.name}  context={"Basic_Info"} label={"Hi Alex - You recently removed some of your posts about politics. Do you want to remove your political views from your profile page?"} destroy = {this.onDisplayBasicInfoSuggestion}/>}
+           {this.props.displayBasicInfoSuggestion && this.state.displayBasicInfoSuggestion && this.props.index === 0 && <SuggestionBoilerplate action={"Basic_Info_Adaptation-> change political view"}  context={"Basic_Info"} label={"Hi Alex - You recently removed some of your posts about politics. Do you want to remove your political views from your profile page?"} agree={this.onClickOK_BasicInfoSuggestion} destroy = {this.onDisplayBasicInfoSuggestion} routeTo={`/profile/${nameToLink("Alex Doe")}/about/contact`}/>}
+
             {this.state.renderSharePopup ?
-                    <Popup title="Post shared" closeButton
+                    <Popup title="Post shared" closeButton grayHeader content_style width={300} height={10}
                         cancel={() => {this.setState({renderSharePopup: false})}}
                         closeButtonName="Close">
                         This has been shared to your timeline.
@@ -1011,7 +1037,7 @@ class Post extends React.Component {
           {    /*These happen on the Timeline */
                 
                 /*The Unsubscribe Suggestion Adaptation*/
-            (this.props.name == "Jack Scout") && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && <SuggestionBoilerplate action={"Adaptation was unsubscribe_Friend -> unfollowing Jack Scout"}  context={"Unsubscribe_Friend"} label={"Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore."} agree ={this.onClickOK_UnsubscribeSuggestion} destroy = {this.onClickDestroyUnsubscribeSuggestion}/>
+            (this.props.name == "Jack Scout") && this.props.displayUnsubscribeSuggestion && this.state.unsubcribe_displaySuggestionPopup && this.props.index === 1 && <SuggestionBoilerplate action={"unsubscribe_Friend_Adaptation -> unfollowing Jack Scout"}  context={"Unsubscribe_Friend"} label={"Hi Alex - You are constantly hiding  Jack Scout’s posts. Do you want to unfollow Jack? You’ll still be friends with him but won’t see his posts in NewsFeed anymore."} agree ={this.onClickOK_UnsubscribeSuggestion} destroy = {this.onClickDestroyUnsubscribeSuggestion}/>
                   
            }
            

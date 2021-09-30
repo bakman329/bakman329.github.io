@@ -11,8 +11,7 @@ class AudienceMenu extends React.Component {
   constructor(props) {
     super(props);
 
-    //var audience = JSON.parse(localStorage.getItem('settings'))["post_audience_settings"][0];
-    var audience = JSON.parse(localStorage.getItem('settings'))[this.props.storage_key][0];
+    var audience = JSON.parse(localStorage.getItem('settings'))["post_audience_settings"][0];
 
     this.state = {audience: audience, more: false, see_all: false,
       render_friends_except: false, render_specific_friends: false,
@@ -29,7 +28,7 @@ class AudienceMenu extends React.Component {
     this.setState({audience: audience});
     
     var settings = JSON.parse(localStorage.getItem('settings'));
-    settings[this.props.storage_key][0] = audience;
+    settings["post_audience_settings"][0] = audience;
     localStorage.setItem('settings', JSON.stringify(settings));
   }
 
@@ -60,10 +59,10 @@ class AudienceMenu extends React.Component {
         return ["Custom", "Include and exclude friends and lists"];
       
       case "everyone":
-        return ["Everyone","Everyone"];
+        return ["Everyone",""];
      
       case "friends_of_friends":
-        return ["Friends of friends","Friends of friends"];
+        return ["Friends of friends",""];
             
       case "enabled":
         return ["Enabled",""];

@@ -65,6 +65,7 @@ class Chat extends React.Component {
         this.onClickOK_Suggestion = this.onClickOK_Suggestion.bind(this);
         this.onClickDestroySuggestion = this.onClickDestroySuggestion.bind(this);
         this.show =this.show.bind(this);
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
 
     componentWillMount(){
@@ -208,6 +209,10 @@ class Chat extends React.Component {
         this.setState({turnOffChat: "turnOnActiveStatus"});
 
         registerEvent("Active Status","Turned on Active Status","Chat Area")
+    }
+    
+    forceUpdateHandler(){
+        this.forceUpdate();
     }
 
     render() {

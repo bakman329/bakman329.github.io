@@ -20,6 +20,8 @@ class ExitExperiment extends React.Component {
     }
 
     render() {
+
+
         let completionPopup = <CompletionPopup
             destroy={() => {this.setState({renderCompletionPopup: false})}} />
 

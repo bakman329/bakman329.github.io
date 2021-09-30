@@ -37,21 +37,7 @@ class Friends extends React.Component {
     }
     
     
-   /* ComponentDidMount() {
-       
-        
-        if(this.createFriendList) {
-            this.createFriendList.focus();
-        }
-        
-       
-    }*/
-    
-   /* componentWillReceiveProps(nextProps) {
-        if(this.props.auto === true) {
-            this.addCheck(1);
-        }
-    }*/
+
     
     componentDidUpdate(prevProps,prevState) {
         
@@ -73,7 +59,7 @@ class Friends extends React.Component {
     }
     
     addCheck(itemId) {
-    
+    registerEvent(`Categorize Friend: ${this.props.friendName}`, `Added Check Mark to List ID ${itemId}`, "Timeline")
         
        this.setState(prevState => ({
            
@@ -104,7 +90,7 @@ class Friends extends React.Component {
           
        }));
         
-         if(!this.state.adaptationVisited["Categorize_Friend"]['highlight'] && (this.props.friendName === "sasha_riley")) {
+         if(this.state.highlight1 && (this.props.friendName === "sasha_riley")) {
             
             this.setState({
                 highlight1: false,
@@ -117,6 +103,8 @@ class Friends extends React.Component {
     
     addNewList(NewListname) {
         
+     registerEvent(`Categorize Friend: ${this.props.friendName}`, `Created New Friend List ${NewListname}`, "Timeline")
+    
         const nextId = this.state.idCounter+1;
         const listName = NewListname;
         const newList = [...this.state.currentLists, 
@@ -166,11 +154,11 @@ class Friends extends React.Component {
                         <div className="dropdown-content">
                            {!this.state.renderCreateList?
                               <div>
-                                 <a href="#" data-tip="Not Implemented" data-place="top" data-event="click">Get Notifications </a>
+                                 <a href="javascript:void(0)" data-tip="Not Implemented" data-place="top" data-event="click">Get Notifications </a>
                                  
                                  <hr></hr>
-                                 <a href="#">Close friends</a>
-                                 <a href="#">Acquaintances</a>
+                                 <a href="javascript:void(0)">Close friends</a>
+                                 <a href="javascript:void(0)">Acquaintances</a>
                                   
                                  <span className={this.state.highlight1 && (this.props.friendName === "sasha_riley")?"high1":null} ><Button onClick={this.handleClick}>Add to another list </Button></span> 
                                   

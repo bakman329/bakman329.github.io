@@ -5,7 +5,7 @@ import {highLight,highLightExtended,No_highLight} from '../../adaptations/Highli
 import {HighlightBoilerplate} from '../../adaptations/Highlight/HighlightBoilerplate.jsx';
 
 import classNames from 'classnames'
-import {getParsed,getFollowStatus,unFollowUser,followUser} from '../../utilities.js'
+import {getParsed,getFollowStatus,unFollowUser,followUser,registerEvent} from '../../utilities.js'
 
 class FriendSubscription extends React.Component {
    
@@ -32,8 +32,6 @@ class FriendSubscription extends React.Component {
         /*Highlight Adaptation */
         // this.changeStyle = this.changeStyle.bind(this);
     }
-    
-   
     
     componentWillReceiveProps(nextProps) {
         
@@ -62,6 +60,7 @@ class FriendSubscription extends React.Component {
       }
          
          if(element === "Unfollow") {
+          registerEvent("Unfollow _user",`${this.props.friendName} was unfollowed`,"Timeline")
            unFollowUser(this.props.friendName);
          }
         
@@ -74,7 +73,7 @@ class FriendSubscription extends React.Component {
             
         }))
         
-        if(!this.state.adaptationVisited["Unsubscribe_Friend"]['highlight'] && (this.props.friendName === "jack_scout") ) {
+        if(this.state.highlight1 && (this.props.friendName === "jack_scout") ) {
             
             this.setState({
                 highlight1: false,

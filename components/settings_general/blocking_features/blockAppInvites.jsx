@@ -93,7 +93,13 @@ class BlockAppInvites extends React.Component {
     
     onEnter(friendname){
         var event;
-        this.state.blockedFriendsList.push(friendname)
+        var blockedAppList = this.state.blockedFriendsList;
+        var friends = this.state.friendsList;
+        
+        if(friends.indexOf(friendname) >= 1 && blockedAppList.indexOf(friendname) === -1){
+            blockedAppList.push(friendname)
+        }
+        
         this.setLocalStorage();  
 
         let used = JSON.parse(localStorage.featuresUsed);
@@ -117,6 +123,11 @@ class BlockAppInvites extends React.Component {
       
         }
         
+        
+         this.setState({
+          blockedFriendsList: blockedAppList
+        })
+       
        
        createEvent(event);
     }

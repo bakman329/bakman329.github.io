@@ -53,7 +53,7 @@ class BlockFriend extends React.Component {
     
     agreeToBlock(){
         
-        blockFriend(this.props.friendName);
+        blockFriend(this.props.friendName,"Timeline Block");
         
         this.setState({
            renderBlockConfirmation: true,

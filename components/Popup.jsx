@@ -53,6 +53,13 @@ class Popup extends React.Component {
           color: "#1d2129"
         }
       }
+
+      if(this.props.warningHeader) {
+        header_style = {
+          backgroundColor: "#f0ad4e",
+          color: "#ffffff"
+        }
+      }
       
       let footer = null;
       var contentStyle = classNames({

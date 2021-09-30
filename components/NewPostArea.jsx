@@ -147,19 +147,19 @@ class NewPostArea extends React.Component {
      indexPosts();
      this.props.postarea.update();
        
-    registerEvent("Created a new Post ","it reads: "+this.state.value, (this.props.forTimeline?"Timeline":"NewsFeed"));
+    registerEvent(`Created a new Post: ID ${posts.length}`," it reads: "+this.state.value+"  and or posted a Photo"+this.state.photo, (this.props.forTimeline?"Timeline":"NewsFeed"));
      this.setState({value: '', photo: '', renderUploadPopup: false});
    }
     
    onClick() {
        
-        if(this.state.automation){
+        if(this.state.automation && this.state.value !== ""){
             this.setState({
                 displayAutomationPopup:true,
                 audience:'custom'
               })
             
-        }else if(this.state.suggestion){
+        }else if(this.state.suggestion && this.state.value !== ""){
               this.setState({
                 displaySuggestionPopup:true
               })
@@ -199,7 +199,6 @@ class NewPostArea extends React.Component {
                   <Button type="confirm" onClick={this.onClick}>Post</Button>
                   <Button type="cancel" onClick={() => {this.setState({renderUploadPopup: true})}}>Photo/Video</Button>
                   <AudienceMenu onChange={this.onChangeAudience} className="new-post-menu"
-                    storage_key="post_audience_settings"
                     options={["public", "friends", "friends_except", "only_me"].concat(currentFriendList)}
                     //more={["specific_friends", "see_all"]}
                     //see_all={currentFriendList}

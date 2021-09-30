@@ -60,14 +60,6 @@ class BlockEventInvites extends React.Component {
     visited.notifications.event = true;
     localStorage.setItem("featuresVisited", JSON.stringify(visited));      
   }
-    
-    /*componentDidMount(){
-        var blockedFriends = JSON.parse(localStorage.getItem('blockedEventInvites'))
-        
-        this.setState({
-            blockedFriendsList:blockedFriends
-        })
-    }*/
 
     handleChange(friendname){
         
@@ -101,9 +93,13 @@ class BlockEventInvites extends React.Component {
       
     onEnter(friendname){
         var event;
+         var blockedEventList = this.state.blockedFriendsList;
+        var friends = this.state.friendsList
+
+        if(friends.indexOf(friendname) >= 1 && blockedEventList.indexOf(friendname) === -1){
+            blockedEventList.push(friendname)
+        }
         
-        
-        this.state.blockedFriendsList.push(friendname)
         this.setLocalStorage();
 
         let used = JSON.parse(localStorage.featuresUsed);
@@ -113,8 +109,7 @@ class BlockEventInvites extends React.Component {
        event = {
              action: `Block event invites`,
              object: `Pressed the Enter key`,
-             context: `Block ${friendname} from sending event invites.Participant did this on their own`,
-             
+             context: `Block ${friendname} from sending event invites.Participant did this on their own`,  
         };
         
        
@@ -128,6 +123,9 @@ class BlockEventInvites extends React.Component {
       
         }
         
+        this.setState({
+            blockedFriendsList: blockedEventList
+        })
        
        createEvent(event);
        

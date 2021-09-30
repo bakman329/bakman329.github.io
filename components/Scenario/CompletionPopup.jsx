@@ -13,7 +13,7 @@ class CompletionPopup extends React.Component {
                       featuresUsed: {}}
 
         this.USAGE_WEIGHT = 3;
-        this.MIN_SCORE_TO_PROCEED = 10;
+        this.MIN_SCORE_TO_PROCEED = 15;
 
         this.score = this.score.bind(this);
         this.submitExperiment = this.submitExperiment.bind(this);
@@ -46,6 +46,7 @@ class CompletionPopup extends React.Component {
             }); */
             let sc = this.score(getParsed("featuresUsed"), getParsed("featuresVisited"));
             if (sc < this.MIN_SCORE_TO_PROCEED) {
+                registerEvent("Tracker_Completion Popup", `Held by the tracker with score ${sc}`, "Scenario Area");
                 return;
             }
             else {
@@ -71,14 +72,15 @@ class CompletionPopup extends React.Component {
             }
         }
 
-        return unusedNames.map((s, i) => {return <li key={i}>{s}</li>});
+        return unusedNames.map((s, i) => {return <li key={i} style={{marginBottom:"5px",
+    lineHeight:"1.5"}}>{s}</li>});
     }
     render() {
         this.submitExperiment();
         return (
-            <Popup title="Some features not visited" closeButton closeButtonName="Close"
+            <Popup title="Some features not visited" warningHeader closeButton closeButtonName="Close"
                 cancel={this.props.destroy}>
-            <h2>You should try some of these things before moving on:</h2>
+            <h4>You should try some of these things before moving on:</h4>
             <ul id="unused-list">
                 {this.unusedList()}
             </ul>

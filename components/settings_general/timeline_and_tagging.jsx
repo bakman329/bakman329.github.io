@@ -150,8 +150,6 @@ class TimelineandTagging extends Component {
                 <br/>
 
                 <AudienceMenu onChange={audienceSelectionMethod}
-                      storage_key="default_tag_audience_settings"
-                      key="friend_posts_audience_settings"
                       className="audience_selection"
                       options={["Only me","Friends"]}
                       />

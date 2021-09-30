@@ -19,11 +19,9 @@ class Edit extends React.Component{
         
     }
     
-    //enable change of audience(cf:https://stackoverflow.com/questions/40795906/onchange-event-for-react-child-component-to-update-state )
     
     onAudienceChange(audience){
-        //Include the action to be taken when the audience is selected.
-        //console.log("The audience has been selected")
+        
         this.props.changeAudience(this.props.audienceType,audience)
         if (this.props.audienceType == "timeline_see") {
             let used = JSON.parse(localStorage.featuresUsed);
@@ -44,18 +42,10 @@ class Edit extends React.Component{
             adaptationVisited:getParsed('visited'),
              })
         
-        // if(!this.props.adaptationVisited["Privacy_futureRequest"]["highlight"] && this.props.adapt === "high" ){
-      // this.visitedAdaptation("highlight")
-             
-             
-   // }
     }
     
     //The normal display
     renderNormal(){
-        
-        //console.log(this.state.adaptationVisited["Privacy_futureRequests"]["highlight"])
-        //&& (this.props.description =="Who can see your future requests?"),
         
         var righttop_text_style = classNames({
             'righttop_text':true,

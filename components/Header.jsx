@@ -66,7 +66,7 @@ class Header extends React.Component {
         
         <div id='user'>
           <Link to={{
-                pathname:'/profile/Alex_doe',
+                pathname:'/profile/alex_doe',
                     state:{fromNewsFeed:true}}} onClick={() => this.registerClick("Clicked on Alex Doe'\s","profile link to visit their profile page",'Header')}><img id='profile-pic' src='/assets/users/alex_profile_img.jpg'/><span id='header-text'>  Alex</span></Link>
                     
                     

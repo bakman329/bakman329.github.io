@@ -33,6 +33,14 @@ export function indexPosts() {
 export function resetPosts() {
  localStorage.setItem('posts', JSON.stringify(
     [
+    
+    {"name":"Sasha Riley",
+     "img":"/assets/sasha_profile_img.jpg",
+     "content":"Looking to fill our open project manager role at RBW. Got any friends who you think would be interested, send them my way!",
+     "key":44,
+     "comments":[],
+     "audience":"public",
+     "time":"Yesterday"},
         
      {"name":"Esther Rorgash",
         "content":"I am good friends with Alex Doe",
@@ -227,7 +235,7 @@ export function resetPosts() {
      "key":21,
      "comments":[],
      "audience":"public",
-     "time":"Yesterday"},  
+     "time":"1 June"},  
         
     { "name":"Kyle Parker",
       "img": "/assets/kyle_profile_img.jpg",
@@ -410,12 +418,7 @@ export function resetChat() {
 export function resetSettings() {
   // turn_off_chat: [setting, [list of "except" contacts], [list of "some" contacts]]
   // post_audience_settings: [setting, [list of "except" friends], [list of specific friends], [[List of custom groups/people to share with], [List not to share with]]]
-  localStorage.setItem('settings', JSON.stringify({"turn_off_chat": ["someContacts", [], []],
-                       "post_audience_settings": ["public", [], [], [[], []]],
-                       "friend_posts_audience_settings": ["public", [], [], [[], []]],
-                       "friend_list_audience_settings": ["public", [], [], [[], []]],
-                       "default_tag_audience_settings": ["friends", [], [], [[], []]],
-                       "default_priv_audience_settings": ["everyone", [], [], [[], []]]}));
+  localStorage.setItem('settings', JSON.stringify({"turn_off_chat": ["someContacts", [], []], "post_audience_settings": ["public", [], [], [[], []]]}));
 }
 
 /*export function resetFriends() {
@@ -567,12 +570,13 @@ export function resetSession() {
 
 export function resetContactInfo(){
     localStorage.setItem('contactInfo',JSON.stringify({
-        alex_doe:{
+        alex_doe :{
         mobile:'+1 801 234-5679',
         email:'ladiesman69@yahoo.com',
         dob:'01 January',
         year:'1979',
-        gender:'Gender-Neutral'
+        gender:'Gender-Neutral',
+        political:"Moderate"
         },
         
        jack_scout:{
@@ -750,12 +754,15 @@ export function resetAdaptationDisplay(){
     }))
 }
 
-export function blockFriend(name) {
+export function blockFriend(name,place) {
+    registerEvent("Blocked_User",`${name} was blocked`,place )
     //Add to Blocked Users list
     let BlockedUsers = getParsed('blockedUsers');
     let friendName = linkToName(name);
     
-     if(BlockedUsers.indexOf(friendName)){
+    
+    
+     if(BlockedUsers.indexOf(friendName) === -1 ){
          BlockedUsers.push(friendName)
       };
     
@@ -809,7 +816,7 @@ export function resetFeaturesVisited() {
     friends: {unfollow: false},
     notifications: {app: false, event: false},
     posts: {delete: false, hide: false},
-    withhold_info: {address: false, political: false}, // TODO
+    withhold_info: {address: false, political: false}, //DONE
     // custom_lists: {create_custom: false, post_custom: false, photo_custom: false}, // TODO
     custom_lists: {post_custom: false},
     block: {app: false, user: false},
@@ -1016,6 +1023,16 @@ export function addToLocalStorageObject (name,value){
     return localStorage.setItem(name, JSON.stringify(value));   
 }
 
+export function saveContactInfo (name, info, value){
+
+   var contacts_Info = getParsed('contactInfo');
+   var user_Info =  contacts_Info[name];
+    
+    user_Info[info] = value
+    localStorage.setItem('contactInfo', JSON.stringify(contacts_Info));
+}
+
+
 export function saveVisitedAdaptation (feature, adaptationName){
     let adaptationVisited = getParsed("visited")
     adaptationVisited[feature][adaptationName] = true
@@ -1067,14 +1084,6 @@ export function audienceText(audience) {
     
     case "friends_except":
       text = "Friends except...";
-      break;
-    
-    case "friends_of_friends":
-      text = "Friends of friends";
-      break;
-    
-    case "everyone":
-      text = "Everyone";
       break;
 
     case "only_me":

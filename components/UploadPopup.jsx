@@ -19,15 +19,21 @@ class UploadPopup extends React.Component {
            destroy={this.props.destroy}
            okay={() => {}}
            cancel={() => {}} >
-        <Button onClick={() => {this.onClickPhoto('/assets/profile_img.jpg')}}>
-          <img src='/assets/profile_img.jpg'
+        <Button onClick={() => {this.onClickPhoto('/assets/cat.jpg')}}>
+          <img src='/assets/cat.jpg'
                style={{width: 60, height: 60}} />
-          <p>Me.jpg</p>
+          <p>Cat.jpg</p>
         </Button>
-        <Button onClick={() => {this.onClickPhoto('/assets/Dinosaur.png')}}>
-          <img src='/assets/Dinosaur.png'
+        <Button onClick={() => {this.onClickPhoto('/assets/life.jpg')}}>
+          <img src='/assets/life.jpg'
                style={{width: 60, height: 60}} />
-          <p>Dino.jpg</p>
+          <p>Life.jpg</p>
+        </Button>
+        
+        <Button onClick={() => {this.onClickPhoto('/assets/funny.jpg')}}>
+          <img src='/assets/funny.jpg'
+               style={{width: 60, height: 60}} />
+          <p>Funny.jpg</p>
         </Button>
       </Popup>);
   }

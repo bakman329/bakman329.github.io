@@ -2,4 +2,4 @@ config/*
 controller/eventController.php
 model/*
 Pages/*
-
+node_modules
